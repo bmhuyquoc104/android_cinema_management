@@ -4,4 +4,10 @@
     <string name="Movie">MOVIES</string>
     <string name="buyTicket">Buy Ticket</string>
     <string name="Review">REVIEWS</string>
+    <string name="movie">Movie</string>
+    <string name="location">Location</string>
+    <string name="search">Search</string>
+    <string name="account">Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

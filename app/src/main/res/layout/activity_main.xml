@@ -101,21 +101,36 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="403dp"
-        android:layout_height="521dp"
+        android:layout_width="412dp"
+        android:layout_height="494dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
+
+
+
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="410dp"
-        android:layout_height="48dp"
+        android:id="@+id/bottomNavigation"
+        android:layout_width="411dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
+        app:itemIconTint="@drawable/option_selector"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:menu="@menu/option_menu"
         tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="410dp"
+        android:layout_height="52dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="179dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
