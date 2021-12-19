@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">android_cinema_management</string>
+    <string name="Cinema">CINEMAS</string>
+    <string name="Movie">MOVIES</string>
+    <string name="buyTicket">Buy Ticket</string>
+    <string name="Review">REVIEWS</string>
 </resources>
