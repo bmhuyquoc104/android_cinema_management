@@ -19,7 +19,8 @@ public class MovieHandler {
                         .select("img").eq(i).attr("src");
                 String englishTitle = data.select("div.title-watchmovie > h4:first-child").eq(i).text();
                 String vietnameseTitle = data.select("div.title-watchmovie > h4.vn.upper-text").eq(i).text();
-                list.add(new Movie(vietnameseTitle, englishTitle, movieImage));
+                String movieDetails = data.select("div.article-watchmovie").select("a").attr("href");
+                list.add(new Movie(vietnameseTitle, englishTitle, movieImage,movieDetails));
             }
         } catch (IOException e) {
             e.printStackTrace();
