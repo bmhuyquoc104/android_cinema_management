@@ -69,13 +69,6 @@ public class MainActivity extends AppCompatActivity {
         // Set fixed size for recycler view
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-
-        //Use a linear layout manager
-//        layoutManager = new LinearLayoutManager(MainActivity.this);
-//        recyclerView.setLayoutManager(layoutManager);
-
-        // Specify an adapter
-
         fetchAndRenderMovie();
     }
 
@@ -102,21 +95,26 @@ public class MainActivity extends AppCompatActivity {
         Runnable runnable = () ->{
           String url = "https://www.galaxycine.vn/phim-dang-chieu";
             MovieHandler.getMovieData(url,movieList);
-            System.out.println("huy ne" + movieList);
             msg.obj = movieList;
             asHandler.sendMessage(msg);
         };
         asHandler.post(runnable);
     }
 
+    /** Function to render the movie list in UI
+     *
+     * */
     public void renderMovieList(){
+        // Initialize new ui handler
         Handler uiThreadHandler = new Handler(Looper.getMainLooper());
 
         // Read post from fetchAndRenderMovie
         uiThreadHandler.post(() ->{
             moviesAdapter = new MoviesAdapter(movieList,this);
+            // use grid layout manager to display 2 items in one row
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
             recyclerView.setLayoutManager(gridLayoutManager);
+            // Specify an adapter
             recyclerView.setAdapter(moviesAdapter);
         });
     }

@@ -4,19 +4,16 @@ public class Movie {
     private String vietnameseTitle;
     private String englishTitle;
     private String urlImage;
-    private String link;
+    private String movieDetailUrl;
 
-    public Movie(String vietnameseTitle, String englishTitle, String urlImage, String link) {
+    public Movie(String vietnameseTitle, String englishTitle, String urlImage, String movieDetailUrl) {
         this.vietnameseTitle = vietnameseTitle;
         this.englishTitle = englishTitle;
         this.urlImage = urlImage;
-        this.link = link;
+        this.movieDetailUrl = movieDetailUrl;
     }
 
-    public Movie(String vietnameseTitle, String englishTitle, String urlImage) {
-        this.vietnameseTitle = vietnameseTitle;
-        this.englishTitle = englishTitle;
-        this.urlImage = urlImage;
+    public Movie() {
     }
 
     public String getVietnameseTitle() {
@@ -43,12 +40,12 @@ public class Movie {
         this.urlImage = urlImage;
     }
 
-    public String getLink() {
-        return link;
+    public String getMovieDetailUrl() {
+        return movieDetailUrl;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setMovieDetailUrl(String movieDetailUrl) {
+        this.movieDetailUrl = movieDetailUrl;
     }
 
     @Override
@@ -57,7 +54,7 @@ public class Movie {
                 "vietnameseTitle='" + vietnameseTitle + '\'' +
                 ", englishTitle='" + englishTitle + '\'' +
                 ", urlImage='" + urlImage + '\'' +
-                ", link='" + link + '\'' +
+                ", movieDetailUrl='" + movieDetailUrl + '\'' +
                 '}';
     }
 }
