@@ -1,20 +1,28 @@
 package com.example.android_cinema_management;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.MoviesAdapter;
+import com.example.android_cinema_management.Handler.MovieHandler;
 import com.example.android_cinema_management.Model.Movie;
 
 import java.util.ArrayList;
@@ -25,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
     Button loginAndRegister;
     //Declare recyclerview
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter participantAdapter;
     private RecyclerView.LayoutManager layoutManager;
     //Declare adapter
     private MoviesAdapter moviesAdapter;
     //Declare Movie list
     private ArrayList<Movie> movieList;
+    //Declare HandlerThread Thread
+    HandlerThread ht = new HandlerThread("MyHandlerThread");
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +71,53 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         //Use a linear layout manager
-        layoutManager = new LinearLayoutManager(MainActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
+//        layoutManager = new LinearLayoutManager(MainActivity.this);
+//        recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter
-        moviesAdapter = new MoviesAdapter(movieList,this);
-        recyclerView.setAdapter(moviesAdapter);
 
+        fetchAndRenderMovie();
+    }
+
+    /** Function scape data from the website
+     *  Use handler thread for background thread
+     * */
+
+    private void fetchAndRenderMovie(){
+        //Start the handler thread
+        ht.start();
+        //Initialize new handler
+        Handler asHandler = new Handler(ht.getLooper()){
+            //Handle function after receiving message
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                renderMovieList();
+            }
+        };
+
+        //Initialize new message
+        Message msg = new Message();
+
+        // Handle scrapping data
+        Runnable runnable = () ->{
+          String url = "https://www.galaxycine.vn/phim-dang-chieu";
+            MovieHandler.getMovieData(url,movieList);
+            System.out.println("huy ne" + movieList);
+            msg.obj = movieList;
+            asHandler.sendMessage(msg);
+        };
+        asHandler.post(runnable);
+    }
+
+    public void renderMovieList(){
+        Handler uiThreadHandler = new Handler(Looper.getMainLooper());
+
+        // Read post from fetchAndRenderMovie
+        uiThreadHandler.post(() ->{
+            moviesAdapter = new MoviesAdapter(movieList,this);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
+            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setAdapter(moviesAdapter);
+        });
     }
 }

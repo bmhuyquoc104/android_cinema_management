@@ -13,6 +13,12 @@ public class Movie {
         this.link = link;
     }
 
+    public Movie(String vietnameseTitle, String englishTitle, String urlImage) {
+        this.vietnameseTitle = vietnameseTitle;
+        this.englishTitle = englishTitle;
+        this.urlImage = urlImage;
+    }
+
     public String getVietnameseTitle() {
         return vietnameseTitle;
     }

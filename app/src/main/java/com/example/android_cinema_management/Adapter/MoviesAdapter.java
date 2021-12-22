@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MoviesAdapter.MyViewHolder holder, int position) {
+        Picasso.get().load(movieList.get(position).getUrlImage()).into(holder.movieImage);
         holder.vietnameseTitle.setText(movieList.get(position).getVietnameseTitle());
         holder.englishTitle.setText(movieList.get(position).getEnglishTitle());
     }
