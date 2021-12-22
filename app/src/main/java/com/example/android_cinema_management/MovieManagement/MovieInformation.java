@@ -1,20 +1,29 @@
 package com.example.android_cinema_management.MovieManagement;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.example.android_cinema_management.Handler.MovieHandler;
+import com.example.android_cinema_management.Model.MovieDetail;
 import com.example.android_cinema_management.R;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 
@@ -27,6 +36,12 @@ public class MovieInformation extends AppCompatActivity {
     ImageView movieImage;
     //Declare videoView
     VideoView movieTrailer;
+    //Declare String for video URL
+    String movieDetailUrl;
+    // Declare new handlerThread
+    HandlerThread ht = new HandlerThread("MyHandlerThread");
+    // Declare ArrayList
+    ArrayList<MovieDetail>movieInformation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +53,10 @@ public class MovieInformation extends AppCompatActivity {
         releaseDate = findViewById(R.id.mi_releaseDate);
         movieImage = findViewById(R.id.mi_movieImage);
         movieTrailer = findViewById(R.id.mi_movieTrailer);
+
+        //Initialize movieURL
+        movieDetailUrl = "";
+        movieInformation = new ArrayList<>();
         // Create spannalbe String
         SpannableStringBuilder builder = new SpannableStringBuilder();
 
@@ -76,6 +95,55 @@ public class MovieInformation extends AppCompatActivity {
                 Picasso.get().load(imageUrl).into(movieImage);
             }
 
+            if( intent.hasExtra("movieDetailUrl")){
+                movieDetailUrl = intent.getStringExtra("movieDetailUrl");
+            }
         }
+        fetchMovieDetails();
     }
+
+    private void fetchMovieDetails (){
+        //Start Handler Thread
+        ht.start();
+        //Initialize new handler
+        Handler asHandler = new Handler(ht.getLooper()) {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                //Handle function after receiving message
+                renderMovieDetail();
+            }
+        };
+            //Initialize new message
+            Message msg = new Message();
+            // Scraping data from movieDetailURL
+            Runnable runnable = () ->{
+            String baseUrl = "https://www.galaxycine.vn";
+            String url = baseUrl + movieDetailUrl;
+            MovieHandler.getMovieDetails(url,movieInformation);
+            System.out.println("huy ne" + movieInformation);
+            msg.obj = movieInformation;
+            asHandler.sendMessage(msg);
+        };
+            asHandler.post(runnable);
+    }
+
+    private void renderMovieDetail() {
+
+        Handler uiThreadHandler = new Handler(getMainLooper());
+        uiThreadHandler.post(() -> {
+           for (MovieDetail movie:movieInformation){
+               String videoUrl = movie.getUrlVideos();
+               MediaController controller = new MediaController(this);
+               controller.setAnchorView(movieTrailer);
+               Uri video =  Uri.parse(videoUrl);
+               movieTrailer.setVideoURI(video);
+               movieTrailer.setMediaController(controller);
+               movieTrailer.setOnClickListener(view -> {
+                  movieTrailer.start();
+               });
+           }
+
+        });
+    }
+
 }
