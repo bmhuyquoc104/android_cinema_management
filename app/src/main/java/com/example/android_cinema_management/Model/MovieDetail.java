@@ -1,5 +1,7 @@
 package com.example.android_cinema_management.Model;
 
+import java.util.ArrayList;
+
 public class MovieDetail {
     private String director;
     private String actors;
@@ -9,7 +11,10 @@ public class MovieDetail {
     private String urlVideos;
     private String category;
 
-    public MovieDetail(String director, String actors, String producers, String country, String releaseDate ,String urlVideos,String category) {
+    public MovieDetail() {
+    }
+
+    public MovieDetail(String director, String actors, String producers, String country, String releaseDate, String urlVideos, String category) {
         this.director = director;
         this.actors = actors;
         this.producers = producers;
@@ -73,6 +78,24 @@ public class MovieDetail {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+
+    // Function to get the Id in the trailer link
+    public String getTrailers(ArrayList<MovieDetail> trailer) {
+        String finalId = "";
+        for (MovieDetail movie : trailer
+        ) {
+            String video = movie.getUrlVideos();
+            String id;
+            String[] actualLink = video.split("=");
+            for (int i = 0; i < actualLink.length; i++) {
+                id = actualLink[1];
+                finalId = id.substring(0, id.length() - 1);
+            }
+
+        }
+        return finalId;
     }
 
 

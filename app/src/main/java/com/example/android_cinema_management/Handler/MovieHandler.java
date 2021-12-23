@@ -22,6 +22,9 @@ public class MovieHandler {
                 String vietnameseTitle = data.select("div.title-watchmovie > h4.vn.upper-text").eq(i).text();
                 System.out.println(vietnameseTitle);
                 String movieDetails = data.select("div.article-watchmovie").select("a").eq(i).attr("href");
+                if (vietnameseTitle.equals("Ám Thuật: Xác Sống Săn Mồi")){
+                    continue;
+                }
                 System.out.println("movideLink" + movieDetails);
                 list.add(new Movie(vietnameseTitle, englishTitle, movieImage,movieDetails));
             }

@@ -3,6 +3,7 @@ package com.example.android_cinema_management.MovieManagement;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -22,6 +23,9 @@ import android.widget.VideoView;
 import com.example.android_cinema_management.Handler.MovieHandler;
 import com.example.android_cinema_management.Model.MovieDetail;
 import com.example.android_cinema_management.R;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -34,14 +38,17 @@ public class MovieInformation extends AppCompatActivity {
     TextView vietnameseTitle,englishTitle,releaseDate;
     // Declare imageView
     ImageView movieImage;
-    //Declare videoView
-    VideoView movieTrailer;
+    //Declare youtubeView
+    YouTubePlayerView movieTrailer;
     //Declare String for video URL
     String movieDetailUrl;
     // Declare new handlerThread
     HandlerThread ht = new HandlerThread("MyHandlerThread");
     // Declare ArrayList
     ArrayList<MovieDetail>movieInformation;
+    //Declare class
+    MovieDetail movie;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +60,11 @@ public class MovieInformation extends AppCompatActivity {
         releaseDate = findViewById(R.id.mi_releaseDate);
         movieImage = findViewById(R.id.mi_movieImage);
         movieTrailer = findViewById(R.id.mi_movieTrailer);
-
         //Initialize movieURL
         movieDetailUrl = "";
+        // Initialize list and class
         movieInformation = new ArrayList<>();
+        movie = new MovieDetail();
         // Create spannalbe String
         SpannableStringBuilder builder = new SpannableStringBuilder();
 
@@ -80,13 +88,12 @@ public class MovieInformation extends AppCompatActivity {
             if (intent.hasExtra("vietnameseTitle")) {
                 String vnTitle = intent.getStringExtra("vietnameseTitle");
                 // Set text for vietnamese title textview
-                vietnameseTitle.setText(vnTitle);
+                vietnameseTitle.setText("VnTitle: " + vnTitle);
             }
             if (intent.hasExtra("englishTitle")) {
                 String enTitle = intent.getStringExtra("englishTitle");
                 // Set text for english title textview
-
-                englishTitle.setText(enTitle);
+                englishTitle.setText("Entitle: " +enTitle);
             }
 
             if (intent.hasExtra("imageUrl")) {
@@ -127,22 +134,28 @@ public class MovieInformation extends AppCompatActivity {
             asHandler.post(runnable);
     }
 
+    @SuppressLint("SetTextI18n")
+    // Render movie after getting the data
     private void renderMovieDetail() {
-
+        // Initialize new handler to handle UIThread
         Handler uiThreadHandler = new Handler(getMainLooper());
         uiThreadHandler.post(() -> {
-           for (MovieDetail movie:movieInformation){
-               String videoUrl = movie.getUrlVideos();
-               MediaController controller = new MediaController(this);
-               controller.setAnchorView(movieTrailer);
-               Uri video =  Uri.parse(videoUrl);
-               movieTrailer.setVideoURI(video);
-               movieTrailer.setMediaController(controller);
-               movieTrailer.setOnClickListener(view -> {
-                  movieTrailer.start();
-               });
-           }
+            // Set and load video into youtube view
+            getLifecycle().addObserver(movieTrailer);
+            movieTrailer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                @Override
+                public void onReady(@NonNull YouTubePlayer movieTrailer) {
+                    // Get video Id by modifying video URL
+                    String videoId = movie.getTrailers(movieInformation);
+                    // Option to start video by start button
+                    movieTrailer.cueVideo(videoId, 0);
+                }
 
+            });
+            //Get release date in movieInformation list
+            for (MovieDetail movie:movieInformation){
+                releaseDate.setText("Release Date:" + " " + movie.getReleaseDate());
+            }
         });
     }
 

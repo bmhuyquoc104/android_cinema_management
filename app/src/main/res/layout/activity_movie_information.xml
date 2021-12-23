@@ -155,16 +155,17 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:srcCompat="@tools:sample/avatars" />
 
-                    <VideoView
-                        android:id="@+id/mi_movieTrailer"
-                        android:layout_width="394dp"
+                    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                        android:layout_width="355dp"
                         android:layout_height="247dp"
-                        android:layout_marginTop="92dp"
-                        android:layout_marginEnd="1dp"
+                        android:layout_marginStart="73dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="122dp"
+                        android:id="@+id/mi_movieTrailer"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="0.354"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mi_vietnameseTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/mi_movieImage" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
