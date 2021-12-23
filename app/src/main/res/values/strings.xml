@@ -17,5 +17,8 @@
     <string name="movie2">TODO</string>
     <string name="textview">TextView</string>
     <string name="movieImage" />
+    <string name="showtimes">SHOWTIMES</string>
+    <string name="movie_details">MOVIE DETAILS</string>
+    <string name="FilmContent">Film Content</string>
 
 </resources>

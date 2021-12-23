@@ -102,6 +102,7 @@ public class MovieInformation extends AppCompatActivity {
                 Picasso.get().load(imageUrl).into(movieImage);
             }
 
+            // Get movie detail url from main activity
             if( intent.hasExtra("movieDetailUrl")){
                 movieDetailUrl = intent.getStringExtra("movieDetailUrl");
             }
@@ -147,6 +148,7 @@ public class MovieInformation extends AppCompatActivity {
                 public void onReady(@NonNull YouTubePlayer movieTrailer) {
                     // Get video Id by modifying video URL
                     String videoId = movie.getTrailers(movieInformation);
+                    System.out.println("cho t coi cai id" +videoId);
                     // Option to start video by start button
                     movieTrailer.cueVideo(videoId, 0);
                 }

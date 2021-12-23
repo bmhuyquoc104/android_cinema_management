@@ -11,10 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_cinema_management.Model.Movie;
+import com.example.android_cinema_management.MovieManagement.MovieInfoTabLayout;
 import com.example.android_cinema_management.MovieManagement.MovieInformation;
+import com.example.android_cinema_management.MovieManagement.MovieShowTimeFragment1;
 import com.example.android_cinema_management.R;
 import com.squareup.picasso.Picasso;
 
@@ -50,20 +54,19 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
         holder.englishTitle.setText(movieList.get(position).getEnglishTitle());
         holder.itemView.setOnClickListener(view ->{
             //Send intent to movie information activity
-            Intent intent = new Intent(context, MovieInformation.class);
+            Intent intent = new Intent(context, MovieInfoTabLayout.class);
             //Use send method
             intent.setAction(Intent.ACTION_SEND);
-            // Set text type
+//            // Set text type
             intent.setType("plain/text");
-            // Send message contain title, image
+//            // Send message contain title, image
             intent.putExtra("englishTitle", movieList.get(position).getEnglishTitle());
             intent.putExtra("vietnameseTitle", movieList.get(position).getVietnameseTitle());
             intent.putExtra("imageUrl", movieList.get(position).getUrlImage());
             intent.putExtra("movieDetailUrl",movieList.get(position).getMovieDetailUrl());
-            System.out.println("huy ne" + movieList.get(position).getMovieDetailUrl());
-            System.out.println("huy ne" + movieList.get(position).getMovieDetailUrl());
-            System.out.println("huy ne" + movieList.get(position).getMovieDetailUrl());
-            System.out.println("huy ne" + movieList.get(position).getMovieDetailUrl());
+
+
+
             // Start intent
             try {
                 context.startActivity(intent);
@@ -72,6 +75,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
             catch (ActivityNotFoundException e){
                 Toast.makeText(context,"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
             }
+
+
         });
     }
 
@@ -92,4 +97,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
             movieImage = itemView.findViewById(R.id.movie1);
         }
     }
+
+
 }

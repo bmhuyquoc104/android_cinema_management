@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background = "@color/colorPrimary3"
+    tools:context=".MovieManagement.MovieInfoTabLayout">
+    <View
+        android:id="@+id/view"
+        android:layout_width="414dp"
+        android:layout_height="57dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="241dp"
+        android:layout_height="140dp"
+        android:layout_marginEnd="216dp"
+        android:layout_marginBottom="558dp"
+        android:contentDescription="@string/account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/app_logo_2"
+        tools:ignore="ImageContrastCheck" />
+
+
+    <Button
+        android:id="@+id/loginAndRegister"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="171dp"
+        android:layout_height="62dp"
+        android:cursorVisible="true"
+        android:text="@string/button"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary2"
+        app:icon="@drawable/ic_baseline_account_box_24"
+        app:iconGravity="start"
+        app:iconPadding="4dp"
+        app:iconTint="@color/colorPrimary4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/mitl_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:background="@color/colorPrimary3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabGravity="start"
+        app:tabIndicatorColor="@color/colorPrimary2"
+        app:tabIndicatorGravity="bottom"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#fff"
+        app:tabTextColor="@color/colorPrimary5">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/showtimes"
+            android:visibility="visible" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_details" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id = "@+id/mitl_viewpager2"
+        android:layout_width="413dp"
+        android:layout_height="504dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mitl_tab_layout" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="411dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="616dp"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@drawable/option_selector"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/option_menu"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

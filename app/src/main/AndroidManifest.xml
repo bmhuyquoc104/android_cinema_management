@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_cinema_management">
         <activity
+            android:name=".MovieManagement.MovieInfoTabLayout"
+            android:exported="false" />
+        <activity
             android:name=".MovieManagement.MovieInformation"
             android:exported="false" />
         <activity
