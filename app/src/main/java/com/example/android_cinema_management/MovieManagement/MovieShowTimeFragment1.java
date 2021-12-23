@@ -45,8 +45,8 @@ public class MovieShowTimeFragment1 extends Fragment {
     String movieDetailUrl;
     // Declare new handlerThread
     HandlerThread ht = new HandlerThread("MyHandlerThread");
-    // Declare ArrayList
-    ArrayList<MovieDetail> movieInformation;
+    // Declare public static ArrayList to use later by other classes
+    public static ArrayList<MovieDetail> movieInformation;
     //Declare class
     MovieDetail movieDetail;
     Movie movie;
@@ -130,7 +130,6 @@ public class MovieShowTimeFragment1 extends Fragment {
             movieDetailUrl = movie.getMovieDetailUrl();
             String url = baseUrl + movieDetailUrl;
             MovieHandler.getMovieDetails(url,movieInformation);
-            System.out.println("huy ne" + movieInformation);
             msg.obj = movieInformation;
             asHandler.sendMessage(msg);
         };

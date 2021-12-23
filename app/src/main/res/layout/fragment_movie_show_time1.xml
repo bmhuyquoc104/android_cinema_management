@@ -39,40 +39,24 @@
 
                     <TextView
                         android:id="@+id/mi_releaseDate"
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
+                        android:layout_width="189dp"
+                        android:layout_height="57dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="22dp"
                         android:text="@string/textview"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary4"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintHorizontal_bias="0.902"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/mi_vietnameseTitle" />
 
                     <TextView
                         android:id="@+id/mi_vietnameseTitle"
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="28dp"
-                        android:layout_marginEnd="22dp"
-                        android:text="@string/textview"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary4"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mi_englishTitle" />
-
-                    <TextView
-                        android:id="@+id/mi_englishTitle"
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
+                        android:layout_width="207dp"
+                        android:layout_height="84dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="22dp"
@@ -81,14 +65,30 @@
                         android:textColor="@color/colorPrimary4"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.994"
+                        app:layout_constraintHorizontal_bias="0.993"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/mi_englishTitle" />
+
+                    <TextView
+                        android:id="@+id/mi_englishTitle"
+                        android:layout_width="207dp"
+                        android:layout_height="77dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="22dp"
+                        android:text="@string/textview"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary4"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/mi_movieImage"
-                        android:layout_width="158dp"
-                        android:layout_height="199dp"
+                        android:layout_width="156dp"
+                        android:layout_height="234dp"
                         android:layout_marginTop="16dp"
                         android:adjustViewBounds="true"
                         android:cropToPadding="true"
@@ -99,14 +99,14 @@
                         tools:srcCompat="@tools:sample/avatars" />
 
                     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                        android:id="@+id/mi_movieTrailer"
                         android:layout_width="355dp"
                         android:layout_height="247dp"
                         android:layout_marginStart="73dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="36dp"
                         android:layout_marginEnd="122dp"
-                        android:id="@+id/mi_movieTrailer"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.354"
+                        app:layout_constraintHorizontal_bias="0.367"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/mi_movieImage" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
