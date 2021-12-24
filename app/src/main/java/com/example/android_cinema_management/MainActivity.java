@@ -1,53 +1,41 @@
 package com.example.android_cinema_management;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
-import android.os.Message;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.Toast;
 
-import com.example.android_cinema_management.Adapter.MoviesAdapter;
-import com.example.android_cinema_management.Handler.MovieHandler;
-import com.example.android_cinema_management.Model.Movie;
-
-import java.util.ArrayList;
+import com.example.android_cinema_management.Adapter.HomeAdapter;
+import com.example.android_cinema_management.Adapter.MovieFragmentAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-
+    //Declare tablayout, adapter and viewpager2
+    TabLayout layout;
+    ViewPager2 viewpager2;
+    HomeAdapter adapter;
     //Declare login and register button
     Button loginAndRegister;
-    //Declare recyclerview
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    //Declare adapter
-    private MoviesAdapter moviesAdapter;
-    //Declare Movie list
-    private ArrayList<Movie> movieList;
-    //Declare HandlerThread Thread
-    HandlerThread ht = new HandlerThread("MyHandlerThread");
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // Binding with xml layout
+        setContentView(R.layout.activity_main2);
+        //Binding with XML values
+        layout = findViewById(R.id.ma_tab_layout);
+        viewpager2 = findViewById(R.id.ma_viewpager2);
         loginAndRegister = findViewById(R.id.loginAndRegister);
-        movieList = new ArrayList<>();
+        // Initialize fragment manager
+        FragmentManager fm = getSupportFragmentManager();
+        // Initialize adapter
+        adapter = new HomeAdapter(fm,getLifecycle());
+        // Set adapter to viewpage2
+        viewpager2.setAdapter(adapter);
 
         // Create spannalbe String
         SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -65,56 +53,28 @@ public class MainActivity extends AppCompatActivity {
         // Set text for button
         loginAndRegister.setText( builder, Button.BufferType.SPANNABLE);
 
-        // Set fixed size for recycler view
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        fetchAndRenderMovie();
-    }
-
-    /** Function scape data from the website
-     *  Use handler thread for background thread
-     * */
-
-    private void fetchAndRenderMovie(){
-        //Start the handler thread
-        ht.start();
-        //Initialize new handler
-        Handler asHandler = new Handler(ht.getLooper()){
-            //Handle function after receiving message
+        // Change the layout by tab selected
+        layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void handleMessage(@NonNull Message msg) {
-                renderMovieList();
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewpager2.setCurrentItem(tab.getPosition());
             }
-        };
 
-        //Initialize new message
-        Message msg = new Message();
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-        // Handle scrapping data
-        Runnable runnable = () ->{
-          String url = "https://www.galaxycine.vn/phim-sap-chieu";
-            MovieHandler.getMovieData(url,movieList);
-            msg.obj = movieList;
-            asHandler.sendMessage(msg);
-        };
-        asHandler.post(runnable);
-    }
+            }
 
-    /** Function to render the movie list in UI
-     *
-     * */
-    public void renderMovieList(){
-        // Initialize new ui handler
-        Handler uiThreadHandler = new Handler(Looper.getMainLooper());
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
-        // Read post from fetchAndRenderMovie
-        uiThreadHandler.post(() ->{
-            moviesAdapter = new MoviesAdapter(movieList,this);
-            // use grid layout manager to display 2 items in one row
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
-            recyclerView.setLayoutManager(gridLayoutManager);
-            // Specify an adapter
-            recyclerView.setAdapter(moviesAdapter);
+            }
+        });
+        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                layout.selectTab(layout.getTabAt(position));
+            }
         });
     }
 }

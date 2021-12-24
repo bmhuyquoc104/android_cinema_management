@@ -25,18 +25,19 @@
                 android:layout_width="373dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="17dp"
                 android:text="@string/FilmContent"
                 android:textColor="@color/colorPrimary4"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="213dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginEnd="102dp"
@@ -73,7 +74,7 @@
                     <TextView
                         android:id="@+id/mf2_releasedDate"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="60dp"
                         android:layout_marginEnd="22dp"
@@ -89,7 +90,7 @@
                     <TextView
                         android:id="@+id/mf2_country"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="22dp"
@@ -105,7 +106,7 @@
                     <TextView
                         android:id="@+id/mf2_producers"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="22dp"
@@ -121,7 +122,7 @@
                     <TextView
                         android:id="@+id/mf2_category"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="84dp"
                         android:layout_marginEnd="22dp"
@@ -137,7 +138,7 @@
                     <TextView
                         android:id="@+id/mf2_actors"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="22dp"
@@ -153,7 +154,7 @@
                     <TextView
                         android:id="@+id/mf2_directors"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="256dp"
                         android:layout_marginEnd="22dp"

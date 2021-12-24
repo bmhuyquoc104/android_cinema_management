@@ -11,14 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.MovieManagement.MovieInfoTabLayout;
-import com.example.android_cinema_management.MovieManagement.MovieInformation;
-import com.example.android_cinema_management.MovieManagement.MovieShowTimeFragment1;
 import com.example.android_cinema_management.R;
 import com.squareup.picasso.Picasso;
 

@@ -5,7 +5,6 @@ import static android.os.Looper.getMainLooper;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,21 +12,16 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Message;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Handler.MovieHandler;
-import com.example.android_cinema_management.MainActivity2;
+import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.Model.MovieDetail;
 import com.example.android_cinema_management.R;
@@ -122,7 +116,7 @@ public class MovieShowTimeFragment1 extends Fragment {
 
         // Function to go back to previous activity
         goback.setOnClickListener ( View ->{
-            Intent intent = new Intent(getContext(), MainActivity2.class);
+            Intent intent = new Intent(getContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             try {
                startActivity(intent);
