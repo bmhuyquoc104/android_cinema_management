@@ -3,12 +3,14 @@ package com.example.android_cinema_management;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Declare login and register button
     Button loginAndRegister;
+    Button cinemaButton;
 
     @SuppressLint("SetTextI18n")
     @Override
