@@ -64,9 +64,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
             intent.putExtra("vietnameseTitle", movieList.get(position).getVietnameseTitle());
             intent.putExtra("imageUrl", movieList.get(position).getUrlImage());
             intent.putExtra("movieDetailUrl",movieList.get(position).getMovieDetailUrl());
-
-
-
             // Start intent
             try {
                 context.startActivity(intent);

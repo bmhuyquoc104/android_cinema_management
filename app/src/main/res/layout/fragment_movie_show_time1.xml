@@ -22,7 +22,7 @@
             <androidx.cardview.widget.CardView
                 style="@style/CardView.Light"
                 android:layout_width="0dp"
-                android:layout_height="550dp"
+                android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/colorPrimary3"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="10dp"
@@ -35,59 +35,44 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/mi_rate"
                         android:layout_width="206dp"
-                        android:layout_height="43dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="28dp"
                         android:text="@string/textview"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary4"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.863"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mi_vietnameseTitle" />
-
-                    <TextView
-                        android:id="@+id/mi_duration"
-                        android:layout_width="211dp"
-                        android:layout_height="47dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="60dp"
-                        android:text="@string/textview"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary4"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.902"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mi_vietnameseTitle" />
-
-                    <TextView
-                        android:id="@+id/mi_vietnameseTitle"
-                        android:layout_width="227dp"
-                        android:layout_height="89dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/textview"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary4"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintHorizontal_bias="0.911"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/mi_englishTitle" />
 
                     <TextView
+                        android:id="@+id/mi_duration"
+                        android:layout_width="211dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/textview"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary4"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.939"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/mi_rate" />
+
+                    <TextView
                         android:id="@+id/mi_englishTitle"
                         android:layout_width="226dp"
-                        android:layout_height="85dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="120dp"
                         android:text="@string/textview"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary4"
@@ -101,7 +86,7 @@
                         android:id="@+id/mi_movieImage"
                         android:layout_width="169dp"
                         android:layout_height="287dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="64dp"
                         android:adjustViewBounds="true"
                         android:cropToPadding="true"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -112,21 +97,67 @@
 
                     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                         android:id="@+id/mi_movieTrailer"
-                        android:layout_width="355dp"
-                        android:layout_height="247dp"
+                        android:layout_width="358dp"
+                        android:layout_height="270dp"
                         android:layout_marginStart="73dp"
                         android:layout_marginTop="36dp"
                         android:layout_marginEnd="122dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.367"
+                        app:layout_constraintHorizontal_bias="0.379"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/mi_movieImage" />
+
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="62dp"
+                        android:layout_height="47dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_baseline_keyboard_return_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/todo" />
+
+                    <Button
+                        android:id="@+id/mf1_review"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                        android:layout_width="171dp"
+                        android:layout_height="51dp"
+                        android:layout_marginTop="276dp"
+                        android:text="@string/review"
+                        android:textAlignment="textStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary4"
+                        android:textStyle="italic"
+                        app:icon="@drawable/ic_baseline_rate_review_24"
+                        app:iconGravity="start"
+                        app:iconPadding="10dp"
+                        app:iconTint="@color/colorPrimary2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.776"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/mi_vietnameseTitle"
+                        android:layout_width="265dp"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="44dp"
+                        android:textAlignment="center"
+                        android:text="TextView"
+                        android:textColor ="@color/colorPrimary4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.42"
+                        app:layout_constraintStart_toEndOf="@+id/back"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

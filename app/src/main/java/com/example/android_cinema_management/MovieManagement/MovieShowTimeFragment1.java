@@ -3,6 +3,9 @@ package com.example.android_cinema_management.MovieManagement;
 import static android.os.Looper.getMainLooper;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,13 +15,19 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.Handler.MovieHandler;
+import com.example.android_cinema_management.MainActivity2;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.Model.MovieDetail;
 import com.example.android_cinema_management.R;
@@ -38,7 +47,7 @@ public class MovieShowTimeFragment1 extends Fragment {
     // Declare textview
     TextView vietnameseTitle,englishTitle,duration,rate;
     // Declare imageView
-    ImageView movieImage;
+    ImageView movieImage, goback;
     //Declare youtubeView
     YouTubePlayerView movieTrailer;
     //Declare String for video URL
@@ -49,6 +58,7 @@ public class MovieShowTimeFragment1 extends Fragment {
     public static ArrayList<MovieDetail> movieInformation;
     //Declare class
     MovieDetail movieDetail;
+    //Declare login and register button
     Movie movie;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -102,12 +112,25 @@ public class MovieShowTimeFragment1 extends Fragment {
         movieImage = view.findViewById(R.id.mi_movieImage);
         movieTrailer = view.findViewById(R.id.mi_movieTrailer);
         rate = view.findViewById(R.id.mi_rate);
+        goback = view.findViewById(R.id.back);
         //Initialize movieURL
         movieDetailUrl = "";
         // Initialize list and class
         movieInformation = new ArrayList<>();
         movieDetail = new MovieDetail();
         movie = MovieInfoTabLayout.currentMovie;
+
+        // Function to go back to previous activity
+        goback.setOnClickListener ( View ->{
+            Intent intent = new Intent(getContext(), MainActivity2.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            try {
+               startActivity(intent);
+            }
+            catch (ActivityNotFoundException e){
+                Toast.makeText(getContext(),"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
+            }
+        });
         fetchMovieDetails();
         return view;
     }
@@ -141,20 +164,36 @@ public class MovieShowTimeFragment1 extends Fragment {
     // Render movie after getting the data
     private void renderMovieDetail() {
         // Initialize new handler to handle UIThread
+
         Handler uiThreadHandler = new Handler(getMainLooper());
         uiThreadHandler.post(() -> {
             // Set and load video into youtube view
-            getLifecycle().addObserver(movieTrailer);
-            movieTrailer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-                @Override
-                public void onReady(@NonNull YouTubePlayer movieTrailer) {
-                    // Get video Id by modifying video URL
-                    String videoId = movieDetail.getTrailers(movieInformation);
-                    // Option to start video by start button
-                    movieTrailer.cueVideo(videoId, 0);
-                }
+                getLifecycle().addObserver(movieTrailer);
+                movieTrailer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(@NonNull YouTubePlayer movieTrailer) {
+                        // Get video Id by modifying video URL
+//                    String videoId = movieDetail.getTrailers(movieInformation);
+                        for (MovieDetail movie : movieInformation
+                        ) {
+                            String videoId ="";
+                            String video = movie.getUrlVideos();
+                            // If video do not start with an https, prompt the user that video is not available
+                            if (video.startsWith("\"https://")){
+                                // IDE system out ""string"" -> need to put condition in two double double quotation
+                                System.out.println("test1" + true);
+                                 videoId = movieDetail.getTrailers(movieInformation);
+                                // Option to start video by start button
+                                movieTrailer.cueVideo(videoId, 0);
+                            }
+                            else {
+                                // Announce the user
+                                Toast.makeText(getContext(), "Trailer for this movie is not available", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
 
-            });
+                });
             //Get release date in movieInformation list
             for (MovieDetail movie:movieInformation){
                 duration.setText("Duration:" + " " + movie.getDuration());

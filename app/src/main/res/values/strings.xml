@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">android_cinema_management</string>
-    <string name="Cinema">CINEMAS</string>
     <string name="Movie">MOVIES</string>
+    <string name="Discount">EVENT DISCOUNT</string>
     <string name="buyTicket">Buy Ticket</string>
     <string name="Review">REVIEWS</string>
     <string name="movie">Movie</string>
@@ -20,5 +20,12 @@
     <string name="showtimes">SHOWTIMES</string>
     <string name="movie_details">MOVIE DETAILS</string>
     <string name="FilmContent">Film Content</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="streaming">New Streaming</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="review">Review</string>
+    <string name="todo">TODO</string>
 
 </resources>

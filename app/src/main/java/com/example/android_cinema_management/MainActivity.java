@@ -2,10 +2,7 @@ package com.example.android_cinema_management;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -95,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Handle scrapping data
         Runnable runnable = () ->{
-          String url = "https://www.galaxycine.vn/phim-dang-chieu";
+          String url = "https://www.galaxycine.vn/phim-sap-chieu";
             MovieHandler.getMovieData(url,movieList);
             msg.obj = movieList;
             asHandler.sendMessage(msg);
