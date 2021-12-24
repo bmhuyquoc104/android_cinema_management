@@ -145,15 +145,18 @@
             android:text="@string/upcoming" />
     </com.google.android.material.tabs.TabLayout>
 
+
     <androidx.viewpager2.widget.ViewPager2
-        android:id = "@+id/ma_viewpager2"
+        android:id="@+id/ma_viewpager2"
         android:layout_width="413dp"
         android:layout_height="504dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ma_tab_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/ma_tab_layout">
+    </androidx.viewpager2.widget.ViewPager2>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -163,11 +166,21 @@
         android:layout_marginTop="616dp"
         android:background="@color/colorPrimary"
         app:itemIconTint="@drawable/option_selector"
-        app:labelVisibilityMode="unlabeled"
+        app:itemTextColor="@color/colorPrimary4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/option_menu"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints" >
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <FrameLayout
+        android:id = "@+id/ma_frag_container"
+        android:layout_width="409dp"
+        android:layout_height="495dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

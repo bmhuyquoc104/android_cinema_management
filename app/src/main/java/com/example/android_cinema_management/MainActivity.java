@@ -1,18 +1,22 @@
 package com.example.android_cinema_management;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.example.android_cinema_management.Adapter.HomeAdapter;
-import com.example.android_cinema_management.Adapter.MovieFragmentAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,14 +26,17 @@ public class MainActivity extends AppCompatActivity {
     HomeAdapter adapter;
     //Declare login and register button
     Button loginAndRegister;
+    //Declare bottom navigation
+    BottomNavigationView bottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main);
         //Binding with XML values
         layout = findViewById(R.id.ma_tab_layout);
         viewpager2 = findViewById(R.id.ma_viewpager2);
         loginAndRegister = findViewById(R.id.loginAndRegister);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
         // Initialize fragment manager
         FragmentManager fm = getSupportFragmentManager();
         // Initialize adapter
@@ -74,6 +81,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 layout.selectTab(layout.getTabAt(position));
+            }
+        });
+
+
+        //Choose the fragment by bottom navigation
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment chosenFragment = null;
+                switch (item.getItemId()){
+                    case R.id.menu_account:
+                        chosenFragment = new Accounts();
+                        break;
+                    case (R.id.menu_cinema):
+                        chosenFragment = new Cinema();
+                        break;
+                    case (R.id.menu_search) :
+                        chosenFragment = new SearchMovieAndCinema();
+                        break;
+                    case (R.id.menu_home):
+                        chosenFragment = new Home();
+                }
+                assert chosenFragment != null;
+                getSupportFragmentManager().beginTransaction().replace(R.id.ma_frag_container,chosenFragment).commit();
+                return true;
             }
         });
     }

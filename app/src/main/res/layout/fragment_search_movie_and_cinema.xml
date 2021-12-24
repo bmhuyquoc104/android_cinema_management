@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background = "@color/colorPrimary3"
-    tools:context=".Accounts">
+    android:background = "@color/colorPrimary"
+    tools:context=".SearchMovieAndCinema">
+
+
 </FrameLayout>
