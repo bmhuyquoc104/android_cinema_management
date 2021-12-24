@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp"
@@ -9,6 +11,8 @@
         android:layout_height="wrap_content"
         android:text="About Us"
         android:id="@+id/about_us"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="20dp"
         android:textColor="@color/white"/>
     <TextView
@@ -16,7 +20,8 @@
         android:layout_height="wrap_content"
         android:text="Legit Information"
         android:id="@+id/legit_info"
-        android:layout_below="@id/about_us"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_us"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/white"/>
@@ -25,7 +30,8 @@
         android:layout_height="wrap_content"
         android:text="Contact"
         android:id="@+id/contact"
-        android:layout_below="@id/legit_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/legit_info"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/white"/>
@@ -34,7 +40,8 @@
         android:layout_height="wrap_content"
         android:text="Copy Right"
         android:id="@+id/copy_right"
-        android:layout_alignParentEnd="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="20dp"
         android:textColor="@color/white"/>
     <TextView
@@ -42,8 +49,8 @@
         android:layout_height="wrap_content"
         android:text="Job Application"
         android:id="@+id/job"
-        android:layout_below="@id/copy_right"
-        android:layout_alignParentEnd="true"
+        app:layout_constraintTop_toBottomOf="@id/copy_right"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/white"/>
@@ -52,11 +59,11 @@
         android:layout_height="wrap_content"
         android:text="Customer Support"
         android:id="@+id/customer_support"
-        android:layout_below="@id/job"
-        android:layout_alignParentEnd="true"
+        app:layout_constraintTop_toBottomOf="@id/job"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/white"/>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
