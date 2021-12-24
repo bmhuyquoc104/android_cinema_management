@@ -10,11 +10,15 @@ public class MovieDetail {
     private String releaseDate;
     private String urlVideos;
     private String category;
-
+    private String content;
+    private String rate;
+    private String duration;
     public MovieDetail() {
     }
 
-    public MovieDetail(String director, String actors, String producers, String country, String releaseDate, String urlVideos, String category) {
+    public MovieDetail(String director, String actors, String producers, String country,
+                       String releaseDate, String urlVideos, String category,String duration,
+                        String rate,String content) {
         this.director = director;
         this.actors = actors;
         this.producers = producers;
@@ -22,6 +26,9 @@ public class MovieDetail {
         this.releaseDate = releaseDate;
         this.urlVideos = urlVideos;
         this.category = category;
+        this.content = content;
+        this.rate = rate;
+        this.duration = duration;
     }
 
     public String getDirector() {
@@ -80,6 +87,29 @@ public class MovieDetail {
         this.category = category;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
 
     // Function to get the Id in the trailer link
     public String getTrailers(ArrayList<MovieDetail> trailer) {
@@ -101,7 +131,7 @@ public class MovieDetail {
 
     @Override
     public String toString() {
-        return "MoviesDetail{" +
+        return "MovieDetail{" +
                 "director='" + director + '\'' +
                 ", actors='" + actors + '\'' +
                 ", producers='" + producers + '\'' +
@@ -109,6 +139,9 @@ public class MovieDetail {
                 ", releaseDate='" + releaseDate + '\'' +
                 ", urlVideos='" + urlVideos + '\'' +
                 ", category='" + category + '\'' +
+                ", content='" + content + '\'' +
+                ", rate='" + rate + '\'' +
+                ", duration='" + duration + '\'' +
                 '}';
     }
 }

@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class MovieDetailsFragment2 extends Fragment {
     //Declare textview and imageview
-    TextView directors,actors,producers,country,category,content;
+    TextView directors,actors,producers,country,category,content,releaseDate;
     ImageView movieImage;
     ArrayList<MovieDetail> currentMovieList;
     // TODO: Rename parameter arguments, choose names that match
@@ -81,6 +81,7 @@ public class MovieDetailsFragment2 extends Fragment {
         country = view.findViewById(R.id.mf2_country);
         content = view.findViewById(R.id.mf2_content);
         movieImage = view.findViewById(R.id.mf2_movieImage);
+        releaseDate = view.findViewById(R.id.mf2_releasedDate);
         currentMovieList = MovieShowTimeFragment1.movieInformation;
 
         Picasso.get().load(MovieInfoTabLayout.currentMovie.getUrlImage()).into(movieImage);
@@ -90,7 +91,8 @@ public class MovieDetailsFragment2 extends Fragment {
             producers.setText("Producers: " + currentMovieList.get(i).getProducers());
             category.setText("Category: " + currentMovieList.get(i).getCategory());
             country.setText("Country: " + currentMovieList.get(i).getCountry());
-            content.setText(currentMovieList.get(i).getDirector());
+            content.setText(currentMovieList.get(i).getContent());
+            releaseDate.setText("Released date: "+ currentMovieList.get(i).getReleaseDate());
         }
         return view;
     }

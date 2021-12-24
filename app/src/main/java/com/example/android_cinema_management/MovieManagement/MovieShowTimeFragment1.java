@@ -36,7 +36,7 @@ import java.util.ArrayList;
  */
 public class MovieShowTimeFragment1 extends Fragment {
     // Declare textview
-    TextView vietnameseTitle,englishTitle,releaseDate;
+    TextView vietnameseTitle,englishTitle,duration,rate;
     // Declare imageView
     ImageView movieImage;
     //Declare youtubeView
@@ -98,9 +98,10 @@ public class MovieShowTimeFragment1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_movie_show_time1, container, false);
         vietnameseTitle = view.findViewById(R.id.mi_vietnameseTitle);
         englishTitle = view.findViewById(R.id.mi_englishTitle);
-        releaseDate = view.findViewById(R.id.mi_releaseDate);
+        duration = view.findViewById(R.id.mi_duration);
         movieImage = view.findViewById(R.id.mi_movieImage);
         movieTrailer = view.findViewById(R.id.mi_movieTrailer);
+        rate = view.findViewById(R.id.mi_rate);
         //Initialize movieURL
         movieDetailUrl = "";
         // Initialize list and class
@@ -149,7 +150,6 @@ public class MovieShowTimeFragment1 extends Fragment {
                 public void onReady(@NonNull YouTubePlayer movieTrailer) {
                     // Get video Id by modifying video URL
                     String videoId = movieDetail.getTrailers(movieInformation);
-                    System.out.println("videoid +++" + videoId);
                     // Option to start video by start button
                     movieTrailer.cueVideo(videoId, 0);
                 }
@@ -157,10 +157,11 @@ public class MovieShowTimeFragment1 extends Fragment {
             });
             //Get release date in movieInformation list
             for (MovieDetail movie:movieInformation){
-                releaseDate.setText("Release Date:" + " " + movie.getReleaseDate());
+                duration.setText("Duration:" + " " + movie.getDuration());
+                rate.setText("Rate:" + " " + movie.getRate());
             }
-            vietnameseTitle.setText("title: " + movie.getVietnameseTitle());
-            englishTitle.setText("entitle: " + movie.getEnglishTitle());
+            vietnameseTitle.setText(movie.getVietnameseTitle());
+            englishTitle.setText(movie.getEnglishTitle());
             Picasso.get().load(movie.getUrlImage()).into(movieImage);
         });
     }

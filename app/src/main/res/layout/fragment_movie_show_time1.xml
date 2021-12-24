@@ -38,12 +38,26 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/mi_releaseDate"
-                        android:layout_width="189dp"
-                        android:layout_height="57dp"
+                        android:id="@+id/mi_rate"
+                        android:layout_width="206dp"
+                        android:layout_height="43dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="22dp"
+                        android:text="@string/textview"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary4"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.863"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/mi_vietnameseTitle" />
+
+                    <TextView
+                        android:id="@+id/mi_duration"
+                        android:layout_width="211dp"
+                        android:layout_height="47dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="60dp"
                         android:text="@string/textview"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary4"
@@ -55,27 +69,25 @@
 
                     <TextView
                         android:id="@+id/mi_vietnameseTitle"
-                        android:layout_width="207dp"
-                        android:layout_height="84dp"
+                        android:layout_width="227dp"
+                        android:layout_height="89dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="22dp"
+                        android:layout_marginTop="4dp"
                         android:text="@string/textview"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary4"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.993"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/mi_englishTitle" />
 
                     <TextView
                         android:id="@+id/mi_englishTitle"
-                        android:layout_width="207dp"
-                        android:layout_height="77dp"
+                        android:layout_width="226dp"
+                        android:layout_height="85dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="22dp"
                         android:text="@string/textview"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary4"
@@ -87,8 +99,8 @@
 
                     <ImageView
                         android:id="@+id/mi_movieImage"
-                        android:layout_width="156dp"
-                        android:layout_height="234dp"
+                        android:layout_width="169dp"
+                        android:layout_height="287dp"
                         android:layout_marginTop="16dp"
                         android:adjustViewBounds="true"
                         android:cropToPadding="true"
