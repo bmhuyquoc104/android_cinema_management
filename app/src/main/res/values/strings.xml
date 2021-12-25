@@ -28,5 +28,16 @@
     <string name="review">Review</string>
     <string name="todo">TODO</string>
     <string name="Cinema">Cinema</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOG IN</string>
+    <string name="log_in">Log In</string>
+    <string name="signUp">SIGN UP</string>
+    <string name="Register">Register</string>
+    <string name="fullName">Full Name</string>
+    <string name="dateOfBirth">Date Of Birth</string>
+    <string name="gender">Gender</string>
+    <string name="phoneNumber">Phone</string>
+    <string name="address">Address</string>
 
 </resources>

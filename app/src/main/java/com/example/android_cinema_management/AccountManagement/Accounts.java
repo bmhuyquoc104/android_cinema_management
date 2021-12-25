@@ -1,4 +1,4 @@
-package com.example.android_cinema_management;
+package com.example.android_cinema_management.AccountManagement;
 
 import android.os.Bundle;
 
@@ -9,21 +9,22 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.android_cinema_management.Adapter.HomeAdapter;
+import com.example.android_cinema_management.Adapter.LogInAdapter;
+import com.example.android_cinema_management.R;
 import com.google.android.material.tabs.TabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
+ * Use the {@link Accounts#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Home extends Fragment {
+public class Accounts extends Fragment {
     //Declare tablayout, adapter and viewpager2
     TabLayout layout;
     ViewPager2 viewpager2;
-    HomeAdapter adapter;
+    LogInAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +34,7 @@ public class Home extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Home() {
+    public Accounts() {
         // Required empty public constructor
     }
 
@@ -43,11 +44,11 @@ public class Home extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Home.
+     * @return A new instance of fragment Accounts.
      */
     // TODO: Rename and change types and number of parameters
-    public static Home newInstance(String param1, String param2) {
-        Home fragment = new Home();
+    public static Accounts newInstance(String param1, String param2) {
+        Accounts fragment = new Accounts();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,13 +69,14 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        layout = view.findViewById(R.id.mh_tab_layout);
-        viewpager2 = view.findViewById(R.id.mh_viewpager2);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_accounts, container, false);
+        layout = view.findViewById(R.id.ac_tab_layout);
+        viewpager2 = view.findViewById(R.id.ac_viewpager2);
         // Initialize fragment manager
         FragmentManager fm = getParentFragmentManager();
         // Initialize adapter
-        adapter = new HomeAdapter(fm,getLifecycle());
+        adapter = new LogInAdapter(fm,getLifecycle());
         // Set adapter to viewpage2
         viewpager2.setAdapter(adapter);
         // Change the layout by tab selected
@@ -102,5 +104,6 @@ public class Home extends Fragment {
         });
 
         return view;
+
     }
 }

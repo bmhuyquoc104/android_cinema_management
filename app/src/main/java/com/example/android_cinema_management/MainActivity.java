@@ -15,6 +15,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.android_cinema_management.AccountManagement.Accounts;
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
