@@ -96,13 +96,13 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/ma_viewpager2"
-        android:layout_width="413dp"
-        android:layout_height="504dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="404dp"
+        android:layout_height="432dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ma_tab_layout">
+
     </androidx.viewpager2.widget.ViewPager2>
 
 
@@ -125,8 +125,8 @@
 
     <FrameLayout
         android:id="@+id/ma_frag_container"
-        android:layout_width="416dp"
-        android:layout_height="618dp"
+        android:layout_width="0dp"
+        android:layout_height="611dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

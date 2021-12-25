@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background = "@color/colorPrimary3"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".AccountManagement.Accounts">
 
 
@@ -51,12 +53,13 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/ac_viewpager2"
-        android:layout_width="413dp"
-        android:layout_height="504dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ac_tab_layout">
+
     </androidx.viewpager2.widget.ViewPager2>
 </androidx.constraintlayout.widget.ConstraintLayout>

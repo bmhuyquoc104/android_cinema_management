@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         //Choose the fragment by bottom navigation
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
@@ -102,10 +103,11 @@ public class MainActivity extends AppCompatActivity {
                     case (R.id.menu_search) :
                         chosenFragment = new SearchMovieAndCinema();
                         break;
-                    case (R.id.menu_home):
-                        chosenFragment = new Home();
+//                    case (R.id.menu_home):
+//                        chosenFragment = new Home();
+//                        break;
+                    default: chosenFragment = new Home();
                 }
-                assert chosenFragment != null;
                 getSupportFragmentManager().beginTransaction().replace(R.id.ma_frag_container,chosenFragment).commit();
                 return true;
             }
