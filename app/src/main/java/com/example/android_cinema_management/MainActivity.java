@@ -103,9 +103,9 @@ public class MainActivity extends AppCompatActivity {
                     case (R.id.menu_search) :
                         chosenFragment = new SearchMovieAndCinema();
                         break;
-//                    case (R.id.menu_home):
-//                        chosenFragment = new Home();
-//                        break;
+                    case (R.id.menu_discount):
+                        chosenFragment = new DiscountAndTicket();
+                        break;
                     default: chosenFragment = new Home();
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.ma_frag_container,chosenFragment).commit();

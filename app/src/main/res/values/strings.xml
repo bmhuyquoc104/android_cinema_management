@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">android_cinema_management</string>
     <string name="Movie">MOVIES</string>
-    <string name="Discount">EVENT DISCOUNT</string>
+    <string name="Discount">Discount</string>
     <string name="buyTicket">Buy Ticket</string>
     <string name="Review">REVIEWS</string>
     <string name="movie">Movie</string>
@@ -39,5 +39,6 @@
     <string name="gender">Gender</string>
     <string name="phoneNumber">Phone</string>
     <string name="address">Address</string>
+    <string name="discountAndTicket">"Hưng Làm Ở Trang này "</string>
 
 </resources>
