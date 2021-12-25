@@ -3,12 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< Updated upstream
         <entry key="..\:/Users/Hung/Downloads/android_cinema_management/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Hung/Downloads/android_cinema_management/app/src/main/res/layout/activity_movie_information.xml" value="0.18342391304347827" />
         <entry key="..\:/Users/Hung/Downloads/android_cinema_management/app/src/main/res/layout/activity_ticket.xml" value="0.18342391304347827" />
         <entry key="..\:/Users/Hung/Downloads/android_cinema_management/app/src/main/res/layout/fragment_movies.xml" value="0.18342391304347827" />
         <entry key="..\:/Users/Hung/Downloads/android_cinema_management/app/src/main/res/layout/one_row_of_movies.xml" value="0.2" />
         <entry key="..\:/Users/Hung/Downloads/android_cinema_management/app/src/main/res/layout/reusable_footer.xml" value="0.4899536321483771" />
+=======
+        <entry key="..\:/Users/Hung/Downloads/android_cinema_management/app/src/main/res/layout/activity_main.xml" value="0.16802536231884058" />
+        <entry key="..\:/Users/Hung/Downloads/android_cinema_management/app/src/main/res/layout/fragment_cinema.xml" value="0.16802536231884058" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_cake_24.xml" value="0.187890625" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.187890625" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.187890625" />
+>>>>>>> Stashed changes
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_discount_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/option_selector.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_main.xml" value="0.2337962962962963" />
