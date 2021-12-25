@@ -1,134 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background = "@color/colorPrimary3"
-    tools:context=".MainActivity">
-
-
-
-
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="414dp"
-        android:layout_height="57dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <Button
-        android:id="@+id/loginAndRegister"
-        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-        android:layout_width="171dp"
-        android:layout_height="wrap_content"
-        android:text="@string/button"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary2"
-        app:icon="@drawable/ic_baseline_account_box_24"
-        app:iconGravity="start"
-        app:iconPadding="4dp"
-        app:iconTint="@color/colorPrimary4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="186dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/account"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/app_logo_2"
-        tools:ignore="ImageContrastCheck" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="412dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="56dp"
-        android:background="@color/colorPrimary3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/ma_tab_layout"
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:background="@color/colorPrimary3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabGravity="start"
-        app:tabIndicatorColor="@color/colorPrimary2"
-        app:tabIndicatorGravity="bottom"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="#fff"
-        app:tabTextColor="@color/colorPrimary5">
+        android:layout_height="match_parent"
+        android:background = "@color/colorPrimary3"
+        tools:context=".MainActivity">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <View
+            android:id="@+id/view"
+            android:layout_width="414dp"
+            android:layout_height="57dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/loginAndRegister"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="171dp"
             android:layout_height="wrap_content"
-            android:text="@string/streaming"
-            android:visibility="visible" />
+            android:text="@string/button"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary2"
+            app:icon="@drawable/ic_baseline_account_box_24"
+            app:iconGravity="start"
+            app:iconPadding="4dp"
+            app:iconTint="@color/colorPrimary4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.933"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="186dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/account"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.004"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/app_logo_2"
+            tools:ignore="ImageContrastCheck" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="412dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="56dp"
+            android:background="@color/colorPrimary3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/ma_tab_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/upcoming" />
-    </com.google.android.material.tabs.TabLayout>
+            android:layout_marginTop="128dp"
+            android:background="@color/colorPrimary3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabGravity="start"
+            app:tabIndicatorColor="@color/colorPrimary2"
+            app:tabIndicatorGravity="bottom"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#fff"
+            app:tabTextColor="@color/colorPrimary5">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/streaming"
+                android:visibility="visible" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upcoming" />
+        </com.google.android.material.tabs.TabLayout>
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/ma_viewpager2"
-        android:layout_width="404dp"
-        android:layout_height="432dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ma_tab_layout">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/ma_viewpager2"
+            android:layout_width="404dp"
+            android:layout_height="432dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ma_tab_layout">
 
-    </androidx.viewpager2.widget.ViewPager2>
+        </androidx.viewpager2.widget.ViewPager2>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="411dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        app:itemIconTint="@drawable/option_selector"
-        app:itemTextColor="@color/colorPrimary4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/option_menu"
-      >
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="411dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@drawable/option_selector"
+            app:itemTextColor="@color/colorPrimary4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/option_menu"
+            >
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <FrameLayout
-        android:id="@+id/ma_frag_container"
-        android:layout_width="0dp"
-        android:layout_height="611dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/ma_frag_container"
+            android:layout_width="0dp"
+            android:layout_height="611dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
