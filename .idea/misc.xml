@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_airplane_ticket_24.xml" value="0.199609375" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_cake_24.xml" value="0.187890625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.187890625" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_card_giftcard_24.xml" value="0.199609375" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.187890625" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_diamond_24.xml" value="0.199609375" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_discount_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.187890625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.187890625" />
@@ -14,6 +17,7 @@
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.187890625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.187890625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_movie_filter_24.xml" value="0.187890625" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_notifications_active_24.xml" value="0.199609375" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.187890625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.187890625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/ic_baseline_transgender_24.xml" value="0.187890625" />
