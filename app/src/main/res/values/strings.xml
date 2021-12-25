@@ -46,5 +46,10 @@
     <string name="ac_giftcard">Gift</string>
     <string name="airTicket">Free Flight</string>
     <string name="Point">Point</string>
+    <string name="ac_phone">Phone</string>
+    <string name="ac_email">Email</string>
+    <string name="ac_policy">Payment Policy</string>
+    <string name="ac_security_policy">Security Policy</string>
+    <string name="ac_address">Address</string>
 
 </resources>

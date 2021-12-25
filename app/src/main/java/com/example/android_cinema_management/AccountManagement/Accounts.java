@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.example.android_cinema_management.Adapter.LogInAdapter;
@@ -21,9 +22,8 @@ import com.google.android.material.tabs.TabLayout;
  * create an instance of this fragment.
  */
 public class Accounts extends Fragment {
-    //Declare tablayout, adapter and viewpager2
-    TabLayout layout;
-    ViewPager2 viewpager2;
+    //Declare adapter and button
+    Button register, signIn;
     LogInAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,37 +71,13 @@ public class Accounts extends Fragment {
         // Inflate the layout for this fragment
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accounts, container, false);
-        layout = view.findViewById(R.id.ac_tab_layout);
-        viewpager2 = view.findViewById(R.id.ac_viewpager2);
+        register = view.findViewById(R.id.ac_register);
+        signIn = view.findViewById(R.id.ac_signIn);
         // Initialize fragment manager
         FragmentManager fm = getParentFragmentManager();
         // Initialize adapter
         adapter = new LogInAdapter(fm,getLifecycle());
-        // Set adapter to viewpage2
-        viewpager2.setAdapter(adapter);
-        // Change the layout by tab selected
-        layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewpager2.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                layout.selectTab(layout.getTabAt(position));
-            }
-        });
+        // Function click change to another fragment
 
         return view;
 
