@@ -14,6 +14,8 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.MoviesAdapter;
 import com.example.android_cinema_management.Handler.MovieHandler;
@@ -35,6 +37,9 @@ public class HomeFragment1 extends Fragment {
     private MoviesAdapter moviesAdapter;
     //Declare Movie list
     private ArrayList<Movie> movieList;
+
+    //Footer vars
+    private TextView contact, legitInformation, job, copyRight, customerSupport, aboutUs;
     //Declare HandlerThread Thread
     HandlerThread ht = new HandlerThread("MyHandlerThread");
     // TODO: Rename parameter arguments, choose names that match
@@ -85,6 +90,22 @@ public class HomeFragment1 extends Fragment {
         movieList = new ArrayList<>();
         // Set fixed size for recycler view
         recyclerView = view.findViewById(R.id.recyclerView);
+
+        //Footer
+        contact = view.findViewById(R.id.contact);
+        legitInformation = view.findViewById(R.id.legitInformation);
+        job = view.findViewById(R.id.job);
+        copyRight = view.findViewById(R.id.copyRight);
+        customerSupport = view.findViewById(R.id.customerSupport);
+        aboutUs = view.findViewById(R.id.aboutUs);
+
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contact.setText("contact clicked");
+            }
+        });
+
         recyclerView.setHasFixedSize(true);
         fetchAndRenderMovie();
         return view;

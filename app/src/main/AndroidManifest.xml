@@ -14,6 +14,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_cinema_management">
         <activity
+            android:name=".Footer.AboutUs"
+            android:exported="false" />
+        <activity
+            android:name=".Footer.CustomerSupport"
+            android:exported="false" />
+        <activity
+            android:name=".Footer.CopyRight"
+            android:exported="false" />
+        <activity
+            android:name=".Footer.Job"
+            android:exported="false" />
+        <activity
+            android:name=".Footer.LegitInformation"
+            android:exported="false" />
+        <activity
+            android:name=".Footer.Contact"
+            android:exported="false" />
+        <activity
             android:name=".MovieManagement.MovieInfoTabLayout"
             android:exported="false" />
         <activity
