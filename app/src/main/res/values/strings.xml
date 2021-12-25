@@ -51,5 +51,7 @@
     <string name="ac_policy">Payment Policy</string>
     <string name="ac_security_policy">Security Policy</string>
     <string name="ac_address">Address</string>
+    <string name="RegisterNow">Register Here!</string>
+    <string name="fgSignUp_confirmPassword">Confirm Password</string>
 
 </resources>

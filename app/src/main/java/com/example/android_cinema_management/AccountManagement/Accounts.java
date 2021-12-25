@@ -1,5 +1,7 @@
 package com.example.android_cinema_management.AccountManagement;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.example.android_cinema_management.Adapter.LogInAdapter;
+import com.example.android_cinema_management.MovieManagement.MovieInfoTabLayout;
 import com.example.android_cinema_management.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -78,7 +82,19 @@ public class Accounts extends Fragment {
         // Initialize adapter
         adapter = new LogInAdapter(fm,getLifecycle());
         // Function click change to another fragment
+        register.setOnClickListener(View ->{
+            Intent intent = new Intent(getContext(),SignUp.class);
+            //Send intent to sign Up activity
 
+            // Start intent
+            try {
+                startActivity(intent);
+            }
+            // Exception if activity is not found
+            catch (ActivityNotFoundException e){
+                Toast.makeText(getContext(),"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
+            }
+        });
         return view;
 
     }
