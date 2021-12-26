@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
 
@@ -16,7 +17,7 @@ import com.example.android_cinema_management.R;
  * create an instance of this fragment.
  */
 public class SignUpFragment3 extends Fragment {
-
+    String email,password, fullName;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -48,19 +49,28 @@ public class SignUpFragment3 extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up3, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up3, container, false);
+        Bundle bundle =this.getArguments();
+        System.out.println(bundle);
+        assert bundle != null;
+        String fullName = bundle.getString("fullName");
+        String email = bundle.getString("email");
+        String password = bundle.getString("password");
+        System.out.println("fullName: " +fullName + "email: "+email + "password: "+password);
+        return view;
     }
 }

@@ -9,203 +9,162 @@
     tools:context=".AccountManagement.SignUpFragment">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                style="@style/CardView.Light"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/colorPrimary3"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="10dp"
-                app:contentPadding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <androidx.cardview.widget.CardView
+            style="@style/CardView.Light"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorPrimary3"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="10dp"
+            app:contentPadding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/frag1SignUp_fullName"
+                    android:layout_width="0dp"
+                    android:layout_height="55sp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawablePadding="15dp"
+                    android:ems="10"
+                    android:hint="@string/fullName"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary5"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="Autofill"
+                    android:inputType="text" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/frag1_signUp_textLayout_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="140dp"
+                    android:textColorHint="@color/colorPrimary4"
+                    app:boxStrokeColor="@color/colorPrimary4"
+                    app:endIconTint="@color/colorPrimary2"
+                    app:hintTextColor="@color/colorPrimary2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorPrimary4"
+                    app:startIconTint="@color/colorPrimary4">
 
-
-                    <!--            <EditText-->
-                    <!--                android:id="@+id/fgSignUp_password"-->
-                    <!--                android:layout_width="0dp"-->
-                    <!--                android:layout_height="55sp"-->
-                    <!--                android:layout_marginTop="36dp"-->
-                    <!--                android:background="@drawable/round_login_page"-->
-                    <!--                android:drawableStart="@drawable/ic_baseline_lock_24"-->
-                    <!--                android:drawablePadding="15dp"-->
-                    <!--                android:ems="10"-->
-                    <!--                android:hint="@string/password"-->
-                    <!--                android:inputType="textPassword"-->
-                    <!--                android:paddingStart="20dp"-->
-                    <!--                android:paddingEnd="20dp"-->
-                    <!--                android:textColor="@color/colorPrimary4"-->
-                    <!--                android:textColorHint="@color/colorPrimary5"-->
-                    <!--                android:textSize="20sp"-->
-                    <!--                app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                app:layout_constraintHorizontal_bias="0.0"-->
-                    <!--                app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                app:layout_constraintTop_toBottomOf="@+id/fgSignUp_email" />-->
-
-
-                    <EditText
-                        android:id="@+id/fgSignUp_fullName"
-                        android:layout_width="0dp"
-                        android:layout_height="55sp"
-                        android:layout_marginTop="16dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/frag1SignUp_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="36dp"
                         android:background="@drawable/round_login_page"
-                        android:drawableStart="@drawable/ic_baseline_person_24"
+                        android:drawableStart="@drawable/ic_baseline_lock_24"
                         android:drawablePadding="15dp"
                         android:ems="10"
-                        android:hint="@string/fullName"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
                         android:paddingStart="20dp"
                         android:paddingEnd="20dp"
                         android:textColor="@color/colorPrimary4"
                         android:textColorHint="@color/colorPrimary5"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="20sp" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/frag1_signUp_textLayout_password"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/frag1_signUp_textLayout_confirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="256dp"
+                    android:textColorHint="@color/colorPrimary4"
+                    app:boxStrokeColor="@color/colorPrimary4"
+                    app:endIconTint="@color/colorPrimary2"
+                    app:hintTextColor="@color/colorPrimary2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorPrimary4"
+                    app:startIconTint="@color/colorPrimary2">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fgSignUp_confirmPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="140dp"
-                        android:textColorHint="@color/colorPrimary4"
-                        app:boxStrokeColor="@color/colorPrimary4"
-                        app:endIconTint="@color/colorPrimary2"
-                        app:hintTextColor="@color/colorPrimary2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/colorPrimary4"
-                        app:startIconTint="@color/colorPrimary4">
-
-                        <EditText
-                            android:id="@+id/fgSignUp_password"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="36dp"
-                            android:background="@drawable/round_login_page"
-                            android:drawableStart="@drawable/ic_baseline_lock_24"
-                            android:drawablePadding="15dp"
-                            android:ems="10"
-                            android:hint="@string/password"
-                            android:inputType="textPassword"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="20dp"
-                            android:textColor="@color/colorPrimary4"
-                            android:textColorHint="@color/colorPrimary5"
-                            android:textSize="20sp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/frag1_signUp_textLayout_confirmPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="256dp"
-                        android:textColorHint="@color/colorPrimary4"
-                        app:boxStrokeColor="@color/colorPrimary4"
-                        app:endIconTint="@color/colorPrimary2"
-                        app:hintTextColor="@color/colorPrimary2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/colorPrimary4"
-                        app:startIconTint="@color/colorPrimary2">
-
-                        <EditText
-                            android:id="@+id/fgSignUp_confirmPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/round_login_page"
-                            android:drawableStart="@drawable/ic_baseline_lock_24"
-                            android:drawablePadding="15dp"
-                            android:ems="10"
-                            android:hint="@string/confirmPassword"
-                            android:inputType="textPassword"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="20dp"
-                            android:textColor="@color/colorPrimary4"
-                            android:textColorHint="@color/colorPrimary5"
-                            android:textSize="20sp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <!--            <EditText-->
-                    <!--                android:id="@+id/fgSignUp_confirmPassword"-->
-                    <!--                android:layout_width="0dp"-->
-                    <!--                android:layout_height="55sp"-->
-                    <!--                android:background="@drawable/round_login_page"-->
-                    <!--                android:drawableStart="@drawable/ic_baseline_lock_24"-->
-                    <!--                android:drawablePadding="15dp"-->
-                    <!--                android:ems="10"-->
-                    <!--                android:hint="@string/confirmPassword"-->
-                    <!--                android:inputType="textPassword"-->
-                    <!--                android:paddingStart="20dp"-->
-                    <!--                android:paddingEnd="20dp"-->
-                    <!--                android:textColor="@color/colorPrimary4"-->
-                    <!--                android:textColorHint="@color/colorPrimary5"-->
-                    <!--                android:textSize="20sp"-->
-                    <!--                app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                app:layout_constraintHorizontal_bias="0.0"-->
-                    <!--                app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                tools:layout_editor_absoluteY="307dp" />-->
-
-                    <EditText
-                        android:id="@+id/fgSignUp_email"
-                        android:layout_width="0dp"
-                        android:layout_height="55sp"
-                        android:layout_marginTop="24dp"
+                        android:layout_height="match_parent"
                         android:background="@drawable/round_login_page"
-                        android:drawableStart="@drawable/ic_baseline_email_24"
+                        android:drawableStart="@drawable/ic_baseline_lock_24"
                         android:drawablePadding="15dp"
                         android:ems="10"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress"
+                        android:hint="@string/confirmPassword"
+                        android:inputType="textPassword"
                         android:paddingStart="20dp"
                         android:paddingEnd="20dp"
                         android:textColor="@color/colorPrimary4"
                         android:textColorHint="@color/colorPrimary5"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/fgSignUp_fullName" />
+                        android:textSize="20sp" />
 
-                    <Button
-                        android:id="@+id/fgSignUp_RegisterButton"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="412dp"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:letterSpacing="0.21"
-                        android:text="@string/Register"
-                        android:textColor="@color/colorPrimary5"
-                        android:textSize="18sp"
-                        app:cornerRadius="40dp"
-                        app:iconGravity="start"
-                        app:iconPadding="4dp"
-                        app:iconTint="@color/colorPrimary4"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/frag1SignUp_email"
+                    android:layout_width="0dp"
+                    android:layout_height="55sp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="15dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary5"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/frag1SignUp_fullName"
+                    android:importantForAutofill="no" />
+
+                <Button
+                    android:id="@+id/fgSignUp_continueButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="342dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:letterSpacing="0.21"
+                    android:text="@string/Continue"
+                    android:textColor="@color/colorPrimary5"
+                    android:textSize="18sp"
+                    app:cornerRadius="40dp"
+                    app:iconGravity="start"
+                    app:iconPadding="4dp"
+                    app:iconTint="@color/colorPrimary4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

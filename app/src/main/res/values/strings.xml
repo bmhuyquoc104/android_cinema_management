@@ -60,5 +60,6 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="agreement">YES, I HAVE READ AND COMMIT TO</string>
     <string name="termAndConditions">Terms and conditions</string>
+    <string name="Continue">Continue</string>
 
 </resources>
