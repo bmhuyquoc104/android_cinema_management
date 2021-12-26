@@ -1,5 +1,6 @@
 package com.example.android_cinema_management.HomeManagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,13 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.android_cinema_management.Adapter.MoviesAdapter;
+import com.example.android_cinema_management.Footer.AboutUs;
+import com.example.android_cinema_management.Footer.Contact;
+import com.example.android_cinema_management.Footer.CopyRight;
+import com.example.android_cinema_management.Footer.Job;
 import com.example.android_cinema_management.Handler.MovieHandler;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
@@ -45,6 +51,8 @@ public class HomeFragment1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView contact, job, copyRight, aboutUs;
 
     public HomeFragment1() {
         // Required empty public constructor
@@ -86,6 +94,45 @@ public class HomeFragment1 extends Fragment {
         // Set fixed size for recycler view
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
+
+        //Footer
+        contact = view.findViewById(R.id.contact);
+        job = view.findViewById(R.id.job);
+        copyRight = view.findViewById(R.id.copyRight);
+        aboutUs = view.findViewById(R.id.aboutUs);
+
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Contact.class);
+                startActivity(intent);
+            }
+        });
+
+        job.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Job.class);
+                startActivity(intent);
+            }
+        });
+
+        copyRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CopyRight.class);
+                startActivity(intent);
+            }
+        });
+
+        aboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AboutUs.class);
+                startActivity(intent);
+            }
+        });
+
         fetchAndRenderMovie();
         return view;
     }
