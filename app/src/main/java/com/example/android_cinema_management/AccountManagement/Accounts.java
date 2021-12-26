@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -94,6 +95,12 @@ public class Accounts extends Fragment {
             catch (ActivityNotFoundException e){
                 Toast.makeText(getContext(),"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
             }
+        });
+
+        signIn.setOnClickListener(View ->{
+            FragmentTransaction transaction =
+                    fm.beginTransaction();
+            transaction.replace(R.id.ma_frag_container, new SignInFragment()).addToBackStack("signInFragment").commit();
         });
         return view;
 

@@ -61,5 +61,8 @@
     <string name="agreement">YES, I HAVE READ AND COMMIT TO</string>
     <string name="termAndConditions">Terms and conditions</string>
     <string name="Continue">Continue</string>
+    <string name="forgetPassword">Forgot Password?</string>
+    <string name="alternateLogginWay">Or login with</string>
+    <string name="newUser">Don\'t Have Account? Register Now!</string>
 
 </resources>
