@@ -4,6 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Footer.AboutUs">
+    tools:context=".Footer.AboutUs"
+    android:background = "@color/colorPrimary3">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="62dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_baseline_keyboard_return_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo"/>
+
+    <TextView
+        android:id="@+id/aboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="About Us"
+        android:textSize="30sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/cinema"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aboutUs"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/cinema"
+        android:contentDescription="@string/todo" />
+
+    <TextView
+        android:id="@+id/aboutUsContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="Content"
+        android:textSize="11sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/cinema"
+        android:padding="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

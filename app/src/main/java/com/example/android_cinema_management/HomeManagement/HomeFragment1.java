@@ -1,5 +1,6 @@
 package com.example.android_cinema_management.HomeManagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.MoviesAdapter;
+import com.example.android_cinema_management.Footer.AboutUs;
+import com.example.android_cinema_management.Footer.Contact;
+import com.example.android_cinema_management.Footer.CopyRight;
+import com.example.android_cinema_management.Footer.Job;
 import com.example.android_cinema_management.Handler.MovieHandler;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
@@ -93,16 +98,39 @@ public class HomeFragment1 extends Fragment {
 
         //Footer
         contact = view.findViewById(R.id.contact);
-        legitInformation = view.findViewById(R.id.legitInformation);
         job = view.findViewById(R.id.job);
         copyRight = view.findViewById(R.id.copyRight);
-        customerSupport = view.findViewById(R.id.customerSupport);
         aboutUs = view.findViewById(R.id.aboutUs);
 
         contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                contact.setText("contact clicked");
+                Intent intent = new Intent(getActivity(), Contact.class);
+                startActivity(intent);
+            }
+        });
+
+        job.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Job.class);
+                startActivity(intent);
+            }
+        });
+
+        copyRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CopyRight.class);
+                startActivity(intent);
+            }
+        });
+
+        aboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AboutUs.class);
+                startActivity(intent);
             }
         });
 

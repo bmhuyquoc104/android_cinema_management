@@ -17,16 +17,10 @@
             android:name=".Footer.AboutUs"
             android:exported="false" />
         <activity
-            android:name=".Footer.CustomerSupport"
-            android:exported="false" />
-        <activity
             android:name=".Footer.CopyRight"
             android:exported="false" />
         <activity
             android:name=".Footer.Job"
-            android:exported="false" />
-        <activity
-            android:name=".Footer.LegitInformation"
             android:exported="false" />
         <activity
             android:name=".Footer.Contact"
