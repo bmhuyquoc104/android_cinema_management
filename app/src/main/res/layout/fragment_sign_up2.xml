@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary3"
+    android:clickable="true"
+    android:focusable="true"
     android:fillViewport="true"
     tools:context=".AccountManagement.SignUpFragment2">
 
