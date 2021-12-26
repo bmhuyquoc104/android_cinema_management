@@ -31,7 +31,7 @@
 
 
                 <EditText
-                    android:id="@+id/fgSignUp_dateOfBirth"
+                    android:id="@+id/frag2SignUp_dateOfBirth"
                     android:layout_width="0dp"
                     android:layout_height="55sp"
                     android:layout_marginTop="16dp"
@@ -51,7 +51,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/fgSignUp_address"
+                    android:id="@+id/frag2SignUp_address"
                     android:layout_width="0dp"
                     android:layout_height="55sp"
                     android:layout_marginTop="36dp"
@@ -69,11 +69,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fgSignUp_phone" />
+                    app:layout_constraintTop_toBottomOf="@+id/frag2SignUp_phone" />
 
 
                 <EditText
-                    android:id="@+id/fgSignUp_phone"
+                    android:id="@+id/frag2SignUp_phone"
                     android:layout_width="0dp"
                     android:layout_height="55sp"
                     android:layout_marginTop="36dp"
@@ -91,10 +91,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fgSignUp_gender" />
+                    app:layout_constraintTop_toBottomOf="@+id/frag2SignUp_gender" />
 
                 <EditText
-                    android:id="@+id/fgSignUp_gender"
+                    android:id="@+id/frag2SignUp_gender"
                     android:layout_width="0dp"
                     android:layout_height="55sp"
                     android:layout_marginTop="36dp"
@@ -112,16 +112,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fgSignUp_dateOfBirth" />
+                    app:layout_constraintTop_toBottomOf="@+id/frag2SignUp_dateOfBirth" />
 
                 <Button
-                    android:id="@+id/fgSignUp_RegisterButton"
+                    android:id="@+id/buttonContinue"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="392dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:letterSpacing="0.21"
-                    android:text="@string/Register"
+                    android:text="@string/Continue"
                     android:textColor="@color/colorPrimary5"
                     android:textSize="18sp"
                     app:cornerRadius="40dp"

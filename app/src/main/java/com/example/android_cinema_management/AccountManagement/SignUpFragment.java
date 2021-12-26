@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,9 +25,9 @@ import com.google.android.material.textfield.TextInputEditText;
  */
 public class SignUpFragment extends Fragment {
     // Declare edit text
-    EditText fullName,email;
-    String inputFullName,inputEmail;
-    TextInputEditText password,confirmPassword;
+    EditText fullName, email;
+    String inputFullName, inputEmail, inputPassword, inputConfirmPassword;
+    TextInputEditText password, confirmPassword;
     Button nextPage;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,8 +77,8 @@ public class SignUpFragment extends Fragment {
         // Binding value to XML layout file
         fullName = view.findViewById(R.id.frag1SignUp_fullName);
         email = view.findViewById(R.id.frag1SignUp_email);
-        System.out.println("dqwdasdasdas" +inputEmail);
-        System.out.println("dqwdasdasdas" +inputFullName);
+        System.out.println("dqwdasdasdas" + inputEmail);
+        System.out.println("dqwdasdasdas" + inputFullName);
         password = view.findViewById(R.id.frag1SignUp_password);
         confirmPassword = view.findViewById(R.id.fgSignUp_confirmPassword);
         nextPage = view.findViewById(R.id.fgSignUp_continueButton);
@@ -86,23 +89,26 @@ public class SignUpFragment extends Fragment {
 //            nextPage.setEnabled(true);
 //        }
 
-        nextPage.setOnClickListener(View ->{
-            inputFullName =  fullName.getText().toString();
-            inputEmail =  email.getText().toString();
-            Bundle bundle=new Bundle();
-            bundle.putString("fullName",inputFullName);
-            System.out.println(inputFullName);
-//            bundle.putString("password",inputPassWord);
-            bundle.putString("email",inputEmail);
-            System.out.println(inputEmail);
-            SignUpFragment3 fragment2 =new SignUpFragment3();
-            fragment2.setArguments(bundle);
-            FragmentManager fm = getParentFragmentManager();
-
-            FragmentTransaction transaction =
-                    fm.beginTransaction();
-            transaction.replace(R.id.signUp_frameLayout,fragment2).addToBackStack("fragment1").commit();
-
+        nextPage.setOnClickListener(View -> {
+            inputFullName = fullName.getText().toString();
+            inputEmail = email.getText().toString();
+            inputPassword = Objects.requireNonNull(password.getText()).toString();
+            inputConfirmPassword = Objects.requireNonNull(confirmPassword.getText()).toString();
+            if (!inputPassword.equals(inputConfirmPassword)) {
+                Toast.makeText(getContext(), "Your password and confirm password are not matched. Please enter again!", Toast.LENGTH_LONG).show();
+            } else {
+                Bundle bundle = new Bundle();
+                bundle.putString("fullName", inputFullName);
+                bundle.putString("password", inputPassword);
+                bundle.putString("email", inputEmail);
+                bundle.putString("confirmPassword", inputConfirmPassword);
+                SignUpFragment2 fragment2 = new SignUpFragment2();
+                fragment2.setArguments(bundle);
+                FragmentManager fm = getParentFragmentManager();
+                FragmentTransaction transaction =
+                        fm.beginTransaction();
+                transaction.replace(R.id.signUp_frameLayout, fragment2).addToBackStack("fragment1").commit();
+            }
         });
 
 

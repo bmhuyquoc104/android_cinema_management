@@ -70,7 +70,13 @@ public class SignUpFragment3 extends Fragment {
         String fullName = bundle.getString("fullName");
         String email = bundle.getString("email");
         String password = bundle.getString("password");
-        System.out.println("fullName: " +fullName + "email: "+email + "password: "+password);
+        String confirmPassword = bundle.getString("confirmPassword");
+        String dateOfBirth = bundle.getString("dateOfBirth");
+        String phone = bundle.getString("phone");
+        String address = bundle.getString("address");
+        String gender = bundle.getString("gender");
+
+        System.out.println("fullName: " +fullName + "email: "+email + "password: "+password + confirmPassword + dateOfBirth + phone+address+gender);
         return view;
     }
 }
