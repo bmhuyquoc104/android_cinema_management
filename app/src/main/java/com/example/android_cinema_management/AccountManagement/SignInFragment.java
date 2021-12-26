@@ -1,12 +1,21 @@
 package com.example.android_cinema_management.AccountManagement;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android_cinema_management.R;
 
@@ -16,7 +25,9 @@ import com.example.android_cinema_management.R;
  * create an instance of this fragment.
  */
 public class SignInFragment extends Fragment {
-
+    //Declare textview ,button ,and imageView
+    TextView title;
+    ImageView close;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,6 +72,31 @@ public class SignInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        //Binding to XML's value
+        title = view.findViewById(R.id.signIn_title);
+        close = view.findViewById(R.id.signInClose);
+        // Create spannalbe String
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        // Initialize fragment manager
+        FragmentManager fm = getParentFragmentManager();
+        // Text and color for string 1
+        SpannableString str1 = new SpannableString("Register Here");
+        str1.setSpan(new ForegroundColorSpan(Color.rgb(161, 161, 161)), 0, str1.length(), 0);
+        builder.append(str1);
+
+        // Text and color for string 2
+        SpannableString str2 = new SpannableString("!");
+        str2.setSpan(new ForegroundColorSpan(Color.rgb(222, 22, 25)), 0, str2.length(), 0);
+        builder.append(str2);
+        // Set text for textView
+        title.setText(builder, Button.BufferType.SPANNABLE);
+
+        close.setOnClickListener(View ->{
+            FragmentTransaction transaction =
+                    fm.beginTransaction();
+            transaction.replace(R.id.ma_frag_container, new Accounts()).commit();
+        });
+        return view;
     }
 }
