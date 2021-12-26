@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Footer.Contact"
+    android:background = "@color/colorPrimary3">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="62dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_baseline_keyboard_return_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo"/>
+
+    <TextView
+        android:id="@+id/contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="Contact Us"
+        android:textSize="30sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/headOffice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:paddingStart="20dp"
+        android:text="Head Office"
+        android:textSize="20sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/contact" />
+
+    <TextView
+        android:id="@+id/headOfficeContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:paddingStart="20dp"
+        android:text="Head Office Content"
+        android:textSize="15sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/headOffice" />
+
+    <TextView
+        android:id="@+id/customerService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:paddingStart="20dp"
+        android:text="Customer Service"
+        android:textSize="20sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/headOfficeContent" />
+
+    <TextView
+        android:id="@+id/customerServiceContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:paddingStart="20dp"
+        android:text="CS Content"
+        android:textSize="15sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/customerService" />
+
+    <TextView
+        android:id="@+id/advertise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:paddingStart="20dp"
+        android:text="Advertising With Us"
+        android:textSize="20sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/customerServiceContent" />
+
+    <TextView
+        android:id="@+id/advertiseContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:paddingStart="20dp"
+        android:text="Ad Content"
+        android:textSize="15sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/advertise" />
+
+    <TextView
+        android:id="@+id/partnershipSponsor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:paddingStart="20dp"
+        android:text="Partnership And Sponsor"
+        android:textSize="20sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/advertiseContent" />
+
+    <TextView
+        android:id="@+id/partnershipSponsorContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:paddingStart="20dp"
+        android:text="partner Content"
+        android:textSize="15sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/partnershipSponsor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

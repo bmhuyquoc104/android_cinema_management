@@ -20,6 +20,18 @@
             android:name=".MovieManagement.MovieInfoTabLayout"
             android:exported="false" />
         <activity
+            android:name=".Footer.Contact"
+            android:exported="false" />
+        <activity
+            android:name=".Footer.AboutUs"
+            android:exported="false" />
+        <activity
+            android:name=".Footer.CopyRight"
+            android:exported="false" />
+        <activity
+            android:name=".Footer.Job"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
