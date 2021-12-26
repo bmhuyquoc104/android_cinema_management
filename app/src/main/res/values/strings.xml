@@ -53,5 +53,12 @@
     <string name="ac_address">Address</string>
     <string name="RegisterNow">Register Here!</string>
     <string name="fgSignUp_confirmPassword">Confirm Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="payment_policy">Payment Policy</string>
+    <string name="security_policy">Security Policy</string>
+    <string name="announcement">Daily discount and upcoming events</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="agreement">YES, I HAVE READ AND COMMIT TO</string>
+    <string name="termAndConditions">Terms and conditions</string>
 
 </resources>

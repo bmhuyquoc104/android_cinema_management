@@ -31,8 +31,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/signUp_frameLayout"
+    <TextView
+        android:id="@+id/signUp_title"
+        android:layout_width="144dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/RegisterNow"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary4"
+        android:textSize="40sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/signUp_viewPager2"
         android:layout_width="413dp"
         android:layout_height="431dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,20 +57,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-    </FrameLayout>
+    </androidx.viewpager2.widget.ViewPager2>
 
-    <TextView
-        android:id="@+id/signUp_title"
-        android:layout_width="144dp"
-        android:layout_height="137dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/RegisterNow"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary4"
-        android:textSize="40sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.827"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

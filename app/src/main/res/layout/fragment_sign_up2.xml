@@ -1,136 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary3"
+    android:fillViewport="true"
     tools:context=".AccountManagement.SignUpFragment2">
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        style="@style/CardView.Light"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        app:cardBackgroundColor="@color/colorPrimary3"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="10dp"
-        app:contentPadding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <androidx.cardview.widget.CardView
+            style="@style/CardView.Light"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorPrimary3"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="10dp"
+            app:contentPadding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/fgSignUp_dateOfBirth"
-                android:layout_width="0dp"
-                android:layout_height="55sp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/round_login_page"
-                android:drawableStart="@drawable/ic_baseline_cake_24"
-                android:drawablePadding="15dp"
-                android:ems="10"
-                android:hint="@string/dateOfBirth"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textColor="@color/colorPrimary4"
-                android:textColorHint="@color/colorPrimary5"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/fgSignUp_address"
-                android:layout_width="0dp"
-                android:layout_height="55sp"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/round_login_page"
-                android:drawableStart="@drawable/ic_baseline_home_24"
-                android:drawablePadding="15dp"
-                android:ems="10"
-                android:hint="@string/address"
-                android:inputType="textEmailAddress"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textColor="@color/colorPrimary4"
-                android:textColorHint="@color/colorPrimary5"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fgSignUp_phone" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
-            <EditText
-                android:id="@+id/fgSignUp_phone"
-                android:layout_width="0dp"
-                android:layout_height="55sp"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/round_login_page"
-                android:drawableStart="@drawable/ic_baseline_phone_android_24"
-                android:drawablePadding="15dp"
-                android:ems="10"
-                android:hint="@string/phoneNumber"
-                android:inputType="phone"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textColor="@color/colorPrimary4"
-                android:textColorHint="@color/colorPrimary5"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fgSignUp_gender" />
+                <EditText
+                    android:id="@+id/fgSignUp_dateOfBirth"
+                    android:layout_width="0dp"
+                    android:layout_height="55sp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_cake_24"
+                    android:drawablePadding="15dp"
+                    android:ems="10"
+                    android:hint="@string/dateOfBirth"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary5"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/fgSignUp_gender"
-                android:layout_width="0dp"
-                android:layout_height="55sp"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/round_login_page"
-                android:drawableStart="@drawable/ic_baseline_transgender_24"
-                android:drawablePadding="15dp"
-                android:ems="10"
-                android:hint="@string/gender"
-                android:inputType="textEmailAddress"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:textColor="@color/colorPrimary4"
-                android:textColorHint="@color/colorPrimary5"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fgSignUp_dateOfBirth" />
-
-            <Button
-                android:id="@+id/fgSignUp_RegisterButton"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="424dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:letterSpacing="0.21"
-                android:text="@string/Register"
-                android:textColor="@color/colorPrimary5"
-                android:textSize="18sp"
-                app:cornerRadius="40dp"
-                app:iconGravity="start"
-                app:iconPadding="4dp"
-                app:iconTint="@color/colorPrimary4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/fgSignUp_address"
+                    android:layout_width="0dp"
+                    android:layout_height="55sp"
+                    android:layout_marginTop="36dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_home_24"
+                    android:drawablePadding="15dp"
+                    android:ems="10"
+                    android:hint="@string/address"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary5"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fgSignUp_phone" />
 
 
+                <EditText
+                    android:id="@+id/fgSignUp_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="55sp"
+                    android:layout_marginTop="36dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_phone_android_24"
+                    android:drawablePadding="15dp"
+                    android:ems="10"
+                    android:hint="@string/phoneNumber"
+                    android:inputType="phone"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary5"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fgSignUp_gender" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/fgSignUp_gender"
+                    android:layout_width="0dp"
+                    android:layout_height="55sp"
+                    android:layout_marginTop="36dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_transgender_24"
+                    android:drawablePadding="15dp"
+                    android:ems="10"
+                    android:hint="@string/gender"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary5"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fgSignUp_dateOfBirth" />
+
+                <Button
+                    android:id="@+id/fgSignUp_RegisterButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="392dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:letterSpacing="0.21"
+                    android:text="@string/Register"
+                    android:textColor="@color/colorPrimary5"
+                    android:textSize="18sp"
+                    app:cornerRadius="40dp"
+                    app:iconGravity="start"
+                    app:iconPadding="4dp"
+                    app:iconTint="@color/colorPrimary4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

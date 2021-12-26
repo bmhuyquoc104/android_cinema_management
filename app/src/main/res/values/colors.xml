@@ -12,4 +12,9 @@
     <color name = "colorPrimary3">#191919</color>
     <color name = "colorPrimary4">#fff</color>
     <color name = "colorPrimary5">#A1A1A1</color>
+
+    <style name="CustomCheckbox02" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/register_checkbox</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>
