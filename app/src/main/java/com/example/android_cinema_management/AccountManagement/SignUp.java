@@ -9,12 +9,14 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,9 +29,13 @@ public class SignUp extends AppCompatActivity {
     //Declare textview and imageView
     TextView title;
     ImageView close;
+    // Declare viewpager 2 and adapter
     @SuppressLint("ResourceType")
     ViewPager2 viewpager2;
     RegisterAdapter adapter;
+    // Declare view layout and textview array
+    LinearLayout dotLayout;
+    TextView [] dots;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +43,15 @@ public class SignUp extends AppCompatActivity {
         //Binding to XML's value
         title = findViewById(R.id.signUp_title);
         close = findViewById(R.id.signUpClose);
+        dotLayout = findViewById(R.id.signUp_dotIndicator);
         // Instantiate a ViewPager2 and a PagerAdapter.
         FragmentManager fm = getSupportFragmentManager();
         viewpager2 = findViewById(R.id.signUp_viewPager2);
         adapter = new RegisterAdapter(fm,getLifecycle());
         viewpager2.setAdapter(adapter);
+        // Instantiate textview array
+        dots = new TextView[3];
+        dotsIndicator();
         // Create spannalbe String
         SpannableStringBuilder builder = new SpannableStringBuilder();
 
@@ -58,25 +68,21 @@ public class SignUp extends AppCompatActivity {
         title.setText(builder, Button.BufferType.SPANNABLE);
         // Function to get back to previous account fragment
         close.setOnClickListener(view -> {
-//            Intent intent = new Intent(this, MainActivity.class);
-//            //Send intent to sign Up activity
-//
-//            // Start intent
-//            try {
-//                startActivity(intent);
-//            }
-//            // Exception if activity is not found
-//            catch (ActivityNotFoundException e){
-//                Toast.makeText(this,"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
-//            }
-            // Return to the last stack
             finish();
         });
 
+        // Set animation when sliding fragments
         viewpager2.setPageTransformer(new DepthPageTransformer());
+        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                chosenIndicator(position);
+                super.onPageSelected(position);
+            }
+        });
     }
-
-        @Override
+    
+    @Override
         public void onBackPressed() {
             if (viewpager2.getCurrentItem() == 0) {
                 // If the user is currently looking at the first step, allow the system to handle the
@@ -88,6 +94,7 @@ public class SignUp extends AppCompatActivity {
             }
         }
 
+     // Function to apply animation for viewpager2
     private static class DepthPageTransformer implements ViewPager2.PageTransformer {
         private static final float MIN_SCALE = 0.75f;
 
@@ -124,6 +131,29 @@ public class SignUp extends AppCompatActivity {
             } else { // (1,+Infinity]
                 // This page is way off-screen to the right.
                 view.setAlpha(0f);
+            }
+        }
+    }
+
+    // Render indicator in the UI
+    private void dotsIndicator (){
+        for (int i = 0; i < dots.length ; i++){
+            dots[i] = new TextView(this);
+            dots[i].setText(Html.fromHtml("&#9679"));
+            dots[i].setTextSize(25);
+            dots[i].setPadding(60,20,20,20);
+            dotLayout.addView(dots[i]);
+        }
+    }
+
+    // Check current position and change the color of indicator
+    private void chosenIndicator(int position) {
+        for (int i =0; i < dots.length; i++){
+            if ( i == position){
+                dots[i].setTextColor(Color.rgb(222, 22, 25));
+            }
+            else{
+                dots[i].setTextColor(Color.rgb(161, 161, 161));
             }
         }
     }

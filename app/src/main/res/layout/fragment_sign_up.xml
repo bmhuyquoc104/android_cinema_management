@@ -189,7 +189,7 @@
                         android:id="@+id/fgSignUp_RegisterButton"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="344dp"
+                        android:layout_marginTop="412dp"
                         android:backgroundTint="@color/colorPrimary"
                         android:letterSpacing="0.21"
                         android:text="@string/Register"
