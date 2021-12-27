@@ -65,7 +65,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <CheckBox
-                    android:id="@+id/frag3_signUp_announcement"
+                    android:id="@+id/frag3_signUp_termAndCondition"
                     style="@style/CustomCheckbox02"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -95,9 +95,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/fgSignUp_RegisterButton"
+                    android:id="@+id/frag3SignUp_RegisterButton"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="50dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:letterSpacing="0.21"
@@ -111,7 +111,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/frag3_signUp_announcement" />
+                    app:layout_constraintTop_toBottomOf="@+id/frag3_signUp_termAndCondition" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

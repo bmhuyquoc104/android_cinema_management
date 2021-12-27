@@ -60,7 +60,7 @@ public class SignUpFragment extends Fragment {
             inputPassword = Objects.requireNonNull(password.getEditText()).getText().toString();
             inputConfirmPassword = Objects.requireNonNull(confirmPassword.getEditText()).getText().toString();
             System.out.println("hyu ne " + inputPassword + inputConfirmPassword + inputEmail + inputFullName);
-            if (isValidEmail() & isValidPassword() & isValidFullName() & isValidConfirmPassword()) {
+//            if (isValidEmail() & isValidPassword() & isValidFullName() & isValidConfirmPassword()) {
                 Bundle bundle = new Bundle();
                 bundle.putString("fullName", inputFullName);
                 bundle.putString("password", inputPassword);
@@ -72,7 +72,7 @@ public class SignUpFragment extends Fragment {
                 FragmentTransaction transaction =
                         fm.beginTransaction();
                 transaction.replace(R.id.signUp_frameLayout, fragment2).addToBackStack("fragment1").commit();
-            }
+           // }
         });
 
 
@@ -130,8 +130,8 @@ public class SignUpFragment extends Fragment {
         }
 
         // Check if password has the valid length
-        if (inputPassword.length() > 8 || inputPassword.length() < 4) {
-            password.setError("Password must be less than 4 and more than 8 characters in length.");
+        if ( inputPassword.length() < 6) {
+            password.setError("Password must be less than 6 in the length.");
             return false;
         }
         // Set password error
@@ -203,8 +203,8 @@ public class SignUpFragment extends Fragment {
         }
 
         // Check string length input confirm password
-        if (inputConfirmPassword.length() > 15 || inputConfirmPassword.length() < 8) {
-            confirmPassword.setError("Password must be less than 20 and more than 8 characters in length.");
+        if (inputConfirmPassword.length() < 6) {
+            confirmPassword.setError("Password must be more than 6 characters in length.");
             return false;
         }
         // Set confirm password error
