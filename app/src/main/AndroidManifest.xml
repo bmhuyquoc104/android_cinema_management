@@ -15,6 +15,7 @@
         android:theme="@style/Theme.Android_cinema_management">
         <activity
             android:name=".AccountManagement.SignUp"
+            android:windowSoftInputMode="stateHidden"
             android:exported="false" />
         <activity
             android:name=".MovieManagement.MovieInfoTabLayout"

@@ -15,19 +15,15 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignUpFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SignUpFragment extends Fragment {
     // Declare edit text
-    EditText fullName, email;
     String inputFullName, inputEmail, inputPassword, inputConfirmPassword;
-    TextInputEditText password, confirmPassword;
+    TextInputLayout password, confirmPassword, fullName, email;
     Button nextPage;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,26 +35,8 @@ public class SignUpFragment extends Fragment {
     private String mParam2;
 
     public SignUpFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignUpFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignUpFragment newInstance(String param1, String param2) {
-        SignUpFragment fragment = new SignUpFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,12 +53,10 @@ public class SignUpFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         // Binding value to XML layout file
-        fullName = view.findViewById(R.id.frag1SignUp_fullName);
-        email = view.findViewById(R.id.frag1SignUp_email);
-        System.out.println("dqwdasdasdas" + inputEmail);
-        System.out.println("dqwdasdasdas" + inputFullName);
-        password = view.findViewById(R.id.frag1SignUp_password);
-        confirmPassword = view.findViewById(R.id.fgSignUp_confirmPassword);
+        fullName = view.findViewById(R.id.frag1SignUp_textLayout_fullName);
+        email = view.findViewById(R.id.frag1SignUp_textLayout_email);
+        password = view.findViewById(R.id.frag1SignUp_textLayout_password);
+        confirmPassword = view.findViewById(R.id.frag1SignUp_textLayout_confirmPassword);
         nextPage = view.findViewById(R.id.fgSignUp_continueButton);
 //        nextPage.setEnabled(false);
         // Get value from user
@@ -90,13 +66,12 @@ public class SignUpFragment extends Fragment {
 //        }
 
         nextPage.setOnClickListener(View -> {
-            inputFullName = fullName.getText().toString();
-            inputEmail = email.getText().toString();
-            inputPassword = Objects.requireNonNull(password.getText()).toString();
-            inputConfirmPassword = Objects.requireNonNull(confirmPassword.getText()).toString();
-            if (!inputPassword.equals(inputConfirmPassword)) {
-                Toast.makeText(getContext(), "Your password and confirm password are not matched. Please enter again!", Toast.LENGTH_LONG).show();
-            } else {
+            inputFullName = Objects.requireNonNull(fullName.getEditText()).getText().toString();
+            inputEmail = Objects.requireNonNull(email.getEditText()).getText().toString();
+            inputPassword = Objects.requireNonNull(password.getEditText()).getText().toString();
+            inputConfirmPassword = Objects.requireNonNull(confirmPassword.getEditText()).getText().toString();
+            System.out.println("hyu ne " + inputPassword + inputConfirmPassword + inputEmail + inputFullName);
+            if (validateFullName() & validateConfirmPassword() & validateEmail() & validatePassword()) {
                 Bundle bundle = new Bundle();
                 bundle.putString("fullName", inputFullName);
                 bundle.putString("password", inputPassword);
@@ -113,5 +88,148 @@ public class SignUpFragment extends Fragment {
 
 
         return view;
+    }
+
+    private boolean validateFullName() {
+        if (inputFullName.isEmpty()) {
+            fullName.setError("Field can not be empty");
+            return false;
+        } else {
+            fullName.setError(null);
+            fullName.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateEmail() {
+        String checkEmail = "[a-zA-Z0-9._-]+@[a-z]+.+[a-z]+";
+
+        if (inputEmail.isEmpty()) {
+            email.setError("Field can not be empty");
+            return false;
+        } else if (!inputEmail.matches(checkEmail)) {
+            email.setError("Invalid Email!");
+            return false;
+        } else {
+            email.setError(null);
+            email.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validatePassword() {
+        if(inputPassword.isEmpty()){
+            password.setError("Field can not be empty");
+            return false;
+        }else{
+            password.setError(null);
+            password.setErrorEnabled(false);
+        }
+
+
+        if (inputPassword.length() > 15 || inputPassword.length() < 8) {
+            password.setError("Password must be less than 20 and more than 8 characters in length.");
+            return false;
+        } else{
+            password.setError(null);
+            password.setErrorEnabled(false);
+        }
+
+
+        String upperCaseChars = "(.*[A-Z].*)";
+        if (!inputPassword.matches(upperCaseChars)) {
+            password.setError("Password must have at least one uppercase character");
+            return false;
+        }else{
+            password.setError(null);
+            password.setErrorEnabled(false);
+        }
+        String lowerCaseChars = "(.*[a-z].*)";
+        if (!inputPassword.matches(lowerCaseChars)) {
+            password.setError("Password must have at least one lowercase character");
+            return false;
+        }else{
+            password.setError(null);
+            password.setErrorEnabled(false);
+        }
+        String numbers = "(.*[0-9].*)";
+        if (!inputPassword.matches(numbers)) {
+            password.setError("Password must have at least one number");
+            return false;
+        }else{
+            password.setError(null);
+            password.setErrorEnabled(false);
+        }
+        String specialChars = "(.*[@,#,$,%].*$)";
+        if (!inputPassword.matches(specialChars)) {
+            password.setError("Password must have at least one special character among @#$%");
+            return false;
+        }else{
+            password.setError(null);
+            password.setErrorEnabled(false);
+        }
+        return true;
+    }
+
+    private boolean validateConfirmPassword() {
+        if(inputConfirmPassword.isEmpty()){
+            confirmPassword.setError("Field can not be empty");
+            return false;
+        }else{
+            confirmPassword.setError(null);
+            confirmPassword.setErrorEnabled(false);
+        }
+
+
+        if (inputConfirmPassword.length() > 15 || inputConfirmPassword.length() < 8) {
+            confirmPassword.setError("Password must be less than 20 and more than 8 characters in length.");
+            return false;
+        } else{
+            confirmPassword.setError(null);
+            confirmPassword.setErrorEnabled(false);
+        }
+
+
+        String upperCaseChars = "(.*[A-Z].*)";
+        if (!inputConfirmPassword.matches(upperCaseChars)) {
+            confirmPassword.setError("Password must have at least one uppercase character");
+            return false;
+        }else{
+            confirmPassword.setError(null);
+            confirmPassword.setErrorEnabled(false);
+        }
+        String lowerCaseChars = "(.*[a-z].*)";
+        if (!inputConfirmPassword.matches(lowerCaseChars)) {
+            confirmPassword.setError("Password must have at least one lowercase character");
+            return false;
+        }else{
+            confirmPassword.setError(null);
+            confirmPassword.setErrorEnabled(false);
+        }
+        String numbers = "(.*[0-9].*)";
+        if (!inputConfirmPassword.matches(numbers)) {
+            confirmPassword.setError("Password must have at least one number");
+            return false;
+        }else{
+            confirmPassword.setError(null);
+            confirmPassword.setErrorEnabled(false);
+        }
+        String specialChars = "(.*[@,#,$,%].*$)";
+        if (!inputConfirmPassword.matches(specialChars)) {
+            confirmPassword.setError("Password must have at least one special character among @#$%");
+            return false;
+        }
+        else{
+            confirmPassword.setError(null);
+            confirmPassword.setErrorEnabled(false);
+        }
+        if (!inputConfirmPassword.equals(inputPassword)) {
+            confirmPassword.setError("ConfirmPassword not match password");
+            return false;
+        } else {
+            confirmPassword.setError(null);
+            confirmPassword.setErrorEnabled(false);
+            return true;
+        }
     }
 }

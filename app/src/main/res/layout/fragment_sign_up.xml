@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:background="@color/colorPrimary3"
+    android:clickable="true"
+
+    android:focusable="true"
     tools:context=".AccountManagement.SignUpFragment">
 
 
@@ -31,36 +31,53 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/frag1SignUp_fullName"
-                    android:layout_width="0dp"
-                    android:layout_height="55sp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_person_24"
-                    android:drawablePadding="15dp"
-                    android:ems="10"
-                    android:hint="@string/fullName"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:textColor="@color/colorPrimary4"
-                    android:textColorHint="@color/colorPrimary5"
-                    android:textSize="20sp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/frag1SignUp_textLayout_fullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxStrokeColor="@color/colorPrimary3"
+                    android:textColorHint="@color/colorPrimary4"
+                    app:boxStrokeErrorColor="@color/colorPrimary3"
+                    app:endIconTint="@color/colorPrimary2"
+                    app:hintTextColor="@color/colorPrimary2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="Autofill"
-                    android:inputType="text" />
+                    app:startIconTint="@color/colorPrimary2">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/frag1SignUp_fullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_login_page"
+                        android:drawableStart="@drawable/ic_baseline_person_24"
+                        android:drawablePadding="15dp"
+                        android:ems="10"
+                        android:hint="@string/fullName"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:textColor="@color/colorPrimary4"
+                        android:textColorHint="@color/colorPrimary5"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="Autofill" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/frag1_signUp_textLayout_password"
+                    android:id="@+id/frag1SignUp_textLayout_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginTop="190dp"
                     android:textColorHint="@color/colorPrimary4"
-                    app:boxStrokeColor="@color/colorPrimary4"
+                    app:boxStrokeColor="@color/colorPrimary3"
                     app:endIconTint="@color/colorPrimary2"
+                    app:boxStrokeErrorColor="@color/colorPrimary3"
                     app:hintTextColor="@color/colorPrimary2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -68,13 +85,12 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:passwordToggleEnabled="true"
                     app:passwordToggleTint="@color/colorPrimary4"
-                    app:startIconTint="@color/colorPrimary4">
+                    app:startIconTint="@color/colorPrimary2">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/frag1SignUp_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="36dp"
                         android:background="@drawable/round_login_page"
                         android:drawableStart="@drawable/ic_baseline_lock_24"
                         android:drawablePadding="15dp"
@@ -90,14 +106,15 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/frag1_signUp_textLayout_confirmPassword"
+                    android:id="@+id/frag1SignUp_textLayout_confirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="256dp"
+                    android:layout_marginTop="280dp"
                     android:textColorHint="@color/colorPrimary4"
-                    app:boxStrokeColor="@color/colorPrimary4"
+                    app:boxStrokeColor="@color/colorPrimary3"
                     app:endIconTint="@color/colorPrimary2"
                     app:hintTextColor="@color/colorPrimary2"
+                    app:boxStrokeErrorColor="@color/colorPrimary3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,33 +141,49 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/frag1SignUp_email"
-                    android:layout_width="0dp"
-                    android:layout_height="55sp"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_email_24"
-                    android:drawablePadding="15dp"
-                    android:ems="10"
-                    android:hint="@string/email"
-                    android:inputType="textEmailAddress"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:textColor="@color/colorPrimary4"
-                    android:textColorHint="@color/colorPrimary5"
-                    android:textSize="20sp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/frag1SignUp_textLayout_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:textColorHint="@color/colorPrimary4"
+                    app:boxStrokeColor="@color/colorPrimary3"
+                    app:endIconTint="@color/colorPrimary2"
+                    app:hintTextColor="@color/colorPrimary2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
+                    app:boxStrokeErrorColor="@color/colorPrimary3"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/frag1SignUp_fullName"
-                    android:importantForAutofill="no" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:startIconTint="@color/colorPrimary2">
+
+                    <EditText
+                        android:id="@+id/frag1SignUp_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/round_login_page"
+                        android:drawableStart="@drawable/ic_baseline_email_24"
+                        android:drawablePadding="15dp"
+                        android:ems="10"
+                        android:hint="@string/email"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:textColor="@color/colorPrimary4"
+                        android:textColorHint="@color/colorPrimary5"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/frag1SignUp_fullName" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/fgSignUp_continueButton"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="342dp"
+                    android:layout_marginTop="370dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:letterSpacing="0.21"
                     android:text="@string/Continue"

@@ -1,18 +1,25 @@
 package com.example.android_cinema_management.AccountManagement;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.android_cinema_management.R;
+
+import java.util.Calendar;
+
+import javax.xml.validation.Validator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,9 +27,14 @@ import com.example.android_cinema_management.R;
  * create an instance of this fragment.
  */
 public class SignUpFragment2 extends Fragment {
+    //Declare edit text, button
     EditText dateOfBirth,address,phone,gender;
     Button nextPage;
+
+    // Declare string and int to store value
     String fullName,password,email,confirmPassword;
+    int day, month, year;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -75,6 +87,31 @@ public class SignUpFragment2 extends Fragment {
         phone = view.findViewById(R.id.frag2SignUp_phone);
         nextPage = view.findViewById(R.id.buttonContinue);
 
+        // Ask user to pick the date by date picker
+        dateOfBirth.setOnClickListener(View -> {
+            // Create instance of calendar
+            Calendar calendar = Calendar.getInstance();
+            day = calendar.get(Calendar.DATE);
+            month = calendar.get(Calendar.MONTH);
+            year = calendar.get(Calendar.YEAR);
+            // Create dialog when user choose pick date
+            DatePickerDialog datePicker = new DatePickerDialog(getContext(), android.R.style.Theme_Holo_Dialog_MinWidth, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+                    Calendar calendar1 = Calendar.getInstance();
+                    calendar1.set(Calendar.YEAR, year);
+                    calendar1.set(Calendar.MONTH, month);
+                    calendar1.set(Calendar.DATE, date);
+                    // Set format of date
+                    CharSequence charSequence = DateFormat.format("dd-MM-yyyy", calendar1);
+                    dateOfBirth.setText(charSequence);
+                }
+            }, year, month, day);
+            // Get the latest date, ignore the previous date
+            datePicker.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+            datePicker.show();
+        });
+
         Bundle bundle =this.getArguments();
         System.out.println(bundle);
         assert bundle != null;
@@ -106,4 +143,7 @@ public class SignUpFragment2 extends Fragment {
 
         return view;
     }
+
+
+
 }
