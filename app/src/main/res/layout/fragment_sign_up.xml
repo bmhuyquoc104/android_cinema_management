@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary3"
     android:clickable="true"
-
     android:focusable="true"
     tools:context=".AccountManagement.SignUpFragment">
 
@@ -55,10 +54,6 @@
                         android:drawableStart="@drawable/ic_baseline_person_24"
                         android:drawablePadding="15dp"
                         android:ems="10"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
                         android:hint="@string/fullName"
                         android:inputType="text"
                         android:paddingStart="20dp"
@@ -161,7 +156,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:startIconTint="@color/colorPrimary2">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/frag1SignUp_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

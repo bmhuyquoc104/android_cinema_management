@@ -60,7 +60,7 @@ public class SignUpFragment extends Fragment {
             inputPassword = Objects.requireNonNull(password.getEditText()).getText().toString();
             inputConfirmPassword = Objects.requireNonNull(confirmPassword.getEditText()).getText().toString();
             System.out.println("hyu ne " + inputPassword + inputConfirmPassword + inputEmail + inputFullName);
-//            if (isValidEmail() & isValidPassword() & isValidFullName() & isValidConfirmPassword()) {
+            if (isValidEmail() & isValidPassword() & isValidFullName() & isValidConfirmPassword()) {
                 Bundle bundle = new Bundle();
                 bundle.putString("fullName", inputFullName);
                 bundle.putString("password", inputPassword);
@@ -72,7 +72,7 @@ public class SignUpFragment extends Fragment {
                 FragmentTransaction transaction =
                         fm.beginTransaction();
                 transaction.replace(R.id.signUp_frameLayout, fragment2).addToBackStack("fragment1").commit();
-           // }
+            }
         });
 
 
