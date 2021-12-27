@@ -123,6 +123,9 @@ public class Home extends Fragment {
 
         // Set text for button
         loginAndRegister.setText( builder, Button.BufferType.SPANNABLE);
+
+
+
         return view;
     }
 }

@@ -16,55 +16,31 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
+import com.google.android.material.textfield.TextInputLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignInFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Objects;
+
+
 public class SignInFragment extends Fragment {
-    //Declare textview ,button ,and imageView
+    //Declare textview ,textInputLayout ,and imageView,button
     TextView title;
     ImageView close;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    TextInputLayout email,password;
+    Button logIn;
+    //Declare String
+    String inputEmail,inputPassword;
     public SignInFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignInFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignInFragment newInstance(String param1, String param2) {
-        SignInFragment fragment = new SignInFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -76,6 +52,9 @@ public class SignInFragment extends Fragment {
         //Binding to XML's value
         title = view.findViewById(R.id.signIn_title);
         close = view.findViewById(R.id.signInClose);
+        logIn = view.findViewById(R.id.fragSignInLogin);
+        email = view.findViewById(R.id.frag_signIn_textLayout_email);
+        password = view.findViewById(R.id.frag_signIn_textLayout_password);
         // Create spannalbe String
         SpannableStringBuilder builder = new SpannableStringBuilder();
         // Initialize fragment manager
@@ -92,11 +71,51 @@ public class SignInFragment extends Fragment {
         // Set text for textView
         title.setText(builder, Button.BufferType.SPANNABLE);
 
+        //Function to close current fragment and return to previous fragment
         close.setOnClickListener(View ->{
+            // Replace this fragment by accounts fragment
             FragmentTransaction transaction =
                     fm.beginTransaction();
             transaction.replace(R.id.ma_frag_container, new Accounts()).commit();
         });
+
+        logIn.setOnClickListener(View -> {
+            inputEmail = Objects.requireNonNull(email.getEditText()).getText().toString();
+            inputPassword = Objects.requireNonNull(password.getEditText()).getText().toString();
+            if (passwordIsNotEmpty() & emailIsNotEmpty()){
+                Toast.makeText(getContext(), "You have successfully logged in",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
     }
+    // Function to check email is empty or not
+    private boolean emailIsNotEmpty() {
+        if (inputEmail.isEmpty()) {
+            email.setError("Field can not be empty");
+            return false;
+        }
+        else {
+            // Set email error
+            email.setError(null);
+            email.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    // Function to check password is empty or not
+    private boolean passwordIsNotEmpty() {
+        // Check if the user input password or not
+        if (inputPassword.isEmpty()) {
+            password.setError("Field can not be empty");
+            return false;
+        }
+        else {
+            // Set email password
+            password.setError(null);
+            password.setErrorEnabled(false);
+            return true;
+        }
+    }
+
 }

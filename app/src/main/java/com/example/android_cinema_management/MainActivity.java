@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.android_cinema_management.AccountManagement.Accounts;
+import com.example.android_cinema_management.AccountManagement.SignUpFragment2;
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -87,6 +89,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewpager2.setPageTransformer(new ZoomOutPageTransformer());
+
+        //Switch to logging page when user click logging button
+        loginAndRegister.setOnClickListener(view ->{
+            Accounts accountFragment = new Accounts();
+            FragmentTransaction transaction =
+                    fm.beginTransaction();
+            transaction.replace(R.id.ma_frag_container, accountFragment).commit();
+        });
+
         //Choose the fragment by bottom navigation
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")

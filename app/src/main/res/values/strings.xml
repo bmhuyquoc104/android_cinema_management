@@ -19,7 +19,7 @@
     <string name="movieImage" />
     <string name="showtimes">SHOWTIMES</string>
     <string name="movie_details">MOVIE DETAILS</string>
-    <string name="FilmContent">Film Content</string>
+    <string name="FilmContent">Summary</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
