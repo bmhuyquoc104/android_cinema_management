@@ -30,12 +30,13 @@ public class CinemaAdapter extends FirebaseRecyclerAdapter<Cinema,CinemaAdapter.
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Cinema model) {
         holder.name.setText(model.getName());
-        holder.city.setText(model.getCity());
-        holder.district.setText(model.getDistrict());
-        holder.ward.setText(model.getWard());
         holder.address.setText(model.getAddress());
         holder.latitude.setText(model.getLatitude());
         holder.longitude.setText(model.getLongitude());
+        holder.contactNumber.setText(model.getContactNumber());
+        holder.imageUrl.setText(model.getImageUrl());
+        holder.locationName.setText(model.getLocationName());
+        holder.cinemaId.setText(model.getCinemaId());
 
     }
 
@@ -47,18 +48,18 @@ public class CinemaAdapter extends FirebaseRecyclerAdapter<Cinema,CinemaAdapter.
     }
 
     class myViewHolder extends RecyclerView.ViewHolder{
-        TextView name, city, district, ward, address, latitude, longitude;
+        TextView name, address, latitude, longitude, contactNumber, imageUrl, locationName, cinemaId;
 
         public myViewHolder(@NonNull View itemView){
             super(itemView);
 
             name = (TextView) itemView.findViewById(R.id.edit_name);
-            city = (TextView) itemView.findViewById(R.id.edit_city);
-            district = (TextView) itemView.findViewById(R.id.edit_district);
-            ward = (TextView) itemView.findViewById(R.id.edit_ward);
             address = (TextView) itemView.findViewById(R.id.edit_address);
             latitude = (TextView) itemView.findViewById(R.id.edit_latitude);
             longitude = (TextView) itemView.findViewById(R.id.edit_longitude);
+            contactNumber = (TextView) itemView.findViewById(R.id.edit_contactNumber);
+            locationName = (TextView) itemView.findViewById(R.id.edit_locationName);
+            cinemaId = (TextView) itemView.findViewById(R.id.edit_cinemaId);
         }
 
     }

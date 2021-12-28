@@ -19,27 +19,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_city"
-            android:text="City"
-            android:layout_below="@+id/edit_name"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_district"
-            android:text="District"
-            android:layout_below="@+id/edit_city"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_ward"
-            android:text="Ward"
-            android:layout_below="@+id/edit_district"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/edit_address"
             android:text="Address"
-            android:layout_below="@+id/edit_ward"/>
+            android:layout_below="@+id/edit_name"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +34,24 @@
             android:id="@+id/edit_longitude"
             android:text="Longitude"
             android:layout_below="@+id/edit_latitude"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_contactNumber"
+            android:text="Contact Number"
+            android:layout_below="@+id/edit_longitude"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_locationName"
+            android:text="Location Name"
+            android:layout_below="@+id/edit_contactNumber"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_cinemaId"
+            android:text="Cinema Id"
+            android:layout_below="@+id/edit_locationName"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

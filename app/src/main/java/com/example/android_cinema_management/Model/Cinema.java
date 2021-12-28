@@ -3,24 +3,26 @@ package com.example.android_cinema_management.Model;
 public class Cinema {
 
     private String name;
-    private String city;
-    private String district;
-    private String ward;
     private String address;
     private String latitude;
     private String longitude;
+    private String contactNumber;
+    private String imageUrl;
+    private String locationName;
+    private String cinemaId;
 
     public Cinema() {
     }
 
-    public Cinema(String name, String city, String district, String ward, String address, String latitude, String longitude) {
+    public Cinema(String name, String address, String latitude, String longitude, String contactNumber, String imageUrl, String locationName, String cinemaId) {
         this.name = name;
-        this.city = city;
-        this.district = district;
-        this.ward = ward;
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.contactNumber = contactNumber;
+        this.imageUrl = imageUrl;
+        this.locationName = locationName;
+        this.cinemaId = cinemaId;
     }
 
     public String getName() {
@@ -29,30 +31,6 @@ public class Cinema {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getWard() {
-        return ward;
-    }
-
-    public void setWard(String ward) {
-        this.ward = ward;
     }
 
     public String getAddress() {
@@ -77,5 +55,37 @@ public class Cinema {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public String getCinemaId() {
+        return cinemaId;
+    }
+
+    public void setCinemaId(String cinemaId) {
+        this.cinemaId = cinemaId;
     }
 }
