@@ -15,6 +15,9 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.example.android_cinema_management.Adapter.CinemaAdapter;
 import com.example.android_cinema_management.Adapter.MoviesAdapter;
@@ -30,6 +33,8 @@ public class CinemaFragment extends Fragment {
     //Declare recyclerview
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
+    //Declare array adapter
+    ArrayAdapter<String> adapterItems;
     //Declare adapter
     private CinemaAdapter cinemaAdapter;
     //Declare public static List to used later by other classes
@@ -37,6 +42,13 @@ public class CinemaFragment extends Fragment {
     private Cinema cinema;
     // Declare handle thread
     HandlerThread ht = new HandlerThread("MyHandlerThread");
+    // Declare string and array of string for cities
+    String [] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
+            "Vung Tau", "Da Nang", "Nha Trang","Ca Mau","Hai Phong",
+            "Quang Ninh","Dong Nai"};
+    String city;
+    // Declare auto text complete
+    AutoCompleteTextView autoCompleteTextView;
     public CinemaFragment() {
         // Required empty public constructor
     }
@@ -66,6 +78,15 @@ public class CinemaFragment extends Fragment {
         //Use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
 
+        autoCompleteTextView = view.findViewById(R.id.fragCinema_cities);
+        adapterItems = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, cities);
+        autoCompleteTextView.setAdapter(adapterItems);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                city = parent.getItemAtPosition(position).toString();
+            }
+        });
         //Dummy data
         Cinema cinema = new Cinema("123","cinema1","nguyen van a","12","15","0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark");
         Cinema cinema2 = new Cinema("123","cinema2","nguyen van b","12","15","0898323121","https://www.google.com/url?sa=i&url=https%3A%2F%2Fvir.com.vn%2Fgalaxy-cinema-mobilised-capital-from-bond-issuance-85024.html&psig=AOvVaw3d4ZZI9LzZs7ucX-fdKNG0&ust=1640759186075000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCICXorbuhfUCFQAAAAAdAAAAABAJ","thuong xa stark2");
