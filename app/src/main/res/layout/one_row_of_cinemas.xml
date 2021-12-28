@@ -113,7 +113,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <Button
-                android:id="@+id/mf1_review"
+                android:id="@+id/cinema_showMap"
                 style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                 android:layout_width="146dp"
                 android:layout_height="42dp"

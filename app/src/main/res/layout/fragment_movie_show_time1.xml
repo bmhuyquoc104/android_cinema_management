@@ -127,7 +127,7 @@
                         android:contentDescription="@string/todo" />
 
                     <Button
-                        android:id="@+id/mf1_review"
+                        android:id="@+id/cinema_showMap"
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                         android:layout_width="171dp"
                         android:layout_height="51dp"

@@ -1,15 +1,20 @@
 package com.example.android_cinema_management.Adapter;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android_cinema_management.CinemaManagement.CinemaLocation;
 import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
@@ -42,6 +47,17 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
             holder.cinemaLocationName.setText(cinemaList.get(position).getLocationName());
             holder.cinemaContact.setText(cinemaList.get(position).getContactNumber());
             Picasso.get().load(cinemaList.get(position).getImageUrl()).into(holder.cinemaImage);
+            holder.showMap.setOnClickListener(View ->{
+                Intent intent = new Intent(context, CinemaLocation.class);
+                // Start intent
+                try {
+                    context.startActivity(intent);
+                }
+                // Exception if activity is not found
+                catch (ActivityNotFoundException e){
+                    Toast.makeText(context,"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
+                }
+            });
     }
 
 
@@ -53,6 +69,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView cinemaImage;
         TextView cinemaName, cinemaLocationName,cinemaAddress,cinemaContact;
+        Button showMap;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             cinemaImage = itemView.findViewById(R.id.cinemaImage);
@@ -60,6 +77,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
             cinemaLocationName = itemView.findViewById(R.id.cinemaLocationName);
             cinemaAddress = itemView.findViewById(R.id.cinemaAddress);
             cinemaContact = itemView.findViewById(R.id.cinemaPhoneContact);
+            showMap = itemView.findViewById(R.id.cinema_showMap);
         }
     }
 }
