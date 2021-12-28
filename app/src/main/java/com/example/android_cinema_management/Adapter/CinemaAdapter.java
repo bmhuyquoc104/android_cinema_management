@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.example.android_cinema_management.CinemaManagement.CinemaLocation;
 import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.Model.Movie;

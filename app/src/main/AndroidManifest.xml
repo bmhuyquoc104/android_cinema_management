@@ -9,14 +9,17 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Universal Cinema"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_cinema_management">
         <activity
-            android:name=".AccountManagement.SignUp"
-            android:windowSoftInputMode="stateHidden"
+            android:name=".CinemaManagement.CinemaLocation"
             android:exported="false" />
+        <activity
+            android:name=".AccountManagement.SignUp"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MovieManagement.MovieInfoTabLayout"
             android:exported="false" />
@@ -32,6 +35,11 @@
         <activity
             android:name=".Footer.Job"
             android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
