@@ -3,7 +3,7 @@
     <string name="Movie">MOVIES</string>
     <string name="Discount">Discount</string>
     <string name="buyTicket">Buy Ticket</string>
-    <string name="Review">REVIEWS</string>
+    <string name="showOnMap">Show On Map</string>
     <string name="movie">Movie</string>
     <string name="location">Location</string>
     <string name="search">Search</string>
@@ -65,5 +65,6 @@
     <string name="alternateLogginWay">Or login with</string>
     <string name="newUser">Don\'t Have Account? Register Now!</string>
     <string name="signUphere">SignUpHere!</string>
+    <string name="cities">All Cities</string>
 
 </resources>
