@@ -5,24 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary3"
-    android:clickable="true"
-    android:focusable="true"
     tools:context=".DiscountAndTicket">
 
     <!-- TODO: Update blank fragment layout -->
 
     <!-- nhớ add filter vào để filter ticket vs discount -->
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="392dp"
-        android:layout_height="440dp"
-        android:textSize="50dp"
-        android:layout_marginTop="108dp"
-        android:text="@string/discountAndTicket"
-        android:textColor="@color/colorPrimary4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/discount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="20dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
