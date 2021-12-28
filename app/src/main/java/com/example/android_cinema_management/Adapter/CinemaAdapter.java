@@ -50,6 +50,16 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
             Picasso.get().load(cinemaList.get(position).getImageUrl()).into(holder.cinemaImage);
             holder.showMap.setOnClickListener(View ->{
                 Intent intent = new Intent(context, CinemaLocation.class);
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("plain/text");
+                intent.putExtra("address",cinemaList.get(position).getAddress());
+                intent.putExtra("lat",Double.toString(cinemaList.get(position).getLatitude()));
+                intent.putExtra("lng",Double.toString(cinemaList.get(position).getLongitude()));
+                intent.putExtra("name",cinemaList.get(position).getName());
+                intent.putExtra("id",cinemaList.get(position).getCinemaId());
+                intent.putExtra("imageUrl",cinemaList.get(position).getImageUrl());
+                intent.putExtra("contactNumber",cinemaList.get(position).getContactNumber());
+                intent.putExtra("locationName",cinemaList.get(position).getLocationName());
                 // Start intent
                 try {
                     context.startActivity(intent);

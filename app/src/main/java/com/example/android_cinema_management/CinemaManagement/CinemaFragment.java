@@ -88,9 +88,9 @@ public class CinemaFragment extends Fragment {
             }
         });
         //Dummy data
-        Cinema cinema = new Cinema("123","cinema1","nguyen van a","12","15","0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark");
-        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b","12","15","0898323121","https://www.google.com/url?sa=i&url=https%3A%2F%2Fvir.com.vn%2Fgalaxy-cinema-mobilised-capital-from-bond-issuance-85024.html&psig=AOvVaw3d4ZZI9LzZs7ucX-fdKNG0&ust=1640759186075000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCICXorbuhfUCFQAAAAAdAAAAABAJ","thuong xa stark2");
-        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c","12","15","0898322131","https://www.google.com/url?sa=i&url=https%3A%2F%2Fthientu.vn%2Fblog%2Ftong-dai-galaxy-cinema-hotline-cskh-cua-he-thong-galaxy-cinema&psig=AOvVaw3d4ZZI9LzZs7ucX-fdKNG0&ust=1640759186075000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCICXorbuhfUCFQAAAAAdAAAAABAP","thuong xa stark3");
+        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark");
+        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2");
+        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3");
 
         cinemaArrayList.add(cinema);
         cinemaArrayList.add(cinema2);

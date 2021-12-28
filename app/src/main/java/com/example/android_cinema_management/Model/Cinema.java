@@ -4,8 +4,8 @@ public class Cinema {
 
     private String name;
     private String address;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
     private String contactNumber;
     private String imageUrl;
     private String locationName;
@@ -13,7 +13,7 @@ public class Cinema {
     public Cinema() {
     }
 
-    public Cinema(String cinemaId,String name, String address, String latitude, String longitude,String contactNumber, String imageUrl, String locationName) {
+    public Cinema(String cinemaId,String name, String address, Double latitude, Double longitude,String contactNumber, String imageUrl, String locationName) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -40,19 +40,19 @@ public class Cinema {
         this.address = address;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
