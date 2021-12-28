@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "287733087656",
+    "firebase_url": "https://cinemas-management-default-rtdb.firebaseio.com",
+    "project_id": "cinemas-management",
+    "storage_bucket": "cinemas-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287733087656:android:0c8dc21c888ebdd827319d",
+        "android_client_info": {
+          "package_name": "com.example.android_cinema_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287733087656-kvv37h49h7oiobmol8a62n0n4md0dh8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLmJIQVYePzHxAQRJIq3qBLVdZswx3E-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287733087656-kvv37h49h7oiobmol8a62n0n4md0dh8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287733087656:android:837f6301d2f70b1d27319d",
+        "android_client_info": {
+          "package_name": "com.example.firebaserealtimedatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287733087656-kvv37h49h7oiobmol8a62n0n4md0dh8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLmJIQVYePzHxAQRJIq3qBLVdZswx3E-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287733087656-kvv37h49h7oiobmol8a62n0n4md0dh8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

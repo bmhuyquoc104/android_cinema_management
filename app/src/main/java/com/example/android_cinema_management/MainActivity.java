@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         chosenFragment = new Accounts();
                         break;
                     case (R.id.menu_cinema):
-                        chosenFragment = new Cinema();
+                        chosenFragment = new SearchCinema();
                         break;
                     case (R.id.menu_search) :
                         chosenFragment = new SearchMovieAndCinema();

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/recycle_movies_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/vietnameseTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="vietnamese Title"/>
+
+        <TextView
+            android:id="@+id/englishTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="english Title"
+            android:layout_below="@+id/vietnameseTitle"/>
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

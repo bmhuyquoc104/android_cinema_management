@@ -57,8 +57,14 @@
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/top_bar.xml" value="0.4034003091190108" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/top_logo_bar.xml" value="0.25" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/menu/option_menu.xml" value="0.25" />
+        <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/layout/activity_main.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/layout/cinema_item.xml" value="0.264945652173913" />
+        <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/layout/fragment_cinema.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/layout/fragment_movie_details2.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/layout/fragment_movies.xml" value="0.2391304347826087" />
         <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/layout/fragment_search_movie_and_cinema.xml" value="0.264945652173913" />
+        <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/layout/movie_item.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/menu/option_menu.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/kenri/OneDrive/Documents/GitHub/android_cinema_management/app/src/main/res/menu/search.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/corner_login_button.xml" value="0.4048611111111111" />
