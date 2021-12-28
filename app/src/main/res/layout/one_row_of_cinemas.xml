@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        style="@style/CardView.Light"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary3"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="10dp"
+        app:contentPadding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="390dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/cinemaName"
+                android:layout_width="233dp"
+                android:layout_height="21dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="25dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.942"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cinemaLocationName"
+                app:layout_constraintVertical_bias="0.016" />
+
+            <TextView
+                android:id="@+id/cinemaPhoneContact"
+                android:layout_width="233dp"
+                android:layout_height="21dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="25dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.942"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cinemaLocationName"
+                app:layout_constraintVertical_bias="0.354" />
+
+            <TextView
+                android:id="@+id/cinemaAddress"
+                android:layout_width="234dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="25dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.948"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cinemaLocationName"
+                app:layout_constraintVertical_bias="0.666" />
+
+            <TextView
+                android:id="@+id/cinemaLocationName"
+                android:layout_width="233dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="16dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.942"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/cinemaImage"
+                android:layout_width="120dp"
+                android:layout_height="157dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/movieImage"
+                android:cropToPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/mf1_review"
+                android:textSize ="12sp"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/showOnMap"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary4"
+                android:textStyle="italic"
+                app:icon="@drawable/play"
+                app:iconGravity="start"
+                app:iconPadding="10dp"
+                app:iconTint="@color/colorPrimary4"
+                app:iconTintMode="multiply"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.966"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cinemaAddress" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
