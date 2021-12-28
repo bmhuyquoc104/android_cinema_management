@@ -18,8 +18,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.android_cinema_management.AccountManagement.Accounts;
-import com.example.android_cinema_management.AccountManagement.SignUpFragment2;
 import com.example.android_cinema_management.Adapter.HomeAdapter;
+import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         chosenFragment = new Accounts();
                         break;
                     case (R.id.menu_cinema):
-                        chosenFragment = new Cinema();
+                        chosenFragment = new CinemaFragment();
                         break;
                     case (R.id.menu_search) :
                         chosenFragment = new SearchMovieAndCinema();
@@ -125,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed(){
+
+    };
 
     private static class ZoomOutPageTransformer implements ViewPager2.PageTransformer {
         private static final float MIN_SCALE = 0.85f;
