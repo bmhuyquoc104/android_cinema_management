@@ -26,7 +26,6 @@
     <string name="streaming">New Streaming</string>
     <string name="upcoming">Upcoming</string>
     <string name="review">Review</string>
-    <string name="todo">TODO</string>
     <string name="Cinema">Cinema</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -66,5 +65,13 @@
     <string name="newUser">Don\'t Have Account? Register Now!</string>
     <string name="signUphere">SignUpHere!</string>
     <string name="cities">All Cities</string>
+    <string name="cinemaTitle1">CinemaTitle1</string>
+    <string name="cinemaTitle2">CinemaTitle2</string>
+    <string name="category">Category</string>
+    <string name="rate">Rate</string>
+    <string name="todo">TODO</string>
+    <string name="cinemaAddress">Address</string>
+    <string name="cinemaWeb">Web</string>
+    <string name="cinemaDescriptionPhone">Phone</string>
 
 </resources>
