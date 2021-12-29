@@ -37,7 +37,8 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
     private GoogleMap mMap;
     private ActivityCinemaLocationBinding binding;
     /// Declare string
-    String currentId, currentName, currentAddress, currentLat, currentLng, currentNumber, currentImage, currentLocationName, currentRate, currentReview;
+    String currentId, currentName, currentAddress, currentLat, currentLng, currentNumber,
+            currentImage, currentLocationName, currentRate, currentReview,currentCity;
 
     // Declare bottom sheet
     BottomSheetDialog globalSheetTracker;
@@ -88,8 +89,13 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
             if (intent.hasExtra("review")){
                 currentReview = intent.getStringExtra("review");
             }
+            if (intent.hasExtra("city")){
+                currentCity = intent.getStringExtra("city");
+            }
             // Create currentCinema instance by values received when the user choose the specific cinema
-            currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat), Double.parseDouble(currentLng), Double.parseDouble(currentRate), currentNumber, currentImage, currentLocationName,currentReview);
+            currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat),
+                    Double.parseDouble(currentLng), Double.parseDouble(currentRate), currentNumber, currentImage,
+                    currentLocationName,currentReview,currentCity);
         }
     }
 
@@ -147,6 +153,7 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         TextView rate = viewDialog.findViewById(R.id.cinemaDescriptionRate);
         TextView review = viewDialog.findViewById(R.id.cinemaDescriptionReview);
         TextView name = viewDialog.findViewById(R.id.cinemaDescriptionTitle);
+        TextView city = viewDialog.findViewById(R.id.cinemaDescriptionCity);
         ImageView close = viewDialog.findViewById(R.id.cinemaDescriptionClose);
         // Render the UI dynamically by the current cinema
         // Use this library to render the image by url
@@ -157,7 +164,7 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         address.setText(currentCinema.getAddress());
         rate.setText(Double.toString(currentCinema.getRate()));
         review.setText(currentCinema.getReview());
-
+        city.setText(currentCinema.getCity());
         // close the bottom sheet
         close.setOnClickListener(view ->{
            cinemaBottomSheetDialog.dismiss();

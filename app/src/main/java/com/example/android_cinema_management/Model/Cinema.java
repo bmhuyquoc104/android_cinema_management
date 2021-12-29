@@ -12,10 +12,11 @@ public class Cinema {
     private String locationName;
     private String cinemaId;
     private String review;
+    private String city;
     public Cinema() {
     }
 
-    public Cinema(String cinemaId,String name, String address, Double latitude, Double longitude, Double rate,String contactNumber, String imageUrl, String locationName, String review) {
+    public Cinema(String cinemaId,String name, String address, Double latitude, Double longitude, Double rate,String contactNumber, String imageUrl, String locationName, String review, String city) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -26,6 +27,7 @@ public class Cinema {
         this.locationName = locationName;
         this.cinemaId = cinemaId;
         this.review = review;
+        this.city = city;
     }
 
     public String getName() {
@@ -108,6 +110,14 @@ public class Cinema {
         this.review = review;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
         return "Cinema{" +
@@ -121,6 +131,8 @@ public class Cinema {
                 ", locationName='" + locationName + '\'' +
                 ", cinemaId='" + cinemaId + '\'' +
                 ", review='" + review + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }
+

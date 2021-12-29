@@ -31,7 +31,8 @@ public class CinemaDatabase {
                                     snapshot.getString("contactNumber"),
                                     snapshot.getString("imageURL"),
                                     snapshot.getString("locationName"),
-                                    snapshot.getString("review"));
+                                    snapshot.getString("review"),
+                                    snapshot.getString("city"));
                             cinemaList.add(cinema);
                             System.out.println("huy ne " + cinemaList);
                         }

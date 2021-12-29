@@ -76,5 +76,6 @@
     <string name="searchFrom">SEARCH AND FILTER BY</string>
     <string name="searchByMovie">Search by all movie\'s attributes …</string>
     <string name="cinema">Cinema</string>
+    <string name="cinemaCity">City</string>
 
 </resources>

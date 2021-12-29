@@ -85,25 +85,41 @@ public class CinemaFragment extends Fragment {
         autoCompleteTextView = view.findViewById(R.id.fragCinema_cities);
         adapterItems = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, cities);
         autoCompleteTextView.setAdapter(adapterItems);
+
+        //        Dummy data
+        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,4.5,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark","good","Sai Gon");
+        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,5.2,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2","ok","Ha Noi");
+        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,6.3,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3","dc","Can Tho");
+
+        cinemaArrayList.add(cinema);
+        cinemaArrayList.add(cinema2);
+        cinemaArrayList.add(cinema3);
+        System.out.println("cinema list ne" + cinemaArrayList);
+
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 city = parent.getItemAtPosition(position).toString();
+                // Initialize new array list to store result after filtering
+                ArrayList<Cinema>filterByCityList = new ArrayList<>();
+                // Function filter by city
+                filterByCity(filterByCityList,cinemaArrayList,city);
+                // Instantiate adapter
+                cinemaAdapter = new CinemaAdapter(getContext(), filterByCityList);
+                // Set layout for recycler view
+                recyclerView.setLayoutManager(layoutManager);
+                // Set adapter for recycler view
+                recyclerView.setAdapter(cinemaAdapter);
             }
         });
-        //Dummy data
-//        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark");
-//        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2");
-//        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3");
 
-//        cinemaArrayList.add(cinema);
-//        cinemaArrayList.add(cinema2);
-//        cinemaArrayList.add(cinema3);
-//        System.out.println("cinema list ne" + cinemaArrayList);
+        // Instantiate adapter
         cinemaAdapter = new CinemaAdapter(getContext(), cinemaArrayList);
+        // Set layout for recycler view
         recyclerView.setLayoutManager(layoutManager);
+        // Set adapter for recycler view
         recyclerView.setAdapter(cinemaAdapter);
-        fetchAndRenderCinema();
+//        fetchAndRenderCinema();
         return view;
     }
 //        new Handler (Looper.getMainLooper()).postDelayed( () -> {
@@ -159,5 +175,15 @@ public class CinemaFragment extends Fragment {
         });
     }
 
+    // Filter cinema list by city
+    public void filterByCity(ArrayList<Cinema>filterCinemaList, ArrayList<Cinema>cinemaList,String inputCity){
+        for(Cinema cinema : cinemaList){
+            // Check if this cinema's city equal user input
+            if (cinema.getCity().equals(inputCity)){
+                // add to new cinema list
+                filterCinemaList.add(cinema);
+            }
+        }
+    }
 
 }

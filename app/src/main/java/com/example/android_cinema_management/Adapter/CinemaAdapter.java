@@ -54,6 +54,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
             holder.cinemaName.setText(cinemaList.get(position).getName());
             holder.cinemaLocationName.setText(cinemaList.get(position).getLocationName());
             holder.cinemaContact.setText(cinemaList.get(position).getContactNumber());
+            holder.cinemaCity.setText(cinemaList.get(position).getCity());
             Picasso.get().load(cinemaList.get(position).getImageUrl()).into(holder.cinemaImage);
             holder.showMap.setOnClickListener(View ->{
                 Intent intent = new Intent(context, CinemaLocation.class);
@@ -69,6 +70,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
                 intent.putExtra("locationName",cinemaList.get(position).getLocationName());
                 intent.putExtra("rate",Double.toString(cinemaList.get(position).getRate()));
                 intent.putExtra("review",cinemaList.get(position).getReview());
+                intent.putExtra("city",cinemaList.get(position).getCity());
                 // Start intent
                 try {
                     context.startActivity(intent);
@@ -88,7 +90,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView cinemaImage;
-        TextView cinemaName, cinemaLocationName,cinemaAddress,cinemaContact,cinemaRate,cinemaReview;
+        TextView cinemaName, cinemaLocationName,cinemaAddress,cinemaContact,cinemaCity;
         Button showMap;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,6 +100,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
             cinemaAddress = itemView.findViewById(R.id.cinemaAddress);
             cinemaContact = itemView.findViewById(R.id.cinemaPhoneContact);
             showMap = itemView.findViewById(R.id.cinema_showMap);
+            cinemaCity = itemView.findViewById(R.id.cinemaCity);
         }
     }
 
