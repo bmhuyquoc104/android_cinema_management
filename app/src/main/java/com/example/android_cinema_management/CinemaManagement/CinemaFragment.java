@@ -155,7 +155,7 @@ public class CinemaFragment extends Fragment {
                 cinemaAdapter = new CinemaAdapter(getContext(),cinemaArrayList);
                 // Specify an adapter
                 recyclerView.setAdapter(cinemaAdapter);
-            },2000);
+            },1000);
         });
     }
 

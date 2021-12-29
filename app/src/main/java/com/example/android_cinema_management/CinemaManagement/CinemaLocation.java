@@ -1,6 +1,7 @@
 package com.example.android_cinema_management.CinemaManagement;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
@@ -26,15 +27,19 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
 public class CinemaLocation extends FragmentActivity implements OnMapReadyCallback {
+    // Declare class
     private Cinema currentCinema;
     private GoogleMap mMap;
     private ActivityCinemaLocationBinding binding;
+    /// Declare string
     String currentId, currentName, currentAddress, currentLat, currentLng, currentNumber, currentImage, currentLocationName, currentRate, currentReview;
 
+    // Declare bottom sheet
     BottomSheetDialog globalSheetTracker;
 
     @Override
@@ -48,8 +53,11 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        // Receive the intent from other classes
         Intent intent = getIntent();
+        // Check whether the intent is null or not to get the data
         if (intent != null) {
+            // Check the key from intent and get the correct value
             if (intent.hasExtra("address")) {
                 currentAddress = intent.getStringExtra("address");
             }
@@ -80,6 +88,7 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
             if (intent.hasExtra("review")){
                 currentReview = intent.getStringExtra("review");
             }
+            // Create currentCinema instance by values received when the user choose the specific cinema
             currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat), Double.parseDouble(currentLng), Double.parseDouble(currentRate), currentNumber, currentImage, currentLocationName,currentReview);
         }
     }
@@ -105,7 +114,7 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         mMarker.position(cinema).icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
         // Add marker to map
         mMap.addMarker(mMarker.position(cinema));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cinema, 18));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cinema, 16));
 
         /***
          * Open bottom sheet to show cinema detail when user click on the marker
@@ -118,13 +127,19 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
 
     @SuppressLint("SetTextI18n")
     private void openCinemaBottomSheet(int bottomSheetLayout) {
+        // Create a view
         View viewDialog = getLayoutInflater().inflate(bottomSheetLayout, null);
+        // Create bottom sheet dialog with layout and theme
         BottomSheetDialog cinemaBottomSheetDialog = new BottomSheetDialog(this,R.style.BottomSheetDialogTheme);
         globalSheetTracker = cinemaBottomSheetDialog;
         cinemaBottomSheetDialog.setCancelable(false);
         cinemaBottomSheetDialog.setCanceledOnTouchOutside(false);
+        // Set content for bottom sheet
         cinemaBottomSheetDialog.setContentView(viewDialog);
+        //Start bottom sheet
         cinemaBottomSheetDialog.show();
+
+        // Declare and binding the value to XML layout
         ImageView imageUrl = viewDialog.findViewById(R.id.cinemaDescriptionImage);
         TextView category = viewDialog.findViewById(R.id.cinemaDescriptionCategory);
         TextView phone = viewDialog.findViewById(R.id.cinemaDescriptionPhone);
@@ -132,6 +147,9 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         TextView rate = viewDialog.findViewById(R.id.cinemaDescriptionRate);
         TextView review = viewDialog.findViewById(R.id.cinemaDescriptionReview);
         TextView name = viewDialog.findViewById(R.id.cinemaDescriptionTitle);
+        ImageView close = viewDialog.findViewById(R.id.cinemaDescriptionClose);
+        // Render the UI dynamically by the current cinema
+        // Use this library to render the image by url
         Picasso.get().load(currentCinema.getImageUrl()).into(imageUrl);
         category.setText("Movie Theater");
         phone.setText(currentCinema.getContactNumber());
@@ -139,7 +157,8 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         address.setText(currentCinema.getAddress());
         rate.setText(Double.toString(currentCinema.getRate()));
         review.setText(currentCinema.getReview());
-        ImageView close = viewDialog.findViewById(R.id.cinemaDescriptionClose);
+
+        // close the bottom sheet
         close.setOnClickListener(view ->{
            cinemaBottomSheetDialog.dismiss();
         });

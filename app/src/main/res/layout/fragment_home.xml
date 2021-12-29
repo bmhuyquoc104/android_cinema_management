@@ -29,7 +29,7 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary2"
-        app:icon="@drawable/ic_baseline_account_box_24"
+        app:icon="@drawable/ic_baseline_person_24"
         app:iconGravity="start"
         app:iconPadding="4dp"
         app:iconTint="@color/colorPrimary4"
