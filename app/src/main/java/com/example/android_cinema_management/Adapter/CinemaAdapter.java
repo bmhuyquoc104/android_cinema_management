@@ -67,6 +67,8 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
                 intent.putExtra("imageUrl",cinemaList.get(position).getImageUrl());
                 intent.putExtra("contactNumber",cinemaList.get(position).getContactNumber());
                 intent.putExtra("locationName",cinemaList.get(position).getLocationName());
+                intent.putExtra("rate",cinemaList.get(position).getRate());
+                intent.putExtra("review",cinemaList.get(position).getReview());
                 // Start intent
                 try {
                     context.startActivity(intent);

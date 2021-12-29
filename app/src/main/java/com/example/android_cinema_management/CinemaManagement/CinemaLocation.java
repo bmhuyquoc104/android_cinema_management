@@ -33,7 +33,7 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
     private Cinema currentCinema;
     private GoogleMap mMap;
     private ActivityCinemaLocationBinding binding;
-    String currentId, currentName, currentAddress, currentLat, currentLng, currentNumber, currentImage, currentLocationName;
+    String currentId, currentName, currentAddress, currentLat, currentLng, currentNumber, currentImage, currentLocationName, currentRate, currentReview;
 
     BottomSheetDialog globalSheetTracker;
 
@@ -74,9 +74,13 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
             if (intent.hasExtra("locationName")) {
                 currentLocationName = intent.getStringExtra("locationName");
             }
-            currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat), Double.parseDouble(currentLng), 12.2, currentNumber, currentImage, currentLocationName,"123132123");
-         
-            System.out.println("huy ne" + currentCinema.getName());
+            if (intent.hasExtra("rate")){
+                currentRate = intent.getStringExtra("rate");
+            }
+            if (intent.hasExtra("review")){
+                currentReview = intent.getStringExtra("review");
+            }
+            currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat), Double.parseDouble(currentLng), Double.parseDouble(currentRate), currentNumber, currentImage, currentLocationName,currentReview);
         }
     }
 
@@ -133,8 +137,8 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         phone.setText(currentCinema.getContactNumber());
         name.setText(currentCinema.getName());
         address.setText(currentCinema.getAddress());
-        rate.setText("4.5");
-        review.setText("2000");
+        rate.setText(Double.toString(currentCinema.getRate()));
+        review.setText(currentCinema.getReview());
         ImageView close = viewDialog.findViewById(R.id.cinemaDescriptionClose);
         close.setOnClickListener(view ->{
            cinemaBottomSheetDialog.dismiss();
