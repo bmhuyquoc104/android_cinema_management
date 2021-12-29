@@ -2,6 +2,7 @@ package com.example.android_cinema_management;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +16,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.CinemaAdapter;
+import com.example.android_cinema_management.Model.Cinema;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +38,12 @@ import java.util.List;
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class SearchCinema extends Fragment implements AdapterView.OnItemSelectedListener {
+public class SearchCinema extends Fragment {
 
-    RecyclerView recyclerView;
-    CinemaAdapter cinemaAdapter;
-    EditText editText_searchCinema;
+    private RecyclerView recyclerView;
+    private FirebaseFirestore db;
+    private CinemaAdapter cinemaAdapter;
+    private List<Cinema> list;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,84 +55,41 @@ public class SearchCinema extends Fragment implements AdapterView.OnItemSelected
         // Inflate the layout for this fragment
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_cinema, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_cinema_view);
+        recyclerView = view.findViewById(R.id.recycler_cinema_view);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        FirebaseRecyclerOptions<com.example.android_cinema_management.Model.Cinema> options = new FirebaseRecyclerOptions.Builder<com.example.android_cinema_management.Model.Cinema>().setQuery(FirebaseDatabase.getInstance().getReference().child("Cinema"), com.example.android_cinema_management.Model.Cinema.class).build();
-
-        cinemaAdapter = new CinemaAdapter(options);
+        db = FirebaseFirestore.getInstance();
+        list = new ArrayList<>();
+        cinemaAdapter = new CinemaAdapter(this, list);
         recyclerView.setAdapter(cinemaAdapter);
 
-        editText_searchCinema = (EditText) view.findViewById(R.id.editText_searchCinema);
-        editText_searchCinema.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String str = editText_searchCinema.getText().toString();
-                txtSearch(str);
-            }
-        });
-
-        Spinner spinner = (Spinner) view.findViewById(R.id.cinemaFilter);
-        spinner.setOnItemSelectedListener(this);
-
-        List<String> district = new ArrayList<String>();
-        district.add("District");
-        district.add("1");
-        district.add("2");
-        district.add("Bao Loc");
-        district.add("testing district");
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,district);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        showData();
 
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        cinemaAdapter.startListening();
+    private void showData(){
+
+        db.collection("Cinema").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        list.clear();
+                        for (DocumentSnapshot snapshot: task.getResult()){
+                            Cinema cinema = new Cinema(
+                                    snapshot.getString("id"),
+                                    snapshot.getString("name"),
+                                    snapshot.getString("address"),
+                                    snapshot.getString("latitude"),
+                                    snapshot.getString("longitude"),
+                                    snapshot.getString("contactNumber"),
+                                    snapshot.getString("imageURL"),
+                                    snapshot.getString("locationName"));
+                            list.add(cinema);
+                        }
+                        cinemaAdapter.notifyDataSetChanged();
+                    }
+                });
     }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-        cinemaAdapter.stopListening();
-    }
-
-    private void txtSearch(String str){
-        FirebaseRecyclerOptions<com.example.android_cinema_management.Model.Cinema> options = new FirebaseRecyclerOptions.Builder<com.example.android_cinema_management.Model.Cinema>().setQuery(FirebaseDatabase.getInstance().getReference().child("Cinema").orderByChild("name").startAt(str).endAt(str+"~"), com.example.android_cinema_management.Model.Cinema.class).build();
-        cinemaAdapter = new CinemaAdapter(options);
-        cinemaAdapter.startListening();
-        recyclerView.setAdapter(cinemaAdapter);
-    }
-
-    private void txtFilter(String str){
-        FirebaseRecyclerOptions<com.example.android_cinema_management.Model.Cinema> options = new FirebaseRecyclerOptions.Builder<com.example.android_cinema_management.Model.Cinema>().setQuery(FirebaseDatabase.getInstance().getReference().child("Cinema").orderByChild("name").startAt(str).endAt(str+"~"), com.example.android_cinema_management.Model.Cinema.class).build();
-        cinemaAdapter = new CinemaAdapter(options);
-        cinemaAdapter.startListening();
-        recyclerView.setAdapter(cinemaAdapter);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String item = adapterView.getItemAtPosition(i).toString();
-        txtFilter(item);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
 }

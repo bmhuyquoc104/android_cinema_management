@@ -17,7 +17,6 @@ import android.widget.Button;
  * create an instance of this fragment.
  */
 public class SearchMovieAndCinema extends Fragment {
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
