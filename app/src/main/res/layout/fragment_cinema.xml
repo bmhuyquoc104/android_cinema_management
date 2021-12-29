@@ -14,7 +14,7 @@
 
     <EditText
         android:id="@+id/editText_searchCinema"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:padding="6dp"
@@ -30,11 +30,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Spinner
-        android:id="@+id/cinemaFilter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/recycle_movies_view"
-        app:layout_constraintEnd_toEndOf="parent"/>
+<!--    <Spinner-->
+<!--        android:id="@+id/cinemaFilter"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/recycle_movies_view"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
 
 </LinearLayout>
