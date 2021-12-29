@@ -74,11 +74,17 @@
         <entry key="app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/ic_baseline_movie_filter_24.xml" value="0.4048611111111111" />
+        <entry key="app/src/main/res/drawable/ic_baseline_phone_24.xml" value="0.32395833333333335" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.4048611111111111" />
+        <entry key="app/src/main/res/drawable/ic_baseline_star_rate_24.xml" value="0.5354166666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_title_24.xml" value="0.5354166666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/ic_round_subscriptions_24.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/option_selector.xml" value="0.4048611111111111" />
+        <entry key="app/src/main/res/drawable/round_top_corners.xml" value="0.5354166666666667" />
+        <entry key="app/src/main/res/layout/activity_cinema_location.xml" value="0.49166666666666664" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/cinema_description_bottom_sheet.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.38472222222222224" />
         <entry key="app/src/main/res/layout/fragment_movies.xml" value="0.3940972222222222" />
         <entry key="app/src/main/res/layout/one_row_of_movies.xml" value="0.3940972222222222" />
@@ -91,5 +97,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.375" />
+      </ProjectState>
+    </option>
   </component>
 </project>
