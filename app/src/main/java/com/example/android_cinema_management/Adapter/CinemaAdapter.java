@@ -19,6 +19,11 @@ import com.example.android_cinema_management.CinemaManagement.CinemaLocation;
 import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -28,6 +33,8 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
     private ArrayList<Cinema> cinemaList;
     // Initialize context
     private Context context;
+
+    private FirebaseFirestore db;
 
     public CinemaAdapter(Context context,ArrayList<Cinema> cinemaList){
         this.context = context;
@@ -79,7 +86,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView cinemaImage;
-        TextView cinemaName, cinemaLocationName,cinemaAddress,cinemaContact;
+        TextView cinemaName, cinemaLocationName,cinemaAddress,cinemaContact,cinemaRate,cinemaReview;
         Button showMap;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,4 +98,6 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
             showMap = itemView.findViewById(R.id.cinema_showMap);
         }
     }
+
+
 }

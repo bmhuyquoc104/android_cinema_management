@@ -74,7 +74,8 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
             if (intent.hasExtra("locationName")) {
                 currentLocationName = intent.getStringExtra("locationName");
             }
-            currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat), Double.parseDouble(currentLng), currentNumber, currentImage, currentLocationName);
+            currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat), Double.parseDouble(currentLng), 12.2, currentNumber, currentImage, currentLocationName,"123132123");
+         
             System.out.println("huy ne" + currentCinema.getName());
         }
     }

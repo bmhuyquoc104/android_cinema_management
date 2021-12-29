@@ -25,6 +25,7 @@ import com.example.android_cinema_management.Handler.MovieHandler;
 import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.database.CinemaDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,8 @@ public class CinemaFragment extends Fragment {
     String [] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
             "Vung Tau", "Da Nang", "Nha Trang","Ca Mau","Hai Phong",
             "Quang Ninh","Dong Nai"};
+    //Declare firebase
+    FirebaseFirestore db;
     String city;
     // Declare auto text complete
     AutoCompleteTextView autoCompleteTextView;
@@ -75,6 +78,7 @@ public class CinemaFragment extends Fragment {
         // Instantiate class
         cinema = new Cinema();
         cinemaArrayList = new ArrayList<>();
+        db = FirebaseFirestore.getInstance();
         //Use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
 
@@ -88,58 +92,72 @@ public class CinemaFragment extends Fragment {
             }
         });
         //Dummy data
-        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark");
-        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2");
-        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3");
+//        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark");
+//        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2");
+//        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3");
 
-        cinemaArrayList.add(cinema);
-        cinemaArrayList.add(cinema2);
-        cinemaArrayList.add(cinema3);
-        System.out.println("cinema list ne" + cinemaArrayList);
-        cinemaAdapter = new CinemaAdapter(getContext(),cinemaArrayList);
+//        cinemaArrayList.add(cinema);
+//        cinemaArrayList.add(cinema2);
+//        cinemaArrayList.add(cinema3);
+//        System.out.println("cinema list ne" + cinemaArrayList);
+        cinemaAdapter = new CinemaAdapter(getContext(), cinemaArrayList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(cinemaAdapter);
-
+        fetchAndRenderCinema();
         return view;
     }
+//        new Handler (Looper.getMainLooper()).postDelayed( () -> {
+//            System.out.println("huy ne " + cinemaArrayList);
+//            cinemaAdapter = new CinemaAdapter(getContext(),cinemaArrayList);
+//            // Specify an adapter
+//            recyclerView.setAdapter(cinemaAdapter);
+//        },3000);
+//        return view;
 
-//    private void fetchAndRenderCinema(){
-//        //Start the handler thread
-//        ht.start();
-//        //Initialize new handler
-//        Handler asHandler = new Handler(ht.getLooper()){
-//            //Handle function after receiving message
-//            @Override
-//            public void handleMessage(@NonNull Message msg) {
-//                renderCinemaList();
-//            }
-//        };
-//
-//        //Initialize new message
-//        Message msg = new Message();
-//
-//        // Handle scrapping data
-//        Runnable runnable = () ->{
-//            CinemaDatabase.getAllCinemas();
-//            msg.obj = cinemaArrayList;
-//            asHandler.sendMessage(msg);
-//        };
-//        asHandler.post(runnable);
-//    }
+
+    private void fetchAndRenderCinema(){
+        //Start the handler thread
+        ht.start();
+        //Initialize new handler
+        Handler asHandler = new Handler(ht.getLooper()){
+            //Handle function after receiving message
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                renderCinemaList();
+            }
+        };
+
+        //Initialize new message
+        Message msg = new Message();
+
+        // Handle scrapping data
+        Runnable runnable = () ->{
+            CinemaDatabase.showData(db,cinemaArrayList);
+            msg.obj = cinemaArrayList;
+            asHandler.sendMessage(msg);
+        };
+        asHandler.post(runnable);
+    }
+
+
 
     /** Function to render the cinema list in UI
      *
      * */
-//    public void renderMovieList(){
-//        // Initialize new ui handler
-//        Handler uiThreadHandler = new Handler(Looper.getMainLooper());
-//
-//        // Read post from fetchAndRenderMovie
-//        uiThreadHandler.post(() ->{
-//            cinemaAdapter = new CinemaAdapter(getContext(),cinemaArrayList);
-//            // Specify an adapter
-//            recyclerView.setAdapter(cinemaAdapter);
-//        });
-//    }
+    public void renderCinemaList(){
+        // Initialize new ui handler
+        Handler uiThreadHandler = new Handler(Looper.getMainLooper());
+
+        // Read post from fetchAndRenderMovie
+        uiThreadHandler.post(() ->{
+            new Handler (Looper.getMainLooper()).postDelayed( () -> {
+                System.out.println("huy ne " + cinemaArrayList);
+                cinemaAdapter = new CinemaAdapter(getContext(),cinemaArrayList);
+                // Specify an adapter
+                recyclerView.setAdapter(cinemaAdapter);
+            },2000);
+        });
+    }
+
 
 }
