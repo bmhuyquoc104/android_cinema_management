@@ -1,86 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom = "60dp"
     android:background = "@color/colorPrimary3"
     tools:context=".SearchItemManagement.SearchFilterByCinemaFragment">
 
-    <EditText
-        android:id="@+id/frag1SearchCinemaSearchBar"
-        android:layout_width="205dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/round_login_page"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:drawableTint="@color/colorPrimary2"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:drawablePadding="15dp"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="@string/searchByMovie"
-        android:importantForAutofill="no"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:textColor="@color/colorPrimary4"
-        android:textColorHint="@color/colorPrimary5"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UnusedAttribute" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:paddingStart="25dp"
-        android:paddingEnd="25dp"
-        android:text="@string/result"
-        android:textColor="@color/colorPrimary4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag1SearchCinemaSearchBar" />
+        <Button
+            android:id="@+id/searchByCinemaFilters"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="132dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/filter"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary2"
+            app:icon="@drawable/ic_baseline_filter_alt_24"
+            app:iconGravity="start"
+            app:iconPadding="4dp"
+            app:iconTint="@color/colorPrimary4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.942"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searchByCinemaRecyclerView"
-        android:layout_width="410dp"
-        android:layout_height="565dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="1.0">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchByCinemaRecyclerView"
+            android:layout_width="412dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchByCinemaResult">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/loginAndRegister"
-        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-        android:layout_width="132dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/filter"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary2"
-        app:icon="@drawable/ic_baseline_filter_alt_24"
-        app:iconGravity="start"
-        app:iconPadding="4dp"
-        app:iconTint="@color/colorPrimary4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/searchByCinemaResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:text="@string/result"
+            android:textColor="@color/colorPrimary4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/frag1SearchCinemaSearchBar"
+            android:layout_width="205dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/round_login_page"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:drawablePadding="15dp"
+            android:drawableTint="@color/colorPrimary2"
+            android:ems="10"
+            android:hint="@string/searchByMovie"
+            android:importantForAutofill="no"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/colorPrimary4"
+            android:textColorHint="@color/colorPrimary5"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
