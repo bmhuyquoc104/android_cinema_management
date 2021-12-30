@@ -1,9 +1,11 @@
 package com.example.android_cinema_management.AccountManagement;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,7 +24,7 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
 import com.facebook.AccessToken;
-import com.facebook.AuthenticationToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -32,11 +34,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.google.api.Authentication;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -56,6 +55,8 @@ public class SignInFragment extends Fragment {
 
     private CallbackManager callbackManager;
     private FirebaseAuth firebaseAuth;
+    private AccessTokenTracker accessTokenTracker;
+    private FirebaseAuth.AuthStateListener authStateListener;
     private LoginButton loginButton;
     private static final String TAG = "FacebookAuthentication";
     public SignInFragment() {
@@ -105,6 +106,7 @@ public class SignInFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         FacebookSdk.sdkInitialize(FacebookSdk.getApplicationContext());
         loginButton = view.findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email","public_profile");
         callbackManager = CallbackManager.Factory.create();
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -115,21 +117,58 @@ public class SignInFragment extends Fragment {
 
             @Override
             public void onCancel() {
-
+                Log.d(TAG, "onCancel");
             }
 
             @Override
             public void onError(@NonNull FacebookException e) {
-
+                Log.d(TAG, "onError" + e);
             }
         });
+
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            }
+        };
+
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if (currentAccessToken == null){
+                    firebaseAuth.signOut();
+                }
+            }
+        };
 
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callbackManager.onActivityResult(resultCode, requestCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(authStateListener != null){
+            firebaseAuth.removeAuthStateListener(authStateListener);
+        }
+    }
+
     //Function login to Facebook
     private void handleFacebookToken(AccessToken token){
-        Log.d(TAG, "handleFacbookToken" + token);
+        Log.d(TAG, "handleFacebookToken" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
@@ -138,7 +177,6 @@ public class SignInFragment extends Fragment {
                 if (task.isSuccessful()){
                     Log.d(TAG, "Sign in with credential: Successful");
                     FirebaseUser user = firebaseAuth.getCurrentUser();
-
                 }
             }
         });
