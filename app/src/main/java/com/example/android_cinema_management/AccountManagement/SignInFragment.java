@@ -3,6 +3,7 @@ package com.example.android_cinema_management.AccountManagement;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
+import com.facebook.AccessToken;
+import com.facebook.AuthenticationToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.google.api.Authentication;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 import java.util.Objects;
 
@@ -32,6 +53,11 @@ public class SignInFragment extends Fragment {
     Button logIn;
     //Declare String
     String inputEmail,inputPassword;
+
+    private CallbackManager callbackManager;
+    private FirebaseAuth firebaseAuth;
+    private LoginButton loginButton;
+    private static final String TAG = "FacebookAuthentication";
     public SignInFragment() {
         // Required empty public constructor
     }
@@ -76,8 +102,48 @@ public class SignInFragment extends Fragment {
             }
         });
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        FacebookSdk.sdkInitialize(FacebookSdk.getApplicationContext());
+        loginButton = view.findViewById(R.id.login_button);
+        callbackManager = CallbackManager.Factory.create();
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG, "onSuccess" + loginResult);
+                handleFacebookToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(@NonNull FacebookException e) {
+
+            }
+        });
+
         return view;
     }
+
+    //Function login to Facebook
+    private void handleFacebookToken(AccessToken token){
+        Log.d(TAG, "handleFacbookToken" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Log.d(TAG, "Sign in with credential: Successful");
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                }
+            }
+        });
+    }
+
     // Function to check email is empty or not
     private boolean emailIsNotEmpty() {
         if (inputEmail.isEmpty()) {

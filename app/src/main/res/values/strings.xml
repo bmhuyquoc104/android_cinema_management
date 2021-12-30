@@ -80,6 +80,9 @@
     <string name="cinemaCity">City</string>
     <string name="result">Result</string>
     <string name="filterBy">Filters</string>
+    <string name="facebook_app_id">915720199146822</string>
+    <string name="fb_login_protocol_scheme">fb915720199146822</string>
+
 
     <string name="discountName">Name: %1$s</string>
     <string name="discountDate">Date: %1$s</string>
