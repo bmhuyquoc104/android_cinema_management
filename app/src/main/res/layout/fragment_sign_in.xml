@@ -211,14 +211,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/googleSignInButton"
+                android:layout_width="124dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="360dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.google.android.gms.common.SignInButton>
+
+            <Button
+                android:id="@+id/googleSignOutButton"
+                android:layout_width="105dp"
+                android:layout_height="42dp"
+                android:text="Sign Out"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="360dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.92"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/register"
                 android:layout_width="272dp"
                 android:layout_height="56dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginRight="15dp"
                 android:stateListAnimator="@android:animator/fade_out"
                 android:text="@string/newUser"
                 android:textColor="@color/sign_in_link_color"
@@ -229,7 +254,7 @@
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.935"
+                app:layout_constraintVertical_bias="0.942"
                 tools:ignore="UsingOnClickInXml" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
