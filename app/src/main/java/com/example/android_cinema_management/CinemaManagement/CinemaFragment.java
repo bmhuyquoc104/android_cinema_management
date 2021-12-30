@@ -47,9 +47,10 @@ public class CinemaFragment extends Fragment {
     String [] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
             "Vung Tau", "Da Nang", "Nha Trang","Ca Mau","Hai Phong",
             "Quang Ninh","Dong Nai"};
+    String city;
     //Declare firebase
     FirebaseFirestore db;
-    String city;
+
     // Declare auto text complete
     AutoCompleteTextView autoCompleteTextView;
     public CinemaFragment() {
