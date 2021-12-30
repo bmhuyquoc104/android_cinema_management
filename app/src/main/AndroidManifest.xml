@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_cinema_management">
         <activity
+            android:name=".TicketAndDiscountManagement.DiscountDetails"
+            android:exported="false" />
+        <activity
             android:name=".CinemaManagement.CinemaLocation"
             android:exported="false" />
         <activity

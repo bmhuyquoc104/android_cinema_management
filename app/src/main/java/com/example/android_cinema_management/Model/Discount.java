@@ -1,6 +1,8 @@
 package com.example.android_cinema_management.Model;
 
-public class Discount {
+import java.io.Serializable;
+
+public class Discount implements Serializable {
     private String Name, Date;
 
     public Discount(String name, String date) {

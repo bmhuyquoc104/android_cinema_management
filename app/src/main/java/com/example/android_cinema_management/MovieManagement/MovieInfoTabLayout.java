@@ -108,6 +108,8 @@ public class MovieInfoTabLayout extends AppCompatActivity {
                 movieDetailUrl = intent.getStringExtra("movieDetailUrl");
             }
         }
+        //Disable swiping
+        viewpager2.setUserInputEnabled(false);
         // Get currentMovie
         currentMovie = new Movie(vnTitle,enTitle,imageUrl,movieDetailUrl);
     }
