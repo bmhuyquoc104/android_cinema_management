@@ -80,4 +80,7 @@
     <string name="result">"Result : "</string>
     <string name="filterBy">Filters</string>
 
+    <string name="discountName">Name: %1$s</string>
+    <string name="discountDate">Date: %1$s</string>
+
 </resources>
