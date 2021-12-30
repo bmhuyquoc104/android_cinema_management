@@ -43,12 +43,13 @@ public class DiscountAndTicket extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
         Discount.setLayoutManager(gridLayoutManager);
 
-        discountAdapter = new DiscountAdapter(getListDiscount());
+        discountAdapter = new DiscountAdapter(getContext(), getListDiscount());
         Discount.setAdapter(discountAdapter);
         return view;
     }
 
     private List<com.example.android_cinema_management.Model.Discount> getListDiscount() {
+//        Add data(objects) to be displayed
         List<Discount> list = new ArrayList<>();
         list.add(new Discount("Black Friday", "23/11/21-26/11/21"));
         list.add(new Discount("Anniversary", "19/11/21-21/11/21"));
@@ -56,5 +57,14 @@ public class DiscountAndTicket extends Fragment {
         list.add(new Discount("New Year", "1/1/22"));
 
         return list;
+    }
+
+//    Clear the data on destroy
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (discountAdapter != null) {
+            discountAdapter.release();
+        }
     }
 }
