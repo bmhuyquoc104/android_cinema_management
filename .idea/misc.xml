@@ -77,6 +77,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/corner_login_button.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.4048611111111111" />
+        <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.6072916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/ic_baseline_movie_filter_24.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.4048611111111111" />
@@ -84,8 +85,15 @@
         <entry key="app/src/main/res/drawable/ic_round_subscriptions_24.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/drawable/option_selector.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_movie_info_tab_layout.xml" value="0.5820512820512821" />
         <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.38472222222222224" />
+        <entry key="app/src/main/res/layout/fragment_cinema.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5820512820512821" />
+        <entry key="app/src/main/res/layout/fragment_movie_show_time1.xml" value="0.5820512820512821" />
         <entry key="app/src/main/res/layout/fragment_movies.xml" value="0.3940972222222222" />
+        <entry key="app/src/main/res/layout/fragment_search_filter_by_cinema_fragement1.xml" value="0.5911458333333334" />
+        <entry key="app/src/main/res/layout/fragment_search_movie_and_cinema.xml" value="0.5820512820512821" />
+        <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/one_row_of_movies.xml" value="0.3940972222222222" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.1" />
       </map>

@@ -70,7 +70,7 @@ public class Accounts extends Fragment {
         signIn.setOnClickListener(View ->{
             FragmentTransaction transaction =
                     fm.beginTransaction();
-            transaction.replace(R.id.ma_frag_container, new SignInFragment()).commit();
+            transaction.replace(R.id.ma_container, new SignInFragment()).commit();
         });
         return view;
 

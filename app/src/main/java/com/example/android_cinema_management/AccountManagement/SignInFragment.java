@@ -50,7 +50,6 @@ public class SignInFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
         //Binding to XML's value
-        title = view.findViewById(R.id.signIn_title);
         close = view.findViewById(R.id.signInClose);
         logIn = view.findViewById(R.id.fragSignInLogin);
         email = view.findViewById(R.id.frag_signIn_textLayout_email);
@@ -59,24 +58,14 @@ public class SignInFragment extends Fragment {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         // Initialize fragment manager
         FragmentManager fm = getParentFragmentManager();
-        // Text and color for string 1
-        SpannableString str1 = new SpannableString("Register Here");
-        str1.setSpan(new ForegroundColorSpan(Color.rgb(161, 161, 161)), 0, str1.length(), 0);
-        builder.append(str1);
 
-        // Text and color for string 2
-        SpannableString str2 = new SpannableString("!");
-        str2.setSpan(new ForegroundColorSpan(Color.rgb(222, 22, 25)), 0, str2.length(), 0);
-        builder.append(str2);
-        // Set text for textView
-        title.setText(builder, Button.BufferType.SPANNABLE);
 
         //Function to close current fragment and return to previous fragment
         close.setOnClickListener(View ->{
             // Replace this fragment by accounts fragment
             FragmentTransaction transaction =
                     fm.beginTransaction();
-            transaction.replace(R.id.ma_frag_container, new Accounts()).commit();
+            transaction.replace(R.id.ma_container, new Accounts()).commit();
         });
 
         logIn.setOnClickListener(View -> {
