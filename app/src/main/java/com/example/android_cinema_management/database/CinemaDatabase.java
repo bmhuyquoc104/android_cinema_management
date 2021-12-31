@@ -23,8 +23,7 @@ public class CinemaDatabase {
                                   ProgressDialog pd,
                                   String city,
                                   String rate,
-                                  String review, int state,
-                                  Runnable callback) {
+                                  String review, int state) {
         // set title of progress bar
         pd.setTitle("Filtering cinemas ... ");
 
@@ -48,7 +47,7 @@ public class CinemaDatabase {
        */
         switch (state) {
             case 0:
-                callback.run();
+                System.out.println("AYYY YO YO!");
                 break;
             case 1:
                 query = collectionRef.whereEqualTo("city", city);
@@ -80,6 +79,7 @@ public class CinemaDatabase {
 
         // start querying
         if (query != null) {
+            pd.dismiss();
             query.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(context, "Filtering completed!", Toast.LENGTH_SHORT).show();

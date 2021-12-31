@@ -1,6 +1,7 @@
 package com.example.android_cinema_management.SearchItemManagement;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,8 @@ import com.example.android_cinema_management.Adapter.CinemaAdapter;
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.CinemaDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -53,6 +56,9 @@ public class SearchFilterByCinemaFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     //Declare adapter
     private CinemaAdapter cinemaAdapter;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ProgressDialog pd;
 
     //Declare string city and string array of cities
     String[] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
@@ -132,6 +138,8 @@ public class SearchFilterByCinemaFragment extends Fragment {
         buttonFilter.setOnClickListener(View -> {
             openFilterDialog();
         });
+
+        pd = new ProgressDialog(getActivity());
         return view;
     }
 
@@ -247,15 +255,21 @@ public class SearchFilterByCinemaFragment extends Fragment {
         filters.setOnClickListener(View -> {
 //            filterCinemaAllAttributes(cinemaList);
             filterList = new ArrayList<>();
-            filterList = filterCinemaAllAttributes();
+
             //dismiss the dialog
             dialog.dismiss();
-            // Instantiate adapter
-            cinemaAdapter = new CinemaAdapter(getContext(), filterList);
-            // Set layout for recycler view
-            recyclerView.setLayoutManager(layoutManager);
-            // Set adapter for recycler view
-            recyclerView.setAdapter(cinemaAdapter);
+
+            CinemaDatabase.filterData(db, getActivity(), pd, cityChosen, rateChosen,
+                    reviewChosen, 1);
+
+//            // Instantiate adapter
+//            cinemaAdapter = new CinemaAdapter(getContext(), filterList);
+//
+//            // Set layout for recycler view
+//            recyclerView.setLayoutManager(layoutManager);
+//
+//            // Set adapter for recycler view
+//            recyclerView.setAdapter(cinemaAdapter);
         });
         //Function to close the dialog
         close.setOnClickListener(View -> {
