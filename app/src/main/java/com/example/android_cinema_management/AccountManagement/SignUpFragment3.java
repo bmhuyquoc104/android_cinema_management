@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 
 
 public class SignUpFragment3 extends Fragment {
@@ -25,6 +35,10 @@ public class SignUpFragment3 extends Fragment {
     boolean checkSecurityPolicy = false;
     boolean checkPrivacyPolicy = false;
     boolean checkTermsPolicy = false;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
+    String userId;
     public SignUpFragment3() {
         // Required empty public constructor
     }
@@ -125,7 +139,30 @@ public class SignUpFragment3 extends Fragment {
         String phone = bundle.getString("phone");
         String address = bundle.getString("address");
         String gender = bundle.getString("gender");
+        String status = "true";
+        String role = "VIP";
+        String id = UUID.randomUUID().toString();
         System.out.println("fullName: " +fullName + "email: "+email + "password: "+password + confirmPassword + dateOfBirth + phone+address+gender);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        User user = new User(email, fullName, password, gender, dateOfBirth, address, status, phone, role, id);
+
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                userId = firebaseAuth.getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("Users").document(userId);
+                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("TAG", "onSuccess: user has been created: Successfully" + userId);
+                    }
+                });
+
+            }
+        });
+
         return view;
     }
 

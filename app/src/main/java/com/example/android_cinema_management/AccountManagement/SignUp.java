@@ -1,6 +1,8 @@
 package com.example.android_cinema_management.AccountManagement;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -13,8 +15,11 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,7 +28,22 @@ import android.widget.Toast;
 import com.example.android_cinema_management.AccountManagement.Accounts;
 import com.example.android_cinema_management.Adapter.RegisterAdapter;
 import com.example.android_cinema_management.MainActivity;
+import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.core.Tag;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.UUID;
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
     //Declare textview ,button ,and imageView
@@ -73,9 +93,6 @@ public class SignUp extends AppCompatActivity {
         close.setOnClickListener(view -> {
             finish();
         });
-
-
-
         // Set animation when sliding fragments
 //        viewpager2.setPageTransformer(new DepthPageTransformer());
 //        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -86,7 +103,6 @@ public class SignUp extends AppCompatActivity {
 //            }
 //        });
     }
-
 //    @Override
 //        public void onBackPressed() {
 //            if (viewpager2.getCurrentItem() == 0) {
