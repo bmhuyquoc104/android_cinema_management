@@ -95,7 +95,7 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
             // Create currentCinema instance by values received when the user choose the specific cinema
             currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat),
                     Double.parseDouble(currentLng), Double.parseDouble(currentRate), currentNumber, currentImage,
-                    currentLocationName,currentReview,currentCity);
+                    currentLocationName,Integer.parseInt(currentReview),currentCity);
         }
     }
 
