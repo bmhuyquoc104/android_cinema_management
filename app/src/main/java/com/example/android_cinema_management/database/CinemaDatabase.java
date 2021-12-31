@@ -15,28 +15,27 @@ import java.util.Objects;
 public class CinemaDatabase {
 
 
-    public static void showData(FirebaseFirestore db, ArrayList<Cinema> cinemaList){
+    public static void showData(FirebaseFirestore db, ArrayList<Cinema> cinemaList, Runnable callback) {
         db.collection("Cinema").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        cinemaList.clear();
-                        for (DocumentSnapshot snapshot: task.getResult()){
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
                             Cinema cinema = new Cinema(
                                     snapshot.getString("id"),
                                     snapshot.getString("name"),
                                     snapshot.getString("address"),
-                                    Double.parseDouble(snapshot.getString("latitude")),
-                                    Double.parseDouble(snapshot.getString("longitude")),
-                                    Double.parseDouble(snapshot.getString("rate")),
+                                    Double.parseDouble(Objects.requireNonNull(snapshot.getString("latitude"))),
+                                    Double.parseDouble(Objects.requireNonNull(snapshot.getString("longitude"))),
+                                    Double.parseDouble(Objects.requireNonNull(snapshot.getString("rate"))),
                                     snapshot.getString("contactNumber"),
                                     snapshot.getString("imageURL"),
                                     snapshot.getString("locationName"),
                                     Integer.parseInt(Objects.requireNonNull(snapshot.getString("review"))),
                                     snapshot.getString("city"));
                             cinemaList.add(cinema);
-                            System.out.println("huy ne " + cinemaList);
                         }
+
+                        callback.run();
                     }
                 });
     }

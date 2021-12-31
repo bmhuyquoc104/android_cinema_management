@@ -40,23 +40,24 @@ public class CinemaFragment extends Fragment {
     private CinemaAdapter cinemaAdapter;
     //Declare public static List to used later by other classes
     public static ArrayList<Cinema> cinemaArrayList;
+
     private Cinema cinema;
     // Declare handle thread
     HandlerThread ht = new HandlerThread("MyHandlerThread");
     // Declare string and array of string for cities
-    String [] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
-            "Vung Tau", "Da Nang", "Nha Trang","Ca Mau","Hai Phong",
-            "Quang Ninh","Dong Nai"};
+    String[] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
+            "Vung Tau", "Da Nang", "Nha Trang", "Ca Mau", "Hai Phong",
+            "Quang Ninh", "Dong Nai"};
     String city;
     //Declare firebase
     FirebaseFirestore db;
 
     // Declare auto text complete
     AutoCompleteTextView autoCompleteTextView;
+
     public CinemaFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -87,40 +88,46 @@ public class CinemaFragment extends Fragment {
         adapterItems = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, cities);
         autoCompleteTextView.setAdapter(adapterItems);
 
-        //  Dummy data
-        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,4.5,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark",1200,"Sai Gon");
-        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,5.2,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2",2300,"Ha Noi");
-        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,6.3,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3",700,"Can Tho");
+        // Handle scrapping data
+        CinemaDatabase.showData(db, cinemaArrayList, () -> {
+            // Instantiate adapter
+            cinemaAdapter = new CinemaAdapter(getContext(), cinemaArrayList);
+            // Set layout for recycler view
+            recyclerView.setLayoutManager(layoutManager);
+            // Set adapter for recycler view
+            recyclerView.setAdapter(cinemaAdapter);
 
-        cinemaArrayList.add(cinema);
-        cinemaArrayList.add(cinema2);
-        cinemaArrayList.add(cinema3);
-        System.out.println("cinema list ne" + cinemaArrayList);
-
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            autoCompleteTextView.setOnItemClickListener((parent, view1, position, id) -> {
                 city = parent.getItemAtPosition(position).toString();
+
                 // Initialize new array list to store result after filtering
-                ArrayList<Cinema>filterByCityList = new ArrayList<>();
+                ArrayList<Cinema> filterByCityList = new ArrayList<>();
+
                 // Function filter by city
-                filterByCity(filterByCityList,cinemaArrayList,city);
+                filterByCity(filterByCityList, cinemaArrayList, city);
+
                 // Instantiate adapter
                 cinemaAdapter = new CinemaAdapter(getContext(), filterByCityList);
+
                 // Set layout for recycler view
                 recyclerView.setLayoutManager(layoutManager);
+
                 // Set adapter for recycler view
                 recyclerView.setAdapter(cinemaAdapter);
-            }
+            });
         });
 
-        // Instantiate adapter
-        cinemaAdapter = new CinemaAdapter(getContext(), cinemaArrayList);
-        // Set layout for recycler view
-        recyclerView.setLayoutManager(layoutManager);
-        // Set adapter for recycler view
-        recyclerView.setAdapter(cinemaAdapter);
-//        fetchAndRenderCinema();
+        System.out.println("huy" + cinemaArrayList);
+//        //  Dummy data
+//        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,4.5,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark",1200,"Sai Gon");
+//        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,5.2,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2",2300,"Ha Noi");
+//        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,6.3,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3",700,"Can Tho");
+//
+//        cinemaArrayList.add(cinema);
+//        cinemaArrayList.add(cinema2);
+//        cinemaArrayList.add(cinema3);
+//        System.out.println("cinema list ne" + cinemaArrayList);
+
         return view;
     }
 //        new Handler (Looper.getMainLooper()).postDelayed( () -> {
@@ -132,56 +139,23 @@ public class CinemaFragment extends Fragment {
 //        return view;
 
 
-    private void fetchAndRenderCinema(){
-        //Start the handler thread
-        ht.start();
-        //Initialize new handler
-        Handler asHandler = new Handler(ht.getLooper()){
-            //Handle function after receiving message
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                renderCinemaList();
-            }
-        };
-
-        //Initialize new message
-        Message msg = new Message();
-
-        // Handle scrapping data
-        Runnable runnable = () ->{
-            CinemaDatabase.showData(db,cinemaArrayList);
-            msg.obj = cinemaArrayList;
-            asHandler.sendMessage(msg);
-        };
-        asHandler.post(runnable);
-    }
-
-
-
-    /** Function to render the cinema list in UI
-     *
-     * */
-    public void renderCinemaList(){
-        // Initialize new ui handler
-        Handler uiThreadHandler = new Handler(Looper.getMainLooper());
-
+    /**
+     * Function to render the cinema list in UI
+     */
+    public void renderCinemaList() {
         // Read post from fetchAndRenderMovie
-        uiThreadHandler.post(() ->{
-            new Handler (Looper.getMainLooper()).postDelayed( () -> {
-                System.out.println("huy ne " + cinemaArrayList);
-                cinemaAdapter = new CinemaAdapter(getContext(),cinemaArrayList);
-                // Specify an adapter
-                recyclerView.setAdapter(cinemaAdapter);
-            },1000);
-        });
+        System.out.println("huy ne " + cinemaArrayList);
+        cinemaAdapter = new CinemaAdapter(getContext(), cinemaArrayList);
+
+        // Specify an adapter
+        recyclerView.setAdapter(cinemaAdapter);
+
     }
 
     // Filter cinema list by city
-    public void filterByCity(ArrayList<Cinema>filterCinemaList, ArrayList<Cinema>cinemaList,String inputCity){
-        for(Cinema cinema : cinemaList){
-            // Check if this cinema's city equal user input
-            if (cinema.getCity().equals(inputCity)){
-                // add to new cinema list
+    public void filterByCity(ArrayList<Cinema> filterCinemaList, ArrayList<Cinema> cinemaList, String inputCity) {
+        for (Cinema cinema : cinemaList) {
+            if (cinema.getCity() != null && cinema.getCity().equals(inputCity)) {
                 filterCinemaList.add(cinema);
             }
         }
