@@ -61,15 +61,15 @@ public class SearchFilterByCinemaFragment extends Fragment {
     ProgressDialog pd;
 
     //Declare string city and string array of cities
-    String[] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
+    String[] cities = {"All Cities", "Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
             "Vung Tau", "Da Nang", "Nha Trang", "Ca Mau", "Hai Phong",
             "Quang Ninh", "Dong Nai"};
     String cityChosen;
     //Declare string reviews and string array of reviews
-    String[] reviews = {"Less than 1000", "1000 - 2000", "2001 - 3000", "3001 - 4000", "Greater than 4000"};
+    String[] reviews = {"All Reviews", "Less than 1000", "1000 - 2000", "2001 - 3000", "3001 - 4000", "Greater than 4000"};
     String reviewChosen;
     //Declare string rates and string array of rates
-    String[] rates = {"Less than 3", "3 - 5", "6 - 8", "Greater than 8"};
+    String[] rates = {"All Rates", "Less than 3", "3 - 5", "6 - 8", "Greater than 8"};
     String rateChosen;
 
     public SearchFilterByCinemaFragment() {
@@ -98,7 +98,7 @@ public class SearchFilterByCinemaFragment extends Fragment {
         //Instantiate array list
         searchList = new ArrayList<>();
         filterList = new ArrayList<>();
-        cinemaList = CinemaFragment.cinemaArrayList;
+        cinemaList = new ArrayList<>();
         System.out.println("huy ne" + cinemaList);
         //Use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
@@ -219,12 +219,14 @@ public class SearchFilterByCinemaFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 reviewChosen = parent.getItemAtPosition(position).toString();
                 // Check the range in the review chosen by user
-                reviewRange = reviewChosen.split(" ");
-                // Assign max and comparison in the range
-                reviewLast = Integer.parseInt(reviewRange[2]);
-                reviewComparison = reviewRange[0];
-                System.out.println("huy ne" + reviewLast);
-                System.out.println("huy ne" + reviewComparison);
+                if (position >= 1) {
+                    reviewRange = reviewChosen.split(" ");
+                    // Assign max and comparison in the range
+                    reviewLast = Integer.parseInt(reviewRange[2]);
+                    reviewComparison = reviewRange[0];
+                    System.out.println("huy ne" + reviewLast);
+                    System.out.println("huy ne" + reviewComparison);
+                }
             }
         });
 
@@ -235,11 +237,14 @@ public class SearchFilterByCinemaFragment extends Fragment {
                 rateChosen = parent.getItemAtPosition(position).toString();
                 System.out.println("huy ne" + rateChosen);
                 // Assign max and comparison in the range
-                rateRange = rateChosen.split(" ");
-                rateLast = Double.parseDouble(rateRange[2]);
-                rateComparison = rateRange[0];
-                System.out.println("huy ne" + rateLast);
-                System.out.println("huy ne" + rateComparison);
+                if (position >= 1) {
+                    rateRange = rateChosen.split(" ");
+                    rateLast = Double.parseDouble(rateRange[2]);
+                    rateComparison = rateRange[0];
+                    System.out.println("huy ne" + rateLast);
+                    System.out.println("huy ne" + rateComparison);
+                }
+
             }
         });
 
@@ -259,8 +264,8 @@ public class SearchFilterByCinemaFragment extends Fragment {
             //dismiss the dialog
             dialog.dismiss();
 
-            CinemaDatabase.filterData(db, getActivity(), pd, cityChosen, rateChosen,
-                    reviewChosen, 1);
+            CinemaDatabase.filterData(db, getActivity(), pd, cityChosen, "9.5",
+                    "100", 1);
 
 //            // Instantiate adapter
 //            cinemaAdapter = new CinemaAdapter(getContext(), filterList);
@@ -305,7 +310,7 @@ public class SearchFilterByCinemaFragment extends Fragment {
                     if (!(cinema.getReview() < reviewLast)) {
                         checkReview = false;
                     }
-                // check the comparison
+                    // check the comparison
                 } else if (reviewComparison.equals("Greater")) {
                     // If the review is not found -> change check review to false
                     if (!(cinema.getReview() > reviewLast)) {

@@ -86,12 +86,10 @@
 
     <string name="discountName">Name: %1$s</string>
     <string name="discountDate">Date: %1$s</string>
-    <string name="filter_city">Choose City …</string>
-    <string name="district">Choose District …</string>
-    <string name="chooseDate">Choose Date …</string>
+    <string name="filter_city">All Cities</string>
     <string name="chooseCategory">Choose Category …</string>
     <string name="reset">Reset</string>
-    <string name="chooseRate">Choose Rate …</string>
-    <string name="chooseReview">Choose Review …</string>
+    <string name="chooseRate">All Rates</string>
+    <string name="chooseReview">All Reviews</string>
 
 </resources>
