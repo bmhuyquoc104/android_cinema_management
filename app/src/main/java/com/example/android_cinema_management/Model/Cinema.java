@@ -1,5 +1,7 @@
 package com.example.android_cinema_management.Model;
 
+import androidx.annotation.NonNull;
+
 public class Cinema {
 
     private String name;
@@ -118,6 +120,7 @@ public class Cinema {
         this.city = city;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Cinema{" +
