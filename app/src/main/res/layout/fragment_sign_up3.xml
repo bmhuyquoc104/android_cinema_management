@@ -35,7 +35,8 @@
 
                 <CheckBox
                     android:id="@+id/frag3_signUp_payment_policy"
-                    android:button="@drawable/register_checkbox"                    android:layout_width="0dp"
+                    android:button="@drawable/register_checkbox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="172dp"
                     android:paddingStart="20dp"

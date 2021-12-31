@@ -14,6 +14,22 @@ public class User {
     private String role;
     private String id;
 
+    public User() {
+    }
+
+    public User(String email, String fullName, String password, String gender, String dateOfBirth, String address, String status, String phone, String role, String id) {
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.status = status;
+        this.phone = phone;
+        this.role = role;
+        this.id = id;
+    }
+
     public String getEmail() {
         return email;
     }
