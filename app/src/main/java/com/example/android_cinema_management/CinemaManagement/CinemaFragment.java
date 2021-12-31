@@ -88,14 +88,14 @@ public class CinemaFragment extends Fragment {
         autoCompleteTextView.setAdapter(adapterItems);
 
         //  Dummy data
-//        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,4.5,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark","good","Sai Gon");
-//        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,5.2,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2","ok","Ha Noi");
-//        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,6.3,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3","dc","Can Tho");
-//
-//        cinemaArrayList.add(cinema);
-//        cinemaArrayList.add(cinema2);
-//        cinemaArrayList.add(cinema3);
-//        System.out.println("cinema list ne" + cinemaArrayList);
+        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,4.5,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark",1200,"Sai Gon");
+        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,5.2,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2",2300,"Ha Noi");
+        Cinema cinema3 = new Cinema("123","cinema3","nguyen van c",10.790318,106.640184,6.3,"0898322131","https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","thuong xa stark3",700,"Can Tho");
+
+        cinemaArrayList.add(cinema);
+        cinemaArrayList.add(cinema2);
+        cinemaArrayList.add(cinema3);
+        System.out.println("cinema list ne" + cinemaArrayList);
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -36,29 +36,34 @@ public class SearchFilterByCinemaFragment extends Fragment {
     EditText searchCinema;
     Button buttonFilter;
     TextView result;
-    ArrayList<Cinema> searchList, cinemaList;
+    //Declare list for search filter and original list
+    ArrayList<Cinema> searchList, cinemaList, filterList;
     ImageView close;
-
-
+    //Declare auto complete text view
+    AutoCompleteTextView city;
+    AutoCompleteTextView review;
+    AutoCompleteTextView rate;
+    //Declare string range array, int last, and string comparison for filter value in the string
+    String[] reviewRange, rateRange;
+    int reviewLast;
+    double rateLast;
+    String reviewComparison, rateComparison;
     //Declare recyclerview
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     //Declare adapter
     private CinemaAdapter cinemaAdapter;
-    //Declare array adapter
-//    ArrayAdapter<String> adapterItems;
-//    ArrayAdapter<String> adapterItems2;
-//    ArrayAdapter<String> adapterItems3;
+
     //Declare string city and string array of cities
-    String [] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
-            "Vung Tau", "Da Nang", "Nha Trang","Ca Mau","Hai Phong",
-            "Quang Ninh","Dong Nai"};
+    String[] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
+            "Vung Tau", "Da Nang", "Nha Trang", "Ca Mau", "Hai Phong",
+            "Quang Ninh", "Dong Nai"};
     String cityChosen;
-
-    String [] reviews = {"Less than 1000", "1000 - 2000", "2001 - 3000", "3001 - 4000","Greater than 4000"};
+    //Declare string reviews and string array of reviews
+    String[] reviews = {"Less than 1000", "1000 - 2000", "2001 - 3000", "3001 - 4000", "Greater than 4000"};
     String reviewChosen;
-
-    String [] rates = {"Less than 3", "4-6", "7-9", "Greater than 9"};
+    //Declare string rates and string array of rates
+    String[] rates = {"Less than 3", "3 - 5", "6 - 8", "Greater than 8"};
     String rateChosen;
 
     public SearchFilterByCinemaFragment() {
@@ -86,6 +91,7 @@ public class SearchFilterByCinemaFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         //Instantiate array list
         searchList = new ArrayList<>();
+        filterList = new ArrayList<>();
         cinemaList = CinemaFragment.cinemaArrayList;
         System.out.println("huy ne" + cinemaList);
         //Use a linear layout manager
@@ -107,7 +113,7 @@ public class SearchFilterByCinemaFragment extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String inputText = searchCinema.getText().toString();
                 searchList = new ArrayList<>();
-                searchCinemaByAllAttributes(cinemaList,searchList,inputText);
+                searchCinemaByAllAttributes(cinemaList, searchList, inputText);
                 // Instantiate adapter
                 cinemaAdapter = new CinemaAdapter(getContext(), searchList);
                 // Set layout for recycler view
@@ -122,66 +128,52 @@ public class SearchFilterByCinemaFragment extends Fragment {
             }
         });
 
-
-
-
-
-
-
-
         // Activate filter dialog
-        buttonFilter.setOnClickListener(View ->{
+        buttonFilter.setOnClickListener(View -> {
             openFilterDialog();
         });
         return view;
     }
 
-    /** Function to search cinema List by attributes and display in the UI
-     *
-     * */
-    private void searchCinemaByAllAttributes(ArrayList<Cinema>cinemaList, ArrayList<Cinema>searchList,String keyword){
-        for (Cinema cinema: cinemaList){
+    /**
+     * Function to search cinema List by attributes and display in the UI
+     */
+    private void searchCinemaByAllAttributes(ArrayList<Cinema> cinemaList, ArrayList<Cinema> searchList, String keyword) {
+        for (Cinema cinema : cinemaList) {
             if (cinema.getCity().trim().toLowerCase().contains(keyword.trim().toLowerCase()) ||
                     cinema.getAddress().trim().toLowerCase().contains(keyword.trim().toLowerCase()) ||
                     cinema.getContactNumber().trim().toLowerCase().contains(keyword.trim().toLowerCase()) ||
                     cinema.getLocationName().trim().toLowerCase().contains(keyword.trim().toLowerCase()) ||
-                    cinema.getName().trim().toLowerCase().contains(keyword.trim().toLowerCase())){
+                    cinema.getName().trim().toLowerCase().contains(keyword.trim().toLowerCase())) {
                 searchList.add(cinema);
             }
-          }
-        }
-
-    /** function to apply filter and display cinema list in UI
-     *
-     * */
-    private void filterCinemaAllAttributes(ArrayList<Cinema> cinemaList,
-                                           ArrayList<Cinema>filterList
-                                           ) {
-        for (Cinema cinema : cinemaList){
         }
     }
+
+
     /**
      * Function to open dialog when click the filter button
-     * */
-    private void openFilterDialog(){
-        final Dialog dialog = new Dialog (getContext());
+     */
+    private void openFilterDialog() {
+        // Initialize new dialog
+        Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //Set content for dialog
         dialog.setContentView(R.layout.open_filter_dialog);
         Window window = dialog.getWindow();
-        if (window == null){
+        if (window == null) {
             return;
         }
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
         WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        // set the dialog to top
         windowAttributes.gravity = Gravity.TOP;
         window.setAttributes(windowAttributes);
+        // Disable cancel by clicking randomly on the screen
         dialog.setCancelable(false);
         dialog.show();
-        //Declare auto complete text view
-        AutoCompleteTextView city;
-        AutoCompleteTextView review;
-        AutoCompleteTextView rate;
+
         // Binding value to xml layout
         Button reset = dialog.findViewById(R.id.ofd_reset);
         Button filters = dialog.findViewById(R.id.ofd_filters);
@@ -209,6 +201,7 @@ public class SearchFilterByCinemaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cityChosen = parent.getItemAtPosition(position).toString();
+                System.out.println("huy ne" + cityChosen);
 
             }
         });
@@ -217,7 +210,13 @@ public class SearchFilterByCinemaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 reviewChosen = parent.getItemAtPosition(position).toString();
-
+                // Check the range in the review chosen by user
+                reviewRange = reviewChosen.split(" ");
+                // Assign max and comparison in the range
+                reviewLast = Integer.parseInt(reviewRange[2]);
+                reviewComparison = reviewRange[0];
+                System.out.println("huy ne" + reviewLast);
+                System.out.println("huy ne" + reviewComparison);
             }
         });
 
@@ -226,11 +225,18 @@ public class SearchFilterByCinemaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 rateChosen = parent.getItemAtPosition(position).toString();
+                System.out.println("huy ne" + rateChosen);
+                // Assign max and comparison in the range
+                rateRange = rateChosen.split(" ");
+                rateLast = Double.parseDouble(rateRange[2]);
+                rateComparison = rateRange[0];
+                System.out.println("huy ne" + rateLast);
+                System.out.println("huy ne" + rateComparison);
             }
         });
 
         // Function to reset the dialog
-        reset.setOnClickListener(View ->{
+        reset.setOnClickListener(View -> {
             // Clear auto complete text
             city.getText().clear();
             review.getText().clear();
@@ -238,16 +244,95 @@ public class SearchFilterByCinemaFragment extends Fragment {
         });
 
         // Function to filter by user selection
-        filters.setOnClickListener(View ->{
+        filters.setOnClickListener(View -> {
 //            filterCinemaAllAttributes(cinemaList);
+            filterList = new ArrayList<>();
+            filterList = filterCinemaAllAttributes();
+            //dismiss the dialog
             dialog.dismiss();
+            // Instantiate adapter
+            cinemaAdapter = new CinemaAdapter(getContext(), filterList);
+            // Set layout for recycler view
+            recyclerView.setLayoutManager(layoutManager);
+            // Set adapter for recycler view
+            recyclerView.setAdapter(cinemaAdapter);
         });
         //Function to close the dialog
-        close.setOnClickListener(View ->{
+        close.setOnClickListener(View -> {
             dialog.dismiss();
         });
     }
+
+
+    /**
+     * method to apply filter and display cinema list in UI
+     */
+    private ArrayList<Cinema> filterCinemaAllAttributes(
+    ) {
+        //Declare 3 boolean to check the attribute to filter
+        boolean checkReview = true;
+        boolean checkRate = true;
+        boolean checkCity = true;
+        // Loop through array list and filter the correct cinema
+        for (Cinema cinema : cinemaList) {
+            // Check if the user choose the city to filter or not
+            if (!city.getText().toString().isEmpty()) {
+                // If the cinema is not found -> change the check city is false -> otherwise true
+                if (!cinema.getCity().equals(city.getText().toString())) {
+                    checkCity = false;
+                }
+
+            }
+            // Check if the user choose the review to filter or not
+            if (!review.getText().toString().isEmpty()) {
+                // check the comparison
+                if (reviewComparison.equals("Less")) {
+                    // If the review is not found -> change check review to false
+                    if (!(cinema.getReview() < reviewLast)) {
+                        checkReview = false;
+                    }
+                // check the comparison
+                } else if (reviewComparison.equals("Greater")) {
+                    // If the review is not found -> change check review to false
+                    if (!(cinema.getReview() > reviewLast)) {
+                        checkReview = false;
+                    }
+                } else {
+                    // If the review is not found -> change check review to false
+                    if (!(cinema.getReview() <= reviewLast && cinema.getReview()
+                            >= Integer.parseInt(reviewComparison))) {
+                        checkReview = false;
+                    }
+                }
+            }
+            if (!rate.getText().toString().isEmpty()) {
+                // check the comparison
+                if (rateComparison.equals("Less")) {
+                    if (!(cinema.getRate() < rateLast)) {
+                        checkRate = false;
+                    }
+                    // If the rate is not found -> change check review to false
+                } else if (rateComparison.equals("Greater")) {
+                    if (!(cinema.getRate() > rateLast)) {
+                        checkRate = false;
+                    }
+
+                } else {
+                    // If the rate is not found -> change check review to false
+                    if (!(cinema.getRate() <= rateLast &&
+                            cinema.getRate() >= Double.parseDouble(rateComparison))) {
+                        checkRate = false;
+                    }
+                }
+            }
+            // Get cinema that satisfy all conditions
+            if (checkRate && checkCity && checkReview) {
+                filterList.add(cinema);
+            }
+        }
+        return filterList;
     }
+}
 
 
 

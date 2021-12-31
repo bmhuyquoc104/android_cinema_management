@@ -11,12 +11,12 @@ public class Cinema {
     private String imageUrl;
     private String locationName;
     private String cinemaId;
-    private String review;
+    private int review;
     private String city;
     public Cinema() {
     }
 
-    public Cinema(String cinemaId,String name, String address, Double latitude, Double longitude, Double rate,String contactNumber, String imageUrl, String locationName, String review, String city) {
+    public Cinema(String cinemaId,String name, String address, Double latitude, Double longitude, Double rate,String contactNumber, String imageUrl, String locationName, int review, String city) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -102,11 +102,11 @@ public class Cinema {
         this.rate = rate;
     }
 
-    public String getReview() {
+    public int getReview() {
         return review;
     }
 
-    public void setReview(String review) {
+    public void setReview(int review) {
         this.review = review;
     }
 
@@ -130,7 +130,7 @@ public class Cinema {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", locationName='" + locationName + '\'' +
                 ", cinemaId='" + cinemaId + '\'' +
-                ", review='" + review + '\'' +
+                ", review=" + review +
                 ", city='" + city + '\'' +
                 '}';
     }
