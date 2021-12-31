@@ -11,11 +11,49 @@
 
     <!-- nhớ add filter vào để filter ticket vs discount -->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/discount"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cinema"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Cinema"
+        android:background="@color/colorPrimary3">
+        <AutoCompleteTextView
+            android:id="@+id/cinemaItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/month"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Month">
+        <AutoCompleteTextView
+            android:id="@+id/monthItems"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/cinema"
+        android:layout_marginBottom="40dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/discount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"/>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
