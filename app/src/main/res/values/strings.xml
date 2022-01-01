@@ -75,7 +75,7 @@
     <string name="cinemaWeb">Web</string>
     <string name="cinemaDescriptionPhone">Phone</string>
     <string name="searchFrom">SEARCH AND FILTER BY</string>
-    <string name="searchByMovie">Search Cinema …</string>
+    <string name="searchByMovie">Search Movie By Title</string>
     <string name="cinema">Cinema</string>
     <string name="cinemaCity">City</string>
     <string name="result">Result</string>
@@ -87,9 +87,12 @@
     <string name="discountName">Name: %1$s</string>
     <string name="discountDate">Date: %1$s</string>
     <string name="filter_city">All Cities</string>
-    <string name="chooseCategory">Choose Category …</string>
+    <string name="chooseCategory">All Categories </string>
+    <string name="chooseMonth">All Months </string>
     <string name="reset">Reset</string>
     <string name="chooseRate">All Rates</string>
     <string name="chooseReview">All Reviews</string>
+    <string name="filter_country">All Countries</string>
+    <string name="searchByCinema">Search Cinema</string>
 
 </resources>

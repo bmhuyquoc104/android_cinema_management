@@ -23,11 +23,6 @@ import com.example.android_cinema_management.R;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment2#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HomeFragment2 extends Fragment {
     //Declare recyclerview
     private RecyclerView recyclerView;
@@ -35,55 +30,21 @@ public class HomeFragment2 extends Fragment {
     //Declare adapter
     private MoviesAdapter moviesAdapter;
     //Declare Movie list
-    private ArrayList<Movie> movieList;
+    public static ArrayList<Movie> upcomingMovieList;
     //Declare HandlerThread Thread
     HandlerThread ht = new HandlerThread("MyHandlerThread");
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public HomeFragment2() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment2.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment2 newInstance(String param1, String param2) {
-        HomeFragment2 fragment = new HomeFragment2();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Binding with xml layout
         View view = inflater.inflate(R.layout.fragment_home2, container, false);
-        movieList = new ArrayList<>();
+        upcomingMovieList = new ArrayList<>();
         // Set fixed size for recycler view
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -109,8 +70,8 @@ public class HomeFragment2 extends Fragment {
         // Handle scrapping data
         Runnable runnable = () ->{
             String url = "https://www.galaxycine.vn/phim-sap-chieu";
-            MovieHandler.getUpcomingMovieData(url,movieList);
-            msg.obj = movieList;
+            MovieHandler.getUpcomingMovieData(url,upcomingMovieList);
+            msg.obj = upcomingMovieList;
             asHandler.sendMessage(msg);
         };
         asHandler.post(runnable);
@@ -125,7 +86,7 @@ public class HomeFragment2 extends Fragment {
 
         // Read post from fetchAndRenderMovie
         uiThreadHandler.post(() ->{
-            moviesAdapter = new MoviesAdapter(movieList,getContext());
+            moviesAdapter = new MoviesAdapter(upcomingMovieList,getContext());
             // use grid layout manager to display 2 items in one row
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
             recyclerView.setLayoutManager(gridLayoutManager);

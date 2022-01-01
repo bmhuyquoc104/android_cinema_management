@@ -35,6 +35,7 @@ import java.util.ArrayList;
 
 
 public class SearchFilterByCinemaFragment extends Fragment {
+    ArrayList<String>temp = new ArrayList<>();
     //Declare editText, button,textview
     EditText searchCinema;
     Button buttonFilter;
@@ -66,21 +67,16 @@ public class SearchFilterByCinemaFragment extends Fragment {
             "Quang Ninh", "Dong Nai"};
     String cityChosen;
     //Declare string reviews and string array of reviews
-    String[] reviews = {"All Reviews", "Less than 1000", "1000 - 2000", "2001 - 3000", "3001 - 4000", "Greater than 4000"};
+    String[] reviews = {"All Reviews", "Less than 5000", "Greater or equal to 5000"};
     String reviewChosen;
     //Declare string rates and string array of rates
-    String[] rates = {"All Rates", "Less than 3", "3 - 5", "6 - 8", "Greater than 8"};
+    String[] rates = {"All Rates", "Less than 5.0", "Greater or equal to 5.0"};
     String rateChosen;
+
+
 
     public SearchFilterByCinemaFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -91,7 +87,7 @@ public class SearchFilterByCinemaFragment extends Fragment {
         //Binding to xml value
         searchCinema = view.findViewById(R.id.frag1SearchCinemaSearchBar);
         buttonFilter = view.findViewById(R.id.searchByCinemaFilters);
-        result = view.findViewById(R.id.searchByCinemaResult);
+        result = view.findViewById(R.id.search_by_movie_result);
         close = view.findViewById(R.id.closeButton);
         recyclerView = view.findViewById(R.id.searchByCinemaRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -99,9 +95,11 @@ public class SearchFilterByCinemaFragment extends Fragment {
         searchList = new ArrayList<>();
         filterList = new ArrayList<>();
         cinemaList = new ArrayList<>();
+//        cinemaList = CinemaFragment.cinemaArrayList;
         System.out.println("huy ne" + cinemaList);
         //Use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
+
 
         // Instantiate adapter
         cinemaAdapter = new CinemaAdapter(getContext(), cinemaList);
@@ -167,7 +165,7 @@ public class SearchFilterByCinemaFragment extends Fragment {
         Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //Set content for dialog
-        dialog.setContentView(R.layout.open_filter_dialog);
+        dialog.setContentView(R.layout.open_cinema_filter_dialog);
         Window window = dialog.getWindow();
         if (window == null) {
             return;
@@ -203,13 +201,17 @@ public class SearchFilterByCinemaFragment extends Fragment {
         city.setAdapter(adapterCities);
         review.setAdapter(adapterReviews);
         rate.setAdapter(adapterRates);
+        reviewChosen = review.getText().toString();
+        cityChosen = city.getText().toString();
+        rateChosen = rate.getText().toString();
 
         //Show drop down list when click auto complete text city
         city.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cityChosen = parent.getItemAtPosition(position).toString();
+                cityChosen = city.getText().toString();
                 System.out.println("huy ne" + cityChosen);
+                filterAttributeTracking();
 
             }
         });
@@ -217,15 +219,16 @@ public class SearchFilterByCinemaFragment extends Fragment {
         review.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                reviewChosen = parent.getItemAtPosition(position).toString();
+                reviewChosen = review.getText().toString();
                 // Check the range in the review chosen by user
-                if (position >= 1) {
+                if (position > 1) {
                     reviewRange = reviewChosen.split(" ");
                     // Assign max and comparison in the range
-                    reviewLast = Integer.parseInt(reviewRange[2]);
+                    reviewLast = Integer.parseInt(reviewRange[4]);
                     reviewComparison = reviewRange[0];
                     System.out.println("huy ne" + reviewLast);
                     System.out.println("huy ne" + reviewComparison);
+                    filterAttributeTracking();
                 }
             }
         });
@@ -234,15 +237,16 @@ public class SearchFilterByCinemaFragment extends Fragment {
         rate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                rateChosen = parent.getItemAtPosition(position).toString();
+                rateChosen = rate.getText().toString();
                 System.out.println("huy ne" + rateChosen);
                 // Assign max and comparison in the range
-                if (position >= 1) {
+                if (position > 1) {
                     rateRange = rateChosen.split(" ");
-                    rateLast = Double.parseDouble(rateRange[2]);
+                    rateLast = Double.parseDouble(rateRange[4]);
                     rateComparison = rateRange[0];
                     System.out.println("huy ne" + rateLast);
                     System.out.println("huy ne" + rateComparison);
+                    filterAttributeTracking();
                 }
 
             }
@@ -263,9 +267,9 @@ public class SearchFilterByCinemaFragment extends Fragment {
 
             //dismiss the dialog
             dialog.dismiss();
-
-            CinemaDatabase.filterData(db, getActivity(), pd, cityChosen, "9.5",
-                    "100", 1);
+//            filterCinemaAllAttributes();
+            CinemaDatabase.filterData(db, getActivity(), pd, "Sai Gon", "9.5",
+                    "100", 6);
 
 //            // Instantiate adapter
 //            cinemaAdapter = new CinemaAdapter(getContext(), filterList);
@@ -281,76 +285,88 @@ public class SearchFilterByCinemaFragment extends Fragment {
             dialog.dismiss();
         });
     }
-
-
-    /**
-     * method to apply filter and display cinema list in UI
-     */
-    private ArrayList<Cinema> filterCinemaAllAttributes(
-    ) {
-        //Declare 3 boolean to check the attribute to filter
-        boolean checkReview = true;
-        boolean checkRate = true;
-        boolean checkCity = true;
-        // Loop through array list and filter the correct cinema
-        for (Cinema cinema : cinemaList) {
-            // Check if the user choose the city to filter or not
-            if (!city.getText().toString().isEmpty()) {
-                // If the cinema is not found -> change the check city is false -> otherwise true
-                if (!cinema.getCity().equals(city.getText().toString())) {
-                    checkCity = false;
-                }
-
-            }
-            // Check if the user choose the review to filter or not
-            if (!review.getText().toString().isEmpty()) {
-                // check the comparison
-                if (reviewComparison.equals("Less")) {
-                    // If the review is not found -> change check review to false
-                    if (!(cinema.getReview() < reviewLast)) {
-                        checkReview = false;
-                    }
-                    // check the comparison
-                } else if (reviewComparison.equals("Greater")) {
-                    // If the review is not found -> change check review to false
-                    if (!(cinema.getReview() > reviewLast)) {
-                        checkReview = false;
-                    }
-                } else {
-                    // If the review is not found -> change check review to false
-                    if (!(cinema.getReview() <= reviewLast && cinema.getReview()
-                            >= Integer.parseInt(reviewComparison))) {
-                        checkReview = false;
-                    }
-                }
-            }
-            if (!rate.getText().toString().isEmpty()) {
-                // check the comparison
-                if (rateComparison.equals("Less")) {
-                    if (!(cinema.getRate() < rateLast)) {
-                        checkRate = false;
-                    }
-                    // If the rate is not found -> change check review to false
-                } else if (rateComparison.equals("Greater")) {
-                    if (!(cinema.getRate() > rateLast)) {
-                        checkRate = false;
-                    }
-
-                } else {
-                    // If the rate is not found -> change check review to false
-                    if (!(cinema.getRate() <= rateLast &&
-                            cinema.getRate() >= Double.parseDouble(rateComparison))) {
-                        checkRate = false;
-                    }
-                }
-            }
-            // Get cinema that satisfy all conditions
-            if (checkRate && checkCity && checkReview) {
-                filterList.add(cinema);
-            }
-        }
-        return filterList;
+    private void filterAttributeTracking() {
+        temp = new ArrayList<>();
+        temp.add(cityChosen);
+        temp.add(rateChosen);
+        temp.add(reviewChosen);
+        System.out.println("DDDDAAAYYYYYYYY" + temp.toString());
     }
+
+//    /**
+//     * method to apply filter and display cinema list in UI
+//     */
+//    private ArrayList<Cinema> filterCinemaAllAttributes(
+//    ) {
+//        //Declare 3 boolean to check the attribute to filter
+//        boolean checkReview = false;
+//        boolean checkRate = false;
+//        boolean checkCity = false;
+//        // Loop through array list and filter the correct cinema
+//        for (Cinema cinema : cinemaList) {
+//            // Check if the user choose the city to filter or not
+//            if (!city.getText().toString().equals("All Cities")) {
+//                // If the cinema is not found -> change the check city is false -> otherwise true
+//                if (cinema.getCity().equals(city.getText().toString())) {
+//                    System.out.println("cho city" + city.getText().toString());
+//                    System.out.println("cho city cinema" + cinema.getCity());
+//                    checkCity = true;
+//                }
+//
+//            }
+//            // Check if the user choose the review to filter or not
+//            if (review.getText().toString().equals("All Reviews")) {
+//                // check the comparison
+//                if (reviewComparison.equals("Less")) {
+//                    // If the review is not found -> change check review to false
+//                    if ((cinema.getReview() < reviewLast)) {
+//                        checkReview = true;
+//                    }
+//                    // check the comparison
+//                } else if (reviewComparison.equals("Greater")) {
+//                    // If the review is not found -> change check review to false
+//                    if ((cinema.getReview() > reviewLast)) {
+//                        checkReview = true;
+//                    }
+//                } else {
+//                    // If the review is not found -> change check review to false
+//                    if ((cinema.getReview() <= reviewLast && cinema.getReview()
+//                            >= Integer.parseInt(reviewComparison))) {
+//                        checkReview = true;
+//                    }
+//                }
+//            }
+//            if (rate.getText().toString().equals("All Rates")) {
+//                // check the comparison
+//                if (rateComparison.equals("Less")) {
+//                    if (!(cinema.getRate() < rateLast)) {
+//                        checkRate = true;
+//                    }
+//                    // If the rate is not found -> change check review to false
+//                } else if (rateComparison.equals("Greater")) {
+//                    if ((cinema.getRate() > rateLast)) {
+//                        checkRate = true;
+//                    }
+//
+//                } else {
+//                    // If the rate is not found -> change check review to false
+//                    if ((cinema.getRate() <= rateLast &&
+//                            cinema.getRate() >= Double.parseDouble(rateComparison))) {
+//                        checkRate = true;
+//                    }
+//                }
+//            }
+//            System.out.println(checkCity + "checkcity");
+//            System.out.println(checkRate + "checkrate");
+//            System.out.println(checkReview + "checkreview");
+//            // Get cinema that satisfy all conditions
+//            if (checkRate || checkCity || checkReview) {
+//                filterList.add(cinema);
+//                System.out.println("hehlkenmhklernkhlerngkergnekl" + cinema);
+//            }
+//        }
+//        return filterList;
+//    }
 }
 
 

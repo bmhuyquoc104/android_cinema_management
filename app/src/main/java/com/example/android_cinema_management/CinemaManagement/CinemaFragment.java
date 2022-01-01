@@ -117,7 +117,6 @@ public class CinemaFragment extends Fragment {
             });
         });
 
-        System.out.println("huy" + cinemaArrayList);
 //        //  Dummy data
 //        Cinema cinema = new Cinema("123","cinema1","nguyen van a",10.835538,106.659878,4.5,"0898321","https://www.citypassguide.com/media/destination/galaxy-cinema-galaxy-cinema-ho-chi-minh-city.jpg","thuong xa stark",1200,"Sai Gon");
 //        Cinema cinema2 = new Cinema("123","cinema2","nguyen van b",10.773140,105.746857,5.2,"0898323121","https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","thuong xa stark2",2300,"Ha Noi");
@@ -127,7 +126,12 @@ public class CinemaFragment extends Fragment {
 //        cinemaArrayList.add(cinema2);
 //        cinemaArrayList.add(cinema3);
 //        System.out.println("cinema list ne" + cinemaArrayList);
-
+//            // Instantiate adapter
+//            cinemaAdapter = new CinemaAdapter(getContext(), cinemaArrayList);
+//            // Set layout for recycler view
+//            recyclerView.setLayoutManager(layoutManager);
+//            // Set adapter for recycler view
+//            recyclerView.setAdapter(cinemaAdapter);
         return view;
     }
 //        new Handler (Looper.getMainLooper()).postDelayed( () -> {

@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.android_cinema_management.R;
 import com.google.android.material.textfield.TextInputLayout;
 

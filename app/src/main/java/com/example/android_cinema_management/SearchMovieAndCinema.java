@@ -2,16 +2,27 @@ package com.example.android_cinema_management;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android_cinema_management.Adapter.MovieAndCinemaSearchFilterAdapter;
+import com.example.android_cinema_management.Adapter.MoviesAdapter;
+import com.example.android_cinema_management.Handler.MovieHandler;
+import com.example.android_cinema_management.Model.Movie;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 
 public class SearchMovieAndCinema extends Fragment {
@@ -19,7 +30,7 @@ public class SearchMovieAndCinema extends Fragment {
     TabLayout layout;
     ViewPager2 viewpager2;
     MovieAndCinemaSearchFilterAdapter adapter;
-
+    public static ArrayList<Movie> upcomingMovieList;
     public SearchMovieAndCinema() {
         // Required empty public constructor
     }
@@ -67,6 +78,9 @@ public class SearchMovieAndCinema extends Fragment {
             }
         });
 
+
+
+
         viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -75,6 +89,10 @@ public class SearchMovieAndCinema extends Fragment {
         });
         //Disable swiping
         viewpager2.setUserInputEnabled(false);
+//        fetchAndRenderMovie();
         return view;
     }
+
+
+
 }

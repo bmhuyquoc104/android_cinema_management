@@ -79,37 +79,11 @@ public class CinemaDatabase {
 
         // start querying
         if (query != null) {
-            pd.dismiss();
-            query.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    Toast.makeText(context, "Filtering completed!", Toast.LENGTH_SHORT).show();
-                    for (DocumentSnapshot snapshot : task.getResult()) {
-                        // Create an instance and load data to cinema
-                        Cinema cinema = new Cinema(
-                                snapshot.getString("id"),
-                                snapshot.getString("name"),
-                                snapshot.getString("address"),
-                                // Parse the database type string to double
-                                Double.parseDouble(Objects.requireNonNull(snapshot.getString("latitude"))),
-                                // Parse the database type string to double
-                                Double.parseDouble(Objects.requireNonNull(snapshot.getString("longitude"))),
-                                // Parse the database type string to double
-                                Double.parseDouble(Objects.requireNonNull(snapshot.getString("rate"))),
-                                snapshot.getString("contactNumber"),
-                                snapshot.getString("imageURL"),
-                                snapshot.getString("locationName"),
-                                // Parse the database type string to int
-                                Integer.parseInt(Objects.requireNonNull(snapshot.getString("review"))),
-                                snapshot.getString("city"));
-
-                        System.out.println(cinema.toString());
-                    }
-                }
-            });
+            System.out.println("lalalalallaal" + query.toString());
         }
     }
 
-    // Method to fetch all cinema data from the firebase firestore to cinemalist
+    // Method to fetch all cinema data from the firebase FireStore to cinemaList
     public static void showData(FirebaseFirestore db, ArrayList<Cinema> cinemaList, Runnable callback) {
         // Check the collection name and get it
         db.collection("Cinema").get()
