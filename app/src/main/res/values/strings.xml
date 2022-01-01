@@ -105,5 +105,6 @@
     <string name="user_home_saving">Points</string>
     <string name="user_home_logout">LOG OUT</string>
     <string name="user_home_account_type">Account Type: </string>
+    <string name="news">News</string>
 
 </resources>
