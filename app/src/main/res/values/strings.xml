@@ -94,5 +94,16 @@
     <string name="chooseReview">All Reviews</string>
     <string name="filter_country">All Countries</string>
     <string name="searchByCinema">Search Cinema</string>
+    <string name="user_home_dashboard">DASHBOARD</string>
+    <string name="user_home_welcome">Welcome</string>
+    <string name="user_home_point">Current Point</string>
+    <string name="user_home_profile">Profile</string>
+    <string name="user_home_history_transaction">Transactions</string>
+    <string name="user_home_voucher">Combo</string>
+    <string name="user_home_review">Review</string>
+    <string name="user_home_feedback">Feedback</string>
+    <string name="user_home_saving">Points</string>
+    <string name="user_home_logout">LOG OUT</string>
+    <string name="user_home_account_type">Account Type: </string>
 
 </resources>

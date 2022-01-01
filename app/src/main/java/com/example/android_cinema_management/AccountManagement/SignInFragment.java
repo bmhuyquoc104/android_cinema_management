@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.UserHomeFragment;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignInFragment extends Fragment {
@@ -50,6 +51,14 @@ public class SignInFragment extends Fragment {
 
         fragmentActivity = getActivity();
 
+
+        //Function to log into the account
+        logIn.setOnClickListener(view ->{
+            // Replace this fragment by accounts fragment
+            FragmentTransaction transaction =
+                    fm.beginTransaction();
+            transaction.replace(R.id.ma_container, new UserHomeFragment()).commit();
+        });
 
         //Function to close current fragment and return to previous fragment
         close.setOnClickListener(view -> {
