@@ -18,6 +18,8 @@ import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.UserManagement.UserHomeFragment;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
+
 public class SignInFragment extends Fragment {
     //Declare textview ,textInputLayout ,and imageView,button
     ImageView close;
@@ -55,9 +57,19 @@ public class SignInFragment extends Fragment {
         //Function to log into the account
         logIn.setOnClickListener(view ->{
             // Replace this fragment by accounts fragment
-            FragmentTransaction transaction =
-                    fm.beginTransaction();
-            transaction.replace(R.id.ma_container, new UserHomeFragment()).commit();
+                if (emailIsNotEmpty() && passwordIsNotEmpty()) {
+                    inputEmail = email.getEditText().getText().toString();
+                    inputPassword = password.getEditText().getText().toString();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("password", inputPassword);
+                    bundle.putString("email", inputEmail);
+                    UserHomeFragment fragment = new UserHomeFragment();
+                    fragment.setArguments(bundle);
+                    FragmentTransaction transaction =
+                            fm.beginTransaction();
+                    transaction.replace(R.id.ma_container, fragment).commit();
+                }
+
         });
 
         //Function to close current fragment and return to previous fragment
@@ -78,7 +90,7 @@ public class SignInFragment extends Fragment {
 
     // Function to check email is empty or not
     private boolean emailIsNotEmpty() {
-        if (inputEmail.isEmpty()) {
+        if (Objects.requireNonNull(email.getEditText()).getText().toString().isEmpty()) {
             email.setError("Field can not be empty");
             return false;
         } else {
@@ -92,7 +104,7 @@ public class SignInFragment extends Fragment {
     // Function to check password is empty or not
     private boolean passwordIsNotEmpty() {
         // Check if the user input password or not
-        if (inputPassword.isEmpty()) {
+        if (Objects.requireNonNull(password.getEditText()).getText().toString().isEmpty()) {
             password.setError("Field can not be empty");
             return false;
         } else {

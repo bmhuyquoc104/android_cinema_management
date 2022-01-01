@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.text.SpannableString;
@@ -25,7 +26,7 @@ public class HomeFragment extends Fragment {
     ViewPager2 viewpager2;
     HomeAdapter adapter;
     //Declare login and register button
-    Button loginAndRegister;
+    Button news;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -47,7 +48,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         layout = view.findViewById(R.id.mh_tab_layout);
         viewpager2 = view.findViewById(R.id.mh_viewpager2);
-        loginAndRegister = view.findViewById(R.id.loginAndRegister);
+        news = view.findViewById(R.id.loginAndRegister);
         // Initialize fragment manager
         FragmentManager fm = getParentFragmentManager();
         // Initialize adapter
@@ -82,18 +83,24 @@ public class HomeFragment extends Fragment {
         SpannableStringBuilder builder = new SpannableStringBuilder();
 
         // Text and color for string 1
-        SpannableString str1= new SpannableString("Login / ");
+        SpannableString str1= new SpannableString("Latest  ");
         str1.setSpan(new ForegroundColorSpan(Color.rgb(161,161,161)), 0, str1.length(), 0);
         builder.append(str1);
 
         // Text and color for string 2
-        SpannableString str2= new SpannableString("Sign Up");
+        SpannableString str2= new SpannableString("News!");
         str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
         builder.append(str2);
 
         // Set text for button
-        loginAndRegister.setText( builder, Button.BufferType.SPANNABLE);
+        news.setText( builder, Button.BufferType.SPANNABLE);
 
+        //Function to switch to news fragment
+        news.setOnClickListener(View ->{
+            FragmentTransaction transaction =
+                    fm.beginTransaction();
+            transaction.replace(R.id.ma_container, new NewsFragment()).commit();
+        });
         return view;
     }
 }

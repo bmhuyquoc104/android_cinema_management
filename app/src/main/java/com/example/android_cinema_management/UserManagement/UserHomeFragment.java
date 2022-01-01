@@ -1,9 +1,14 @@
 package com.example.android_cinema_management.UserManagement;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +26,14 @@ public class UserHomeFragment extends Fragment {
     TextView welcome, type;
     //Declare logout
     Button logOut;
+    // Declare string email
+    String email;
     public UserHomeFragment() {
         // Required empty public constructor
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,7 +48,27 @@ public class UserHomeFragment extends Fragment {
         logOut = view.findViewById(R.id.user_home_logout_button);
         welcome = view.findViewById(R.id.user_home_name);
         type = view.findViewById(R.id.user_home_account_type);
+        // Receive the bundle from other fragments
+        Bundle bundle = this.getArguments();
+        System.out.println(bundle);
+        assert bundle != null;
+        email = bundle.getString("email");
 
+        //Create spannalbe String
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+
+        // Text and color for string 1
+        SpannableString str1= new SpannableString("Welcome: ");
+        str1.setSpan(new ForegroundColorSpan(Color.rgb(161,161,161)), 0, str1.length(), 0);
+        builder.append(str1);
+
+        // Text and color for string 2
+        SpannableString str2= new SpannableString(email);
+        str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
+        builder.append(str2);
+
+        // Set text for textView
+        welcome.setText("Welcome " + email);
 
         return view;
     }

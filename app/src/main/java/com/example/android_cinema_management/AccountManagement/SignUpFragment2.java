@@ -109,6 +109,7 @@ public class SignUpFragment2 extends Fragment {
         });
 
 
+        // Receive the bundle from other fragments
         Bundle bundle = this.getArguments();
         System.out.println(bundle);
         assert bundle != null;
@@ -125,7 +126,7 @@ public class SignUpFragment2 extends Fragment {
                 Bundle bundle2 = new Bundle();
                 bundle2.putString("address", Objects.requireNonNull(address.getEditText()).getText().toString());
                 bundle2.putString("dateOfBirth", inputDateOfBirth.getText().toString());
-                bundle2.putString("gender", Objects.requireNonNull(gender.getEditText()).getText().toString());
+                bundle2. putString("gender", Objects.requireNonNull(gender.getEditText()).getText().toString());
                 bundle2.putString("fullName", fullName);
                 bundle2.putString("email", email);
                 bundle2.putString("password", password);
