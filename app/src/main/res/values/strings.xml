@@ -107,5 +107,8 @@
     <string name="user_home_account_type">Account Type: </string>
     <string name="news">News</string>
     <string name="saveChanges">Save Changes</string>
+    <string name="pleaseEnterCurrentPassword">Enter Your Current Password</string>
+    <string name="enter_new">Enter New</string>
+    <string name="save">Save</string>
 
 </resources>
