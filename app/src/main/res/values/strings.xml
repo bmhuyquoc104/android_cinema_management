@@ -106,5 +106,6 @@
     <string name="user_home_logout">LOG OUT</string>
     <string name="user_home_account_type">Account Type: </string>
     <string name="news">News</string>
+    <string name="saveChanges">Save Changes</string>
 
 </resources>
