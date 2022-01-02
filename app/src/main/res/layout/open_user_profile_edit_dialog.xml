@@ -60,7 +60,7 @@
         app:srcCompat="@drawable/ic_baseline_close_24" />
 
     <Button
-        android:id="@+id/ofd_filters"
+        android:id="@+id/user_profile_dialog_save_button"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
@@ -75,10 +75,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_profile_phone_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/user_profile_dialog_et" />
 
     <EditText
-        android:id="@+id/user_profile_phone_tv"
+        android:id="@+id/user_profile_dialog_et"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="15dp"

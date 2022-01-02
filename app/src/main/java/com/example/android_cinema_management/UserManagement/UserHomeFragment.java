@@ -1,6 +1,8 @@
 package com.example.android_cinema_management.UserManagement;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
 
@@ -69,6 +72,22 @@ public class UserHomeFragment extends Fragment {
 
         // Set text for textView
         welcome.setText("Welcome " + email);
+
+        /**
+         * Function to switch to profile page
+         *
+         * */
+        profile.setOnClickListener(View ->{
+            Intent intent = new Intent(getContext(),UserProfile.class);
+            // Start intent
+            try {
+               startActivity(intent);
+            }
+            // Exception if activity is not found
+            catch (ActivityNotFoundException e){
+                Toast.makeText(getContext(),"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
+            }        });
+
 
         return view;
     }
