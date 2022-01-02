@@ -163,7 +163,7 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         name.setText(currentCinema.getName());
         address.setText(currentCinema.getAddress());
         rate.setText(Double.toString(currentCinema.getRate()));
-        review.setText(currentCinema.getReview());
+        review.setText(Integer.toString(currentCinema.getReview()));
         city.setText(currentCinema.getCity());
         // close the bottom sheet
         close.setOnClickListener(view ->{
