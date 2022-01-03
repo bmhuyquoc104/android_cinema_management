@@ -2,6 +2,8 @@ package com.example.android_cinema_management.Model;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+
 public class Cinema {
 
     private String name;
@@ -15,10 +17,27 @@ public class Cinema {
     private String cinemaId;
     private int review;
     private String city;
+    private ArrayList<Screen> screens;
     public Cinema() {
     }
 
-    public Cinema(String cinemaId,String name, String address, Double latitude, Double longitude, Double rate,String contactNumber, String imageUrl, String locationName, int review, String city) {
+    public Cinema(String name, String address, double latitude, double longitude, double rate, String contactNumber, String imageUrl, String locationName, String cinemaId, int review, String city, ArrayList<Screen> screens) {
+        this.name = name;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.rate = rate;
+        this.contactNumber = contactNumber;
+        this.imageUrl = imageUrl;
+        this.locationName = locationName;
+        this.cinemaId = cinemaId;
+        this.review = review;
+        this.city = city;
+        this.screens = screens;
+    }
+
+
+    public Cinema(String name, String address, double latitude, double longitude, double rate, String contactNumber, String imageUrl, String locationName, String cinemaId, int review, String city) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -120,6 +139,14 @@ public class Cinema {
         this.city = city;
     }
 
+    public ArrayList<Screen> getScreens() {
+        return screens;
+    }
+
+    public void setScreens(ArrayList<Screen> screens) {
+        this.screens = screens;
+    }
+
     @NonNull
     @Override
     public String toString() {
@@ -135,6 +162,7 @@ public class Cinema {
                 ", cinemaId='" + cinemaId + '\'' +
                 ", review=" + review +
                 ", city='" + city + '\'' +
+                ", screens=" + screens +
                 '}';
     }
 }

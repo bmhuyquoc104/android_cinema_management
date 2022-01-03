@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android_cinema_management.Model.Cinema;
+import com.example.android_cinema_management.Model.Screen;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.databinding.ActivityCinemaLocationBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,6 +32,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class CinemaLocation extends FragmentActivity implements OnMapReadyCallback {
     // Declare class
     private Cinema currentCinema;
@@ -39,7 +42,7 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
     /// Declare string
     String currentId, currentName, currentAddress, currentLat, currentLng, currentNumber,
             currentImage, currentLocationName, currentRate, currentReview,currentCity;
-
+    ArrayList<Screen> currentScreens =new ArrayList<>();
     // Declare bottom sheet
     BottomSheetDialog globalSheetTracker;
 
@@ -93,9 +96,9 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
                 currentCity = intent.getStringExtra("city");
             }
             // Create currentCinema instance by values received when the user choose the specific cinema
-            currentCinema = new Cinema(currentId, currentName, currentAddress, Double.parseDouble(currentLat),
+            currentCinema = new Cinema(currentName, currentAddress,Double.parseDouble(currentLat),
                     Double.parseDouble(currentLng), Double.parseDouble(currentRate), currentNumber, currentImage,
-                    currentLocationName,Integer.parseInt(currentReview),currentCity);
+                    currentLocationName,currentId,Integer.parseInt(currentReview),currentCity);
         }
     }
 

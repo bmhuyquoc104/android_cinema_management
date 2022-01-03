@@ -1,6 +1,7 @@
 package com.example.android_cinema_management.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MovieDetail {
     private String director;
@@ -13,6 +14,7 @@ public class MovieDetail {
     private String content;
     private String rate;
     private String duration;
+    private List<Cinema> cinemas;
     public MovieDetail() {
     }
 
