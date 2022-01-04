@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -19,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class UserHomeFragment extends Fragment {
@@ -31,6 +35,8 @@ public class UserHomeFragment extends Fragment {
     Button logOut;
     // Declare string email
     String email;
+
+    FirebaseAuth firebaseAuth;
     public UserHomeFragment() {
         // Required empty public constructor
     }
@@ -56,6 +62,10 @@ public class UserHomeFragment extends Fragment {
         System.out.println(bundle);
         assert bundle != null;
         email = bundle.getString("email");
+
+        // Initialize fragment manager
+        FragmentManager fm = getParentFragmentManager();
+
 
         //Create spannalbe String
         SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -87,6 +97,17 @@ public class UserHomeFragment extends Fragment {
             catch (ActivityNotFoundException e){
                 Toast.makeText(getContext(),"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
             }        });
+
+        //Function log out
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         return view;

@@ -2,6 +2,7 @@ package com.example.android_cinema_management.AccountManagement;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,8 +15,10 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -37,6 +40,7 @@ public class SignUpFragment3 extends Fragment {
     boolean checkTermsPolicy = false;
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
     private FirebaseFirestore db;
     String userId;
     public SignUpFragment3() {
@@ -124,10 +128,6 @@ public class SignUpFragment3 extends Fragment {
             setButtonEnabled();
         });
 
-        register.setOnClickListener(View -> {
-            Toast.makeText(getContext(), "You have register your account successfully", Toast.LENGTH_SHORT).show();
-        });
-
         Bundle bundle =this.getArguments();
         System.out.println(bundle);
         assert bundle != null;
@@ -139,28 +139,57 @@ public class SignUpFragment3 extends Fragment {
         String phone = bundle.getString("phone");
         String address = bundle.getString("address");
         String gender = bundle.getString("gender");
-        String status = "true";
-        String role = "VIP";
+        String status = "inactive";
+        String role = "regular";
         String id = UUID.randomUUID().toString();
         System.out.println("fullName: " +fullName + "email: "+email + "password: "+password + confirmPassword + dateOfBirth + phone+address+gender);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
-        User user = new User(email, fullName, password, gender, dateOfBirth, address, status, phone, role, id);
+//        User user = new User(email, fullName, password, gender, dateOfBirth, address, status, phone, role, id);
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()){
-                userId = firebaseAuth.getCurrentUser().getUid();
-                DocumentReference documentReference = db.collection("Users").document(userId);
-                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Log.d("TAG", "onSuccess: user has been created: Successfully" + userId);
-                    }
-                });
+        register.setOnClickListener(View -> {
+            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()){
+                    //send verification email to user's email
+                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                    firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getActivity(), "Verification email has been sent", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), "Verification email fail to send " + e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-            }
+                    //Store user's information
+                    userId = firebaseAuth.getCurrentUser().getUid();
+                    DocumentReference documentReference = db.collection("Users").document(userId);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("email", email);
+                    user.put("fullName", fullName);
+                    user.put("password", password);
+                    user.put("dateOfBirth", dateOfBirth);
+                    user.put("phone", phone);
+                    user.put("address", address);
+                    user.put("gender", gender);
+                    user.put("status", status);
+                    user.put("role", role);
+                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getActivity(),"onSuccess: Successfully register user ", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else {
+                    Toast.makeText(getActivity(), "onFailure to register user " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         return view;
