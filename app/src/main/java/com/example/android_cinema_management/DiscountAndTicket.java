@@ -58,10 +58,26 @@ public class DiscountAndTicket extends Fragment {
         cinemaMenu = view.findViewById(R.id.cinema);
         cinemaACT = view.findViewById(R.id.cinemaItems);
 
+//        Month drop-down menu
+        monthMenu = view.findViewById(R.id.month);
+        monthACT = view.findViewById(R.id.monthItems);
+
+//        Insert cinema menu data and set on click
         String[] cinemas = {"Cinema1", "Cinema2", "Cinema3"};
         ArrayAdapter<String> cinemaAdapter = new ArrayAdapter<>(getContext(), R.layout.cinemas_list, cinemas);
         cinemaACT.setAdapter(cinemaAdapter);
         cinemaACT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), (String)parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//        Insert month data and set on click
+        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(getContext(), R.layout.month_list, months);
+        monthACT.setAdapter(monthAdapter);
+        monthACT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getContext(), (String)parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
