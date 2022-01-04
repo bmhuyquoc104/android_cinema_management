@@ -9,6 +9,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -20,8 +23,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.MoviesAdapter;
+import com.example.android_cinema_management.Adapter.ShowTimeAdapter;
+import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.Handler.MovieHandler;
 import com.example.android_cinema_management.MainActivity;
+import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.Model.MovieDetail;
 import com.example.android_cinema_management.R;
@@ -50,7 +57,13 @@ public class MovieShowTimeFragment1 extends Fragment {
     MovieDetail movieDetail;
     //Declare login and register button
     Movie movie;
-
+    //Declare recyclerview
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    //Declare adapter
+    private ShowTimeAdapter showTimeAdapter;
+    //Declare Movie list
+    ArrayList<Cinema> showTimeCinemaList;
 
     public MovieShowTimeFragment1() {
         // Required empty public constructor
@@ -67,8 +80,11 @@ public class MovieShowTimeFragment1 extends Fragment {
         duration = view.findViewById(R.id.mi_duration);
         movieImage = view.findViewById(R.id.mi_movieImage);
         movieTrailer = view.findViewById(R.id.mi_movieTrailer);
+        //Use a linear layout manager
+        layoutManager = new LinearLayoutManager(getContext());
         rate = view.findViewById(R.id.mi_rate);
         goback = view.findViewById(R.id.back);
+        showTimeCinemaList = CinemaFragment.cinemaArrayList;
         //Initialize movieURL
         movieDetailUrl = "";
         // Initialize list and class
@@ -76,6 +92,15 @@ public class MovieShowTimeFragment1 extends Fragment {
         movieDetail = new MovieDetail();
         movie = MovieInfoTabLayout.currentMovie;
 
+        // Set fixed size for recycler view
+        recyclerView = view.findViewById(R.id.movie_show_time_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        System.out.println("sfnmlskgnkaj" + showTimeCinemaList);
+        showTimeAdapter = new ShowTimeAdapter(getContext(),showTimeCinemaList);
+        // use  layout manager
+        recyclerView.setLayoutManager(layoutManager);
+        // Specify an adapter
+        recyclerView.setAdapter(showTimeAdapter);
         // Function to go back to previous activity
         goback.setOnClickListener ( View ->{
             Intent intent = new Intent(getContext(), MainActivity.class);

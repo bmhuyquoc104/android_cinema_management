@@ -164,10 +164,10 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/movie_show_time_recycler_view"
             android:layout_width="0dp"
             android:layout_height="500dp"
-            android:background="@color/colorPrimary2"
+            android:background="@color/colorPrimary3"
             android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

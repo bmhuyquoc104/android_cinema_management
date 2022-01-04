@@ -159,13 +159,13 @@ public class CinemaFragment extends Fragment {
             movie3 = movies.get(2);
             movie6 = movies.get(5);
         }
-        ShowTime showTime1 = new ShowTime("10:30","2D",movie1,"2022-01-04");
-        ShowTime showTime7 = new ShowTime("08:30","2D",movie1,"2022-01-04");
-        ShowTime showTime2 = new ShowTime("12:30","2D",movie2,"2022-01-04");
-        ShowTime showTime3 = new ShowTime("14:30","2D",movie3,"2022-01-04");
-        ShowTime showTime4 = new ShowTime("16:30","3D",movie1,"2022-01-04");
+        ShowTime showTime1 = new ShowTime("10:30","2D",movie1,"2022-01-05");
+        ShowTime showTime7 = new ShowTime("08:30","2D",movie1,"2022-01-05");
+        ShowTime showTime2 = new ShowTime("12:30","2D",movie2,"2022-01-05");
+        ShowTime showTime3 = new ShowTime("14:30","2D",movie3,"2022-01-05");
+        ShowTime showTime4 = new ShowTime("16:30","3D",movie1,"2022-01-05");
         ShowTime showTime5 = new ShowTime("18:30","3D",movie2,"2022-01-04");
-        ShowTime showTime6 = new ShowTime("20:30","2D",movie3,"2022-01-04");
+        ShowTime showTime6 = new ShowTime("23:12","2D",movie3,"2022-01-04");
         ShowTime showTime8 = new ShowTime("15:30","2D",movie6,"2022-01-02");
 
 
@@ -186,15 +186,12 @@ public class CinemaFragment extends Fragment {
         Screen screen3 = new Screen(3,5,showTimes,"available",seatForScreen3);
 
         System.out.println("huy before" + showTimes.size());
-//        for (int i = 0 ;i < showTimes.size();i++) {
-//            screen.getShowTime().get(i).removeInvalidTime(showTimes);
-//
-//        }
-
         for (int i = 0 ;i < showTimes.size();i++) {
-            screen.getShowTime().get(i).removeInvalidTime(showTimes);
-            screen.getShowTime().get(i).removeInvalidDate(showTimes);
+            screen.getShowTime().get(i).removeInvalidShowTime(showTimes);
+
         }
+
+
 
         System.out.println("huy after" + showTimes.size());
         screens.add(screen);

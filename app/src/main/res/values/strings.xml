@@ -113,5 +113,8 @@
     <string name="log_out">Log Out</string>
     <string name="enter_your_email_account">Enter Your Email Account</string>
     <string name="send_verification_email">Send Verification Email</string>
+    <string name="time">10:30</string>
+    <string name="screen">Screen</string>
+    <string name="type">2D</string>
 
 </resources>

@@ -21,14 +21,35 @@ public class ShowTime {
     }
 
     /**
-     * Function to check whether the time is valid or not
+     * Function to check whether the showTime is valid or not
      * */
-    public void removeInvalidTime(ArrayList<ShowTime>showTimes){
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+    public void removeInvalidShowTime(ArrayList<ShowTime>showTimes){
+        //Get current date time
         Date time = Calendar.getInstance().getTime();
-        String currentTime = df.format(time);
-        for (int i = 0; i < showTimes.size() ; i++){
-            if (currentTime.compareTo(showTimes.get(i).getTime()) >= 0){
+        //Format the date for later comparison
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        //Format the time for later comparison
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("kk:mm");
+        String currentTime = df2.format(time);
+        String currentDate = df.format(time);
+
+        //Loop through alll show times and figure out which show time is expired and removed
+        for(int i = 0; i < showTimes.size(); i++) {
+            if(showTimes.get(i).getDate().compareTo(currentDate) == 0) {
+                if (showTimes.get(i).getTime().compareTo(currentTime) >= 0) {
+                    System.out.println("keep");
+                } else {
+                    System.out.println("remove1");
+                    //Remove the expired show time
+                    showTimes.remove(i);
+                }
+            }
+            else if(showTimes.get(i).getDate().compareTo(currentDate) > 0){
+                System.out.println("keep3");
+
+            } else if(showTimes.get(i).getDate().compareTo(currentDate) <0){
+                System.out.println("remove2");
+                //Remove the expired show time
                 showTimes.remove(i);
             }
         }

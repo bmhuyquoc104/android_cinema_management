@@ -34,7 +34,6 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
     // Initialize context
     private Context context;
 
-    private FirebaseFirestore db;
 
     public CinemaAdapter(Context context,ArrayList<Cinema> cinemaList){
         this.context = context;
