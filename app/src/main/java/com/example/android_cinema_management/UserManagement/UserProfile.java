@@ -59,8 +59,6 @@ public class UserProfile extends AppCompatActivity {
     TextInputEditText password;
     //Declare button
     Button saveChanges,reset;
-    //Declare class for current User
-    User currentUser = new User("bmhuyquoc104@gmail.com","huy vo","123456","male","01-04-2000","LA","active","0848731007","normal","adasd");
 
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
@@ -88,13 +86,7 @@ public class UserProfile extends AppCompatActivity {
         reset = findViewById(R.id.user_profile_reset_button);
         avatar = findViewById(R.id.user_profile_avatar_iv);
 
-        //Set text for textview
-        name.setText(currentUser.getFullName());
-        password.setText(currentUser.getPassword());
-        phone.setText(currentUser.getPhone());
-        email.setText(currentUser.getEmail());
-        dateOfBirth.setText(currentUser.getDateOfBirth());
-        address.setText(currentUser.getAddress());
+
 
 
         //Initialize Firebase Firestore
@@ -266,7 +258,9 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String inputConfirmPassword = Objects.requireNonNull(Objects.requireNonNull(confirmPassword.getText()).toString());;
-                String currentUserPassword = currentUser.getPassword();
+                String currentUserPassword = Objects.requireNonNull(password.getText()).toString();
+                System.out.println(currentUserPassword + "test1");
+                System.out.println(inputConfirmPassword + "test2");
                 // Check if user input confirmPassword match their account's password
                     if (!inputConfirmPassword.equals(currentUserPassword)){
                         // Disable the edittext
