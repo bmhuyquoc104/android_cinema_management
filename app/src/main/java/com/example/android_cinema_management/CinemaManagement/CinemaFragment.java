@@ -22,9 +22,13 @@ import android.widget.AutoCompleteTextView;
 import com.example.android_cinema_management.Adapter.CinemaAdapter;
 import com.example.android_cinema_management.Adapter.MoviesAdapter;
 import com.example.android_cinema_management.Handler.MovieHandler;
+import com.example.android_cinema_management.HomeFragment;
+import com.example.android_cinema_management.HomeManagement.HomeFragment1;
 import com.example.android_cinema_management.Model.Cinema;
+import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.Model.Screen;
 import com.example.android_cinema_management.Model.Seat;
+import com.example.android_cinema_management.Model.ShowTime;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.database.CinemaDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -119,10 +123,7 @@ public class CinemaFragment extends Fragment {
 //            });
 //        });
 
-        ArrayList<String>showTime1 = new ArrayList<>();
-        showTime1.add("10:30");
-        showTime1.add("12:30");
-        showTime1.add("14:30");
+
 
         //  Dummy data
         Seat seat = new Seat(1,false,"10");
@@ -146,11 +147,56 @@ public class CinemaFragment extends Fragment {
         seatForScreen3.add(seat7);
         seatForScreen3.add(seat8);
         seatForScreen3.add(seat9);
-        ArrayList<Screen> screens = new ArrayList<>();
 
-        Screen screen = new Screen(1,5,showTime1,"available",seatForScreen);
-        Screen screen2 = new Screen(2,5,showTime1,"available",seatForScreen2);
-        Screen screen3 = new Screen(3,5,showTime1,"available",seatForScreen3);
+        ArrayList<Movie>movies = HomeFragment1.movieList;
+        Movie movie1 = new Movie();
+        Movie movie2 = new Movie();
+        Movie movie3 = new Movie();
+        Movie movie6 = new Movie();
+        for (int i = 0; i< movies.size();i++){
+            movie1 = movies.get(0);
+            movie2 = movies.get(1);
+            movie3 = movies.get(2);
+            movie6 = movies.get(5);
+        }
+        ShowTime showTime1 = new ShowTime("10:30","2D",movie1,"2022-01-04");
+        ShowTime showTime7 = new ShowTime("08:30","2D",movie1,"2022-01-04");
+        ShowTime showTime2 = new ShowTime("12:30","2D",movie2,"2022-01-04");
+        ShowTime showTime3 = new ShowTime("14:30","2D",movie3,"2022-01-04");
+        ShowTime showTime4 = new ShowTime("16:30","3D",movie1,"2022-01-04");
+        ShowTime showTime5 = new ShowTime("18:30","3D",movie2,"2022-01-04");
+        ShowTime showTime6 = new ShowTime("20:30","2D",movie3,"2022-01-04");
+        ShowTime showTime8 = new ShowTime("15:30","2D",movie6,"2022-01-02");
+
+
+        ArrayList<ShowTime> showTimes = new ArrayList<>();
+        showTimes.add(showTime1);
+        showTimes.add(showTime2);
+        showTimes.add(showTime3);
+        showTimes.add(showTime4);
+        showTimes.add(showTime5);
+        showTimes.add(showTime6);
+        showTimes.add(showTime7);
+        showTimes.add(showTime8);
+
+
+        ArrayList<Screen> screens = new ArrayList<>();
+        Screen screen = new Screen(1,5,showTimes,"available",seatForScreen);
+        Screen screen2 = new Screen(2,5,showTimes,"available",seatForScreen2);
+        Screen screen3 = new Screen(3,5,showTimes,"available",seatForScreen3);
+
+        System.out.println("huy before" + showTimes.size());
+//        for (int i = 0 ;i < showTimes.size();i++) {
+//            screen.getShowTime().get(i).removeInvalidTime(showTimes);
+//
+//        }
+
+        for (int i = 0 ;i < showTimes.size();i++) {
+            screen.getShowTime().get(i).removeInvalidTime(showTimes);
+            screen.getShowTime().get(i).removeInvalidDate(showTimes);
+        }
+
+        System.out.println("huy after" + showTimes.size());
         screens.add(screen);
         screens.add(screen2);
         screens.add(screen3);

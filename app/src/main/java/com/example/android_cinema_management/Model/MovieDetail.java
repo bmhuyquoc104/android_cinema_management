@@ -33,6 +33,20 @@ public class MovieDetail {
         this.duration = duration;
     }
 
+    public MovieDetail(String director, String actors, String producers, String country, String releaseDate, String urlVideos, String category, String content, String rate, String duration, List<Cinema> cinemas) {
+        this.director = director;
+        this.actors = actors;
+        this.producers = producers;
+        this.country = country;
+        this.releaseDate = releaseDate;
+        this.urlVideos = urlVideos;
+        this.category = category;
+        this.content = content;
+        this.rate = rate;
+        this.duration = duration;
+        this.cinemas = cinemas;
+    }
+
     public String getDirector() {
         return director;
     }
@@ -113,6 +127,14 @@ public class MovieDetail {
         this.duration = duration;
     }
 
+    public List<Cinema> getCinemas() {
+        return cinemas;
+    }
+
+    public void setCinemas(List<Cinema> cinemas) {
+        this.cinemas = cinemas;
+    }
+
     // Function to get the Id in the trailer link
     public String getTrailers(ArrayList<MovieDetail> trailer) {
         String finalId = "";
@@ -144,6 +166,7 @@ public class MovieDetail {
                 ", content='" + content + '\'' +
                 ", rate='" + rate + '\'' +
                 ", duration='" + duration + '\'' +
+                ", cinemas=" + cinemas +
                 '}';
     }
 }

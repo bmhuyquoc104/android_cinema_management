@@ -8,11 +8,11 @@ import java.util.List;
 public class Screen {
     private int screenId;
     private int seats;
-    private List<String> showTime;
+    private List<ShowTime> showTime;
     private String status;
     private ArrayList<Seat> seat;
 
-    public Screen(int screenId, int seats, List<String> showTime, String status, ArrayList<Seat> seat) {
+    public Screen(int screenId, int seats, List<ShowTime> showTime, String status, ArrayList<Seat> seat) {
         this.screenId = screenId;
         this.seats = seats;
         this.showTime = showTime;
@@ -36,11 +36,11 @@ public class Screen {
         this.seats = seats;
     }
 
-    public List<String> getShowTime() {
+    public List<ShowTime> getShowTime() {
         return showTime;
     }
 
-    public void setShowTime(List<String> showTime) {
+    public void setShowTime(List<ShowTime> showTime) {
         this.showTime = showTime;
     }
 
