@@ -96,11 +96,11 @@ public class MovieShowTimeFragment1 extends Fragment {
         recyclerView = view.findViewById(R.id.movie_show_time_recycler_view);
         recyclerView.setHasFixedSize(true);
         System.out.println("sfnmlskgnkaj" + showTimeCinemaList);
-        showTimeAdapter = new ShowTimeAdapter(getContext(),showTimeCinemaList);
-        // use  layout manager
-        recyclerView.setLayoutManager(layoutManager);
-        // Specify an adapter
-        recyclerView.setAdapter(showTimeAdapter);
+//        showTimeAdapter = new ShowTimeAdapter(getContext(),showTimeCinemaList);
+//        // use  layout manager
+//        recyclerView.setLayoutManager(layoutManager);
+//        // Specify an adapter
+//        recyclerView.setAdapter(showTimeAdapter);
         // Function to go back to previous activity
         goback.setOnClickListener ( View ->{
             Intent intent = new Intent(getContext(), MainActivity.class);
