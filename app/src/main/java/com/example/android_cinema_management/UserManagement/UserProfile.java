@@ -16,6 +16,7 @@ import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -29,6 +30,9 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,10 +41,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.type.TimeOfDayOrBuilder;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class UserProfile extends AppCompatActivity {
@@ -168,16 +175,45 @@ public class UserProfile extends AppCompatActivity {
             finish();
         });
 
+        saveChanges.setOnClickListener(View -> {
+            Map<String, Object> userInformation = new HashMap<>();
+            userInformation.put("email", editEmail);
+            userInformation.put("fullName", editName);
+            userInformation.put("password", editPassword);
+            userInformation.put("address", editAddress);
+            userInformation.put("phone", editPhone);
+            userInformation.put("dateOfBirth", editDateOfBirth);
+
+            db.collection("Users")
+                    .whereEqualTo("email", email)
+                    .whereEqualTo("fullName", name)
+                    .whereEqualTo("password", password)
+                    .whereEqualTo("address", address)
+                    .whereEqualTo("phone", phone)
+                    .whereEqualTo("dateOfBirth", dateOfBirth).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && !task.getResult().isEmpty()){
+                            Toast.makeText(UserProfile.this, "You have successfully update your information", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(UserProfile.this, "Fail to update your information " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+        });
+
         /*
         *Function to reset all text view to default
         * */
         reset.setOnClickListener(view ->{
-            name.setText(currentUser.getFullName());
-            password.setText(currentUser.getPassword());
-            phone.setText(currentUser.getPhone());
-            email.setText(currentUser.getEmail());
-            dateOfBirth.setText(currentUser.getDateOfBirth());
-            address.setText(currentUser.getAddress());
+            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                    name.setText(value.getString("fullName"));
+                    password.setText(value.getString("password"));
+                    phone.setText(value.getString("phone"));
+                    email.setText(value.getString("email"));
+                    dateOfBirth.setText(value.getString("dateOfBirth"));
+                    address.setText(value.getString("address"));
+                }
+            });
             Picasso.get().load("https://images.pexels.com/photos/1200450/pexels-photo-1200450.jpeg?cs=srgb&dl=pexels-louis-1200450.jpg&fm=jpg").into(avatar);
         });
 
