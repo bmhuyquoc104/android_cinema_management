@@ -1,6 +1,7 @@
 package com.example.android_cinema_management.UserManagement;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -21,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,12 @@ import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.type.TimeOfDayOrBuilder;
 import com.squareup.picasso.Picasso;
 
@@ -46,6 +54,10 @@ public class UserProfile extends AppCompatActivity {
     Button saveChanges,reset;
     //Declare class for current User
     User currentUser = new User("bmhuyquoc104@gmail.com","huy vo","123456","male","01-04-2000","LA","active","0848731007","normal","adasd");
+
+    FirebaseFirestore db;
+    FirebaseAuth firebaseAuth;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +88,26 @@ public class UserProfile extends AppCompatActivity {
         email.setText(currentUser.getEmail());
         dateOfBirth.setText(currentUser.getDateOfBirth());
         address.setText(currentUser.getAddress());
+
+
+        //Initialize Firebase Firestore
+        db = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        //Function pull user's information
+        userId = firebaseAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = db.collection("Users").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                name.setText(value.getString("fullName"));
+                password.setText(value.getString("password"));
+                phone.setText(value.getString("phone"));
+                email.setText(value.getString("email"));
+                dateOfBirth.setText(value.getString("dateOfBirth"));
+                address.setText(value.getString("address"));
+            }
+        });
 
         /*
          * Function to open edit dialog
@@ -251,7 +283,7 @@ public class UserProfile extends AppCompatActivity {
             });
         }
 
-        ImageView close = dialog.findViewById(R.id.open_user_profile_close_button);
+        ImageButton close = dialog.findViewById(R.id.open_user_profile_close_button);
         /*
          * Function to dismiss the dialog
          * */

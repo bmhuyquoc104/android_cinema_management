@@ -110,5 +110,8 @@
     <string name="pleaseEnterCurrentPassword">Enter Your Current Password</string>
     <string name="enter_new">Enter New</string>
     <string name="save">Save</string>
+    <string name="log_out">Log Out</string>
+    <string name="enter_your_email_account">Enter Your Email Account</string>
+    <string name="send_verification_email">Send Verification Email</string>
 
 </resources>
