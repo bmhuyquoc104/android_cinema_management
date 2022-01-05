@@ -39,6 +39,7 @@ public class SignUpFragment3 extends Fragment {
     boolean checkPrivacyPolicy = false;
     boolean checkTermsPolicy = false;
 
+    //Declare FirebaseAuth FirebaseUser FirebaseFireStore String
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private FirebaseFirestore db;
@@ -128,6 +129,7 @@ public class SignUpFragment3 extends Fragment {
             setButtonEnabled();
         });
 
+        //getting content of fullName, email, password, confirmPassword, dateOfBirth, phone, address, gender
         Bundle bundle =this.getArguments();
         System.out.println(bundle);
         assert bundle != null;
@@ -144,22 +146,27 @@ public class SignUpFragment3 extends Fragment {
         String id = UUID.randomUUID().toString();
         System.out.println("fullName: " +fullName + "email: "+email + "password: "+password + confirmPassword + dateOfBirth + phone+address+gender);
 
+        //Initialize FirebaseAuth and FirebaseUser and FirebaseFireStore
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
 //        User user = new User(email, fullName, password, gender, dateOfBirth, address, status, phone, role, id);
-
+        //Listen to register button onClick
         register.setOnClickListener(View -> {
+            //send user's email and password to FirebaseAuth to register
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                //if success sending email and password to FirebaseAuth
                 if (task.isSuccessful()){
                     //send verification email to user's email
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                     firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
+                        //if verification email successfully send to user's email
                         public void onSuccess(Void unused) {
                             Toast.makeText(getActivity(), "Verification email has been sent", Toast.LENGTH_SHORT).show();
                         }
+                        //if verification email fail to send to user's email
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
@@ -170,6 +177,7 @@ public class SignUpFragment3 extends Fragment {
                     //Store user's information
                     userId = firebaseAuth.getCurrentUser().getUid();
                     DocumentReference documentReference = db.collection("Users").document(userId);
+                    //put all user's information into map
                     Map<String, Object> user = new HashMap<>();
                     user.put("email", email);
                     user.put("fullName", fullName);
@@ -180,12 +188,15 @@ public class SignUpFragment3 extends Fragment {
                     user.put("gender", gender);
                     user.put("status", status);
                     user.put("role", role);
+                    //storing all user's information into collection Users onto one particular user
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
+                        //if task successful
                         public void onSuccess(Void unused) {
                             Toast.makeText(getActivity(),"onSuccess: Successfully register user ", Toast.LENGTH_SHORT).show();
                         }
                     });
+                    //if task is fail
                 }else {
                     Toast.makeText(getActivity(), "onFailure to register user " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }

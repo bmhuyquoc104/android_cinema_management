@@ -53,6 +53,7 @@ public class SignInFragment extends Fragment {
 
     Activity fragmentActivity;
 
+    //Declare Firebase Authentication
     FirebaseAuth firebaseAuth;
 
     public SignInFragment() {
@@ -86,21 +87,25 @@ public class SignInFragment extends Fragment {
         logIn.setOnClickListener(view ->{
             // Replace this fragment by accounts fragment
                 if (emailIsNotEmpty() && passwordIsNotEmpty()) {
+                    //getting user's email and password
                     inputEmail = email.getEditText().getText().toString();
                     inputPassword = password.getEditText().getText().toString();
                     Bundle bundle = new Bundle();
                     bundle.putString("password", inputPassword);
                     bundle.putString("email", inputEmail);
+                    //send user's email and password to Firebase Authentication to check
                     firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
+                                //if the email and password is correct
                                 UserHomeFragment fragment = new UserHomeFragment();
                                 fragment.setArguments(bundle);
                                 FragmentTransaction transaction =
                                         fm.beginTransaction();
                                 transaction.replace(R.id.ma_container, fragment).commit();
                             }else{
+                                //if the email and password is incorrect
                                 Toast.makeText(getActivity(), "Fail to login " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -134,17 +139,23 @@ public class SignInFragment extends Fragment {
             EditText resetEmail = forgotPasswordDialog.findViewById(R.id.user_forgot_password_tie);
             ImageButton closeDialog = forgotPasswordDialog.findViewById(R.id.open_user_forgotPassword_close_button);
 
+            //Initialize send Verification button
             Button sendVerification = forgotPasswordDialog.findViewById(R.id.user_profile_dialog_send_verification_button);
+            //listen to OnClickListener of sendVerification button
             sendVerification.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //Initialize String with value of user's email account
                     String email = resetEmail.getText().toString();
+                    //call Firebase Authentication to send reset password link to user's email
                     firebaseAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
+                        //onSuccess sending link via email
                         public void onSuccess(Void unused) {
                             Toast.makeText(getActivity(), "Reset link has been sent to your email", Toast.LENGTH_SHORT).show();
                             forgotPasswordDialog.dismiss();
                         }
+                        //onFailure sending link via email
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
@@ -154,6 +165,7 @@ public class SignInFragment extends Fragment {
                 }
             });
 
+            //set close button to dismiss forgotPasswordDialog
             closeDialog.setOnClickListener(view1 -> {
                 forgotPasswordDialog.dismiss();
             });
