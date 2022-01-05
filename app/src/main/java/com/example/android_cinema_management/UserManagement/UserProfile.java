@@ -32,10 +32,12 @@ import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -49,17 +51,18 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class UserProfile extends AppCompatActivity {
     //Declare imageview
-    ImageView editName, editEmail, editDateOfBirth, editPhone, editAddress,editPassword,back,avatar;
+    ImageView editName, editEmail, editDateOfBirth, editPhone, editAddress, editPassword, back, avatar;
     //Declare textview
-    TextView name, email,dateOfBirth,address,phone;
+    TextView name, email, dateOfBirth, address, phone;
     //Declare edit text and text layout
     TextInputEditText password;
     //Declare button
-    Button saveChanges,reset;
-
+    Button saveChanges, reset;
+    //Declare FirebaseFireStore FirebaseAuth String
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
     String userId;
@@ -85,9 +88,64 @@ public class UserProfile extends AppCompatActivity {
         saveChanges = findViewById(R.id.user_profile_save_button);
         reset = findViewById(R.id.user_profile_reset_button);
         avatar = findViewById(R.id.user_profile_avatar_iv);
+        /*
+         * Function to open edit dialog
+         * */
+        editName.setOnClickListener(View -> {
+            // Set edit text hint and drawable image for name
+            openEditDialog("Enter your new full name", R.drawable.ic_baseline_person_24, name);
 
+        });
+        /*
+         * Function to open edit dialog
+         * */
+        editEmail.setOnClickListener(View -> {
+            // Set edit text hint and drawable image for name
+            openEditDialog("Enter your new email", R.drawable.ic_baseline_email_24, email);
+        });
 
+        /*
+         * Function to open edit dialog
+         * */
+        editPhone.setOnClickListener(View -> {
+            // Set edit text hint and drawable image for phone
+            openEditDialog("Enter your new phone number", R.drawable.ic_baseline_phone_android_24, phone);
+        });
 
+        /*
+         * Function to open edit dialog
+         * */
+        editAddress.setOnClickListener(View -> {
+            // Set edit text hint and drawable image for address
+            openEditDialog("Enter your new address", R.drawable.ic_baseline_home_24, address);
+        });
+
+        avatar.setOnClickListener(View -> {
+            openImageDialog("Enter your avatar https://link", R.drawable.ic_baseline_image_24, avatar);
+        });
+
+        /*
+         * Function to open edit dialog
+         * */
+        editDateOfBirth.setOnClickListener(View -> {
+            // Set edit text hint and drawable image for date of birth
+            openEditDialog("Enter your new date of birth", R.drawable.ic_baseline_cake_24, dateOfBirth);
+        });
+
+        /*
+         * Function to open edit dialog
+         * */
+        editPassword.setOnClickListener(View -> {
+            // Set edit text hint and drawable image for password
+            openEditDialog("Enter your new password", R.drawable.ic_baseline_lock_24, password);
+        });
+
+        /*
+         *Function to close activity
+         * */
+        back.setOnClickListener(View -> {
+            finish();
+        });
 
         //Initialize Firebase Firestore
         db = FirebaseFirestore.getInstance();
@@ -95,6 +153,33 @@ public class UserProfile extends AppCompatActivity {
 
         //Function pull user's information
         userId = firebaseAuth.getCurrentUser().getUid();
+
+        saveChanges.setOnClickListener(View -> {
+            //put all user's information into userInformation hashMap
+            HashMap<String, String> userInformation = new HashMap<>();
+            userInformation.put("email", email.getText().toString());
+            userInformation.put("fullName", name.getText().toString());
+            userInformation.put("password", Objects.requireNonNull(password.getText()).toString());
+            userInformation.put("address", address.getText().toString());
+            userInformation.put("phone", phone.getText().toString());
+            userInformation.put("dateOfBirth", dateOfBirth.getText().toString());
+            userInformation.put("id", UUID.randomUUID().toString());
+            userInformation.put("role", "regular");
+            userInformation.put("status", "active");
+            //put userInformation into firebaseFireStore
+            db.collection("Users").document(userId)
+                    .set(userInformation)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(UserProfile.this, "Successfully update user's information", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(UserProfile.this, "Fail to update user's information", Toast.LENGTH_SHORT).show();
+                    });
+        });
+
+        //get user's information and put into textEdits
         DocumentReference documentReference = db.collection("Users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -109,92 +194,9 @@ public class UserProfile extends AppCompatActivity {
         });
 
         /*
-         * Function to open edit dialog
+         *Function to reset all text view to default
          * */
-        editName.setOnClickListener(View ->{
-            // Set edit text hint and drawable image for name
-            openEditDialog("Enter your new full name", R.drawable.ic_baseline_person_24,name);
-
-        });
-        /*
-         * Function to open edit dialog
-         * */
-        editEmail.setOnClickListener(View ->{
-            // Set edit text hint and drawable image for name
-            openEditDialog("Enter your new email", R.drawable.ic_baseline_email_24,email);
-        });
-
-        /*
-         * Function to open edit dialog
-         * */
-        editPhone.setOnClickListener(View ->{
-            // Set edit text hint and drawable image for phone
-            openEditDialog("Enter your new phone number", R.drawable.ic_baseline_phone_android_24,phone);
-        });
-
-        /*
-         * Function to open edit dialog
-         * */
-        editAddress.setOnClickListener(View ->{
-            // Set edit text hint and drawable image for address
-            openEditDialog("Enter your new address", R.drawable.ic_baseline_home_24,address);
-        });
-
-        avatar.setOnClickListener(View ->{
-            openImageDialog("Enter your avatar https://link",R.drawable.ic_baseline_image_24,avatar);
-        });
-
-        /*
-         * Function to open edit dialog
-         * */
-        editDateOfBirth.setOnClickListener(View ->{
-            // Set edit text hint and drawable image for date of birth
-            openEditDialog("Enter your new date of birth", R.drawable.ic_baseline_cake_24,dateOfBirth);
-        });
-
-        /*
-         * Function to open edit dialog
-         * */
-        editPassword.setOnClickListener(View ->{
-            // Set edit text hint and drawable image for password
-            openEditDialog("Enter your new password", R.drawable.ic_baseline_lock_24,password);
-        });
-
-        /*
-        *Function to close activity
-        * */
-        back.setOnClickListener(View ->{
-            finish();
-        });
-
-        saveChanges.setOnClickListener(View -> {
-            Map<String, Object> userInformation = new HashMap<>();
-            userInformation.put("email", editEmail);
-            userInformation.put("fullName", editName);
-            userInformation.put("password", editPassword);
-            userInformation.put("address", editAddress);
-            userInformation.put("phone", editPhone);
-            userInformation.put("dateOfBirth", editDateOfBirth);
-
-            db.collection("Users")
-                    .whereEqualTo("email", email)
-                    .whereEqualTo("fullName", name)
-                    .whereEqualTo("password", password)
-                    .whereEqualTo("address", address)
-                    .whereEqualTo("phone", phone)
-                    .whereEqualTo("dateOfBirth", dateOfBirth).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && !task.getResult().isEmpty()){
-                            Toast.makeText(UserProfile.this, "You have successfully update your information", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(e -> {
-                        Toast.makeText(UserProfile.this, "Fail to update your information " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
-        });
-
-        /*
-        *Function to reset all text view to default
-        * */
-        reset.setOnClickListener(view ->{
+        reset.setOnClickListener(view -> {
             documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -209,17 +211,12 @@ public class UserProfile extends AppCompatActivity {
             Picasso.get().load("https://images.pexels.com/photos/1200450/pexels-photo-1200450.jpeg?cs=srgb&dl=pexels-louis-1200450.jpg&fm=jpg").into(avatar);
         });
 
-        /*
-        *Function to save changes to database
-        * */
-        saveChanges.setOnClickListener(View ->{
-            //TODO : add post to database here !!!
-        });
     }
+
     /**
      * Function to open edit dialog when click the edit image view
      */
-    private void openEditDialog(String editTextHint,int iconId,TextView textView) {
+    private void openEditDialog(String editTextHint, int iconId, TextView textView) {
         // Initialize new dialog
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -237,7 +234,7 @@ public class UserProfile extends AppCompatActivity {
         window.setAttributes(windowAttributes);
         // Disable cancel by clicking randomly on the screen
         dialog.setCancelable(false);
-        
+
         dialog.show();
         EditText change = dialog.findViewById(R.id.user_profile_dialog_et);
         // Disable the edittext
@@ -246,8 +243,8 @@ public class UserProfile extends AppCompatActivity {
 
 
         /*
-        *Function to check user password before changing any information in their profile
-        * */
+         *Function to check user password before changing any information in their profile
+         * */
         confirmPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -257,20 +254,14 @@ public class UserProfile extends AppCompatActivity {
             // Detect the user input on text changed
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String inputConfirmPassword = Objects.requireNonNull(Objects.requireNonNull(confirmPassword.getText()).toString());;
+                String inputConfirmPassword = Objects.requireNonNull(Objects.requireNonNull(confirmPassword.getText()).toString());
+                ;
                 String currentUserPassword = Objects.requireNonNull(password.getText()).toString();
                 System.out.println(currentUserPassword + "test1");
                 System.out.println(inputConfirmPassword + "test2");
                 // Check if user input confirmPassword match their account's password
-                    if (!inputConfirmPassword.equals(currentUserPassword)){
-                        // Disable the edittext
-                        change.setEnabled(false);
-                        Toast.makeText(getApplication(),"Your password is not correct.Please try Again",Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        //Enable the editttext
-                        change.setEnabled(true);
-                    }
+                //Enable the editttext
+                change.setEnabled(true);
 
             }
 
@@ -284,11 +275,11 @@ public class UserProfile extends AppCompatActivity {
         @SuppressLint("UseCompatLoadingForDrawables") Drawable img = this.getResources().getDrawable(iconId);
         change.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
-        if (hint.equals("Enter your new date of birth")){
+        if (hint.equals("Enter your new date of birth")) {
             // Set the edit text is not editable
             change.setFocusable(false);
             change.setClickable(false);
-            change.setOnClickListener(View ->{
+            change.setOnClickListener(View -> {
                 // Create instance of calendar
                 Calendar calendar = Calendar.getInstance();
                 int day = calendar.get(Calendar.DATE);
@@ -317,7 +308,7 @@ public class UserProfile extends AppCompatActivity {
         /*
          * Function to dismiss the dialog
          * */
-        close.setOnClickListener(View ->{
+        close.setOnClickListener(View -> {
             dialog.dismiss();
         });
 
@@ -326,18 +317,17 @@ public class UserProfile extends AppCompatActivity {
          *Function to save the changes
          * */
         save.setOnClickListener(View -> {
-           dialog.dismiss();
-           String newChange = change.getText().toString();
-           textView.setText(newChange);
+            dialog.dismiss();
+            String newChange = change.getText().toString();
+            textView.setText(newChange);
         });
     }
-
 
 
     /**
      * Function to open image dialog when click the avatar
      */
-    private void openImageDialog(String editTextHint,int iconId,ImageView iv) {
+    private void openImageDialog(String editTextHint, int iconId, ImageView iv) {
         // Initialize new dialog
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -370,7 +360,7 @@ public class UserProfile extends AppCompatActivity {
         /*
          * Function to dismiss the dialog
          * */
-        close.setOnClickListener(View ->{
+        close.setOnClickListener(View -> {
             dialog.dismiss();
         });
 
