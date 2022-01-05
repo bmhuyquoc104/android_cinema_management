@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class UserHomeFragment extends Fragment {
@@ -37,6 +39,9 @@ public class UserHomeFragment extends Fragment {
     String email;
 
     FirebaseAuth firebaseAuth;
+    FirebaseFirestore db;
+    FirebaseUser user;
+    String userId;
     public UserHomeFragment() {
         // Required empty public constructor
     }
@@ -80,6 +85,11 @@ public class UserHomeFragment extends Fragment {
         str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
         builder.append(str2);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        userId = user.getUid();
+        db = FirebaseFirestore.getInstance();
+
         // Set text for textView
         welcome.setText("Welcome " + email);
 
@@ -98,10 +108,24 @@ public class UserHomeFragment extends Fragment {
                 Toast.makeText(getContext(),"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
             }        });
 
+        //Listen onClick of Review Button
+        review.setOnClickListener(View ->{
+            Intent intent = new Intent(getActivity(), UserReview.class);
+            startActivity(intent);
+        });
+
+        //Listen onClick of FeedBack button
+        feedback.setOnClickListener(View ->{
+            Intent intent = new Intent(getActivity(), UserFeedBack.class);
+            startActivity(intent);
+        });
+
         //Function log out
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.collection("Users").document(userId)
+                        .update("status","inactive");
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);

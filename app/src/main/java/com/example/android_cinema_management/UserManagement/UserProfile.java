@@ -51,6 +51,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class UserProfile extends AppCompatActivity {
     //Declare imageview
@@ -61,10 +62,9 @@ public class UserProfile extends AppCompatActivity {
     TextInputEditText password;
     //Declare button
     Button saveChanges, reset;
-
+    //Declare FirebaseFireStore FirebaseAuth String
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
     String userId;
 
     @Override
@@ -155,8 +155,6 @@ public class UserProfile extends AppCompatActivity {
         userId = firebaseAuth.getCurrentUser().getUid();
 
         saveChanges.setOnClickListener(View -> {
-//            Toast.makeText(this, "khhhhoccccccc", Toast.LENGTH_SHORT).show();
-//            System.out.println("IDDDDDDDDDDDDDD " + userId);
             //put all user's information into userInformation hashMap
             HashMap<String, String> userInformation = new HashMap<>();
             userInformation.put("email", email.getText().toString());
@@ -165,6 +163,9 @@ public class UserProfile extends AppCompatActivity {
             userInformation.put("address", address.getText().toString());
             userInformation.put("phone", phone.getText().toString());
             userInformation.put("dateOfBirth", dateOfBirth.getText().toString());
+            userInformation.put("id", UUID.randomUUID().toString());
+            userInformation.put("role", "regular");
+            userInformation.put("status", "active");
             //put userInformation into firebaseFireStore
             db.collection("Users").document(userId)
                     .set(userInformation)

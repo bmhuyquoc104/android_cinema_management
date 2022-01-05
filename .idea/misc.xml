@@ -118,6 +118,9 @@
         <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.38472222222222224" />
         <entry key="app/src/main/res/layout/fragment_cinema.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5820512820512821" />
+        <entry key="app/src/main/res/layout/fragment_home1.xml" value="0.5192708333333333" />
+        <entry key="app/src/main/res/layout/fragment_home2.xml" value="0.5192708333333333" />
+        <entry key="app/src/main/res/layout/fragment_movie_details2.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_movie_show_time1.xml" value="0.5820512820512821" />
         <entry key="app/src/main/res/layout/fragment_movies.xml" value="0.3940972222222222" />
         <entry key="app/src/main/res/layout/fragment_search_filter_by_cinema_fragement1.xml" value="0.4821150855365474" />

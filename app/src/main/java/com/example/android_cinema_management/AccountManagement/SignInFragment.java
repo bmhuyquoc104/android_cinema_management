@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
@@ -55,6 +56,8 @@ public class SignInFragment extends Fragment {
 
     //Declare Firebase Authentication
     FirebaseAuth firebaseAuth;
+    FirebaseFirestore db;
+    String userId;
 
     public SignInFragment() {
         // Required empty public constructor
@@ -81,6 +84,8 @@ public class SignInFragment extends Fragment {
 
         //Initialize firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
+//        db = FirebaseFirestore.getInstance();
+//        userId = firebaseAuth.getCurrentUser().getUid();
 
 
         //Function to log into the account
