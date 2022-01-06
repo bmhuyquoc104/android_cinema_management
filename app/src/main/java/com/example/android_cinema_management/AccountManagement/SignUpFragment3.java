@@ -176,7 +176,7 @@ public class SignUpFragment3 extends Fragment {
 
                     //Store user's information
                     userId = firebaseAuth.getCurrentUser().getUid();
-                    DocumentReference documentReference = db.collection("Users").document(userId);
+                    DocumentReference documentReference = db.collection("Users").document(id);
                     //put all user's information into map
                     Map<String, Object> user = new HashMap<>();
                     user.put("email", email);
@@ -188,6 +188,7 @@ public class SignUpFragment3 extends Fragment {
                     user.put("gender", gender);
                     user.put("status", status);
                     user.put("role", role);
+                    user.put("Id", id);
                     //storing all user's information into collection Users onto one particular user
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

@@ -4,13 +4,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -20,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class UserReview extends AppCompatActivity {
 
@@ -45,19 +49,39 @@ public class UserReview extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
-        userId = mAuth.getCurrentUser().getUid();
+        userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-        DocumentReference documentReference = db.collection("Users").document(userId);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                Map<String, String> userMap = new HashMap<>();
-                userMap.put("email", value.getString("email"));
-                userMap.put("fullName", value.getString("fullName"));
-                userMap.put("id", value.getString("id"));
-            }
+        postReviewButton.setOnClickListener(View -> {
+            String randomId = UUID.randomUUID().toString();
+
+            Map<String, Object> reviewMap = new HashMap<>();
+            reviewMap.put("reviewId", randomId);
+            reviewMap.put("movieName", reviewMovieName.getText().toString());
+            reviewMap.put("rateMovie", ratingMovie.getText().toString());
+            reviewMap.put("reviewContent", reviewBox.getText().toString());
+
+            DocumentReference documentReference = db.collection("Users").document(userId);
+            documentReference.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    User user = documentSnapshot.toObject(User.class);
+
+                    Map<String, String> userMap = new HashMap<>();
+                    userMap.put("fullName", Objects.requireNonNull(user).getFullName());
+                    userMap.put("email", user.getEmail());
+                    userMap.put("id", user.getId());
+
+                    reviewMap.put("user", userMap);
+
+                    DocumentReference documentReferenceForReview = db.collection("reviews")
+                            .document(randomId);
+                    documentReferenceForReview.set(reviewMap).addOnCompleteListener(taskInner -> {
+                        if (taskInner.isSuccessful()) {
+                            Toast.makeText(this, "REVIEWED ADDED!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
         });
-
-
     }
 }
