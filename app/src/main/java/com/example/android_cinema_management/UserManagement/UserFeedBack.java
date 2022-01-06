@@ -65,7 +65,7 @@ public class UserFeedBack extends AppCompatActivity {
                   Map<String, String> userMap = new HashMap<>();
                   userMap.put("fullName", Objects.requireNonNull(user).getFullName());
                   userMap.put("email", user.getEmail());
-                  userMap.put("id", user.getId());
+                  userMap.put("id", userId);
 
                   feedbackMap.put("user", userMap);
 

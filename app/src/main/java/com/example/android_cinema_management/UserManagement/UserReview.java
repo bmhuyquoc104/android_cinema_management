@@ -59,6 +59,8 @@ public class UserReview extends AppCompatActivity {
             reviewMap.put("movieName", reviewMovieName.getText().toString());
             reviewMap.put("rateMovie", ratingMovie.getText().toString());
             reviewMap.put("reviewContent", reviewBox.getText().toString());
+            reviewMap.put("like", 0);
+            reviewMap.put("dislike", 0);
 
             DocumentReference documentReference = db.collection("Users").document(userId);
             documentReference.get().addOnCompleteListener(task -> {

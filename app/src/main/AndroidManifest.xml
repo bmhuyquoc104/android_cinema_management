@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android_cinema_management">
+    package="com.example.android_cinema_management" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -12,7 +12,10 @@
         android:label="Universal"
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Android_cinema_management">
+        android:theme="@style/Theme.Android_cinema_management" >
+        <activity
+            android:name=".ReadReview"
+            android:exported="false" />
         <activity
             android:name=".UserManagement.UserFeedBack"
             android:exported="false" />
@@ -54,7 +57,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

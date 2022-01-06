@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.ReadReview;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -110,7 +111,7 @@ public class UserHomeFragment extends Fragment {
 
         //Listen onClick of Review Button
         review.setOnClickListener(View ->{
-            Intent intent = new Intent(getActivity(), UserReview.class);
+            Intent intent = new Intent(getActivity(), ReadReview.class);
             startActivity(intent);
         });
 
