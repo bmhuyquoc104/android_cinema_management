@@ -26,7 +26,7 @@ android:layout_height="match_parent">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Satisfying"
+        android:hint="Topic"
         android:inputType="text" />
 
 
@@ -37,7 +37,7 @@ android:layout_height="match_parent">
         android:layout_height="279dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Feedback Box"
+        android:hint="Message"
         android:inputType="textMultiLine" />
 
     <Button

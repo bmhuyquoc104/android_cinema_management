@@ -176,7 +176,7 @@ public class SignUpFragment3 extends Fragment {
 
                     //Store user's information
                     userId = firebaseAuth.getCurrentUser().getUid();
-                    DocumentReference documentReference = db.collection("Users").document(id);
+                    DocumentReference documentReference = db.collection("Users").document(userId);
                     //put all user's information into map
                     Map<String, Object> user = new HashMap<>();
                     user.put("email", email);
