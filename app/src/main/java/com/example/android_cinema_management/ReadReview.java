@@ -33,8 +33,9 @@ public class ReadReview extends AppCompatActivity {
         userName = findViewById(R.id.userFullName);
         movieName = findViewById(R.id.displayMovieName);
         movieRating = findViewById(R.id.displayMovieRating);
+        reviewContent = findViewById(R.id.review);
 
-        likeBtn =  findViewById(R.id.likeButton);
+        likeBtn = findViewById(R.id.likeButton);
         dislikeBtn = findViewById(R.id.dislikeButton);
 
         db = FirebaseFirestore.getInstance();
@@ -44,17 +45,22 @@ public class ReadReview extends AppCompatActivity {
         likeBtn.setOnClickListener(View -> {
             countLike++;
 //            db.collection("reviews").document("like").set(countLike);
-            getReviews(db, resultContainer, () -> {
-                for (Review v: resultContainer) {
-                    System.out.println(v.toString());
-                }
-            });
-            Toast.makeText(this, "EYYYYY", Toast.LENGTH_SHORT).show();
         });
 
         dislikeBtn.setOnClickListener(View -> {
             countDislike++;
 //            db.collection("reviews").document("dislike").set(countDislike);
+        });
+
+        getReviews(db, resultContainer, () -> {
+            for (Review v: resultContainer) {
+                System.out.println(v.toString());
+//            Review v = resultContainer.get(0);
+//            movieName.setText(v.getMovieName());
+//            movieRating.setText(v.getRateMovie());
+//            reviewContent.setText(v.getReviewContent());
+//            userName.setText(Objects.requireNonNull(v.getUser().get("fullName")).toString());
+            }
         });
 
 
