@@ -2,7 +2,7 @@ package com.example.android_cinema_management.Model;
 
 import java.io.Serializable;
 
-public class Discount {
+public class Discount implements Serializable {
     private String Name, Month, Content;
 
     public Discount(){}

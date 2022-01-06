@@ -47,22 +47,22 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
         holder.tvName.setText(discount.getName());
         holder.tvDate.setText(discount.getMonth());
 
-//        holder.DiscountLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                onClickGoToDetail(discount);
-//            }
-//        });
+        holder.DiscountLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickGoToDetail(discount);
+            }
+        });
     }
 
 //    Go to the detail of a discount
-//    private void onClickGoToDetail(Discount discount) {
-//        Intent intent = new Intent(mContext, DiscountDetails.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("object_discount", (Serializable) discount);
-//        intent.putExtras(bundle);
-//        mContext.startActivity(intent);
-//    }
+    private void onClickGoToDetail(Discount discount) {
+        Intent intent = new Intent(mContext, DiscountDetails.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_discount", discount);
+        intent.putExtras(bundle);
+        mContext.startActivity(intent);
+    }
 
     @Override
     public int getItemCount() {

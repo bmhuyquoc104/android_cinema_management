@@ -102,18 +102,7 @@ public class DiscountAndTicket extends Fragment {
         return view;
     }
 
-//    private List<com.example.android_cinema_management.Model.Discount> getListDiscount() {
-//        Add data(objects) to be displayed
-//        List<Discount> list = new ArrayList<>();
-//        list.add(new Discount("Black Friday", "23/11/21-26/11/21"));
-//        list.add(new Discount("Anniversary", "19/11/21-21/11/21"));
-//        list.add(new Discount("Big Sale", "2/2/22-4/2/22"));
-//        list.add(new Discount("New Year", "1/1/22"));
-//        list.add(new Discount("Big Sale", "2/2/22-4/2/22"));
-
-//        return list;
-//    }
-
+//    Get the data from Firestore
     private void EventChangeListener() {
         db.collection("Discounts").orderBy("Name", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
