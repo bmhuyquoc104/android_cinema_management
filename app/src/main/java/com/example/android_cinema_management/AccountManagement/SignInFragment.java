@@ -91,38 +91,38 @@ public class SignInFragment extends Fragment {
         //Function to log into the account
         logIn.setOnClickListener(view ->{
             //For at home testing remove before commit
-            Bundle bundle = new Bundle();
-            UserHomeFragment fragment = new UserHomeFragment();
-            fragment.setArguments(bundle);
-            FragmentTransaction transaction =
-                    fm.beginTransaction();
-            transaction.replace(R.id.ma_container, fragment).commit();
+//            Bundle bundle = new Bundle();
+//            UserHomeFragment fragment = new UserHomeFragment();
+//            fragment.setArguments(bundle);
+//            FragmentTransaction transaction =
+//                    fm.beginTransaction();
+//            transaction.replace(R.id.ma_container, fragment).commit();
             // Replace this fragment by accounts fragment
-//                if (emailIsNotEmpty() && passwordIsNotEmpty()) {
-//                    //getting user's email and password
-//                    inputEmail = email.getEditText().getText().toString();
-//                    inputPassword = password.getEditText().getText().toString();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("password", inputPassword);
-//                    bundle.putString("email", inputEmail);
-//                    //send user's email and password to Firebase Authentication to check
-//                    firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            if (task.isSuccessful()){
-//                                //if the email and password is correct
-//                                UserHomeFragment fragment = new UserHomeFragment();
-//                                fragment.setArguments(bundle);
-//                                FragmentTransaction transaction =
-//                                        fm.beginTransaction();
-//                                transaction.replace(R.id.ma_container, fragment).commit();
-//                            }else{
-//                                //if the email and password is incorrect
-//                                Toast.makeText(getActivity(), "Fail to login " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                }
+                if (emailIsNotEmpty() && passwordIsNotEmpty()) {
+                    //getting user's email and password
+                    inputEmail = email.getEditText().getText().toString();
+                    inputPassword = password.getEditText().getText().toString();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("password", inputPassword);
+                    bundle.putString("email", inputEmail);
+                    //send user's email and password to Firebase Authentication to check
+                    firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                //if the email and password is correct
+                                UserHomeFragment fragment = new UserHomeFragment();
+                                fragment.setArguments(bundle);
+                                FragmentTransaction transaction =
+                                        fm.beginTransaction();
+                                transaction.replace(R.id.ma_container, fragment).commit();
+                            }else{
+                                //if the email and password is incorrect
+                                Toast.makeText(getActivity(), "Fail to login " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
         });
 
         //Function forgot password
