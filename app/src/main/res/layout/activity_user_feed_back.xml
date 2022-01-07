@@ -14,22 +14,12 @@ android:layout_height="match_parent">
     tools:context=".UserManagement.UserReview">
 
     <EditText
-        android:id="@+id/editText_feedback_movieName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Movie" />
-
-    <EditText
-        android:id="@+id/editTextSatisfying"
+        android:id="@+id/editTextTopic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Topic"
         android:inputType="text" />
-
-
 
     <EditText
         android:id="@+id/feedbackBox"

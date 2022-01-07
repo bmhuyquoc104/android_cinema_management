@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -23,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.ReadFeedback;
 import com.example.android_cinema_management.ReadReview;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -86,10 +86,10 @@ public class UserHomeFragment extends Fragment {
 //        str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
 //        builder.append(str2);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-        userId = user.getUid();
-        db = FirebaseFirestore.getInstance();
+//        firebaseAuth = FirebaseAuth.getInstance();
+//        user = firebaseAuth.getCurrentUser();
+//        userId = user.getUid();
+//        db = FirebaseFirestore.getInstance();
 
         // Set text for textView
         welcome.setText("Welcome " + email);
@@ -117,7 +117,7 @@ public class UserHomeFragment extends Fragment {
 
         //Listen onClick of FeedBack button
         feedback.setOnClickListener(View ->{
-            Intent intent = new Intent(getActivity(), UserFeedBack.class);
+            Intent intent = new Intent(getActivity(), ReadFeedback.class);
             startActivity(intent);
         });
 
