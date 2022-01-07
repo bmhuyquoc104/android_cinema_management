@@ -19,8 +19,10 @@ import java.util.ArrayList;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
 
+    //Initialize context
     private Context context;
 
+    //Initialize ArrayList for review
     private ArrayList<Review> reviewArrayList;
 
     public ReviewAdapter(Context context, ArrayList<Review> reviewArrayList) {

@@ -16,9 +16,10 @@ import com.example.android_cinema_management.R;
 import java.util.ArrayList;
 
 public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyViewHolder> {
-
+    //Initialize context
     private Context context;
 
+    //Initialize ArrayList for Feedback
     private ArrayList<Feedback> feedbackArrayList;
 
     public FeedbackAdapter(Context context, ArrayList<Feedback> feedbackArrayList) {

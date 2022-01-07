@@ -9,7 +9,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.FeedbackAdapter;
 import com.example.android_cinema_management.Adapter.ReviewAdapter;
+import com.example.android_cinema_management.Model.Feedback;
 import com.example.android_cinema_management.Model.Review;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,8 +25,8 @@ public class ReadReview extends AppCompatActivity {
 
     //Declare RecyclerView ReviewAdapter ArrayList FirebaseFirestore
     RecyclerView recyclerView;
-    ReviewAdapter reviewAdapter;
-    ArrayList<Review> resultContainer;
+    FeedbackAdapter feedbackAdapter;
+    ArrayList<Feedback> resultContainer;
     FirebaseFirestore db;
 
     @Override
@@ -33,7 +35,7 @@ public class ReadReview extends AppCompatActivity {
         setContentView(R.layout.activity_read_review);
 
         //Initialize recyclerView and db
-        recyclerView = findViewById(R.id.reviewRecyclerView);
+        recyclerView = findViewById(R.id.feedbackRecyclerView);
         db = FirebaseFirestore.getInstance();
         //set recyclerView to a fixed size
         recyclerView.setHasFixedSize(true);
@@ -42,14 +44,14 @@ public class ReadReview extends AppCompatActivity {
 
         //Initialize resultContainer and reviewAdapter
         resultContainer = new ArrayList<>();
-        reviewAdapter = new ReviewAdapter(this, resultContainer);
+        feedbackAdapter = new FeedbackAdapter(this, resultContainer);
         //Set recyclerView to reviewAdapter
-        recyclerView.setAdapter(reviewAdapter);
+        recyclerView.setAdapter(feedbackAdapter);
 
 
-        //call function get reviews data
+        //call function get feedback data
         getReviews(db, resultContainer, () -> {
-            for (Review v: resultContainer) {
+            for (Feedback v: resultContainer) {
                 System.out.println(v.toString());
             }
         });
@@ -58,11 +60,11 @@ public class ReadReview extends AppCompatActivity {
     }
 
     //Function get reviews data
-    private void getReviews(FirebaseFirestore db, ArrayList<Review> resultContainer, Runnable callback) {
-        db.collection("reviews").get().addOnCompleteListener(task -> {
+    private void getReviews(FirebaseFirestore db, ArrayList<Feedback> resultContainer, Runnable callback) {
+        db.collection("feedback").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
-                    Review dataContainer = doc.toObject(Review.class);
+                    Feedback dataContainer = doc.toObject(Feedback.class);
                     resultContainer.add(dataContainer);
                 }
                 callback.run();
