@@ -1,13 +1,17 @@
 package com.example.android_cinema_management;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.ReviewAdapter;
 import com.example.android_cinema_management.Model.Review;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -17,49 +21,31 @@ import java.util.Objects;
 
 public class ReadReview extends AppCompatActivity {
 
-    TextView userName, movieName, movieRating, reviewContent;
-    ImageButton likeBtn, dislikeBtn;
-    int countLike = 0, countDislike = 0;
-
+    RecyclerView recyclerView;
+    ReviewAdapter reviewAdapter;
     ArrayList<Review> resultContainer;
-
     FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.review_item);
+        setContentView(R.layout.activity_read_review);
 
-        userName = findViewById(R.id.userFullName);
-        movieName = findViewById(R.id.displayMovieName);
-        movieRating = findViewById(R.id.displayMovieRating);
-        reviewContent = findViewById(R.id.review);
 
-        likeBtn = findViewById(R.id.likeButton);
-        dislikeBtn = findViewById(R.id.dislikeButton);
-
+        recyclerView = findViewById(R.id.reviewRecyclerView);
         db = FirebaseFirestore.getInstance();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         resultContainer = new ArrayList<>();
+        reviewAdapter = new ReviewAdapter(this, resultContainer);
+        recyclerView.setAdapter(reviewAdapter);
 
 
-        likeBtn.setOnClickListener(View -> {
-            countLike++;
-//            db.collection("reviews").document("like").set(countLike);
-        });
-
-        dislikeBtn.setOnClickListener(View -> {
-            countDislike++;
-//            db.collection("reviews").document("dislike").set(countDislike);
-        });
 
         getReviews(db, resultContainer, () -> {
             for (Review v: resultContainer) {
                 System.out.println(v.toString());
-//            Review v = resultContainer.get(0);
-//            movieName.setText(v.getMovieName());
-//            movieRating.setText(v.getRateMovie());
-//            reviewContent.setText(v.getReviewContent());
-//            userName.setText(Objects.requireNonNull(v.getUser().get("fullName")).toString());
             }
         });
 

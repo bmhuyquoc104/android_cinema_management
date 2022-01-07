@@ -82,9 +82,9 @@ public class UserHomeFragment extends Fragment {
         builder.append(str1);
 
         // Text and color for string 2
-        SpannableString str2= new SpannableString(email);
-        str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
-        builder.append(str2);
+//        SpannableString str2= new SpannableString(email);
+//        str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
+//        builder.append(str2);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();

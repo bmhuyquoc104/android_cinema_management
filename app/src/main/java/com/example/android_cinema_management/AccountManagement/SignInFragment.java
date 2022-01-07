@@ -84,8 +84,8 @@ public class SignInFragment extends Fragment {
 
         //Initialize firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        userId = firebaseAuth.getCurrentUser().getUid();
+//        db = FirebaseFirestore.getInstance();
+//        userId = firebaseAuth.getCurrentUser().getUid();
 
 
         //Function to log into the account
