@@ -65,6 +65,7 @@ public class UserProfile extends AppCompatActivity {
     //Declare FirebaseFireStore FirebaseAuth String
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
+    FirebaseUser user;
     String userId;
 
     @Override
@@ -150,11 +151,15 @@ public class UserProfile extends AppCompatActivity {
         //Initialize Firebase Firestore
         db = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         //Function pull user's information
         userId = firebaseAuth.getCurrentUser().getUid();
 
         saveChanges.setOnClickListener(View -> {
+            //update email and password for authentication Firebase
+            user.updateEmail(email.getText().toString());
+            user.updatePassword(password.getText().toString());
             //put all user's information into userInformation hashMap
             HashMap<String, String> userInformation = new HashMap<>();
             userInformation.put("email", email.getText().toString());
@@ -163,7 +168,8 @@ public class UserProfile extends AppCompatActivity {
             userInformation.put("address", address.getText().toString());
             userInformation.put("phone", phone.getText().toString());
             userInformation.put("dateOfBirth", dateOfBirth.getText().toString());
-            userInformation.put("id", UUID.randomUUID().toString());
+            userInformation.put("Id", UUID.randomUUID().toString());
+            userInformation.put("gender", "male");
             userInformation.put("role", "regular");
             userInformation.put("status", "active");
             //put userInformation into firebaseFireStore

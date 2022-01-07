@@ -90,6 +90,13 @@ public class SignInFragment extends Fragment {
 
         //Function to log into the account
         logIn.setOnClickListener(view ->{
+            //For at home testing remove before commit
+//            Bundle bundle = new Bundle();
+//            UserHomeFragment fragment = new UserHomeFragment();
+//            fragment.setArguments(bundle);
+//            FragmentTransaction transaction =
+//                    fm.beginTransaction();
+//            transaction.replace(R.id.ma_container, fragment).commit();
             // Replace this fragment by accounts fragment
                 if (emailIsNotEmpty() && passwordIsNotEmpty()) {
                     //getting user's email and password
