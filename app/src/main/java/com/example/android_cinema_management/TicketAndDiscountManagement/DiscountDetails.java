@@ -45,8 +45,11 @@ public class DiscountDetails extends AppCompatActivity {
 
 //        Setting the information into the views
         String name = discount.getName();
-        String date = discount.getDate();
+        String date = discount.getMonth();
+        String content = discount.getContent();
+
         DiscountName.setText(getBaseContext().getString(R.string.discountName, name));
         DiscountDate.setText(getBaseContext().getString(R.string.discountDate, date));
+        DiscountDetail.setText(content);
     }
 }

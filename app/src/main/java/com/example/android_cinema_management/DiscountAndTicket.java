@@ -2,10 +2,12 @@ package com.example.android_cinema_management;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,12 @@ import android.widget.Toast;
 import com.example.android_cinema_management.Adapter.DiscountAdapter;
 import com.example.android_cinema_management.Model.Discount;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +34,8 @@ public class DiscountAndTicket extends Fragment {
     private DiscountAdapter discountAdapter;
     private TextInputLayout cinemaMenu, monthMenu;
     private AutoCompleteTextView cinemaACT, monthACT;
+    private ArrayList<Discount> discountArrayList;
+    FirebaseFirestore db;
 
     public DiscountAndTicket() {
         // Required empty public constructor
@@ -51,7 +61,12 @@ public class DiscountAndTicket extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
         Discount.setLayoutManager(gridLayoutManager);
 
-        discountAdapter = new DiscountAdapter(getContext(), getListDiscount());
+        //        Discount database
+        db = FirebaseFirestore.getInstance();
+        discountArrayList = new ArrayList<Discount>();
+
+        discountAdapter = new DiscountAdapter(getContext(), discountArrayList);
+        EventChangeListener();
         Discount.setAdapter(discountAdapter);
 
 //        Cinema drop-down menu
@@ -87,16 +102,25 @@ public class DiscountAndTicket extends Fragment {
         return view;
     }
 
-    private List<com.example.android_cinema_management.Model.Discount> getListDiscount() {
-//        Add data(objects) to be displayed
-        List<Discount> list = new ArrayList<>();
-        list.add(new Discount("Black Friday", "23/11/21-26/11/21"));
-        list.add(new Discount("Anniversary", "19/11/21-21/11/21"));
-        list.add(new Discount("Big Sale", "2/2/22-4/2/22"));
-        list.add(new Discount("New Year", "1/1/22"));
-        list.add(new Discount("Big Sale", "2/2/22-4/2/22"));
+//    Get the data from Firestore
+    private void EventChangeListener() {
+        db.collection("Discounts").orderBy("Name", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.e("Firestore error", error.getMessage());
+                        }
 
-        return list;
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            if (dc.getType() == DocumentChange.Type.ADDED) {
+                                discountArrayList.add(dc.getDocument().toObject(com.example.android_cinema_management.Model.Discount.class));
+                            }
+
+                            discountAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 
 //    Clear the data on destroy
