@@ -26,7 +26,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminActivity;
 import com.example.android_cinema_management.UserManagement.UserHomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,7 +48,8 @@ public class SignInFragment extends Fragment {
     Button logIn;
     Button logOut;
     TextView forgotPassword;
-
+    //Declare admin;
+    User admin;
     //Declare String
     String inputEmail, inputPassword;
 
@@ -72,7 +75,6 @@ public class SignInFragment extends Fragment {
         //Binding to XML's value
         close = root.findViewById(R.id.signInClose);
         logIn = root.findViewById(R.id.fragSignInLogin);
-        logOut = root.findViewById(R.id.fragSignInLogOut);
         email = root.findViewById(R.id.frag_signIn_textLayout_email);
         password = root.findViewById(R.id.frag_signIn_textLayout_password);
         forgotPassword = root.findViewById(R.id.signInForgetPassword);
@@ -81,6 +83,9 @@ public class SignInFragment extends Fragment {
         FragmentManager fm = getParentFragmentManager();
 
         fragmentActivity = getActivity();
+
+        // Initialize admin
+        admin = User.createAdmin();
 
         //Initialize firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -98,30 +103,44 @@ public class SignInFragment extends Fragment {
 //                    fm.beginTransaction();
 //            transaction.replace(R.id.ma_container, fragment).commit();
             // Replace this fragment by accounts fragment
+
                 if (emailIsNotEmpty() && passwordIsNotEmpty()) {
                     //getting user's email and password
                     inputEmail = email.getEditText().getText().toString();
                     inputPassword = password.getEditText().getText().toString();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("password", inputPassword);
-                    bundle.putString("email", inputEmail);
-                    //send user's email and password to Firebase Authentication to check
-                    firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                //if the email and password is correct
-                                UserHomeFragment fragment = new UserHomeFragment();
-                                fragment.setArguments(bundle);
-                                FragmentTransaction transaction =
-                                        fm.beginTransaction();
-                                transaction.replace(R.id.ma_container, fragment).commit();
-                            }else{
-                                //if the email and password is incorrect
-                                Toast.makeText(getActivity(), "Fail to login " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    // If the input is from an admin -> redirect to admin page
+                    if (inputEmail.equals(admin.getEmail()) && inputPassword.equals(admin.getPassword())){
+                        Intent intent2 = new Intent(getContext(), AdminActivity.class);
+                        intent2.setAction(Intent.ACTION_SEND);
+                        intent2.setType("plain/text");
+                        intent2.putExtra("userName", admin.getFullName());
+                        // Delete all stacks before to avoid stack memory redundant and collapse between stacks
+                        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent2);
+                    }
+                    // the input is from user
+                    else {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("password", inputPassword);
+                        bundle.putString("email", inputEmail);
+                        //send user's email and password to Firebase Authentication to check
+                        firebaseAuth.signInWithEmailAndPassword(inputEmail, inputPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    //if the email and password is correct
+                                    UserHomeFragment fragment = new UserHomeFragment();
+                                    fragment.setArguments(bundle);
+                                    FragmentTransaction transaction =
+                                            fm.beginTransaction();
+                                    transaction.replace(R.id.ma_container, fragment).commit();
+                                } else {
+                                    //if the email and password is incorrect
+                                    Toast.makeText(getActivity(), "Fail to login " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
         });
 
