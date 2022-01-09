@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary3"
+    tools:context=".UserManagement.AdminActivity">
+
+
+    <androidx.cardview.widget.CardView
+        style="@style/CardView.Light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPadding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_home_avatar_iv">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="409dp"
+            android:layout_height="427dp">
+
+
+            <ImageView
+                android:id="@+id/admin_home_discount_iv"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/round_admin_image"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_baseline_celebration_24"
+                android:tint="@color/colorPrimary2"
+                android:tintMode="src_in"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.13"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseAppTint" />
+
+            <ImageView
+                android:id="@+id/admin_home_cinema"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/round_admin_image"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_baseline_theaters_24"
+                android:tint="@color/colorPrimary2"
+                android:tintMode="src_in"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.835"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseAppTint" />
+
+            <ImageView
+                android:id="@+id/admin_home_combo_iv"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="232dp"
+                android:background="@drawable/round_admin_image"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_baseline_fastfood_24"
+                android:tint="@color/colorPrimary2"
+                android:tintMode="src_in"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.836"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseAppTint" />
+
+            <ImageView
+                android:id="@+id/admin_home_feedback_iv"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:background="@drawable/round_admin_image"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_baseline_feed_24"
+                android:tint="@color/colorPrimary2"
+                android:tintMode="src_in"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.132"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.812"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="104dp"
+                android:letterSpacing="0.15"
+                android:text="@string/discount"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary3"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/admin_home_discount_iv"
+                app:layout_constraintHorizontal_bias="0.49"
+                app:layout_constraintStart_toStartOf="@+id/admin_home_discount_iv"
+                app:layout_constraintTop_toTopOf="@+id/admin_home_discount_iv" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:letterSpacing="0.15"
+                android:text="@string/feedback"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary3"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/admin_home_feedback_iv"
+                app:layout_constraintStart_toStartOf="@+id/admin_home_feedback_iv"
+                app:layout_constraintTop_toTopOf="@+id/admin_home_feedback_iv" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="104dp"
+                android:letterSpacing="0.15"
+                android:text="@string/cinema"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary3"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/admin_home_cinema"
+                app:layout_constraintStart_toStartOf="@+id/admin_home_cinema"
+                app:layout_constraintTop_toTopOf="@+id/admin_home_cinema" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="104dp"
+                android:letterSpacing="0.15"
+                android:text="@string/combo"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary3"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/admin_home_combo_iv"
+                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintStart_toStartOf="@+id/admin_home_combo_iv"
+                app:layout_constraintTop_toTopOf="@+id/admin_home_combo_iv" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="236dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/admin_home"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary4"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/admin_home_name"
+        android:layout_width="199dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/user_home_welcome"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary4"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/admin_home_avatar_iv"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/admin_home_avatar_iv"
+        android:layout_width="166dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/sample_user_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="48dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:tint="@color/colorPrimary4"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_logout_24"
+        tools:ignore="UseAppTint" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

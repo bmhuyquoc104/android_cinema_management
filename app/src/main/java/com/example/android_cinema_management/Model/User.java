@@ -2,6 +2,8 @@ package com.example.android_cinema_management.Model;
 
 import androidx.annotation.NonNull;
 
+import java.util.UUID;
+
 public class User {
     private String email;
     private String fullName;
@@ -29,6 +31,22 @@ public class User {
         this.role = role;
         this.id = id;
     }
+
+    //Create only 1 admin for the app
+    public static User createAdmin(){
+        String id = UUID.randomUUID().toString();
+        String name = "voquochuy";
+        String password = "admin104";
+        String email = "s3823236@admin.com";
+        String gender = "male";
+        String dateOfBirth = "01-04-2000";
+        String address = "99 Nguyen Tuan Street, Ward 5, Go Vap District";
+        String role = "admin";
+        String phone = "0848731007";
+        String status = "inactive";
+        return new User(email, name, password, gender, dateOfBirth,address,status,phone,role,id);
+    }
+
 
     public String getEmail() {
         return email;

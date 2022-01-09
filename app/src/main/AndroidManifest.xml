@@ -20,6 +20,9 @@
             android:name=".ReadReview"
             android:exported="false" />
         <activity
+            android:name=".UserManagement.AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserManagement.UserFeedBack"
             android:exported="false" />
         <activity

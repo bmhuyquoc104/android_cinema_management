@@ -116,5 +116,8 @@
     <string name="time">10:30</string>
     <string name="screen">Screen</string>
     <string name="type">2D</string>
+    <string name="admin_home">ADMIN MANAGEMENT</string>
+    <string name="combo">Combo</string>
+    <string name="feedback">feedback</string>
 
 </resources>
