@@ -131,8 +131,8 @@ public class AddReviewFragment extends Fragment {
             reviewMap.put("rateMovie", ratingMovie.getText().toString());
             reviewMap.put("reviewContent", reviewBox.getText().toString());
             reviewMap.put("like", 0);
-            reviewMap.put("time", currentDate);
-            reviewMap.put("date", currentTime);
+            reviewMap.put("time", currentTime);
+            reviewMap.put("date", currentDate);
             reviewMap.put("dislike", 0);
 
             //Getting user's full name and user's email of current login user into userMap

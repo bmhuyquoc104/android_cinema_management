@@ -1,10 +1,10 @@
 package com.example.android_cinema_management.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,16 +30,16 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.feedback_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.one_row_of_feedback, parent, false);
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.userFullName.setText(feedbackArrayList.get(position).getUser().get("fullName").toString());
-        holder.feedbackTopic.setText(feedbackArrayList.get(position).getTopic());
-        holder.feedbackDate.setText(feedbackArrayList.get(position).getDate());
-        holder.feedbackContent.setText(feedbackArrayList.get(position).getFeedbackContent());
+        holder.feedbackTopic.setText("Topic: "+feedbackArrayList.get(position).getTopic());
+        holder.feedbackDate.setText("Date: "+feedbackArrayList.get(position).getDate());
+        holder.feedbackContent.setText("Message: "+feedbackArrayList.get(position).getFeedbackContent());
     }
 
     @Override
@@ -52,10 +52,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
         TextView userFullName, feedbackTopic, feedbackDate, feedbackContent;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            userFullName = itemView.findViewById(R.id.userName);
-            feedbackTopic = itemView.findViewById(R.id.feedbackTopic);
-            feedbackDate = itemView.findViewById(R.id.feedbackDate);
-            feedbackContent = itemView.findViewById(R.id.feedbackContent);
+            feedbackTopic = itemView.findViewById(R.id.list_of_feedback_topic_tv);
+            feedbackDate = itemView.findViewById(R.id.list_of_feedback_date_tv);
+            feedbackContent = itemView.findViewById(R.id.list_of_feedback_message_tv);
         }
     }
 }
