@@ -112,7 +112,7 @@ public class SignInFragment extends Fragment {
                         Intent intent2 = new Intent(getContext(), AdminActivity.class);
                         intent2.setAction(Intent.ACTION_SEND);
                         intent2.setType("plain/text");
-                        intent2.putExtra("userName", admin.getFullName());
+                        intent2.putExtra("name", admin.getFullName());
                         // Delete all stacks before to avoid stack memory redundant and collapse between stacks
                         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent2);

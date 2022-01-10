@@ -92,7 +92,7 @@ public class UserHomeFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         // Set text for textView
-        welcome.setText("Welcome " + email);
+        welcome.setText( builder, Button.BufferType.SPANNABLE);
 
         /**
          * Function to switch to profile page
