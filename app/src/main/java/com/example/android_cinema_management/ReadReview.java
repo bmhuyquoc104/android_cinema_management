@@ -35,7 +35,7 @@ public class ReadReview extends AppCompatActivity {
         setContentView(R.layout.activity_read_review);
 
         //Initialize recyclerView and db
-        recyclerView = findViewById(R.id.feedbackRecyclerView);
+        recyclerView = findViewById(R.id.reviewRecyclerView);
         db = FirebaseFirestore.getInstance();
         //set recyclerView to a fixed size
         recyclerView.setHasFixedSize(true);

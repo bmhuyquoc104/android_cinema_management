@@ -21,12 +21,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.MainActivity;
+import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.ReadFeedback;
 import com.example.android_cinema_management.ReadReview;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 
 public class UserHomeFragment extends Fragment {
@@ -39,9 +43,10 @@ public class UserHomeFragment extends Fragment {
     // Declare string email
     String email;
 
+    User user;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore db;
-    FirebaseUser user;
+    FirebaseUser mUser;
     String userId;
     public UserHomeFragment() {
         // Required empty public constructor
@@ -87,8 +92,7 @@ public class UserHomeFragment extends Fragment {
         builder.append(str2);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-        userId = user.getUid();
+        mUser = firebaseAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
         // Set text for textView
@@ -125,8 +129,7 @@ public class UserHomeFragment extends Fragment {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.collection("Users").document(userId)
-                        .update("status","inactive");
+                db.collection("Users").document(mUser.getUid()).update("status", "inactive");
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);

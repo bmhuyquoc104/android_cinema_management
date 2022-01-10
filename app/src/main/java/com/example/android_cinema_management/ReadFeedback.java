@@ -27,7 +27,7 @@ public class ReadFeedback extends AppCompatActivity {
         setContentView(R.layout.activity_read_feedback);
 
         //Initialize recyclerView and db
-        recyclerView = findViewById(R.id.reviewRecyclerView);
+        recyclerView = findViewById(R.id.feedbackRecyclerView);
         db = FirebaseFirestore.getInstance();
         //set recyclerView to a fixed size
         recyclerView.setHasFixedSize(true);

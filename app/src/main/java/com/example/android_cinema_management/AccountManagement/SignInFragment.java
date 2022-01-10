@@ -37,6 +37,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
@@ -59,6 +60,7 @@ public class SignInFragment extends Fragment {
 
     //Declare Firebase Authentication
     FirebaseAuth firebaseAuth;
+    FirebaseUser mUser;
     FirebaseFirestore db;
     String userId;
 
@@ -89,7 +91,8 @@ public class SignInFragment extends Fragment {
 
         //Initialize firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
-//        db = FirebaseFirestore.getInstance();
+        mUser = firebaseAuth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
 //        userId = firebaseAuth.getCurrentUser().getUid();
 
 
@@ -128,6 +131,7 @@ public class SignInFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+
                                     //if the email and password is correct
                                     UserHomeFragment fragment = new UserHomeFragment();
                                     fragment.setArguments(bundle);
@@ -140,6 +144,7 @@ public class SignInFragment extends Fragment {
                                 }
                             }
                         });
+                        db.collection("Users").document(mUser.getUid()).update("status", "active");
                     }
                 }
         });

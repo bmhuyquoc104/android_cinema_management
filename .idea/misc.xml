@@ -119,6 +119,8 @@
         <entry key="app/src/main/res/drawable/option_selector.xml" value="0.4048611111111111" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_movie_info_tab_layout.xml" value="0.5820512820512821" />
+        <entry key="app/src/main/res/layout/activity_read_feedback.xml" value="0.30885416666666665" />
+        <entry key="app/src/main/res/layout/activity_read_review.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/activity_user_feed_back.xml" value="0.31197916666666664" />
         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.4026268115942029" />
         <entry key="app/src/main/res/layout/activity_user_review.xml" value="0.5911458333333334" />
