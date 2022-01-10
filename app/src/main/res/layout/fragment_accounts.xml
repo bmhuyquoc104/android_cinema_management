@@ -33,6 +33,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:gravity="center_vertical"
                     android:id="@+id/ac_email"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
+                    android:gravity="center_vertical"
                     android:id="@+id/ac_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -63,6 +65,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
+                    android:gravity="center_vertical"
                     android:id="@+id/ac_payment_policy"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -84,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="152dp"
                     android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
                     android:paddingStart="15dp"
                     android:paddingBottom="15dp"
                     android:text="@string/ac_security_policy"
@@ -102,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="192dp"
                     android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
                     android:paddingStart="15dp"
                     android:paddingBottom="15dp"
                     android:text="@string/ac_privacy_policy"
@@ -115,6 +120,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
+                    android:gravity="center_vertical"
                     android:id="@+id/ac_terms_and_conditions"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -133,6 +139,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
+                    android:gravity="center_vertical"
                     android:id="@+id/ac_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
