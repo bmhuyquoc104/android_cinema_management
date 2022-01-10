@@ -36,6 +36,7 @@ public class HomeFragment1 extends Fragment {
     private MoviesAdapter moviesAdapter;
     //Declare Movie list
     public static ArrayList<Movie> movieList;
+    public static ArrayList<String> movieTitleList;
     //Declare HandlerThread Thread
     HandlerThread ht = new HandlerThread("MyHandlerThread");
 
@@ -55,6 +56,7 @@ public class HomeFragment1 extends Fragment {
         // Binding with xml layout
         View view = inflater.inflate(R.layout.fragment_home1, container, false);
         movieList = new ArrayList<>();
+        movieTitleList = new ArrayList<>();
         // Set fixed size for recycler view
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -136,6 +138,11 @@ public class HomeFragment1 extends Fragment {
         // Read post from fetchAndRenderMovie
         uiThreadHandler.post(() ->{
             moviesAdapter = new MoviesAdapter(movieList,getContext());
+            for (Movie movie:movieList
+                 ) {
+                movieTitleList.add(movie.getEnglishTitle());
+                System.out.println("hello huy ne " + movieTitleList);
+            }
             // use grid layout manager to display 2 items in one row
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
             recyclerView.setLayoutManager(gridLayoutManager);

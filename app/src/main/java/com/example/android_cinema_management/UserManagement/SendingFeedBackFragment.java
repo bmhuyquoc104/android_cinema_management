@@ -27,6 +27,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,14 +36,14 @@ import java.util.Objects;
 import java.util.UUID;
 
 
-public class SendingRequestFragment extends Fragment {
+public class SendingFeedBackFragment extends Fragment {
 
     //Declare EditText, textview, imageview  and Button
     EditText feedbackBox, feedbackTopic;
     Button postFeedback;
     TextInputLayout topic;
     ImageView close;
-    TextView date,email;
+    TextView date,email,time;
     //Declare FirebasFirestore FirebaseAuth FirebaseUser String SimpleDateFormat
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -52,16 +53,19 @@ public class SendingRequestFragment extends Fragment {
     String currentEmail;
     SimpleDateFormat dateFormat;
     String[] topicArray = {"Buying Ticket", "Transaction","Discount","Account","Others"};
+
+
     String topicChosen;
     //Declare array adapter
     ArrayAdapter<String> adapterItems;
     // Declare auto complete text view
     AutoCompleteTextView autoCompleteTextView;
 
-    public SendingRequestFragment() {
+    public SendingFeedBackFragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +77,7 @@ public class SendingRequestFragment extends Fragment {
 //        feedbackTopic = findViewById(R.id.editTextTopic);
         feedbackBox = view.findViewById(R.id.user_feedback_message_sent_et);
         date = view.findViewById(R.id.user_feedback_date_sent_tv);
+        time = view.findViewById(R.id.user_feedback_time_sent_tv);
         email = view.findViewById(R.id.user_feedback_email_tv);
         topic = view.findViewById(R.id.user_feedback_topic_text_layout);
         close = view.findViewById(R.id.user_feedback_close_iv);
@@ -102,14 +107,16 @@ public class SendingRequestFragment extends Fragment {
         });
 
         //Set current email
-        email.setText(currentEmail);
+        email.setText("Email: "+currentEmail);
 
         //Set current date
-        Date time = Calendar.getInstance().getTime();
-        //Format the date for later comparison
+        Date dateTime = Calendar.getInstance().getTime();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String currentDate = df.format(time);
-        date.setText(currentDate);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("kk:mm");
+        String currentTime = df2.format(dateTime);
+        String currentDate = df.format(dateTime);
+        date.setText("Date: " +currentDate);
+        time.setText("Time: "+currentTime);
 
 
         //Listen to postFeedback button event
@@ -124,6 +131,7 @@ public class SendingRequestFragment extends Fragment {
             feedbackMap.put("topic", topic.getEditText().getText().toString());
             feedbackMap.put("feedbackContent", feedbackBox.getText().toString());
             feedbackMap.put("date", currentDate);
+            feedbackMap.put("time", currentTime);
             feedbackMap.put("id", id);
 
             //Getting user's full name and user's email from Firestore system into a Map

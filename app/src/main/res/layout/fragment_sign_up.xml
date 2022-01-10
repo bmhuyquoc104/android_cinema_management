@@ -60,7 +60,7 @@
                         android:paddingEnd="20dp"
                         android:textColor="@color/colorPrimary4"
                         android:textColorHint="@color/colorPrimary5"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,8 @@
                         android:paddingEnd="20dp"
                         android:textColor="@color/colorPrimary4"
                         android:textColorHint="@color/colorPrimary5"
-                        android:textSize="20sp" />
+                        android:textSize="16sp"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,7 +137,7 @@
                         android:paddingEnd="20dp"
                         android:textColor="@color/colorPrimary4"
                         android:textColorHint="@color/colorPrimary5"
-                        android:textSize="20sp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -171,7 +172,7 @@
                         android:paddingEnd="20dp"
                         android:textColor="@color/colorPrimary4"
                         android:textColorHint="@color/colorPrimary5"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -182,12 +183,12 @@
                     android:id="@+id/fgSignUp_continueButton"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
-                    android:layout_marginTop="370dp"
+                    android:layout_marginTop="364dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:letterSpacing="0.21"
                     android:text="@string/Continue"
                     android:textColor="@color/colorPrimary5"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     app:cornerRadius="40dp"
                     app:iconGravity="start"
                     app:iconPadding="4dp"

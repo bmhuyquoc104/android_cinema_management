@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.android_cinema_management.UserManagement.ListOfFeedbackFragment;
-import com.example.android_cinema_management.UserManagement.SendingFeedBackFragment;
+import com.example.android_cinema_management.UserManagement.AddReviewFragment;
+import com.example.android_cinema_management.UserManagement.ListOfReviewFragment;
 
-public class FeedBackFragmentAdapter extends FragmentStateAdapter {
-    public FeedBackFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+public class ReviewFragmentAdapter extends FragmentStateAdapter {
+    public ReviewFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 
@@ -19,9 +19,9 @@ public class FeedBackFragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return new ListOfFeedbackFragment();
+                return new ListOfReviewFragment();
         }
-        return new SendingFeedBackFragment();
+        return new AddReviewFragment();
     }
 
     @Override
