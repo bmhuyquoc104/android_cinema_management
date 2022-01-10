@@ -1,10 +1,7 @@
 package com.example.android_cinema_management.AccountManagement;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -59,11 +56,11 @@ public class SignInFragment extends Fragment {
     Activity fragmentActivity;
 
     //Declare Firebase Authentication
+    User user;
     FirebaseAuth firebaseAuth;
-    FirebaseUser mUser;
     FirebaseFirestore db;
+    FirebaseUser mUser;
     String userId;
-
     public SignInFragment() {
         // Required empty public constructor
     }
@@ -93,7 +90,6 @@ public class SignInFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         mUser = firebaseAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
-//        userId = firebaseAuth.getCurrentUser().getUid();
 
 
         //Function to log into the account
@@ -106,7 +102,6 @@ public class SignInFragment extends Fragment {
 //                    fm.beginTransaction();
 //            transaction.replace(R.id.ma_container, fragment).commit();
             // Replace this fragment by accounts fragment
-
                 if (emailIsNotEmpty() && passwordIsNotEmpty()) {
                     //getting user's email and password
                     inputEmail = email.getEditText().getText().toString();
@@ -138,13 +133,13 @@ public class SignInFragment extends Fragment {
                                     FragmentTransaction transaction =
                                             fm.beginTransaction();
                                     transaction.replace(R.id.ma_container, fragment).commit();
+                                    db.collection("Users").document(mUser.getUid()).update("status", "active");
                                 } else {
                                     //if the email and password is incorrect
                                     Toast.makeText(getActivity(), "Fail to login " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-                        db.collection("Users").document(mUser.getUid()).update("status", "active");
                     }
                 }
         });

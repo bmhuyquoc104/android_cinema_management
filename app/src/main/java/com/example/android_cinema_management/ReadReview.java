@@ -25,8 +25,8 @@ public class ReadReview extends AppCompatActivity {
 
     //Declare RecyclerView ReviewAdapter ArrayList FirebaseFirestore
     RecyclerView recyclerView;
-    FeedbackAdapter feedbackAdapter;
-    ArrayList<Feedback> resultContainer;
+    ReviewAdapter reviewAdapter;
+    ArrayList<Review> resultContainer;
     FirebaseFirestore db;
 
     @Override
@@ -44,14 +44,14 @@ public class ReadReview extends AppCompatActivity {
 
         //Initialize resultContainer and reviewAdapter
         resultContainer = new ArrayList<>();
-        feedbackAdapter = new FeedbackAdapter(this, resultContainer);
+        reviewAdapter = new ReviewAdapter(this, resultContainer);
         //Set recyclerView to reviewAdapter
-        recyclerView.setAdapter(feedbackAdapter);
+        recyclerView.setAdapter(reviewAdapter);
 
 
-        //call function get feedback data
+        //call function get review data
         getReviews(db, resultContainer, () -> {
-            for (Feedback v: resultContainer) {
+            for (Review v: resultContainer) {
                 System.out.println(v.toString());
             }
         });
@@ -60,11 +60,11 @@ public class ReadReview extends AppCompatActivity {
     }
 
     //Function get reviews data
-    private void getReviews(FirebaseFirestore db, ArrayList<Feedback> resultContainer, Runnable callback) {
-        db.collection("feedback").get().addOnCompleteListener(task -> {
+    private void getReviews(FirebaseFirestore db, ArrayList<Review> resultContainer, Runnable callback) {
+        db.collection("reviews").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
-                    Feedback dataContainer = doc.toObject(Feedback.class);
+                    Review dataContainer = doc.toObject(Review.class);
                     resultContainer.add(dataContainer);
                 }
                 callback.run();
