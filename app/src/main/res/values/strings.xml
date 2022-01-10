@@ -119,5 +119,6 @@
     <string name="admin_home">ADMIN MANAGEMENT</string>
     <string name="combo">Combo</string>
     <string name="feedback">feedback</string>
+    <string name="ac_privacy_policy">Privacy Policy</string>
 
 </resources>
