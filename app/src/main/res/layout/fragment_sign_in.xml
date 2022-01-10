@@ -56,7 +56,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/frag_signIn_textLayout_password"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="150dp"
                 app:boxStrokeColor="@color/colorPrimary3"
                 android:textColorHint="@color/colorPrimary4"
@@ -94,7 +94,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/frag_signIn_textLayout_email"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
 
                 app:boxStrokeColor="@color/colorPrimary3"

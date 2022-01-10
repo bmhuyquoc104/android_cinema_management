@@ -46,7 +46,6 @@ public class SignInFragment extends Fragment {
     ImageView close;
     TextInputLayout email, password;
     Button logIn;
-    Button logOut;
     TextView forgotPassword;
     //Declare admin;
     User admin;
@@ -104,7 +103,7 @@ public class SignInFragment extends Fragment {
 //            transaction.replace(R.id.ma_container, fragment).commit();
             // Replace this fragment by accounts fragment
 
-                if (emailIsNotEmpty() && passwordIsNotEmpty()) {
+                if (emailIsNotEmpty() & passwordIsNotEmpty()) {
                     //getting user's email and password
                     inputEmail = email.getEditText().getText().toString();
                     inputPassword = password.getEditText().getText().toString();
