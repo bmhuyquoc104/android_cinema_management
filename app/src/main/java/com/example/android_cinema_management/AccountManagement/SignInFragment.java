@@ -44,7 +44,6 @@ public class SignInFragment extends Fragment {
     ImageView close;
     TextInputLayout email, password;
     Button logIn;
-    Button logOut;
     TextView forgotPassword;
     //Declare admin;
     User admin;
@@ -102,7 +101,7 @@ public class SignInFragment extends Fragment {
 //                    fm.beginTransaction();
 //            transaction.replace(R.id.ma_container, fragment).commit();
             // Replace this fragment by accounts fragment
-                if (emailIsNotEmpty() && passwordIsNotEmpty()) {
+                if (emailIsNotEmpty() & passwordIsNotEmpty()) {
                     //getting user's email and password
                     inputEmail = email.getEditText().getText().toString();
                     inputPassword = password.getEditText().getText().toString();
@@ -111,7 +110,7 @@ public class SignInFragment extends Fragment {
                         Intent intent2 = new Intent(getContext(), AdminActivity.class);
                         intent2.setAction(Intent.ACTION_SEND);
                         intent2.setType("plain/text");
-                        intent2.putExtra("userName", admin.getFullName());
+                        intent2.putExtra("name", admin.getFullName());
                         // Delete all stacks before to avoid stack memory redundant and collapse between stacks
                         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent2);

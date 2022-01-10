@@ -35,7 +35,7 @@ public class User {
     //Create only 1 admin for the app
     public static User createAdmin(){
         String id = UUID.randomUUID().toString();
-        String name = "voquochuy";
+        String name = "Vo Quoc Huy";
         String password = "admin104";
         String email = "s3823236@admin.com";
         String gender = "male";

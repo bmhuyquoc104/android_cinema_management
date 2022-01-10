@@ -59,7 +59,6 @@ public class SignUpFragment extends Fragment {
             inputEmail = Objects.requireNonNull(email.getEditText()).getText().toString();
             inputPassword = Objects.requireNonNull(password.getEditText()).getText().toString();
             inputConfirmPassword = Objects.requireNonNull(confirmPassword.getEditText()).getText().toString();
-            System.out.println("hyu ne " + inputPassword + inputConfirmPassword + inputEmail + inputFullName);
             if (isValidEmail() & isValidPassword() & isValidFullName() & isValidConfirmPassword()) {
                 Bundle bundle = new Bundle();
                 bundle.putString("fullName", inputFullName);
