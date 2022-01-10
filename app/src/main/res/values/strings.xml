@@ -124,6 +124,7 @@
     <string name="date">Date</string>
     <string name="message">Please enter your message</string>
     <string name="topic">Topic</string>
-    <string name="sendFeedback">SENDING FEEDBACK</string>
+    <string name="sendFeedback">NEW FEEDBACK</string>
+    <string name="previousFeedback">ALL FEEDBACKS</string>
 
 </resources>
