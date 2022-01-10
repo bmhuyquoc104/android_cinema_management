@@ -1,41 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-<LinearLayout
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary3"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".UserManagement.UserReview">
+    android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editTextTopic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Topic"
-        android:inputType="text" />
 
-    <EditText
-        android:id="@+id/feedbackBox"
-        android:layout_width="356dp"
-        android:layout_height="279dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Message"
-        android:inputType="textMultiLine" />
 
-    <Button
-        android:id="@+id/postFeedbackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post Feedback"
-        android:textColor="@color/black"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="990dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="236dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="15dp"
+            android:letterSpacing="0.09"
+            android:text="@string/sendFeedback"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary2"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="155dp"
+            android:layout_height="208dp"
+            android:layout_marginTop="44dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cinema_app_logo2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/user_feedback_close_iv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.cardview.widget.CardView
+            style="@style/CardView.Light"
+            android:layout_width="412dp"
+            android:layout_height="499dp"
+            android:layout_marginTop="188dp"
+            app:cardBackgroundColor="@color/colorPrimary3"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="10dp"
+            app:contentPadding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/user_feedback_email_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="15dp"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/email"
+                    android:textColor="@color/colorPrimary4"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+
+                <TextView
+                    android:id="@+id/user_feedback_date_sent_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="104dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_calendar_month_24"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@color/colorPrimary4"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/date"
+                    android:textColor="@color/colorPrimary4"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/user_feedback_topic_text_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="192dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColorHint="@color/colorPrimary4"
+                    android:textSize="16sp"
+                    app:boxStrokeColor="@color/colorPrimary3"
+                    app:boxStrokeErrorColor="@color/colorPrimary3"
+                    app:endIconTint="@color/colorPrimary2"
+                    app:hintTextColor="@color/colorPrimary2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:startIconTint="@color/colorPrimary2">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/user_feedback_topic_auto_complete_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/round_login_page"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:drawableStart="@drawable/ic_baseline_category_24"
+                        android:drawablePadding="15dp"
+                        android:drawableTint="@color/colorPrimary4"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/topic"
+                        android:textColor="@color/colorPrimary4"
+                        android:textColorHint="@color/colorPrimary5"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/frag2SignUp_dateOfBirth"
+                        tools:ignore="UnusedAttribute" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <EditText
+                    android:id="@+id/user_feedback_message_sent_et"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="284dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_event_note_24"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@color/colorPrimary4"
+                    android:fadeScrollbars="true"
+                    android:gravity="start|center_vertical"
+                    android:hint="@string/message"
+                    android:isScrollContainer="true"
+                    android:keepScreenOn="true"
+                    android:lineSpacingExtra="8sp"
+                    android:nestedScrollingEnabled="true"
+                    android:overScrollMode="ifContentScrolls"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary4"
+                    android:textSize="16sp"
+                    android:verticalScrollbarPosition="right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                <Button
+                    android:id="@+id/user_feedback_send_bt"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="392dp"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:letterSpacing="0.21"
+                    android:text="@string/send"
+                    android:textColor="@color/colorPrimary5"
+                    android:textSize="18sp"
+                    app:cornerRadius="40dp"
+                    app:iconGravity="start"
+                    app:iconPadding="4dp"
+                    app:iconTint="@color/colorPrimary4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.466"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--            <ImageView-->
+                <!--                android:id="@+id/imageView2"-->
+                <!--                android:layout_width="56dp"-->
+                <!--                android:layout_height="55dp"-->
+                <!--                android:layout_marginTop="344dp"-->
+                <!--                android:src="@drawable/facebook"-->
+                <!--                app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                app:layout_constraintHorizontal_bias="0.336"-->
+                <!--                app:layout_constraintStart_toStartOf="parent"-->
+                <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+
+                <!--            <ImageView-->
+                <!--                android:id="@+id/imageView4"-->
+                <!--                android:layout_width="56dp"-->
+                <!--                android:layout_height="55dp"-->
+                <!--                android:layout_marginTop="344dp"-->
+                <!--                android:src="@drawable/google"-->
+                <!--                app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                app:layout_constraintHorizontal_bias="0.613"-->
+                <!--                app:layout_constraintStart_toStartOf="parent"-->
+                <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!--        <EditText-->
+<!--            android:id="@+id/feedbackBox"-->
+<!--            android:layout_width="356dp"-->
+<!--            android:layout_height="279dp"-->
+<!--            android:ems="10"-->
+<!--            android:gravity="start|top"-->
+<!--            android:hint="Message"-->
+<!--            android:inputType="textMultiLine"-->
+<!--            tools:layout_editor_absoluteX="27dp"-->
+<!--            tools:layout_editor_absoluteY="203dp" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/postFeedbackButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="990dp"-->
+<!--            android:text="Post Feedback"-->
+<!--            android:textColor="@color/black"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.539"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

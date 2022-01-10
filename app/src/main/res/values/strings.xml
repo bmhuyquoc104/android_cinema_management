@@ -120,5 +120,10 @@
     <string name="combo">Combo</string>
     <string name="feedback">feedback</string>
     <string name="ac_privacy_policy">Privacy Policy</string>
+    <string name="send">SEND</string>
+    <string name="date">Date</string>
+    <string name="message">Please enter your message</string>
+    <string name="topic">Topic</string>
+    <string name="sendFeedback">SENDING FEEDBACK</string>
 
 </resources>

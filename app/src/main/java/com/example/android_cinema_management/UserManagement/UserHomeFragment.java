@@ -111,13 +111,13 @@ public class UserHomeFragment extends Fragment {
 
         //Listen onClick of Review Button
         review.setOnClickListener(View ->{
-            Intent intent = new Intent(getActivity(), ReadReview.class);
+            Intent intent = new Intent(getActivity(), UserReview.class);
             startActivity(intent);
         });
 
         //Listen onClick of FeedBack button
         feedback.setOnClickListener(View ->{
-            Intent intent = new Intent(getActivity(), ReadFeedback.class);
+            Intent intent = new Intent(getActivity(), UserFeedBack.class);
             startActivity(intent);
         });
 
