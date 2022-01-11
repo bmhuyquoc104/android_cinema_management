@@ -4,26 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary3"
+    android:background="@color/colorPrimary"
     tools:context=".UserManagement.BuyTicketActivity">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="197dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="56dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/cinema_app_logo2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/buy_ticket_tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="156dp"
-        android:background="@color/colorPrimary3"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

@@ -135,5 +135,10 @@
     <string name="byMovie">By Movie</string>
     <string name="byDay">By Day</string>
     <string name="byCinema">By Cinema</string>
+    <string name="chooseCinema">Choose Cinema</string>
+    <string name="chooseMovie">Choose Movie</string>
+    <string name="chooseTime">Choose Time</string>
+    <string name="chooseDate">Choose Date</string>
+    <string name="purchase">Purchase</string>
 
 </resources>
