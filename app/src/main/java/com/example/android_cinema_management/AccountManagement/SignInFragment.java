@@ -1,10 +1,7 @@
 package com.example.android_cinema_management.AccountManagement;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -29,7 +26,7 @@ import android.widget.Toast;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.UserManagement.AdminActivity;
-import com.example.android_cinema_management.UserManagement.UserHomeFragment;
+import com.example.android_cinema_management.UserManagement.UserHomeFragmentActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,7 +43,6 @@ public class SignInFragment extends Fragment {
     ImageView close;
     TextInputLayout email, password;
     Button logIn;
-    Button logOut;
     TextView forgotPassword;
     //Declare admin;
     User admin;
@@ -104,7 +100,7 @@ public class SignInFragment extends Fragment {
 //            transaction.replace(R.id.ma_container, fragment).commit();
             // Replace this fragment by accounts fragment
 
-                if (emailIsNotEmpty() && passwordIsNotEmpty()) {
+                if (emailIsNotEmpty() & passwordIsNotEmpty()) {
                     //getting user's email and password
                     inputEmail = email.getEditText().getText().toString();
                     inputPassword = password.getEditText().getText().toString();
@@ -113,7 +109,7 @@ public class SignInFragment extends Fragment {
                         Intent intent2 = new Intent(getContext(), AdminActivity.class);
                         intent2.setAction(Intent.ACTION_SEND);
                         intent2.setType("plain/text");
-                        intent2.putExtra("userName", admin.getFullName());
+                        intent2.putExtra("name", admin.getFullName());
                         // Delete all stacks before to avoid stack memory redundant and collapse between stacks
                         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent2);
@@ -129,7 +125,7 @@ public class SignInFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     //if the email and password is correct
-                                    UserHomeFragment fragment = new UserHomeFragment();
+                                    UserHomeFragmentActivity fragment = new UserHomeFragmentActivity();
                                     fragment.setArguments(bundle);
                                     FragmentTransaction transaction =
                                             fm.beginTransaction();

@@ -14,19 +14,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_cinema_management">
         <activity
+
             android:name=".NewsDetails"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.BuyTicketActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.AddDiscount"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.ComboActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.FeedbackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.CinemaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.DiscountActivity"
             android:exported="false" />
         <activity
             android:name=".ReadFeedback"
             android:exported="false" />
         <activity
-            android:name=".ReadReview"
-            android:exported="false" />
-        <activity
             android:name=".UserManagement.AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".UserManagement.UserFeedBack"
+            android:name=".UserManagement.UserFeedBackActivity"
             android:exported="false" />
         <activity
             android:name=".UserManagement.UserReview"
@@ -73,6 +89,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

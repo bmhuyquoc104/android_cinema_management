@@ -119,5 +119,26 @@
     <string name="admin_home">ADMIN MANAGEMENT</string>
     <string name="combo">Combo</string>
     <string name="feedback">feedback</string>
+    <string name="ac_privacy_policy">Privacy Policy</string>
+    <string name="send">SEND</string>
+    <string name="date">Date</string>
+    <string name="message">Please enter your message</string>
+    <string name="topic">Topic</string>
+    <string name="sendFeedback">NEW FEEDBACK</string>
+    <string name="previousFeedback">ALL FEEDBACKS</string>
+    <string name="AuthorName">Author Name</string>
+    <string name="addReview">Please Leave Your Review</string>
+    <string name="add">Add</string>
+    <string name="sendReview">New Review</string>
+    <string name="previousReview">All Reviews</string>
+    <string name="buy_ticket">BUY TICKET</string>
+    <string name="byMovie">By Movie</string>
+    <string name="byDay">By Day</string>
+    <string name="byCinema">By Cinema</string>
+    <string name="chooseCinema">Choose Cinema</string>
+    <string name="chooseMovie">Choose Movie</string>
+    <string name="chooseTime">Choose Time</string>
+    <string name="chooseDate">Choose Date</string>
+    <string name="purchase">Purchase</string>
 
 </resources>

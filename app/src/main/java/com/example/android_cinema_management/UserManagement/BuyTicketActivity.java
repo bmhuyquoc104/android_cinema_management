@@ -1,57 +1,35 @@
 package com.example.android_cinema_management.UserManagement;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.android_cinema_management.Adapter.FeedBackFragmentAdapter;
-import com.example.android_cinema_management.Adapter.ReviewFragmentAdapter;
-import com.example.android_cinema_management.Model.User;
+import com.example.android_cinema_management.Adapter.BuyTicketFragmentAdapter;
 import com.example.android_cinema_management.R;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
-
-public class UserReview extends AppCompatActivity {
+public class BuyTicketActivity extends AppCompatActivity {
     //Declare imageview
     ImageView close;
     //Declare tablayout, adapter and viewpager2
     TabLayout layout;
     ViewPager2 viewpager2;
-    ReviewFragmentAdapter adapter;
-
+    BuyTicketFragmentAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_review);
-
+        setContentView(R.layout.activity_buy_ticket);
         //Binding with XML values
-        layout = findViewById(R.id.user_review_tabLayout);
-        viewpager2 = findViewById(R.id.user_review_viewpager2);
-        close = findViewById(R.id.user_review_close_iv);
+        layout = findViewById(R.id.buy_ticket_tabLayout);
+        viewpager2 = findViewById(R.id.buy_ticket_viewpager2);
+        close = findViewById(R.id.buy_ticket_close_iv);
         // Initialize fragment manager
         FragmentManager fm = getSupportFragmentManager();
         // Initialize adapter
-        adapter = new ReviewFragmentAdapter(fm,getLifecycle());
+        adapter = new BuyTicketFragmentAdapter(fm,getLifecycle());
         // Set adapter to viewpage2
         viewpager2.setAdapter(adapter);
         // Change the layout by tab selected
@@ -87,6 +65,5 @@ public class UserReview extends AppCompatActivity {
         close.setOnClickListener(view->{
             finish();
         });
-
     }
 }

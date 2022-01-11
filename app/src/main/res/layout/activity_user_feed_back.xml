@@ -1,41 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".UserManagement.UserReview">
+    android:layout_height="match_parent"
+    android:background = "@color/colorPrimary3"
+    tools:context=".UserManagement.UserFeedBackActivity">
 
-    <EditText
-        android:id="@+id/editTextTopic"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="197dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cinema_app_logo2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/user_feedback_tabLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Topic"
-        android:inputType="text" />
+        android:layout_marginTop="112dp"
+        android:background="@color/colorPrimary3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabGravity="start"
+        app:tabIndicatorColor="@color/colorPrimary2"
+        app:tabIndicatorGravity="bottom"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#fff"
+        app:tabTextColor="@color/colorPrimary5">
 
-    <EditText
-        android:id="@+id/feedbackBox"
-        android:layout_width="356dp"
-        android:layout_height="279dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Message"
-        android:inputType="textMultiLine" />
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sendFeedback"
+            />
 
-    <Button
-        android:id="@+id/postFeedbackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post Feedback"
-        android:textColor="@color/black"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/previousFeedback" />
+    </com.google.android.material.tabs.TabLayout>
 
-</LinearLayout>
-</ScrollView>
+    <ImageView
+        android:id="@+id/user_feedback_close_iv"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_baseline_close_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/user_feedback_viewpager2"
+        android:layout_width="413dp"
+        android:layout_height="504dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_feedback_tabLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
