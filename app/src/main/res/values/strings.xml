@@ -132,5 +132,8 @@
     <string name="sendReview">New Review</string>
     <string name="previousReview">All Reviews</string>
     <string name="buy_ticket">BUY TICKET</string>
+    <string name="byMovie">By Movie</string>
+    <string name="byDay">By Day</string>
+    <string name="byCinema">By Cinema</string>
 
 </resources>

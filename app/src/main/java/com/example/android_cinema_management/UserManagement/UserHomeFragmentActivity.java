@@ -32,13 +32,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-public class UserHomeFragment extends Fragment {
+public class UserHomeFragmentActivity extends Fragment {
     //Declare imageview
     ImageView profile, avatar, combo, transaction, feedback, review, points;
     //Declare textview
     TextView welcome, type;
     //Declare logout
-    Button logOut;
+    Button logOut,buyTicket;
     // Declare string email
     String name;
 
@@ -47,7 +47,7 @@ public class UserHomeFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = firebaseAuth.getCurrentUser();
     String userId = user.getUid();
-    public UserHomeFragment() {
+    public UserHomeFragmentActivity() {
         // Required empty public constructor
     }
 
@@ -67,6 +67,7 @@ public class UserHomeFragment extends Fragment {
         logOut = view.findViewById(R.id.user_home_logout_button);
         welcome = view.findViewById(R.id.user_home_name);
         type = view.findViewById(R.id.user_home_account_type);
+        buyTicket = view.findViewById(R.id.user_home_buy_ticket_bt);
         // Receive the bundle from other fragments
         Bundle bundle = this.getArguments();
         System.out.println(bundle);
@@ -137,7 +138,7 @@ public class UserHomeFragment extends Fragment {
 
         //Listen onClick of FeedBack button
         feedback.setOnClickListener(View ->{
-            Intent intent = new Intent(getActivity(), UserFeedBack.class);
+            Intent intent = new Intent(getActivity(), UserFeedBackActivity.class);
             startActivity(intent);
         });
 
@@ -153,8 +154,20 @@ public class UserHomeFragment extends Fragment {
             }
         });
 
-
-
+        /*
+        *Function to add buy ticket
+        * */
+        buyTicket.setOnClickListener(View ->{
+            Intent intent = new Intent(getContext(), BuyTicketActivity.class);
+            // Start intent
+            try {
+                startActivity(intent);
+            }
+            // Exception if activity is not found
+            catch (ActivityNotFoundException e){
+                Toast.makeText(getContext(),"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
+            }
+        });
         return view;
     }
 }

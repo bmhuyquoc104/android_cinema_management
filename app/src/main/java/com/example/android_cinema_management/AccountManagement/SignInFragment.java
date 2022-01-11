@@ -1,10 +1,7 @@
 package com.example.android_cinema_management.AccountManagement;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -29,7 +26,7 @@ import android.widget.Toast;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.UserManagement.AdminActivity;
-import com.example.android_cinema_management.UserManagement.UserHomeFragment;
+import com.example.android_cinema_management.UserManagement.UserHomeFragmentActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -128,7 +125,7 @@ public class SignInFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     //if the email and password is correct
-                                    UserHomeFragment fragment = new UserHomeFragment();
+                                    UserHomeFragmentActivity fragment = new UserHomeFragmentActivity();
                                     fragment.setArguments(bundle);
                                     FragmentTransaction transaction =
                                             fm.beginTransaction();

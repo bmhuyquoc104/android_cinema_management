@@ -7,7 +7,7 @@
     android:paddingBottom="80dp"
     android:layout_marginBottom="60dp"
     android:background = "@color/colorPrimary3"
-    tools:context=".UserManagement.UserHomeFragment">
+    tools:context=".UserManagement.UserHomeFragmentActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -228,7 +228,7 @@
             android:text="@string/user_home_dashboard"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary4"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
@@ -289,7 +289,7 @@
             android:textSize="15sp"
             app:drawableTint="@color/colorPrimary5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.566"
+            app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_home_name"
             tools:ignore="UseCompatTextViewDrawableXml" />
@@ -311,12 +311,12 @@
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_marginTop="12dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimary2"
             android:letterSpacing="0.20"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/buy_ticket"
-            android:textColor="@color/colorPrimary2"
+            android:textColor="@color/colorPrimary4"
             app:cornerRadius="5dp"
             app:icon="@drawable/ic_baseline_shopping_cart_24"
             app:iconGravity="start"

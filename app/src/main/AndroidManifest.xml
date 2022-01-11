@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_cinema_management">
         <activity
+            android:name=".UserManagement.BuyTicketActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserManagement.AdminManagment.AddDiscount"
             android:exported="false" />
         <activity
@@ -35,7 +38,7 @@
             android:name=".UserManagement.AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".UserManagement.UserFeedBack"
+            android:name=".UserManagement.UserFeedBackActivity"
             android:exported="false" />
         <activity
             android:name=".UserManagement.UserReview"

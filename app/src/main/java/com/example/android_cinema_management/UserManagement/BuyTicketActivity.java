@@ -4,59 +4,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.android_cinema_management.Adapter.FeedBackFragmentAdapter;
-import com.example.android_cinema_management.Adapter.MovieFragmentAdapter;
-import com.example.android_cinema_management.Model.User;
+import com.example.android_cinema_management.Adapter.BuyTicketFragmentAdapter;
 import com.example.android_cinema_management.R;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
-
-public class UserFeedBack extends AppCompatActivity {
+public class BuyTicketActivity extends AppCompatActivity {
     //Declare imageview
     ImageView close;
     //Declare tablayout, adapter and viewpager2
     TabLayout layout;
     ViewPager2 viewpager2;
-    FeedBackFragmentAdapter adapter;
-
+    BuyTicketFragmentAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_feed_back);
+        setContentView(R.layout.activity_buy_ticket);
         //Binding with XML values
-        layout = findViewById(R.id.user_feedback_tabLayout);
-        viewpager2 = findViewById(R.id.user_feedback_viewpager2);
-        close = findViewById(R.id.user_feedback_close_iv);
+        layout = findViewById(R.id.buy_ticket_tabLayout);
+        viewpager2 = findViewById(R.id.buy_ticket_viewpager2);
+        close = findViewById(R.id.buy_ticket_close_iv);
         // Initialize fragment manager
         FragmentManager fm = getSupportFragmentManager();
         // Initialize adapter
-        adapter = new FeedBackFragmentAdapter(fm,getLifecycle());
+        adapter = new BuyTicketFragmentAdapter(fm,getLifecycle());
         // Set adapter to viewpage2
         viewpager2.setAdapter(adapter);
         // Change the layout by tab selected
@@ -87,13 +60,10 @@ public class UserFeedBack extends AppCompatActivity {
         //Disable swiping
         viewpager2.setUserInputEnabled(false);
         /*
-        *Function to close activity
-        * */
+         *Function to close activity
+         * */
         close.setOnClickListener(view->{
             finish();
         });
-
-
-
     }
 }
