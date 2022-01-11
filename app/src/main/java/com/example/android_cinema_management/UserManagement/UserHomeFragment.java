@@ -42,6 +42,7 @@ public class UserHomeFragment extends Fragment {
     // Declare string email
     String name;
 
+
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -97,6 +98,7 @@ public class UserHomeFragment extends Fragment {
                         SpannableString str2 = new SpannableString(docSnap.getString("fullName"));
                         str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
                         builder.append(str2);
+                        welcome.setText( builder, Button.BufferType.SPANNABLE);
                     }
                 }
             }
@@ -110,7 +112,7 @@ public class UserHomeFragment extends Fragment {
 
 
         // Set text for textView
-        welcome.setText( builder, Button.BufferType.SPANNABLE);
+
 
         /**
          * Function to switch to profile page

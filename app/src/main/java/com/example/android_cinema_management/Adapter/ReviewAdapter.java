@@ -41,10 +41,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.movieName.setText("Movie: " + reviewArrayList.get(position).getMovieName());
-        holder.movieRating.setText(reviewArrayList.get(position).getRateMovie());
+        holder.movieRating.setText("Rate: "+reviewArrayList.get(position).getRateMovie());
         holder.reviewContent.setText("Review Content: " + reviewArrayList.get(position).getReviewContent());
-        holder.reviewDate.setText(reviewArrayList.get(position).getDate());
-        holder.reviewTime.setText(reviewArrayList.get(position).getTime());
+        holder.reviewDate.setText("Date: "+reviewArrayList.get(position).getDate());
+        holder.reviewTime.setText("Time: "+reviewArrayList.get(position).getTime());
+        holder.likeBtn.setText(Integer.toString(reviewArrayList.get(position).getLike()));
+        holder.dislikeBtn.setText(Integer.toString(reviewArrayList.get(position).getDislike()));
     }
 
     @Override

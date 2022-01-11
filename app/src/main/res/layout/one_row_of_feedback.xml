@@ -10,8 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
         app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="7dp"
         app:cardElevation="10dp"
@@ -27,8 +27,10 @@
 
             <TextView
                 android:id="@+id/list_of_feedback_date_tv"
+
                 android:layout_width="195dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
                 android:text="@string/textview"
@@ -41,8 +43,10 @@
 
             <TextView
                 android:id="@+id/list_of_feedback_time_tv"
+
                 android:layout_width="195dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
                 android:text="@string/textview"
@@ -55,9 +59,10 @@
 
             <TextView
                 android:id="@+id/list_of_feedback_message_tv"
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="10dp"
                 android:lineSpacingExtra="8sp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
