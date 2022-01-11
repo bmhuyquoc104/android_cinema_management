@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/buy_by_cinema_cinema_text_layout"
+            android:id="@+id/buy_by_movie_cinema_text_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             app:startIconTint="@color/colorPrimary2">
 
             <AutoCompleteTextView
-                android:id="@+id/buy_by_cinema_cinema_auto_complete_text"
+                android:id="@+id/buy_by_movie_cinema_auto_complete_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_login_page"
@@ -52,7 +52,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/buy_by_cinema_movie_text_layout"
+            android:id="@+id/buy_by_movie_movie_text_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             app:startIconTint="@color/colorPrimary2">
 
             <AutoCompleteTextView
-                android:id="@+id/buy_by_cinema_movie_auto_complete_text"
+                android:id="@+id/buy_by_movie_movie_auto_complete_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_login_page"
@@ -96,7 +96,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/buy_by_cinema_date_text_layout"
+            android:id="@+id/buy_by_movie_date_text_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
             app:startIconTint="@color/colorPrimary2">
 
             <AutoCompleteTextView
-                android:id="@+id/buy_by_cinema_date_auto_complete_text"
+                android:id="@+id/buy_by_movie_date_auto_complete_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_login_page"
@@ -140,7 +140,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/buy_by_cinema_time_text_layout"
+            android:id="@+id/buy_by_movie_time_text_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
             app:startIconTint="@color/colorPrimary2">
 
             <AutoCompleteTextView
-                android:id="@+id/buy_by_cinema_time_auto_complete_text"
+                android:id="@+id/buy_by_movie_time_auto_complete_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_login_page"
@@ -184,7 +184,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/buy_by_cinema_buy"
+            android:id="@+id/buy_by_movie_buy"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="400dp"
