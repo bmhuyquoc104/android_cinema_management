@@ -8,17 +8,25 @@ public class Review {
     private String movieName;
     private String rateMovie;
     private String reviewContent;
+    private String date;
+    private String time;
+    private int like;
+    private int dislike;
     private HashMap<String, Object> user;
 
 
     public Review() {
     }
 
-    public Review(String reviewId, String movieName, String rateMovie, String reviewContent, HashMap<String, Object> user) {
+    public Review(String reviewId, String movieName, String rateMovie, String reviewContent, String date, String time, int like, int dislike, HashMap<String, Object> user) {
         this.reviewId = reviewId;
         this.movieName = movieName;
         this.rateMovie = rateMovie;
         this.reviewContent = reviewContent;
+        this.date = date;
+        this.time = time;
+        this.like = like;
+        this.dislike = dislike;
         this.user = user;
     }
 
@@ -54,6 +62,38 @@ public class Review {
         this.reviewContent = reviewContent;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(int dislike) {
+        this.dislike = dislike;
+    }
+
     public HashMap<String, Object> getUser() {
         return user;
     }
@@ -65,10 +105,14 @@ public class Review {
     @Override
     public String toString() {
         return "Review{" +
-                "id='" + reviewId + '\'' +
+                "reviewId='" + reviewId + '\'' +
                 ", movieName='" + movieName + '\'' +
                 ", rateMovie='" + rateMovie + '\'' +
                 ", reviewContent='" + reviewContent + '\'' +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", like=" + like +
+                ", dislike=" + dislike +
                 ", user=" + user +
                 '}';
     }

@@ -8,16 +8,18 @@ public class Feedback {
     private String topic;
     private String feedbackContent;
     private String date;
+    private String time;
     private HashMap<String, Object> user;
 
     public Feedback() {
     }
 
-    public Feedback(String id, String topic, String feedbackContent, String date, HashMap<String, Object> user) {
+    public Feedback(String id, String topic, String feedbackContent, String date, String time, HashMap<String, Object> user) {
         this.id = id;
         this.topic = topic;
         this.feedbackContent = feedbackContent;
         this.date = date;
+        this.time = time;
         this.user = user;
     }
 
@@ -53,6 +55,14 @@ public class Feedback {
         this.date = date;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public HashMap<String, Object> getUser() {
         return user;
     }
@@ -68,6 +78,7 @@ public class Feedback {
                 ", topic='" + topic + '\'' +
                 ", feedbackContent='" + feedbackContent + '\'' +
                 ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
                 ", user=" + user +
                 '}';
     }
