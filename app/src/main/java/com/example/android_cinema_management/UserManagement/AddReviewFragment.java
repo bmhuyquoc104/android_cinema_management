@@ -3,6 +3,7 @@ package com.example.android_cinema_management.UserManagement;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 import com.example.android_cinema_management.HomeManagement.HomeFragment1;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -87,8 +90,25 @@ public class AddReviewFragment extends Fragment {
         //Get current user login
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         //Get current user Id
-        userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-        userName = Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName();
+//        userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+//        userName = Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName();
+
+        DocumentReference docRef = db.collection("Users").document(mUser.getUid());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot docSnap = task.getResult();
+                    if (docSnap != null){
+//                        userId = docSnap.getString("Id");
+//                        userName = docSnap.getString("fullName");
+                        authorName.setText(docSnap.getString("fullName"));
+//                        System.out.println("IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD " + userId);
+//                        System.out.println("FullNameeeeeeeeeeeeeeeeeeeeeeeeee " + userName);
+                    }
+                }
+            }
+        });
 
 
         //Set date and time for date and time textview
@@ -102,7 +122,7 @@ public class AddReviewFragment extends Fragment {
 
 
         //Set author name
-        authorName.setText("Author name: "+ userName);
+//        authorName.setText("Author name: "+ userName);
 
         //Binding xml value and set the dropdown for movie
         moviesArray = HomeFragment1.movieTitleList;

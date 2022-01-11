@@ -32,16 +32,19 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.one_row_of_review,parent,false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.one_row_of_review, parent, false);
         return new MyViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.movieName.setText("Movie: "+ reviewArrayList.get(position).getMovieName());
+        holder.movieName.setText("Movie: " + reviewArrayList.get(position).getMovieName());
         holder.movieRating.setText(reviewArrayList.get(position).getRateMovie());
-        holder.reviewContent.setText("Review Content: "+reviewArrayList.get(position).getReviewContent());
+        holder.reviewContent.setText("Review Content: " + reviewArrayList.get(position).getReviewContent());
+        holder.reviewDate.setText(reviewArrayList.get(position).getDate());
+        holder.reviewTime.setText(reviewArrayList.get(position).getTime());
     }
 
     @Override
@@ -49,16 +52,19 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         return reviewArrayList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        ImageButton likeBtn, dislikeBtn;
-        TextView userName, movieName, movieRating, reviewContent;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView likeBtn, dislikeBtn;
+        TextView movieName, movieRating, reviewContent, reviewDate, reviewTime;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             likeBtn = itemView.findViewById(R.id.list_of_review_like_tv3);
             dislikeBtn = itemView.findViewById(R.id.list_of_review_dislike_tv2);
+
             movieName = itemView.findViewById(R.id.list_of_review_movie_tv);
             movieRating = itemView.findViewById(R.id.list_of_review_rate_tv);
             reviewContent = itemView.findViewById(R.id.list_of_review_content_tv);
+            reviewDate = itemView.findViewById(R.id.list_of_review_date_tv);
+            reviewTime = itemView.findViewById(R.id.list_of_review_time_tv);
         }
     }
 }

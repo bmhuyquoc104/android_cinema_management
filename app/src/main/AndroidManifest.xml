@@ -14,6 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_cinema_management">
         <activity
+            android:name=".UserManagement.AdminManagment.AddDiscount"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.ComboActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.FeedbackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.CinemaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.DiscountActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReadFeedback"
             android:exported="false" />
         <activity
