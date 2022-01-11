@@ -52,8 +52,6 @@ public class SignUp extends AppCompatActivity {
     Button nextPage;
     // Declare viewpager 2 and adapter
     @SuppressLint("ResourceType")
-    ViewPager2 viewpager2;
-    RegisterAdapter adapter;
     // Declare view layout and textview array
     LinearLayout dotLayout;
     TextView [] dots;
@@ -64,9 +62,8 @@ public class SignUp extends AppCompatActivity {
         //Binding to XML's value
         title = findViewById(R.id.signUp_title);
         close = findViewById(R.id.signUpClose);
-        dotLayout = findViewById(R.id.signUp_dotIndicator);
-        // Instantiate a ViewPager2 and a PagerAdapter.
 
+        // Add first fragment to activity
         FragmentManager fm = getSupportFragmentManager();
         SignUpFragment fragment = new SignUpFragment();
         fm.beginTransaction().add(R.id.signUp_frameLayout,fragment).commit();
