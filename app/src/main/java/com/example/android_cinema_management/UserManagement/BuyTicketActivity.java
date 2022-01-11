@@ -19,7 +19,7 @@ public class BuyTicketActivity extends AppCompatActivity {
         close = findViewById(R.id.buy_ticket_close_iv);
         // Add first fragment to activity
         FragmentManager fm = getSupportFragmentManager();
-        BuyByMovieFragment fragment = new BuyByMovieFragment();
+        BuyTicketFragment1 fragment = new BuyTicketFragment1();
         fm.beginTransaction().add(R.id.buy_ticket_frame_layout,fragment).commit();
 
         /*

@@ -141,5 +141,9 @@
     <string name="chooseDate">Choose Date</string>
     <string name="purchase">Purchase</string>
     <string name="next">Next</string>
+    <string name="quantity">Quantity</string>
+    <string name="chooseTicket">Choose Ticket</string>
+    <string name="chooseCombo">Choose Combo</string>
+    <string name="chooseMethod">Choose Payment Method</string>
 
 </resources>

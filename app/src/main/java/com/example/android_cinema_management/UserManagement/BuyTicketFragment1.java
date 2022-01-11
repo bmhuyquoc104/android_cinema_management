@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
-import com.example.android_cinema_management.AccountManagement.SignUpFragment2;
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.HomeManagement.HomeFragment1;
 import com.example.android_cinema_management.R;
@@ -25,10 +24,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 
 
-public class BuyByMovieFragment extends Fragment {
+public class BuyTicketFragment1 extends Fragment {
     //Declare movie,date,time,cinema array options
     ArrayList<String> moviesArray = new ArrayList<>();
     ArrayList<String> cinemaArray = new ArrayList<>();
@@ -58,7 +56,7 @@ public class BuyByMovieFragment extends Fragment {
 
     // Declare auto complete text view
     AutoCompleteTextView movieAutoCompleteTextView,cinemaAutoCompleteTextView,dateAutoCompleteTextView,timeAutoCompleteTextView;
-    public BuyByMovieFragment() {
+    public BuyTicketFragment1() {
         // Required empty public constructor
     }
 
@@ -213,7 +211,7 @@ public class BuyByMovieFragment extends Fragment {
                 bundle.putString("cinema", cinemaChosen);
                 bundle.putString("date", dateChosen);
                 bundle.putString("time", timeChosen);
-                BuyingTicketByMovieFragment2 fragment2 = new BuyingTicketByMovieFragment2();
+                BuyTicketFragment2 fragment2 = new BuyTicketFragment2();
                 fragment2.setArguments(bundle);
                 FragmentManager fm = getParentFragmentManager();
                 FragmentTransaction transaction =
