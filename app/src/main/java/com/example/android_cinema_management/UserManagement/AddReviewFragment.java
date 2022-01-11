@@ -156,7 +156,7 @@ public class AddReviewFragment extends Fragment {
             reviewMap.put("dislike", 0);
 
             //Getting user's full name and user's email of current login user into userMap
-            DocumentReference documentReference = db.collection("Users").document(userId);
+            DocumentReference documentReference = db.collection("Users").document(mUser.getUid());
             documentReference.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     DocumentSnapshot documentSnapshot = task.getResult();
@@ -165,7 +165,7 @@ public class AddReviewFragment extends Fragment {
                     Map<String, String> userMap = new HashMap<>();
                     userMap.put("fullName", Objects.requireNonNull(user).getFullName());
                     userMap.put("email", user.getEmail());
-                    userMap.put("id", user.getId());
+                    userMap.put("id", mUser.getUid());
 
                     //Then put userMap into reviewMap
                     reviewMap.put("user", userMap);

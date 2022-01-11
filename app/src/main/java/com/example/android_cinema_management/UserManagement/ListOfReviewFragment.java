@@ -34,7 +34,7 @@ public class ListOfReviewFragment extends Fragment {
     //Declare adapter
     private ReviewAdapter reviewAdapter;
     //Declare Movie list
-    public static ArrayList<Review> reviewArrayList = new ArrayList<>();
+    public static ArrayList<Review> reviewArrayList;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -52,6 +52,7 @@ public class ListOfReviewFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_list_of_review, container, false);
 
+        reviewArrayList = new ArrayList<>();
         //call function get reviews data
         getReviews(db, reviewArrayList, () -> {
             System.out.println("REVIEWS LIST: " + reviewArrayList);
@@ -71,6 +72,7 @@ public class ListOfReviewFragment extends Fragment {
 
     //Function get reviews data
     private void getReviews(FirebaseFirestore db, ArrayList<Review> reviewArrayList, Runnable callback) {
+        reviewArrayList.clear();
         db.collection("reviews").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 int count = 0;

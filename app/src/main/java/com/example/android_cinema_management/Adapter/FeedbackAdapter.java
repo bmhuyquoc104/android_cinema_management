@@ -37,9 +37,9 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.feedbackTopic.setText("Topic: "+feedbackArrayList.get(position).getTopic());
-        holder.feedbackDate.setText("Date: "+feedbackArrayList.get(position).getDate());
-        holder.feedbackContent.setText("Message: "+feedbackArrayList.get(position).getFeedbackContent());
+        holder.feedbackTopic.setText("Topic: "+ feedbackArrayList.get(position).getTopic());
+        holder.feedbackDate.setText("Date: "+ feedbackArrayList.get(position).getDate());
+        holder.feedbackContent.setText("Message: "+ feedbackArrayList.get(position).getFeedbackContent());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView userFullName, feedbackTopic, feedbackDate, feedbackContent;
+        TextView feedbackTopic, feedbackDate, feedbackContent;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             feedbackTopic = itemView.findViewById(R.id.list_of_feedback_topic_tv);

@@ -149,6 +149,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5820512820512821" />
         <entry key="app/src/main/res/layout/fragment_home1.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_home2.xml" value="0.5192708333333333" />
+        <entry key="app/src/main/res/layout/fragment_list_of_feedback.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/fragment_list_of_review.xml" value="0.271286231884058" />
         <entry key="app/src/main/res/layout/fragment_movie_details2.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_movie_show_time1.xml" value="0.5820512820512821" />
@@ -158,6 +159,7 @@
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_sign_up2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_discount.xml" value="0.30885416666666665" />
+        <entry key="app/src/main/res/layout/one_row_of_feedback.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/one_row_of_movies.xml" value="0.3940972222222222" />
         <entry key="app/src/main/res/layout/one_row_of_review.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/open_filter_dialog.xml" value="0.25" />
