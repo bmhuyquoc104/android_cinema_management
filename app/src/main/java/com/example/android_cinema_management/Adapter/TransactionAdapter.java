@@ -39,6 +39,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.screen.setText("Screen: " + transactionArrayList.get(position).getScreen());
+        holder.movie.setText("Movie: " + transactionArrayList.get(position).getMovie());
         holder.date.setText("Date: " + transactionArrayList.get(position).getDate());
         holder.time.setText("Time: " + transactionArrayList.get(position).getTime());
         holder.ticketType.setText(transactionArrayList.get(position).getTicketType());
@@ -52,14 +54,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView date, time, ticketType, quantity, point;
+        TextView screen, movie, date, time, cinema, ticketType, combo, quantity, price, paymentMethod, point;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            screen = itemView.findViewById(R.id.list_of_transaction_screen_tv);
+            movie = itemView.findViewById(R.id.list_of_transaction_movie_tv);
             date = itemView.findViewById(R.id.list_of_transaction_date_tv);
             time = itemView.findViewById(R.id.list_of_transaction_time_tv);
+            cinema = itemView.findViewById(R.id.list_of_transaction_cinema_tv);
             ticketType = itemView.findViewById(R.id.list_of_transaction_ticket_type_tv);
+            combo = itemView.findViewById(R.id.list_of_transaction_combo_tv);
             quantity = itemView.findViewById(R.id.list_of_transaction_quantity_tv);
+            price = itemView.findViewById(R.id.list_of_transaction_price_tv);
+            paymentMethod = itemView.findViewById(R.id.list_of_transaction_paymentMethod_tv);
             point = itemView.findViewById(R.id.list_of_transaction_point_tv);
         }
     }

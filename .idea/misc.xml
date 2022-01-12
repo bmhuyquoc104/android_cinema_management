@@ -158,6 +158,7 @@
         <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.38472222222222224" />
         <entry key="app/src/main/res/layout/fragment_add_review.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_add_transaction.xml" value="0.5192708333333333" />
+        <entry key="app/src/main/res/layout/fragment_buy_by_cinema.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/fragment_cinema.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_discount_and_ticket.xml" value="0.271286231884058" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5820512820512821" />
