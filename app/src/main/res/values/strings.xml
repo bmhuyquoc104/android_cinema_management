@@ -2,7 +2,7 @@
     <string name="app_name">android_cinema_management</string>
     <string name="Movie">MOVIES</string>
     <string name="Discount">Discount</string>
-    <string name="buyTicket">Buy Ticket</string>
+    <string name="buyTicket">Purchase Ticket</string>
     <string name="showOnMap">Show On Map</string>
     <string name="movie">Movie</string>
     <string name="location">Location</string>
@@ -135,5 +135,15 @@
     <string name="byMovie">By Movie</string>
     <string name="byDay">By Day</string>
     <string name="byCinema">By Cinema</string>
+    <string name="chooseCinema">Choose Cinema</string>
+    <string name="chooseMovie">Choose Movie</string>
+    <string name="chooseTime">Choose Time</string>
+    <string name="chooseDate">Choose Date</string>
+    <string name="purchase">Purchase</string>
+    <string name="next">Next</string>
+    <string name="quantity">Quantity</string>
+    <string name="chooseTicket">Choose Ticket</string>
+    <string name="chooseCombo">Choose Combo</string>
+    <string name="chooseMethod">Choose Payment Method</string>
 
 </resources>

@@ -1,49 +1,20 @@
 package com.example.android_cinema_management.AccountManagement;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.fragment.app.FragmentManager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
-import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.android_cinema_management.AccountManagement.Accounts;
-import com.example.android_cinema_management.Adapter.RegisterAdapter;
-import com.example.android_cinema_management.MainActivity;
-import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Tag;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.UUID;
-import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
     //Declare textview ,button ,and imageView
@@ -52,8 +23,6 @@ public class SignUp extends AppCompatActivity {
     Button nextPage;
     // Declare viewpager 2 and adapter
     @SuppressLint("ResourceType")
-    ViewPager2 viewpager2;
-    RegisterAdapter adapter;
     // Declare view layout and textview array
     LinearLayout dotLayout;
     TextView [] dots;
@@ -64,9 +33,8 @@ public class SignUp extends AppCompatActivity {
         //Binding to XML's value
         title = findViewById(R.id.signUp_title);
         close = findViewById(R.id.signUpClose);
-        dotLayout = findViewById(R.id.signUp_dotIndicator);
-        // Instantiate a ViewPager2 and a PagerAdapter.
 
+        // Add first fragment to activity
         FragmentManager fm = getSupportFragmentManager();
         SignUpFragment fragment = new SignUpFragment();
         fm.beginTransaction().add(R.id.signUp_frameLayout,fragment).commit();

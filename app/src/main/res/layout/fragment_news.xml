@@ -10,14 +10,36 @@
     <!-- TODO: Update blank fragment layout -->
 
     <ImageView
-        android:id="@+id/fragment_news_close_iv"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:id="@+id/back"
+        android:layout_width="62dp"
+        android:layout_height="47dp"
         android:layout_marginTop="10dp"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/ic_baseline_close_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        android:src="@drawable/ic_baseline_keyboard_return_24"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo"/>
+
+    <TextView
+        android:id="@+id/news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="News"
+        android:textSize="30sp"
+        android:textColor ="@color/colorPrimary4"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/news">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newsItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="120dp"/>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

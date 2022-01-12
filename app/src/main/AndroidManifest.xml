@@ -15,6 +15,7 @@
         android:theme="@style/Theme.Android_cinema_management">
         <activity
             android:name=".UserManagement.TransactionActivity"
+            android:name=".NewsDetails"
             android:exported="false" />
         <activity
             android:name=".UserManagement.BuyTicketActivity"
@@ -88,6 +89,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

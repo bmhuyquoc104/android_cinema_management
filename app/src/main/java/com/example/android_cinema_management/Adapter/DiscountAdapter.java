@@ -16,7 +16,6 @@ import com.example.android_cinema_management.Model.Discount;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.TicketAndDiscountManagement.DiscountDetails;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.DiscountViewHolder>{
