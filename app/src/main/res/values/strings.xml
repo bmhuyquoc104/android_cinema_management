@@ -146,5 +146,7 @@
     <string name="chooseCombo">Choose Combo</string>
     <string name="chooseMethod">Choose Payment Method</string>
     <string name="availableSeat">Seat is Available </string>
+    <string name="ticketQuantity">Please Enter Ticket Quantity</string>
+    <string name="comboQuantity">Please Enter Combo Quantity</string>
 
 </resources>

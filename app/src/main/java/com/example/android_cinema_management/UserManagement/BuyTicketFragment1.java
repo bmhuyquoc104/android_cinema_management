@@ -14,9 +14,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.HomeManagement.HomeFragment1;
+import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -34,9 +36,9 @@ public class BuyTicketFragment1 extends Fragment {
     ArrayList<String> dummyTimeDataArray = new ArrayList<>();
     ArrayList<String> dateArray = new ArrayList<>();
 
-    //Declare button
+    //Declare button and textview
     Button next;
-
+    TextView screen;
     //Declare boolean to check if the dropdown box is pressed
     boolean chooseMovie = false;
     boolean chooseCinema = false;
@@ -61,6 +63,7 @@ public class BuyTicketFragment1 extends Fragment {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class BuyTicketFragment1 extends Fragment {
 
         //Binding xml value
         next = view.findViewById(R.id.buy_by_movie_next_bt);
+        screen = view.findViewById(R.id.buy_ticket_screen_tv);
         //Disable the button
         next.setEnabled(false);
         //Binding xml value and set the dropdown for movie
@@ -83,6 +87,8 @@ public class BuyTicketFragment1 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 movieChosen = parent.getItemAtPosition(position).toString();
+                // Set screen base on the movie chosen
+                screen.setText("Screen: "+(position +1));
                 chooseMovie = true;
                 // movie layout is  chosen
                 if (chooseMovie){
@@ -94,6 +100,7 @@ public class BuyTicketFragment1 extends Fragment {
                 }
             }
         });
+
 
 
 
@@ -169,12 +176,9 @@ public class BuyTicketFragment1 extends Fragment {
         dummyTimeDataArray.add("08:00");
         dummyTimeDataArray.add("10:35");
         dummyTimeDataArray.add("12:20");
-        dummyTimeDataArray.add("13:10");
         dummyTimeDataArray.add("15:35");
         dummyTimeDataArray.add("17:50");
-        dummyTimeDataArray.add("19:40");
         dummyTimeDataArray.add("20:50");
-        dummyTimeDataArray.add("22:45");
         dummyTimeDataArray.add("23:00");
 
         // Check if the time is still reasonable for user to choose ( if time go after the current time -> keep)

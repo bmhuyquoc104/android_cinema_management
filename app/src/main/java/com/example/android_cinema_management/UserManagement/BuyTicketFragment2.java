@@ -30,9 +30,9 @@ import java.util.ArrayList;
 
 public class BuyTicketFragment2 extends Fragment {
     // Declare edittext,textview, text layout
-    EditText quantity;
+    EditText ticketQuantity,comboQuantity;
     TextView price;
-    TextInputLayout ticket,combo;
+    TextInputLayout ticket, combo;
 
     //Declare combo,ticket array options
     ArrayList<String> combosArray = new ArrayList<>();
@@ -42,7 +42,7 @@ public class BuyTicketFragment2 extends Fragment {
     Button next2;
 
     //Declare string
-    String ticketChosen,comboChosen;
+    String ticketChosen, comboChosen;
 
     //Declare array adapter
     ArrayAdapter<String> ticketAdapterItems;
@@ -51,12 +51,16 @@ public class BuyTicketFragment2 extends Fragment {
     //Declare vietnamese currency format
     DecimalFormat formatter = new DecimalFormat("###,###,###");
     // Declare auto complete text view
-    AutoCompleteTextView ticketAutoCompleteTextView,comboAutoCompleteTextView;
+    AutoCompleteTextView ticketAutoCompleteTextView, comboAutoCompleteTextView;
+
+    // Declare string array to split the date into dateOfWeek
+    String[] spiltDate;
+    String dateOfWeek;
+    String time;
 
     public BuyTicketFragment2() {
         // Required empty public constructor
     }
-
 
 
     @SuppressLint("SetTextI18n")
@@ -70,28 +74,37 @@ public class BuyTicketFragment2 extends Fragment {
         ticketArray.add("Adult Ticket");
         ticketArray.add("Uni - Gold Ticket");
         ticketArray.add("Kids & Senior Ticket");
-        combosArray = CinemaFragment.cinemaNameList;
+        combosArray.add("Regular Combo");
+        combosArray.add("Snacky Combo");
+        combosArray.add("Companion Combo");
+        combosArray.add("Hydrate Combo");
+        combosArray.add("Mega Combo");
 
         //Binding xml value
         next2 = view.findViewById(R.id.buy_by_movie2_next_bt);
         price = view.findViewById(R.id.buy_ticket_totalPrice_tv);
-        quantity = view.findViewById(R.id.buy_ticket_quantity_et);
+        ticketQuantity = view.findViewById(R.id.buy_ticket_ticket_quantity_et);
+        comboQuantity = view.findViewById(R.id.buy_ticket_combo_quantity_et);
         //getting content of fullName, email, password, confirmPassword, dateOfBirth, phone, address, gender
-        Bundle bundle =this.getArguments();
+        Bundle bundle = this.getArguments();
         System.out.println(bundle);
         assert bundle != null;
         String movie = bundle.getString("movie");
         String cinema = bundle.getString("cinema");
         String date = bundle.getString("date");
-        String time = bundle.getString("time");
-        System.out.println("movie ne "+ movie);
-        System.out.println("cinema ne "+ cinema);
-        System.out.println("date ne "+ date);
-        System.out.println("time ne "+ time);
+        // Split the date to get the day of week and store in in string dateOfWeek
+        spiltDate = date.split(",");
+        dateOfWeek = spiltDate[0];
 
-        //Binding xml value and set the dropdown for cinema
+
+        time = bundle.getString("time");
+
+        comboChosen = "";
+        ticketChosen ="";
+        comboQuantity.setText("");
+        ticketQuantity.setText("");
+        //Binding xml value and set the dropdown for ticket
         ticket = view.findViewById(R.id.buy_by_movie_ticket_text_layout);
-        //Initially Disable the cinema text layout
         ticketAdapterItems = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, ticketArray);
         ticketAutoCompleteTextView = view.findViewById(R.id.buy_by_movie_ticket_auto_complete_text);
         ticketAutoCompleteTextView.setAdapter(ticketAdapterItems);
@@ -99,15 +112,25 @@ public class BuyTicketFragment2 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ticketChosen = parent.getItemAtPosition(position).toString();
-                String priceFormat = formatter.format(calculatePrice(quantity.getText().toString(),comboChosen,ticketChosen));
-                price.setText("Total Price: "+ priceFormat + " VNĐ");
+                    Double finalPrice = calculatePrice(ticketQuantity.getText().toString(),ticketChosen) +
+                            calculateComboPrice(comboQuantity.getText().toString(),comboChosen);
+                    String priceFormat = formatter.format(finalPrice);
+                    price.setText("Total Price: " + priceFormat + " VNĐ");
+                }
 
-            }
+
         });
 
-        price.setText("Total Price: "+ 0 + " VND");
 
-        quantity.addTextChangedListener(new TextWatcher() {
+
+
+
+
+        // Initially set the price to 0
+        price.setText("Total Price: " + 0 + " VND");
+
+
+        ticketQuantity.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -115,8 +138,10 @@ public class BuyTicketFragment2 extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String priceFormat = formatter.format(calculatePrice(quantity.getText().toString(),comboChosen,ticketChosen));
-                price.setText("Total Price: "+ priceFormat + " VNĐ");
+                Double finalPrice = calculatePrice(ticketQuantity.getText().toString(),ticketChosen) +
+                        calculateComboPrice(comboQuantity.getText().toString(),comboChosen);
+                String priceFormat = formatter.format(finalPrice);
+                price.setText("Total Price: " + priceFormat + " VNĐ");
 
             }
 
@@ -126,10 +151,50 @@ public class BuyTicketFragment2 extends Fragment {
             }
         });
 
+        //Binding xml value and set the dropdown for ticket
+        combo = view.findViewById(R.id.buy_by_movie_combo_text_layout);
+        comboAdapterItems = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, combosArray);
+        comboAutoCompleteTextView = view.findViewById(R.id.buy_by_movie_combo_auto_complete_text);
+        comboAutoCompleteTextView.setAdapter(comboAdapterItems);
+        comboAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                comboChosen = parent.getItemAtPosition(position).toString();
+                Double finalPrice = calculatePrice(ticketQuantity.getText().toString(),ticketChosen) + calculateComboPrice(comboQuantity.getText().toString(),comboChosen);
+                String priceFormat = formatter.format(finalPrice);
+                price.setText("Total Price: " + priceFormat + " VNĐ");
+
+            }
+        });
+
+
+
+        comboQuantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Double finalPrice = calculatePrice(ticketQuantity.getText().toString(),ticketChosen) + calculateComboPrice(comboQuantity.getText().toString(),comboChosen);
+                String priceFormat = formatter.format(finalPrice);
+                price.setText("Total Price: " + priceFormat + " VNĐ");
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
+
         // Function to change fragment and send data to next step in buying ticket
         next2.setOnClickListener(View -> {
             String totalPrice = price.getText().toString();
-            String totalQuantity = quantity.getText().toString();
+            String totalQuantity = ticketQuantity.getText().toString();
             Bundle bundle2 = new Bundle();
             bundle2.putString("ticket", ticketChosen);
             bundle2.putString("quantity", totalQuantity);
@@ -147,29 +212,112 @@ public class BuyTicketFragment2 extends Fragment {
         return view;
     }
 
-    public double calculatePrice(String quantity, String combo, String ticketType){
+    public double calculatePrice(String ticketQuantity,  String ticketType) {
         double totalPrice = 0;
         double priceTicket = 0;
-        if (ticketType.equals("Adult Ticket")){
-            priceTicket = 65000;
-            if (!quantity.isEmpty()){
-                totalPrice += Double.parseDouble(quantity) * priceTicket;
+
+        if (ticketType.equals("Adult Ticket")) {
+            if (dateOfWeek.equals("Tuesday")) {
+                priceTicket = 50000;
             }
 
-        }
-
-        else if (ticketType.equals("Uni - Gold Ticket")){
-            priceTicket = 60000;
-            if (!quantity.isEmpty()){
-                totalPrice += Double.parseDouble(quantity) * priceTicket;
+            if (dateOfWeek.equals("Monday") || dateOfWeek.equals("Wednesday") || dateOfWeek.equals("Thursday")) {
+                if (time.compareTo("17:00") > 0) {
+                    priceTicket = 70000;
+                } else {
+                    priceTicket = 65000;
+                }
+            }
+            if (dateOfWeek.equals("Friday") || dateOfWeek.equals("Saturday") || dateOfWeek.equals("Sunday")) {
+                if (time.compareTo("17:00") > 0) {
+                    priceTicket = 80000;
+                } else {
+                    priceTicket = 75000;
+                }
+            }
+            if (!ticketQuantity.isEmpty()) {
+                totalPrice += Double.parseDouble(ticketQuantity) * priceTicket;
             }
         }
-        else if (ticketType.equals("Kids & Senior Ticket")){
-            priceTicket = 50000;
-            if (!quantity.isEmpty()){
-                totalPrice += Double.parseDouble(quantity) * priceTicket;
+        else if (ticketType.equals("Uni - Gold Ticket")) {
+            if (dateOfWeek.equals("Tuesday")) {
+                priceTicket = 50000;
+            }
+
+            if (dateOfWeek.equals("Monday") || dateOfWeek.equals("Wednesday") || dateOfWeek.equals("Thursday")) {
+                if (time.compareTo("17:00") > 0) {
+                    priceTicket = 65000;
+                } else {
+                    priceTicket = 60000;
+                }
+            }
+            if (dateOfWeek.equals("Friday") || dateOfWeek.equals("Saturday") || dateOfWeek.equals("Sunday")) {
+                if (time.compareTo("17:00") > 0) {
+                    priceTicket = 70000;
+                } else {
+                    priceTicket = 65000;
+                }
+            }
+
+            if (!ticketQuantity.isEmpty()) {
+                totalPrice += Double.parseDouble(ticketQuantity) * priceTicket;
+            }
+        }
+        else if (ticketType.equals("Kids & Senior Ticket")) {
+            if (dateOfWeek.equals("Tuesday")) {
+                priceTicket = 45000;
+            }
+
+            if (dateOfWeek.equals("Monday") || dateOfWeek.equals("Wednesday") || dateOfWeek.equals("Thursday")) {
+                priceTicket = 50000;
+            }
+            if (dateOfWeek.equals("Friday") || dateOfWeek.equals("Saturday") || dateOfWeek.equals("Sunday")) {
+                priceTicket = 60000;
+            }
+            if (!ticketQuantity.isEmpty()) {
+                totalPrice += Double.parseDouble(ticketQuantity) * priceTicket;
             }
         }
         return totalPrice;
     }
+
+
+    public double calculateComboPrice (String quantity, String combo){
+        double comboPrice = 0;
+        double totalComboPrice = 0;
+            if (combo.equals("Regular Combo")) {
+                comboPrice = 69000;
+                if (!quantity.isEmpty()) {
+                    totalComboPrice += comboPrice * Double.parseDouble(quantity);
+                }
+            } else if (combo.equals("Snacky Combo")) {
+                comboPrice = 89000;
+                if (!quantity.isEmpty()) {
+                    totalComboPrice += comboPrice * Double.parseDouble(quantity);
+                }
+            } else if (combo.equals("Companion Combo")) {
+                comboPrice = 99000;
+                if (!quantity.isEmpty()) {
+                    totalComboPrice += comboPrice * Double.parseDouble(quantity);
+                }
+            } else if (combo.equals("Hydrate Combo")) {
+                comboPrice = 119000;
+                if (!quantity.isEmpty()) {
+                    totalComboPrice += comboPrice * Double.parseDouble(quantity);
+                }
+            } else if (combo.equals("Mega Combo")) {
+                comboPrice = 149000;
+                if (!quantity.isEmpty()) {
+                    totalComboPrice += comboPrice * Double.parseDouble(quantity);
+                }
+            }
+            else{
+                comboPrice = 0;
+                if (!quantity.isEmpty()) {
+                    totalComboPrice += comboPrice * Double.parseDouble(quantity);
+                }
+            }
+        return  totalComboPrice;
+    }
+
 }
