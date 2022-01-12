@@ -167,11 +167,14 @@ public class BuyTicketFragment1 extends Fragment {
         String currentTimeFormat = df2.format(currentTime);
         // Add dummy data to time array
         dummyTimeDataArray.add("08:00");
-        dummyTimeDataArray.add("10:30");
+        dummyTimeDataArray.add("10:35");
+        dummyTimeDataArray.add("12:20");
         dummyTimeDataArray.add("13:10");
-        dummyTimeDataArray.add("15:30");
+        dummyTimeDataArray.add("15:35");
         dummyTimeDataArray.add("17:50");
+        dummyTimeDataArray.add("19:40");
         dummyTimeDataArray.add("20:50");
+        dummyTimeDataArray.add("22:45");
         dummyTimeDataArray.add("23:00");
 
         // Check if the time is still reasonable for user to choose ( if time go after the current time -> keep)
