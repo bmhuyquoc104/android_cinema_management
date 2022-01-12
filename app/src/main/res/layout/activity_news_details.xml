@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewsDetails"
+    android:background = "@color/colorPrimary3">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="62dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_baseline_keyboard_return_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/todo"/>
+
+    <TextView
+        android:id="@+id/news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="Discount"
+        android:textSize="30sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/newsImg"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/movieImage"
+        android:cropToPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ImageContrastCheck"
+        android:src="@drawable/discount"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/news"/>
+
+    <TextView
+        android:id="@+id/newsName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="Discount name"
+        android:textSize="14sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/newsImg"/>
+
+    <TextView
+        android:id="@+id/newsDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:text="Discount date"
+        android:textSize="14sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/newsName"/>
+
+    <TextView
+        android:id="@+id/newsDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="Discount detail"
+        android:textSize="12sp"
+        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintTop_toBottomOf="@id/newsDate"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

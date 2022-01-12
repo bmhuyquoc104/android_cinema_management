@@ -1,50 +1,25 @@
 package com.example.android_cinema_management;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
-
-import com.example.android_cinema_management.Adapter.DiscountAdapter;
-import com.example.android_cinema_management.Model.Discount;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.android_cinema_management.Adapter.DiscountAndTicketAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class DiscountAndTicket extends Fragment {
-    private RecyclerView Discount;
-    private DiscountAdapter discountAdapter;
-    private TextInputLayout cinemaMenu, monthMenu;
-    private AutoCompleteTextView cinemaACT, monthACT;
-    private ArrayList<Discount> discountArrayList;
-    FirebaseFirestore db;
+    //Declare tablayout, adapter and viewpager2
+    TabLayout layout;
+    ViewPager2 viewpager2;
+    DiscountAndTicketAdapter adapter;
 
     public DiscountAndTicket() {
         // Required empty public constructor
-    }
-
-    public static DiscountAndTicket newInstance(String param1, String param2) {
-        DiscountAndTicket fragment = new DiscountAndTicket();
-        Bundle args = new Bundle();
-        return fragment;
     }
 
     @Override
@@ -57,78 +32,37 @@ public class DiscountAndTicket extends Fragment {
                              Bundle savedInstanceState) {
 //        For viewing the discounts
         View view = inflater.inflate(R.layout.fragment_discount_and_ticket, container, false);
-        Discount = view.findViewById(R.id.discount);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
-        Discount.setLayoutManager(gridLayoutManager);
-
-        //        Discount database
-        db = FirebaseFirestore.getInstance();
-        discountArrayList = new ArrayList<Discount>();
-
-        discountAdapter = new DiscountAdapter(getContext(), discountArrayList);
-        EventChangeListener();
-        Discount.setAdapter(discountAdapter);
-
-//        Cinema drop-down menu
-        cinemaMenu = view.findViewById(R.id.cinema);
-        cinemaACT = view.findViewById(R.id.cinemaItems);
-
-//        Month drop-down menu
-        monthMenu = view.findViewById(R.id.month);
-        monthACT = view.findViewById(R.id.monthItems);
-
-//        Insert cinema menu data and set on click
-        String[] cinemas = {"Cinema1", "Cinema2", "Cinema3"};
-        ArrayAdapter<String> cinemaAdapter = new ArrayAdapter<>(getContext(), R.layout.cinemas_list, cinemas);
-        cinemaACT.setAdapter(cinemaAdapter);
-        cinemaACT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        layout = view.findViewById(R.id.mh_tab_layout);
+        viewpager2 = view.findViewById(R.id.mh_viewpager2);
+        // Initialize fragment manager
+        FragmentManager fm = getParentFragmentManager();
+        // Initialize adapter
+        adapter = new DiscountAndTicketAdapter(fm,getLifecycle());
+        // Set adapter to viewpage2
+        viewpager2.setAdapter(adapter);
+        // Change the layout by tab selected
+        layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), (String)parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewpager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-
-//        Insert month data and set on click
-        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(getContext(), R.layout.month_list, months);
-        monthACT.setAdapter(monthAdapter);
-        monthACT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), (String)parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+            public void onPageSelected(int position) {
+                layout.selectTab(layout.getTabAt(position));
             }
         });
-
         return view;
-    }
-
-//    Get the data from Firestore
-    private void EventChangeListener() {
-        db.collection("Discounts").orderBy("Name", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null) {
-                            Log.e("Firestore error", error.getMessage());
-                        }
-
-                        for (DocumentChange dc : value.getDocumentChanges()) {
-                            if (dc.getType() == DocumentChange.Type.ADDED) {
-                                discountArrayList.add(dc.getDocument().toObject(com.example.android_cinema_management.Model.Discount.class));
-                            }
-
-                            discountAdapter.notifyDataSetChanged();
-                        }
-                    }
-                });
-    }
-
-//    Clear the data on destroy
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (discountAdapter != null) {
-            discountAdapter.release();
-        }
     }
 }

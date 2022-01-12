@@ -4,52 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary3"
+    android:background="@color/colorPrimary"
     tools:context=".UserManagement.BuyTicketActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="197dp"
         android:layout_height="135dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="44dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/cinema_app_logo2"
+        android:src="@drawable/app_icon_5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/buy_ticket_tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:background="@color/colorPrimary3"
+
+    <FrameLayout
+        android:id="@+id/buy_ticket_frame_layout"
+        android:layout_width="0dp"
+        android:layout_height="520dp"
+        android:layout_marginTop="136dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabGravity="start"
-        app:tabIndicatorColor="@color/colorPrimary2"
-        app:tabIndicatorGravity="bottom"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="#fff"
-        app:tabTextColor="@color/colorPrimary5">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/byMovie" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/byDay" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/byCinema" />
-    </com.google.android.material.tabs.TabLayout>
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/buy_ticket_close_iv"
@@ -64,31 +44,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/buy_ticket_viewpager2"
-        android:layout_width="412dp"
-        android:layout_height="440dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buy_ticket_tabLayout"
-        app:layout_constraintVertical_bias="1.0" />
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="236dp"
         android:layout_height="25dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="15dp"
         android:text="@string/buyTicket"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary4"
+        android:textColor="@color/colorPrimary2"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
