@@ -147,6 +147,23 @@ public class BuyTicketFragment1 extends Fragment {
             dateArray.add(nextDatesInFormat);
         }
 
+        // Get the current time to compare later
+        Date currentTime = Calendar.getInstance().getTime();
+        Date currentDate = Calendar.getInstance().getTime();
+        // Set the format of time
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("kk:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df3 = new SimpleDateFormat("yyyy-MM-dd");
+        String currentTimeFormat = df2.format(currentTime);
+        String currentDateFormat = df3.format(currentTime);
+        // Add dummy data to time array
+        dummyTimeDataArray.add("08:00");
+        dummyTimeDataArray.add("10:35");
+        dummyTimeDataArray.add("12:20");
+        dummyTimeDataArray.add("15:35");
+        dummyTimeDataArray.add("17:50");
+        dummyTimeDataArray.add("20:50");
+        dummyTimeDataArray.add("23:00");
+
         //Binding xml value and set the dropdown for date
         date = view.findViewById(R.id.buy_by_movie_date_text_layout);
         //Initially disable the date text layout
@@ -158,6 +175,27 @@ public class BuyTicketFragment1 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 dateChosen = parent.getItemAtPosition(position).toString();
+                // spilt to get the second part which is the date to compare which current date
+                String [] spiltDate = dateChosen.split(",");
+                String dateCompare = spiltDate[1];
+                timeArray.clear();
+                // If the date come after
+                if (dateCompare.compareTo(currentDateFormat) > 0){
+                    for (int i = 0; i < dummyTimeDataArray.size(); i++) {
+                        // Get all value from dummy array
+                            timeArray.add(dummyTimeDataArray.get(i));
+                        }
+                }
+                // If the date come before
+                else{
+                    for (int i = 0; i < dummyTimeDataArray.size(); i++) {
+                        // Check if the time is valid (come before)
+                        if (dummyTimeDataArray.get(i).compareTo(currentTimeFormat) >= 0) {
+                            // add valid time to the time array
+                            timeArray.add(dummyTimeDataArray.get(i));
+                        }
+                    }
+                }
                 chooseDate = true;
                 // date layout is  chosen
                 if (chooseDate){
@@ -170,27 +208,8 @@ public class BuyTicketFragment1 extends Fragment {
             }
         });
 
-        // Get the current time to compare later
-        Date currentTime = Calendar.getInstance().getTime();
-        // Set the format of time
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("kk:mm");
-        String currentTimeFormat = df2.format(currentTime);
-        // Add dummy data to time array
-        dummyTimeDataArray.add("08:00");
-        dummyTimeDataArray.add("10:35");
-        dummyTimeDataArray.add("12:20");
-        dummyTimeDataArray.add("15:35");
-        dummyTimeDataArray.add("17:50");
-        dummyTimeDataArray.add("20:50");
-        dummyTimeDataArray.add("23:00");
 
-        // Check if the time is still reasonable for user to choose ( if time go after the current time -> keep)
-        for (int i = 0; i < dummyTimeDataArray.size(); i++) {
-            if (dummyTimeDataArray.get(i).compareTo(currentTimeFormat) >= 0) {
-                // add valid time to the time array
-                timeArray.add(dummyTimeDataArray.get(i));
-            }
-        }
+
         //Binding xml value and set the dropdown for time
         time = view.findViewById(R.id.buy_by_movie_time_text_layout);
         //Initially disable the time text layout
