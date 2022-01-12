@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="30dp"
     android:background = "@color/colorPrimary3"
-    tools:context=".SearchItemManagement.SearchFilterMovieFragment2">
+    tools:context=".SearchMovieFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -28,7 +28,7 @@
         android:id="@+id/search_by_movie_result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="94dp"
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
         android:text="@string/result"
@@ -47,6 +47,7 @@
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:drawablePadding="15dp"
         android:drawableTint="@color/colorPrimary2"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="@string/searchByMovie"
         android:importantForAutofill="no"
