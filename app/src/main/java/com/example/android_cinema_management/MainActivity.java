@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_Android_cinema_management);
         setContentView(R.layout.activity_main);
         //Binding with XML values
 //        layout = findViewById(R.id.ma_tab_layout);
