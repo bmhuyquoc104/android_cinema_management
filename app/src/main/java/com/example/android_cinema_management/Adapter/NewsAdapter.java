@@ -19,6 +19,7 @@ import com.example.android_cinema_management.R;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder>{
+
     private List<News> mListNews;
     private Context mContext;
 
