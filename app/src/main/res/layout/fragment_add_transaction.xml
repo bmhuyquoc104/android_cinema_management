@@ -32,7 +32,31 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/user_add_review_date_sent_tv"
+                    android:id="@+id/add_transaction_authorName_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="15dp"
+                    android:drawableTint="@color/colorPrimary4"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawablePadding="15dp"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/AuthorName"
+                    android:textColor="@color/colorPrimary4"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+
+                <TextView
+                    android:id="@+id/user_add_transaction_date_sent_tv"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
@@ -55,7 +79,7 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <TextView
-                    android:id="@+id/user_add_review_time_sent_tv"
+                    android:id="@+id/user_add_transaction_time_sent_tv"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
@@ -78,7 +102,7 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <EditText
-                    android:id="@+id/user_add_review_rate_tv"
+                    android:id="@+id/user_add_transaction_point_tv"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
@@ -101,52 +125,52 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/user_add_review_movie_text_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="272dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:textColorHint="@color/colorPrimary4"
-                    android:textSize="16sp"
-                    app:boxStrokeColor="@color/colorPrimary3"
-                    app:boxStrokeErrorColor="@color/colorPrimary3"
-                    app:endIconTint="@color/colorPrimary2"
-                    app:hintTextColor="@color/colorPrimary2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:startIconTint="@color/colorPrimary2">
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:id="@+id/user_add_review_movie_text_layout"-->
+<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="272dp"-->
+<!--                    android:paddingStart="20dp"-->
+<!--                    android:paddingEnd="20dp"-->
+<!--                    android:textColorHint="@color/colorPrimary4"-->
+<!--                    android:textSize="16sp"-->
+<!--                    app:boxStrokeColor="@color/colorPrimary3"-->
+<!--                    app:boxStrokeErrorColor="@color/colorPrimary3"-->
+<!--                    app:endIconTint="@color/colorPrimary2"-->
+<!--                    app:hintTextColor="@color/colorPrimary2"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:startIconTint="@color/colorPrimary2">-->
 
-                    <AutoCompleteTextView
-                        android:id="@+id/user_add_review_movie_auto_complete_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/round_login_page"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:drawableStart="@drawable/ic_baseline_movie_filter_24"
-                        android:drawablePadding="15dp"
-                        android:drawableTint="@color/colorPrimary4"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="Ticket Type"
-                        android:textColor="@color/colorPrimary4"
-                        android:textColorHint="@color/colorPrimary5"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/frag2SignUp_dateOfBirth"
-                        tools:ignore="UnusedAttribute" />
-                </com.google.android.material.textfield.TextInputLayout>
+<!--                    <AutoCompleteTextView-->
+<!--                        android:id="@+id/user_add_transaction_auto_complete_text"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:background="@drawable/round_login_page"-->
+<!--                        android:clickable="false"-->
+<!--                        android:cursorVisible="false"-->
+<!--                        android:drawableStart="@drawable/ic_baseline_movie_filter_24"-->
+<!--                        android:drawablePadding="15dp"-->
+<!--                        android:drawableTint="@color/colorPrimary4"-->
+<!--                        android:ems="10"-->
+<!--                        android:focusable="false"-->
+<!--                        android:focusableInTouchMode="false"-->
+<!--                        android:hint="Ticket Type"-->
+<!--                        android:textColor="@color/colorPrimary4"-->
+<!--                        android:textColorHint="@color/colorPrimary5"-->
+<!--                        android:textSize="16sp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintHorizontal_bias="0.0"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/frag2SignUp_dateOfBirth"-->
+<!--                        tools:ignore="UnusedAttribute" />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <EditText
-                    android:id="@+id/user_add_review_content_sent_et"
+                    android:id="@+id/user_add_transaction_quantity_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginStart="15dp"
@@ -178,8 +202,42 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
+
+                <EditText
+                    android:id="@+id/user_add_transaction_ticket_type_sent_et"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="260dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@color/colorPrimary4"
+                    android:fadeScrollbars="true"
+                    android:gravity="start|center_vertical"
+                    android:hint="Ticket Type"
+                    android:isScrollContainer="true"
+                    android:keepScreenOn="true"
+                    android:lineSpacingExtra="8sp"
+                    android:nestedScrollingEnabled="true"
+                    android:overScrollMode="ifContentScrolls"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary4"
+                    android:textSize="16sp"
+                    android:verticalScrollbarPosition="right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
+
                 <Button
-                    android:id="@+id/user_add_review_add_bt"
+                    android:id="@+id/add_transaction_add_bt"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
                     android:layout_marginLeft="15dp"

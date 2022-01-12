@@ -41,7 +41,7 @@ import java.util.UUID;
 
 public class AddReviewFragment extends Fragment {
     //Declare EditText and Button
-    EditText reviewMovieName, reviewBox, ratingMovie;
+    EditText  reviewBox, ratingMovie;
     Button postReviewButton;
     TextView authorName,date,time;
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String

@@ -4,32 +4,33 @@ import java.util.HashMap;
 
 public class Transaction {
 
-    private String id;
+    private String transactionId;
     private String date;
     private String time;
     private String ticketType;
     private int point;
     private int quantity;
-    private HashMap<String, Object> userMap;
+    private HashMap<String, Object> user;
 
     public Transaction() {
     }
 
-    public Transaction(String id, String date, String ticketType, int point, int quantity, HashMap<String, Object> userMap) {
-        this.id = id;
+    public Transaction(String transactionId, String date, String time, String ticketType, int point, int quantity, HashMap<String, Object> user) {
+        this.transactionId = transactionId;
         this.date = date;
+        this.time = time;
         this.ticketType = ticketType;
         this.point = point;
         this.quantity = quantity;
-        this.userMap = userMap;
+        this.user = user;
     }
 
-    public String getId() {
-        return id;
+    public String getTransactionId() {
+        return transactionId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
     public String getDate() {
@@ -38,6 +39,14 @@ public class Transaction {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getTicketType() {
@@ -64,23 +73,23 @@ public class Transaction {
         this.quantity = quantity;
     }
 
-    public HashMap<String, Object> getUserMap() {
-        return userMap;
+    public HashMap<String, Object> getUser() {
+        return user;
     }
 
-    public void setUserMap(HashMap<String, Object> userMap) {
-        this.userMap = userMap;
+    public void setUser(HashMap<String, Object> user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
-                "id='" + id + '\'' +
+                "transactionId='" + transactionId + '\'' +
                 ", date='" + date + '\'' +
                 ", ticketType='" + ticketType + '\'' +
                 ", point=" + point +
                 ", quantity=" + quantity +
-                ", userMap=" + userMap +
+                ", userMap=" + user +
                 '}';
     }
 }

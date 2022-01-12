@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.android_cinema_management.Adapter.ReviewFragmentAdapter;
+import com.example.android_cinema_management.Adapter.TransactionFragmentAdapter;
 import com.example.android_cinema_management.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -18,7 +19,7 @@ public class TransactionActivity extends AppCompatActivity {
     //Declare tableLayout, adapter and viewpager2
     TabLayout layout;
     ViewPager2 viewpager2;
-    ReviewFragmentAdapter adapter;
+    TransactionFragmentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,9 @@ public class TransactionActivity extends AppCompatActivity {
         // Initialize fragment manager
         FragmentManager fm = getSupportFragmentManager();
         // Initialize adapter
-        adapter = new ReviewFragmentAdapter(fm,getLifecycle());
+//        adapter = new ReviewFragmentAdapter(fm,getLifecycle());
+        adapter = new TransactionFragmentAdapter(fm, getLifecycle());
+
         // Set adapter to viewpage2
         viewpager2.setAdapter(adapter);
         // Change the layout by tab selected
