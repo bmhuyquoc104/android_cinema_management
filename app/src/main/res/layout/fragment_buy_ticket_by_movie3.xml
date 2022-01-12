@@ -11,14 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="413dp"
+            android:layout_height="386dp"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <HorizontalScrollView
+                android:id="@+id/layoutSeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </ScrollView>
 
         <Button
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:id="@+id/buy_by_movie3_next_bt"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/colorPrimary2"
             android:gravity="center|center_vertical"
@@ -28,6 +43,66 @@
             app:cornerRadius="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/buy_ticket_available_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="420dp"
+            android:drawablePadding="10dp"
+            android:gravity="center|center_vertical"
+            android:textColor="@color/colorPrimary4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/buy_ticket_selecting_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="460dp"
+            android:drawablePadding="10dp"
+            android:gravity="center|center_vertical"
+            android:textColor="@color/colorPrimary4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/buy_ticket_reserved_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="460dp"
+            android:drawablePadding="10dp"
+            android:gravity="center|center_vertical"
+            android:textColor="@color/colorPrimary4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/buy_ticket_unavailable_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="420dp"
+            android:drawablePadding="10dp"
+            android:gravity="center|center_vertical"
+            android:textColor="@color/colorPrimary4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

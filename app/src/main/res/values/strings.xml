@@ -145,5 +145,6 @@
     <string name="chooseTicket">Choose Ticket</string>
     <string name="chooseCombo">Choose Combo</string>
     <string name="chooseMethod">Choose Payment Method</string>
+    <string name="availableSeat">Seat is Available </string>
 
 </resources>
