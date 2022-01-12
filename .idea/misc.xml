@@ -59,7 +59,6 @@
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/round_login_page.xml" value="0.187890625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/drawable/round_top_corners.xml" value="0.199609375" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_admin.xml" value="0.264" />
-        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_buy_ticket.xml" value="0.264" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_contact.xml" value="0.166015625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_main2.xml" value="0.25" />
@@ -174,7 +173,9 @@
         <entry key="app/src/main/res/layout/fragment_search_filter_by_cinema_fragement1.xml" value="0.4821150855365474" />
         <entry key="app/src/main/res/layout/fragment_search_movie_and_cinema.xml" value="0.5820512820512821" />
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.25253292806484295" />
         <entry key="app/src/main/res/layout/fragment_sign_up2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_sign_up3.xml" value="0.25253292806484295" />
         <entry key="app/src/main/res/layout/gender_selector_list.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/item_discount.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/one_row_of_feedback.xml" value="0.30885416666666665" />
