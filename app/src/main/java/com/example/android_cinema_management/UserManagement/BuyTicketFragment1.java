@@ -39,6 +39,7 @@ public class BuyTicketFragment1 extends Fragment {
     //Declare button and textview
     Button next;
     TextView screen;
+    int screenId = 0;
     //Declare boolean to check if the dropdown box is pressed
     boolean chooseMovie = false;
     boolean chooseCinema = false;
@@ -88,7 +89,8 @@ public class BuyTicketFragment1 extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 movieChosen = parent.getItemAtPosition(position).toString();
                 // Set screen base on the movie chosen
-                screen.setText("Screen: "+(position +1));
+                screenId = position + 1;
+
                 chooseMovie = true;
                 // movie layout is  chosen
                 if (chooseMovie){
@@ -115,6 +117,7 @@ public class BuyTicketFragment1 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cinemaChosen = parent.getItemAtPosition(position).toString();
+                screen.setText("Screen: "+screenId);
                 chooseCinema = true;
                 // cinema layout is  chosen
                 if (chooseCinema){
@@ -218,6 +221,7 @@ public class BuyTicketFragment1 extends Fragment {
                 bundle.putString("cinema", cinemaChosen);
                 bundle.putString("date", dateChosen);
                 bundle.putString("time", timeChosen);
+                bundle.putString("screen", screen.getText().toString());
                 BuyTicketFragment2 fragment2 = new BuyTicketFragment2();
                 fragment2.setArguments(bundle);
                 FragmentManager fm = getParentFragmentManager();

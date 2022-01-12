@@ -86,14 +86,42 @@ public class BuyTicketFragment3 extends Fragment {
         reserved = view.findViewById(R.id.buy_ticket_reserved_tv);
         next3 = view.findViewById(R.id.buy_by_movie3_next_bt);
         chooseSeatLayout = view.findViewById(R.id.layoutSeat);
+
+        //getting content of fullName, email, password, confirmPassword, dateOfBirth, phone, address, gender
+        Bundle bundle = this.getArguments();
+        System.out.println(bundle);
+        assert bundle != null;
+        String movie = bundle.getString("movie");
+        String cinema = bundle.getString("cinema");
+        String date = bundle.getString("date");
+        String screen = bundle.getString("screen");
+        String time = bundle.getString("time");
+        String ticketChosen = bundle.getString("ticket");
+        String ticketTotalQuantity = bundle.getString("ticketQuantity");
+        String totalPrice = bundle.getString("price");
+        String comboChosen = bundle.getString("combo");
+        String comboTotalQuantity = bundle.getString("comboQuantity");
+
+
+
         // Function to change fragment and send data to next step in buying ticket
 
         next3.setEnabled(false);
         next3.setOnClickListener(View -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("seat", seatChosen);
+            Bundle bundle2 = new Bundle();
+            bundle2.putString("seat", seatChosen);
+            bundle2.putString("ticket", ticketChosen);
+            bundle2.putString("ticketQuantity", ticketTotalQuantity);
+            bundle2.putString("price", totalPrice);
+            bundle2.putString("combo", comboChosen);
+            bundle2.putString("comboQuantity", comboTotalQuantity);
+            bundle2.putString("movie", movie);
+            bundle2.putString("cinema", cinema);
+            bundle2.putString("date", date);
+            bundle2.putString("screen", screen);
+            bundle2.putString("time", time);
             BuyTicketFragment4 fragment4 = new BuyTicketFragment4();
-            fragment4.setArguments(bundle);
+            fragment4.setArguments(bundle2);
             FragmentManager fm = getParentFragmentManager();
             FragmentTransaction transaction =
                     fm.beginTransaction();
