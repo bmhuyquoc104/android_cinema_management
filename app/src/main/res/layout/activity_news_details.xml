@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:text="Discount"
+        android:text="News"
         android:textSize="30sp"
         android:textColor ="@color/colorPrimary4"
         app:layout_constraintTop_toTopOf="parent" />

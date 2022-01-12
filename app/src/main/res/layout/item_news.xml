@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-android:id="@+id/newsLayout"
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="wrap_content">
-<androidx.cardview.widget.CardView
-    style="@style/CardView.Light"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/colorPrimary3"
-    app:contentPadding="10dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:id="@+id/newsLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        style="@style/CardView.Light"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary3"
+        app:contentPadding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/news"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/movieImage"
-            android:cropToPadding="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ImageContrastCheck"
-            android:src="@drawable/discount"
-            android:background="@drawable/gradient_primary"/>
+            <ImageView
+                android:id="@+id/news"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/movieImage"
+                android:cropToPadding="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck"
+                android:src="@drawable/discount"
+                android:background="@drawable/gradient_primary"/>
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@string/textview"
-            android:textColor="@color/colorPrimary4"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@id/news"
-            app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/news"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@string/textview"
-            android:textColor="@color/colorPrimary4"
-            android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@id/news"
-            app:layout_constraintBottom_toBottomOf="@id/news" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/news"
+                app:layout_constraintBottom_toBottomOf="@id/news" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
