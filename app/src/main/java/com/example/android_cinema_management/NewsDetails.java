@@ -8,9 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android_cinema_management.Model.News;
+import com.squareup.picasso.Picasso;
 
 public class NewsDetails extends AppCompatActivity {
     private TextView NewsName, NewsDate, NewsDetail;
+    private ImageView NewsImage;
     private ImageView Back;
 
     @Override
@@ -30,6 +32,8 @@ public class NewsDetails extends AppCompatActivity {
         NewsDate = findViewById(R.id.newsDate);
         NewsDetail = findViewById(R.id.newsDetail);
 
+        NewsImage = findViewById(R.id.newsImg);
+
 //        The back button
         Back = findViewById(R.id.back);
         Back.setOnClickListener(new View.OnClickListener() {
@@ -48,5 +52,7 @@ public class NewsDetails extends AppCompatActivity {
         NewsName.setText(getBaseContext().getString(R.string.discountName, name));
         NewsDate.setText(getBaseContext().getString(R.string.discountDate, date));
         NewsDetail.setText(content);
+
+        Picasso.get().load(news.getImage()).into(NewsImage);
     }
 }

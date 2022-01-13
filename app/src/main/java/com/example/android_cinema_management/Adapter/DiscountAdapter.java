@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android_cinema_management.Model.Discount;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.TicketAndDiscountManagement.DiscountDetails;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,6 +47,7 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
 //        Set content for the discounts
         holder.tvName.setText(discount.getName());
         holder.tvDate.setText(discount.getMonth());
+        Picasso.get().load(discount.getImage()).into(holder.ivDiscount);
 
         holder.DiscountLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +81,8 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
 
     public class DiscountViewHolder extends RecyclerView.ViewHolder{
         private TextView tvName, tvDate;
+        private ImageView ivDiscount;
+
         private ConstraintLayout DiscountLayout;
 
         public DiscountViewHolder(@NonNull View itemView) {
@@ -86,6 +91,8 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
 
             tvName = itemView.findViewById(R.id.name);
             tvDate = itemView.findViewById(R.id.date);
+
+            ivDiscount = itemView.findViewById(R.id.discount);
         }
     }
 }

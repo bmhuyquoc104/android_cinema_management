@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import com.example.android_cinema_management.Model.Discount;
 import com.example.android_cinema_management.R;
+import com.squareup.picasso.Picasso;
 
 public class DiscountDetails extends AppCompatActivity {
 
     private TextView DiscountName, DiscountDate, DiscountDetail;
+    private ImageView DiscountImage;
     private ImageView Back;
 
     @Override
@@ -33,6 +35,8 @@ public class DiscountDetails extends AppCompatActivity {
         DiscountDate = findViewById(R.id.discountDate);
         DiscountDetail = findViewById(R.id.discountDetail);
 
+        DiscountImage = findViewById(R.id.discountImg);
+
 //        The back button
         Back = findViewById(R.id.back);
         Back.setOnClickListener(new View.OnClickListener() {
@@ -51,5 +55,7 @@ public class DiscountDetails extends AppCompatActivity {
         DiscountName.setText(getBaseContext().getString(R.string.discountName, name));
         DiscountDate.setText(getBaseContext().getString(R.string.discountDate, date));
         DiscountDetail.setText(content);
+
+        Picasso.get().load(discount.getImage()).into(DiscountImage);
     }
 }
