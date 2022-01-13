@@ -2,33 +2,19 @@ package com.example.android_cinema_management.CinemaManagement;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import com.example.android_cinema_management.Adapter.CinemaAdapter;
-import com.example.android_cinema_management.Adapter.MoviesAdapter;
-import com.example.android_cinema_management.Handler.MovieHandler;
-import com.example.android_cinema_management.HomeFragment;
-import com.example.android_cinema_management.HomeManagement.HomeFragment1;
 import com.example.android_cinema_management.Model.Cinema;
-import com.example.android_cinema_management.Model.Movie;
-import com.example.android_cinema_management.Model.Screen;
-import com.example.android_cinema_management.Model.Seat;
-import com.example.android_cinema_management.Model.ShowTime;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.database.CinemaDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;

@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,8 +22,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android_cinema_management.Adapter.MoviesAdapter;
-import com.example.android_cinema_management.Adapter.ShowTimeAdapter;
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.Handler.MovieHandler;
 import com.example.android_cinema_management.MainActivity;
@@ -60,8 +57,6 @@ public class MovieShowTimeFragment1 extends Fragment {
     //Declare recyclerview
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    //Declare adapter
-    private ShowTimeAdapter showTimeAdapter;
     //Declare Movie list
     ArrayList<Cinema> showTimeCinemaList;
 

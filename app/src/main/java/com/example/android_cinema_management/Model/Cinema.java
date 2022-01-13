@@ -17,23 +17,7 @@ public class Cinema {
     private String cinemaId;
     private int review;
     private String city;
-    private ArrayList<Screen> screens;
     public Cinema() {
-    }
-
-    public Cinema(String name, String address, double latitude, double longitude, double rate, String contactNumber, String imageUrl, String locationName, String cinemaId, int review, String city, ArrayList<Screen> screens) {
-        this.name = name;
-        this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.rate = rate;
-        this.contactNumber = contactNumber;
-        this.imageUrl = imageUrl;
-        this.locationName = locationName;
-        this.cinemaId = cinemaId;
-        this.review = review;
-        this.city = city;
-        this.screens = screens;
     }
 
 
@@ -139,13 +123,6 @@ public class Cinema {
         this.city = city;
     }
 
-    public ArrayList<Screen> getScreens() {
-        return screens;
-    }
-
-    public void setScreens(ArrayList<Screen> screens) {
-        this.screens = screens;
-    }
 
     @NonNull
     @Override
@@ -162,7 +139,6 @@ public class Cinema {
                 ", cinemaId='" + cinemaId + '\'' +
                 ", review=" + review +
                 ", city='" + city + '\'' +
-                ", screens=" + screens +
                 '}';
     }
 }

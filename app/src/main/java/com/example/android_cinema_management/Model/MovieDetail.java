@@ -153,25 +153,7 @@ public class MovieDetail {
     }
 
 
-    public void showTimeCinemaList(ArrayList<Cinema> list,ArrayList<Cinema>newList){
-        ArrayList<Screen> screens = new ArrayList<>();
-        ArrayList<Screen> screens2 = new ArrayList<>();
-        List<ShowTime> showTimes = new ArrayList<>();
-        List<ShowTime> showTimes2 = new ArrayList<>();
-        for (Cinema cinema:list
-             ) {
-           screens = cinema.getScreens();
-        }
-        for (Screen screen:screens){
-            showTimes = screen.getShowTime();
-        }
-        for (ShowTime showTime:showTimes){
-            if (showTime.getMovie().getVietnameseTitle().equals("Spider man")){
-                showTimes2.add(showTime);
-            }
-        }
-
-    }
+   
 
 
     @Override

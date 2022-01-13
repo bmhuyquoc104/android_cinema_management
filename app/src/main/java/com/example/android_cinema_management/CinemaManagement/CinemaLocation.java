@@ -1,7 +1,5 @@
 package com.example.android_cinema_management.CinemaManagement;
 
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
@@ -9,15 +7,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android_cinema_management.Model.Cinema;
-import com.example.android_cinema_management.Model.Screen;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.databinding.ActivityCinemaLocationBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,9 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
@@ -42,7 +34,6 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
     /// Declare string
     String currentId, currentName, currentAddress, currentLat, currentLng, currentNumber,
             currentImage, currentLocationName, currentRate, currentReview,currentCity;
-    ArrayList<Screen> currentScreens =new ArrayList<>();
     // Declare bottom sheet
     BottomSheetDialog globalSheetTracker;
 
