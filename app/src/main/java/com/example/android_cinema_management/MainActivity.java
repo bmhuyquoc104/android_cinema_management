@@ -11,9 +11,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.android_cinema_management.AccountManagement.Accounts;
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
+import com.example.android_cinema_management.UserManagement.UserHomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     HomeAdapter adapter;
     //Declare login and register button
     Button loginAndRegister;
+    //Declare boolean
+    public static boolean isLogin = false;
+
     //Declare bottom navigation
     BottomNavigationView bottomNavigation;
     @Override
@@ -41,60 +44,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize adapter
         adapter = new HomeAdapter(fm,getLifecycle());
         fm.beginTransaction().replace(R.id.ma_container,new HomeFragment()).commit();
-//        // Set adapter to viewpage2
-//        viewpager2.setAdapter(adapter);
 
-        // Create spannalbe String
-//        SpannableStringBuilder builder = new SpannableStringBuilder();
-//
-//        // Text and color for string 1
-//        SpannableString str1= new SpannableString("Login / ");
-//        str1.setSpan(new ForegroundColorSpan(Color.rgb(161,161,161)), 0, str1.length(), 0);
-//        builder.append(str1);
-//
-//        // Text and color for string 2
-//        SpannableString str2= new SpannableString("Sign Up");
-//        str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
-//        builder.append(str2);
-//
-//        // Set text for button
-//        loginAndRegister.setText( builder, Button.BufferType.SPANNABLE);
-//
-//        // Change the layout by tab selected
-//        layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                viewpager2.setCurrentItem(tab.getPosition());
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                layout.selectTab(layout.getTabAt(position));
-//            }
-//        });
-//
-//        viewpager2.setPageTransformer(new ZoomOutPageTransformer());
-//
-//        //Switch to logging page when user click logging button
-//        loginAndRegister.setOnClickListener(view ->{
-//            Accounts accountFragment = new Accounts();
-//            FragmentTransaction transaction =
-//                    fm.beginTransaction();
-//            transaction.replace(R.id.ma_frag_container, accountFragment).commit();
-//        });
-
-        //Choose the fragment by bottom navigation
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
@@ -102,7 +52,12 @@ public class MainActivity extends AppCompatActivity {
                 Fragment chosenFragment = null;
                 switch (item.getItemId()){
                     case R.id.menu_account:
+                        if(!isLogin){
                         chosenFragment = new Accounts();
+                        }
+                        else{
+                            chosenFragment = new UserHomeFragment();
+                        }
                         break;
                     case (R.id.menu_cinema):
                         chosenFragment = new CinemaFragment();

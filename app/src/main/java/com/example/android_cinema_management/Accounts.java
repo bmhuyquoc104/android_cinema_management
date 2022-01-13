@@ -1,4 +1,4 @@
-package com.example.android_cinema_management.AccountManagement;
+package com.example.android_cinema_management;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.AccountManagement.SignInFragment;
+import com.example.android_cinema_management.AccountManagement.SignUp;
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.example.android_cinema_management.Adapter.LogInAdapter;
 import com.example.android_cinema_management.MovieManagement.MovieInfoTabLayout;
@@ -54,7 +56,7 @@ public class Accounts extends Fragment {
         adapter = new LogInAdapter(fm,getLifecycle());
         // Function click change to another fragment
         register.setOnClickListener(View ->{
-            Intent intent = new Intent(getContext(),SignUp.class);
+            Intent intent = new Intent(getContext(), SignUp.class);
             //Send intent to sign Up activity
 
             // Start intent

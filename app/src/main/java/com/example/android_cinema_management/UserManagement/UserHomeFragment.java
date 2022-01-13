@@ -32,7 +32,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-public class UserHomeFragmentActivity extends Fragment {
+public class UserHomeFragment extends Fragment {
     //Declare imageview
     ImageView profile, avatar, combo, transaction, feedback, review, points;
     //Declare textview
@@ -47,7 +47,7 @@ public class UserHomeFragmentActivity extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser mUser = firebaseAuth.getCurrentUser();
     String userId = mUser.getUid();
-    public UserHomeFragmentActivity() {
+    public UserHomeFragment() {
         // Required empty public constructor
     }
 
@@ -158,6 +158,7 @@ public class UserHomeFragmentActivity extends Fragment {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
+                MainActivity.isLogin = false;
             }
         });
 

@@ -23,10 +23,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Accounts;
+import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.UserManagement.AdminActivity;
-import com.example.android_cinema_management.UserManagement.UserHomeFragmentActivity;
+import com.example.android_cinema_management.UserManagement.UserHomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -86,7 +88,6 @@ public class SignInFragment extends Fragment {
         admin = User.createAdmin();
 
         //Initialize firebase authentication
-
         //Function to log into the account
         logIn.setOnClickListener(view ->{
             //For at home testing remove before commit
@@ -111,6 +112,7 @@ public class SignInFragment extends Fragment {
                         // Delete all stacks before to avoid stack memory redundant and collapse between stacks
                         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent2);
+                        MainActivity.isLogin = true;
                     }
                     // the input is from user
                     else {
@@ -123,11 +125,12 @@ public class SignInFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     //if the email and password is correct
-                                    UserHomeFragmentActivity fragment = new UserHomeFragmentActivity();
+                                    UserHomeFragment fragment = new UserHomeFragment();
                                     fragment.setArguments(bundle);
                                     FragmentTransaction transaction =
                                             fm.beginTransaction();
                                     transaction.replace(R.id.ma_container, fragment).commit();
+                                    MainActivity.isLogin = true;
                                 } else {
                                     //if the email and password is incorrect
                                     Toast.makeText(getActivity(), "Fail to login " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

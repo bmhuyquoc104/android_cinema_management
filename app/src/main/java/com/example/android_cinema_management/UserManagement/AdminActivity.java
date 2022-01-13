@@ -19,7 +19,7 @@ import com.example.android_cinema_management.R;
 
 public class AdminActivity extends AppCompatActivity {
     // Declare imageview,string and textview
-    ImageView close, discount, combo, cinema,feedback;
+    ImageView logout, discount, combo, cinema,feedback;
     TextView welcome;
     String fullName;
     @SuppressLint("SetTextI18n")
@@ -28,7 +28,7 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         //Binding to XML value
-        close = findViewById(R.id.admin_close_iv);
+        logout = findViewById(R.id.admin_logout_iv);
         discount = findViewById(R.id.admin_home_discount_iv);
         combo = findViewById(R.id.admin_home_combo_iv);
         cinema = findViewById(R.id.admin_home_cinema_iv);
@@ -67,11 +67,12 @@ public class AdminActivity extends AppCompatActivity {
         /*
         *Function to close activity
         * */
-        close.setOnClickListener(view ->{
+        logout.setOnClickListener(view ->{
             Intent intent2 = new Intent(this, MainActivity.class);
             // Delete all stacks before to avoid stack memory redundant and collapse between stacks
             intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent2);
+            MainActivity.isLogin = false;
         });
     }
     //Not allow user to use the back button on phone
