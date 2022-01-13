@@ -148,5 +148,6 @@
     <string name="availableSeat">Seat is Available </string>
     <string name="ticketQuantity">Please Enter Ticket Quantity</string>
     <string name="comboQuantity">Please Enter Combo Quantity</string>
+    <string name="oldUser">Have An Account?Sign In Here!</string>
 
 </resources>
