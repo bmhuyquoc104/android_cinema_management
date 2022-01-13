@@ -13,7 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +26,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
@@ -31,10 +37,13 @@ import java.util.ArrayList;
 public class BuyTicketFragment4 extends Fragment {
     // Declare textview
     TextView phone,email,fullName;
+    //Declare Button
+    Button purchaseBtn;
+
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
-    FirebaseFirestore db;
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser mUser = mAuth.getCurrentUser();
 
     //Declare boolean
     private boolean choosePayment = false;
@@ -111,59 +120,73 @@ public class BuyTicketFragment4 extends Fragment {
         String movie = bundle.getString("movie");
         String cinema = bundle.getString("cinema");
         String date = bundle.getString("date");
-        String screen = bundle.getString("screen");
         String time = bundle.getString("time");
-        String ticketChosen = bundle.getString("ticket");
-        String ticketTotalQuantity = bundle.getString("ticketQuantity");
-        String totalPrice = bundle.getString("price");
-        String comboChosen = bundle.getString("combo");
-        String comboTotalQuantity = bundle.getString("comboQuantity");
-        String seatChosen = bundle.getString("seat");
+        String ticket = bundle.getString("ticket");
+        String quantity = bundle.getString("quantity");
+        String combo = bundle.getString("combo");
+        String seat = bundle.getString("seat");
+        String screen = bundle.getString("screen");
+        String point = bundle.getString("point");
+        String transactionId = UUID.randomUUID().toString();
 
-
-        //Get current user login
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        DocumentReference docRef = db.collection("Users").document(mUser.getUid());
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        DocumentReference documentReference = db.collection("Users").document(mUser.getUid());
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){
-                    DocumentSnapshot docSnap = task.getResult();
-                    if (docSnap != null){
+                DocumentSnapshot docSnap = task.getResult();
+                if (docSnap != null) {
 //                        userId = docSnap.getString("Id");
 //                        userName = docSnap.getString("fullName");
-                        fullName.setText(docSnap.getString("fullName"));
-                        phone.setText(docSnap.getString("phone"));
-                        email.setText(docSnap.getString("email"));
-                    }
+                    fullName.setText(docSnap.getString("fullName"));
+                    phone.setText(docSnap.getString("phone"));
+                    email.setText(docSnap.getString("email"));
                 }
             }
         });
 
+        purchaseBtn.setOnClickListener(View -> {
+            Map<String, Object> transactionMap = new HashMap<>();
+            transactionMap.put("transactionId", transactionId);
+            transactionMap.put("movie", movie);
+            transactionMap.put("cinema", cinema);
+            transactionMap.put("date", date);
+            transactionMap.put("time", time);
+            transactionMap.put("ticket", ticket);
+            transactionMap.put("quantity", quantity);
+            transactionMap.put("combo", combo);
+            transactionMap.put("seat", seat);
+            transactionMap.put("screen", screen);
+            transactionMap.put("point", point);
 
-        /*
-        *Function to purchase the ticket
-        * */
-        purchase.setOnClickListener(View ->{
-            System.out.println("movie" + movie);
-            System.out.println("cinema" + cinema);
-            System.out.println("date" + date);
-            System.out.println("time" + time);
-            System.out.println("screen" + screen);
-            System.out.println("ticketChosen" + ticketChosen);
-            System.out.println("ticketTotalQuantity" + ticketTotalQuantity);
-            System.out.println("totalPrice" + totalPrice);
-            System.out.println("comboChosen" + comboChosen);
-            System.out.println("comboTotalQuantity" + comboTotalQuantity);
-            System.out.println("seatChosen" + seatChosen);
-            System.out.println("FullName" + fullName.getText().toString());
-            System.out.println("Email" + email.getText().toString());
-            System.out.println("Phone" + phone.getText().toString());
-            System.out.println("Payment Method" + paymentChosen);
-            //TODO: put this to database
+            //Get current user login
+            DocumentReference docRef = db.collection("Users").document(mUser.getUid());
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()){
+                        DocumentSnapshot docSnap = task.getResult();
+                        User user = docSnap.toObject(User.class);
+                        Map<String, String> userMap = new HashMap<>();
+                        userMap.put("fullName", Objects.requireNonNull(user).getFullName());
+                        userMap.put("email", user.getEmail());
+                        userMap.put("phone", user.getPhone());
+                        //Then put userMap into reviewMap
+                        transactionMap.put("user",userMap);
+
+                        //Saving buy ticket information into transaction's collection
+                        DocumentReference documentReferenceForReview = db.collection("transaction")
+                                .document(transactionId);
+                        documentReferenceForReview.set(transactionMap).addOnCompleteListener(taskInner -> {
+                            if (taskInner.isSuccessful()) {
+                                Toast.makeText(getContext(), "TRANSACTION ADDED!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            });
+
+
         });
-
-
         return view;
     }
 }

@@ -45,8 +45,8 @@ public class UserHomeFragmentActivity extends Fragment {
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseUser user = firebaseAuth.getCurrentUser();
-    String userId = user.getUid();
+    FirebaseUser mUser = firebaseAuth.getCurrentUser();
+    String userId = mUser.getUid();
     public UserHomeFragmentActivity() {
         // Required empty public constructor
     }
@@ -96,6 +96,7 @@ public class UserHomeFragmentActivity extends Fragment {
 //                        name = docSnap.getString("fullName");
 //                        System.out.println("IDDDDDDDDDDDDDDDDDDDDDDDDD: " + userId);
 //                        System.out.println("fullNameeeeeeeeeeeeeeeeeee: " + name);
+                        db.collection("Users").document(mUser.getUid()).update("status", "active");
                         SpannableString str2 = new SpannableString(docSnap.getString("fullName"));
                         str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
                         builder.append(str2);
@@ -139,6 +140,12 @@ public class UserHomeFragmentActivity extends Fragment {
         //Listen onClick of FeedBack button
         feedback.setOnClickListener(View ->{
             Intent intent = new Intent(getActivity(), UserFeedBackActivity.class);
+            startActivity(intent);
+        });
+
+        //Listen to onClick of transaction button
+        transaction.setOnClickListener(View -> {
+            Intent intent = new Intent(getActivity(), TransactionActivity.class);
             startActivity(intent);
         });
 

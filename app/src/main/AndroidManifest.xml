@@ -14,8 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
         <activity
-
-            android:name=".NewsDetails"
+            android:name=".UserManagement.TransactionActivity"
             android:exported="false" />
         <activity
             android:name=".UserManagement.BuyTicketActivity"

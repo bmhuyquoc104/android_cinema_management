@@ -38,61 +38,37 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+public class AddTransactionFragment extends Fragment {
 
-public class AddReviewFragment extends Fragment {
     //Declare EditText and Button
-    EditText  reviewBox, ratingMovie;
-    Button postReviewButton;
-    TextView authorName,date,time;
+    EditText transactionQuantity, transactionType;
+    Button postTransactionButton;
+    TextView authorName,date,time, transactionPoint;
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
-    FirebaseFirestore db;
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    String userId,userName;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser mUser = mAuth.getCurrentUser();
 
-    //Declare text input layout
-    TextInputLayout movie;
-
-    //Declare movie array options
-    ArrayList<String> moviesArray = new ArrayList<>();
-
-
-    String movieChosen;
-    //Declare array adapter
-    ArrayAdapter<String> adapterItems;
-    // Declare auto complete text view
-    AutoCompleteTextView autoCompleteTextView;
-
-    public AddReviewFragment() {
+    public AddTransactionFragment() {
     }
-
 
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_review, container, false);
-        //Initialize EditText for reviewBox reviewMovieName
-        reviewBox = view.findViewById(R.id.user_add_review_content_sent_et);
-        ratingMovie = view.findViewById(R.id.user_add_review_rate_tv);
-        authorName = view.findViewById(R.id.user_add_review_authorName_tv);
-        date = view.findViewById(R.id.user_add_review_date_sent_tv);
-        time = view.findViewById(R.id.user_add_review_time_sent_tv);
-        movie = view.findViewById(R.id.user_add_review_movie_text_layout);
-        //Initialize postReviewButton
-        postReviewButton = view.findViewById(R.id.user_add_review_add_bt);
+        View view = inflater.inflate(R.layout.fragment_add_transaction, container, false);
 
-        //Initialize mAth db
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        transactionPoint = view.findViewById(R.id.user_add_transaction_point_tv);
+        transactionQuantity = view.findViewById(R.id.user_add_transaction_quantity_sent_et);
+        postTransactionButton = view.findViewById(R.id.add_transaction_add_bt);
+        authorName = view.findViewById(R.id.add_transaction_authorName_tv);
+        date = view.findViewById(R.id.user_add_transaction_date_sent_tv);
+        time = view.findViewById(R.id.user_add_transaction_time_sent_tv);
+        transactionType = view.findViewById(R.id.user_add_transaction_ticket_type_sent_et);
 
-        //Get current user login
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        Toast.makeText(getActivity(), "TAO DAYYYYYYYYYYYYYYYY", Toast.LENGTH_SHORT).show();
         //Get current user Id
-//        userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-//        userName = Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName();
-
         DocumentReference docRef = db.collection("Users").document(mUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -100,8 +76,7 @@ public class AddReviewFragment extends Fragment {
                 if (task.isSuccessful()){
                     DocumentSnapshot docSnap = task.getResult();
                     if (docSnap != null){
-//                        userId = docSnap.getString("Id");
-//                        userName = docSnap.getString("fullName");
+                        //Set author name
                         authorName.setText(docSnap.getString("fullName"));
 //                        System.out.println("IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD " + userId);
 //                        System.out.println("FullNameeeeeeeeeeeeeeeeeeeeeeeeee " + userName);
@@ -109,7 +84,6 @@ public class AddReviewFragment extends Fragment {
                 }
             }
         });
-
 
         //Set date and time for date and time textview
         Date dateTime = Calendar.getInstance().getTime();
@@ -120,40 +94,17 @@ public class AddReviewFragment extends Fragment {
         date.setText("Date: " +currentDate);
         time.setText("Time: "+currentTime);
 
+        postTransactionButton.setOnClickListener(View -> {
+            //Generate random Id
+            String Id = UUID.randomUUID().toString();
 
-        //Set author name
-//        authorName.setText("Author name: "+ userName);
-
-        //Binding xml value and set the dropdown for movie
-        moviesArray = HomeFragment1.movieTitleList;
-        adapterItems = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, moviesArray);
-        autoCompleteTextView = view.findViewById(R.id.user_add_review_movie_auto_complete_text);
-        autoCompleteTextView.setAdapter(adapterItems);
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                movieChosen = parent.getItemAtPosition(position).toString();
-            }
-        });
-
-
-
-
-        //Listen onClick of postReviewButton
-        postReviewButton.setOnClickListener(View -> {
-            //Generate Id for a review post
-            String randomId = UUID.randomUUID().toString();
-
-            //Getting all content from the above EditText into reviewMap
-            Map<String, Object> reviewMap = new HashMap<>();
-            reviewMap.put("reviewId", randomId);
-            reviewMap.put("movieName", movie.getEditText().getText().toString());
-            reviewMap.put("rateMovie", ratingMovie.getText().toString());
-            reviewMap.put("reviewContent", reviewBox.getText().toString());
-            reviewMap.put("like", 0);
-            reviewMap.put("time", currentTime);
-            reviewMap.put("date", currentDate);
-            reviewMap.put("dislike", 0);
+            Map<String, Object> transactionMap = new HashMap<>();
+            transactionMap.put("transactionId", Id);
+            transactionMap.put("ticketType", transactionType.getText().toString());
+            transactionMap.put("point", Integer.parseInt(transactionPoint.getText().toString()));
+            transactionMap.put("quantity", Integer.parseInt(transactionQuantity.getText().toString()));
+            transactionMap.put("date", currentDate);
+            transactionMap.put("time", currentTime);
 
             //Getting user's full name and user's email of current login user into userMap
             DocumentReference documentReference = db.collection("Users").document(mUser.getUid());
@@ -168,19 +119,23 @@ public class AddReviewFragment extends Fragment {
                     userMap.put("id", mUser.getUid());
 
                     //Then put userMap into reviewMap
-                    reviewMap.put("user", userMap);
+                    transactionMap.put("user", userMap);
 
                     //Saving reviewMap into Firestore in reviews collection
-                    DocumentReference documentReferenceForReview = db.collection("reviews")
-                            .document(randomId);
-                    documentReferenceForReview.set(reviewMap).addOnCompleteListener(taskInner -> {
+                    DocumentReference documentReferenceForReview = db.collection("transaction")
+                            .document(Id);
+                    documentReferenceForReview.set(transactionMap).addOnCompleteListener(taskInner -> {
                         if (taskInner.isSuccessful()) {
-                            Toast.makeText(getContext(), "REVIEWED ADDED!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "TRANSACTION ADDED!", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
             });
+
+
         });
+
+
         return view;
     }
 }

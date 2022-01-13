@@ -74,7 +74,6 @@ public class BuyTicketFragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_buying_ticket_by_movie2, container, false);
-
         //Initialize value for combo,ticket array
         ticketArray.add("Adult Ticket");
         ticketArray.add("Uni - Gold Ticket");
@@ -85,7 +84,6 @@ public class BuyTicketFragment2 extends Fragment {
         combosArray.add("Hydrate Combo");
         combosArray.add("Mega Combo");
         combosArray.add("Choose Combo");
-
         //Binding xml value
         next2 = view.findViewById(R.id.buy_by_movie2_next_bt);
         next2.setEnabled(false);
@@ -215,15 +213,71 @@ public class BuyTicketFragment2 extends Fragment {
         });
 
 
+        //Initialize value for ticket array
+        ticketArray.add("regular");
+        ticketArray.add("membership");
+        ticketArray.add("children");
+        ticketArray.add("adult");
+        //Binding xml and set enable drop down
+        ticket = view.findViewById(R.id.buy_by_movie_ticket_text_layout);
+        //Initially Disable the combo text layout
+        ticketAdapterItems = new ArrayAdapter<String>(getContext(),R.layout.gender_selector_list, ticketArray);
+        ticketAutoCompleteTextView = view.findViewById(R.id.buy_by_movie_ticket_auto_complete_text);
+        ticketAutoCompleteTextView.setAdapter(ticketAdapterItems);
+        ticketAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                ticketChosen = parent.getItemAtPosition(i).toString();
+//                System.out.println("TICKETTTTTTT " + ticketChosen);
+                chooseTicket = true;
+                if (chooseTicket){
+                    combo.setEnabled(true);
+                }else {
+                    combo.setEnabled(false);
+                }
+
+            }
+        });
+
+        //Initialize value for combo array
+        combosArray.add("Big Set");
+        combosArray.add("Couple Combo");
+        combosArray.add("Eco Combo");
+        combosArray.add("Fast & Furious");
+        //Binding xml and set enable drop down
+        combo = view.findViewById(R.id.buy_by_movie_ticket_text_layout);
+        //Initially Disable the combo text layout
+        comboAdapterItems = new ArrayAdapter<String>(getContext(),R.layout.gender_selector_list, combosArray);
+        comboAutoCompleteTextView = view.findViewById(R.id.buy_by_movie_combo_auto_complete_text);
+        comboAutoCompleteTextView.setAdapter(comboAdapterItems);
+        comboAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                comboChosen = parent.getItemAtPosition(i).toString();
+//                System.out.println("COMBOOOOOOOO " + comboChosen);
+                chooseCombo = true;
+                if (chooseCombo){
+                    next2.setEnabled(true);
+                }else {
+                    next2.setEnabled(false);
+                }
+
+            }
+        });
+
         // Function to change fragment and send data to next step in buying ticket
         next2.setOnClickListener(View -> {
             String totalPrice = price.getText().toString();
             String ticketTotalQuantity = ticketQuantity.getText().toString();
             String comboTotalQuantity = comboQuantity.getText().toString();
             Bundle bundle2 = new Bundle();
+            bundle2.putString("movie",movie);
+            bundle2.putString("cinema", cinema);
+            bundle2.putString("date", date);
+            bundle2.putString("time", time);
             bundle2.putString("ticket", ticketChosen);
-            bundle2.putString("ticketQuantity", ticketTotalQuantity);
-            bundle2.putString("price", totalPrice);
+            bundle2.putString("quantity", quantity.getText().toString());
+            bundle2.putString("price", String.valueOf(totalPrice));
             bundle2.putString("combo", comboChosen);
             bundle2.putString("comboQuantity", comboTotalQuantity);
             bundle2.putString("movie", movie);
@@ -236,7 +290,7 @@ public class BuyTicketFragment2 extends Fragment {
             FragmentManager fm = getParentFragmentManager();
             FragmentTransaction transaction =
                     fm.beginTransaction();
-            transaction.replace(R.id.buy_ticket_frame_layout, fragment3).addToBackStack("fragment3").commit();
+            transaction.replace(R.id.buy_ticket_frame_layout, fragment3).addToBackStack("fragment2").commit();
 
         });
 

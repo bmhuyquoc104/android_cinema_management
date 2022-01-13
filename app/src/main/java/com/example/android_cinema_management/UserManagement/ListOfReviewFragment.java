@@ -51,7 +51,6 @@ public class ListOfReviewFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_list_of_review, container, false);
-
         reviewArrayList = new ArrayList<>();
         //call function get reviews data
         getReviews(db, reviewArrayList, () -> {
