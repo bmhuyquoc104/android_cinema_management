@@ -105,7 +105,14 @@ public class MovieHandler {
                 String scale = doc.select("div.rating-value.detail > span").text();
                 // Modify the string of rate that contained redundant value form the website to get only the rate in number
                 String[] temp = rate.split(" ");
-                String finalRate = temp[2].substring(1, 4) + scale;
+                String finalRate ="";
+                System.out.println(temp[2].length());
+               if ( temp[2].length() >= 5){
+                     finalRate = temp[2].substring(1, 4) + scale;
+                }
+                else{
+                     finalRate = "Have Not Rated";
+                }
                 String duration = doc.select("div.detail-rating > span").text();
                 // Add the new object to the list
                 list.add(new MovieDetail(director, actors, producer, country, date, trailer, category, duration, finalRate, content));
