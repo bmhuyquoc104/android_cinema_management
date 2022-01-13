@@ -109,7 +109,7 @@ public class CinemaFragment extends Fragment {
                 cinemaNameList.add(cinema.getName());
             }
 
-            System.out.println("hello ne" + cinemaNameList);
+            System.out.println("hello ne" +  cinemaNameList);
             autoCompleteTextView.setOnItemClickListener((parent, view1, position, id) -> {
                 city = parent.getItemAtPosition(position).toString();
 

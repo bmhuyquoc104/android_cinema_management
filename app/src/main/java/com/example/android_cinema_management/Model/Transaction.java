@@ -6,31 +6,31 @@ import java.util.Map;
 public class Transaction {
 
     private String transactionId;
-    private int screen;
-    private String movie;
-    private String date;
-    private String time;
-    private Map<String, Object> cinema;
-    private String ticketType;
-    private String combo;
-    private String seat;
-    private int quantity;
-    private double price;
-    private String paymentMethod;
-    private int point;
+    private String screen;//
+    private String movie;//
+    private String date;//
+    private String time;//
+    private Map<String, Object> cinema;//
+    private String ticket;//
+    private String combo;//
+    private String seat;//
+    private String quantity;//
+    private String price;//
+    private String paymentMethod;//
+    private String point;//
     private Map<String, Object> user;
 
     public Transaction() {
     }
 
-    public Transaction(String transactionId, int screen, String movie, String date, String time, Map<String, Object> cinema, String ticketType, String combo, String seat, int quantity, double price, String paymentMethod, int point, Map<String, Object> user) {
+    public Transaction(String transactionId, String screen, String movie, String date, String time, Map<String, Object> cinema, String ticket, String combo, String seat, String quantity, String price, String paymentMethod, String point, Map<String, Object> user) {
         this.transactionId = transactionId;
         this.screen = screen;
         this.movie = movie;
         this.date = date;
         this.time = time;
         this.cinema = cinema;
-        this.ticketType = ticketType;
+        this.ticket = ticket;
         this.combo = combo;
         this.seat = seat;
         this.quantity = quantity;
@@ -48,11 +48,11 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public int getScreen() {
+    public String getScreen() {
         return screen;
     }
 
-    public void setScreen(int screen) {
+    public void setScreen(String screen) {
         this.screen = screen;
     }
 
@@ -88,12 +88,12 @@ public class Transaction {
         this.cinema = cinema;
     }
 
-    public String getTicketType() {
-        return ticketType;
+    public String getTicket() {
+        return ticket;
     }
 
     public void setTicketType(String ticketType) {
-        this.ticketType = ticketType;
+        this.ticket = ticket;
     }
 
     public String getCombo() {
@@ -112,19 +112,19 @@ public class Transaction {
         this.seat = seat;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -136,11 +136,11 @@ public class Transaction {
         this.paymentMethod = paymentMethod;
     }
 
-    public int getPoint() {
+    public String getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(String point) {
         this.point = point;
     }
 
@@ -161,7 +161,7 @@ public class Transaction {
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
                 ", cinema=" + cinema +
-                ", ticketType='" + ticketType + '\'' +
+                ", ticketType='" + ticket + '\'' +
                 ", combo='" + combo + '\'' +
                 ", seat='" + seat + '\'' +
                 ", quantity=" + quantity +

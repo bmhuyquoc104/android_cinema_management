@@ -43,7 +43,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         holder.movie.setText("Movie: " + transactionArrayList.get(position).getMovie());
         holder.date.setText("Date: " + transactionArrayList.get(position).getDate());
         holder.time.setText("Time: " + transactionArrayList.get(position).getTime());
-        holder.ticketType.setText(transactionArrayList.get(position).getTicketType());
+        holder.ticket.setText(transactionArrayList.get(position).getTicket());
         holder.quantity.setText("Quantity: " + transactionArrayList.get(position).getQuantity());
         holder.point.setText("Point: " + transactionArrayList.get(position).getQuantity());
     }
@@ -54,7 +54,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView screen, movie, date, time, cinema, ticketType, combo, quantity, price, paymentMethod, point;
+        TextView screen, movie, date, time, cinema, ticket, combo, quantity, price, paymentMethod, point;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             screen = itemView.findViewById(R.id.list_of_transaction_screen_tv);
@@ -62,7 +62,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             date = itemView.findViewById(R.id.list_of_transaction_date_tv);
             time = itemView.findViewById(R.id.list_of_transaction_time_tv);
             cinema = itemView.findViewById(R.id.list_of_transaction_cinema_tv);
-            ticketType = itemView.findViewById(R.id.list_of_transaction_ticket_type_tv);
+            ticket = itemView.findViewById(R.id.list_of_transaction_ticket_type_tv);
             combo = itemView.findViewById(R.id.list_of_transaction_combo_tv);
             quantity = itemView.findViewById(R.id.list_of_transaction_quantity_tv);
             price = itemView.findViewById(R.id.list_of_transaction_price_tv);
