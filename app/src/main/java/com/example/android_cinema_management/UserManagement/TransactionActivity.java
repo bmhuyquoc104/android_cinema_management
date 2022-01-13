@@ -1,76 +1,85 @@
-//package com.example.android_cinema_management.UserManagement;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.fragment.app.FragmentManager;
-//import androidx.viewpager2.widget.ViewPager2;
-//
-//import android.os.Bundle;
-//import android.widget.ImageView;
-//
-//import com.example.android_cinema_management.Adapter.ReviewFragmentAdapter;
-//import com.example.android_cinema_management.Adapter.TransactionFragmentAdapter;
-//import com.example.android_cinema_management.R;
-//import com.google.android.material.tabs.TabLayout;
-//
-//public class TransactionActivity extends AppCompatActivity {
-//
-//    //Declare imageview
-//    ImageView close;
-//    //Declare tableLayout, adapter and viewpager2
-//    TabLayout layout;
-//    ViewPager2 viewpager2;
-//    TransactionFragmentAdapter adapter;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_transaction);
-//
-//        //Binding with XML values
-//        layout = findViewById(R.id.transaction_tabLayout);
-//        viewpager2 = findViewById(R.id.transaction_viewpager2);
-//        close = findViewById(R.id.transaction_close_iv);
-//        // Initialize fragment manager
-//        FragmentManager fm = getSupportFragmentManager();
-//        // Initialize adapter
-////        adapter = new ReviewFragmentAdapter(fm,getLifecycle());
-//        adapter = new TransactionFragmentAdapter(fm, getLifecycle());
-//
-//        // Set adapter to viewpage2
-//        viewpager2.setAdapter(adapter);
-//        // Change the layout by tab selected
-//        layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                viewpager2.setCurrentItem(tab.getPosition());
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//
-//        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                layout.selectTab(layout.getTabAt(position));
-//            }
-//        });
-//
-//        //Disable swiping
-//        viewpager2.setUserInputEnabled(false);
-//        /*
-//         *Function to close activity
-//         * */
-//        close.setOnClickListener(view->{
-//            finish();
-//        });
-//
-//    }
-//}
+package com.example.android_cinema_management.UserManagement;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
+
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.example.android_cinema_management.Adapter.TransactionAdapter;
+import com.example.android_cinema_management.Model.Transaction;
+import com.example.android_cinema_management.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+
+public class TransactionActivity extends AppCompatActivity {
+
+    //Declare imageview
+    ImageView close;
+    //Declare recyclerview
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    //Declare adapter
+    private TransactionAdapter transactionAdapter;
+    //Declare Movie list
+    public static ArrayList<Transaction> transactionArrayList;
+
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser user = firebaseAuth.getCurrentUser();
+    String userId = user.getUid();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_transaction);
+
+        //Binding with XML values
+        close = findViewById(R.id.transaction_close_iv);
+        // Initialize fragment manager
+
+        close.setOnClickListener(view->{
+            finish();
+        });
+        Toast.makeText(this, "TAO NEEEEEEEEEEEEEE", Toast.LENGTH_SHORT).show();
+        transactionArrayList = new ArrayList<>();
+        //Call function getTransaction
+        getTransaction(db, transactionArrayList, () -> {
+            System.out.println("TRANSACTION LIST: " + transactionArrayList);
+
+            recyclerView = findViewById(R.id.list_transaction_recycler_view);
+            recyclerView.setHasFixedSize(true);
+            transactionAdapter = new TransactionAdapter(this, transactionArrayList);
+            layoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(layoutManager);
+            // Specify an adapter
+            recyclerView.setAdapter(transactionAdapter);
+
+        });
+
+    }
+    //Function get transaction data
+    private void getTransaction(FirebaseFirestore db, ArrayList<Transaction> transactionArrayList, Runnable callback){
+        transactionArrayList.clear();
+        db.collection("transaction").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                int count = 0;
+                for (DocumentSnapshot doc : task.getResult()){
+                    count++;
+                    Transaction dateContainer = doc.toObject(Transaction.class);
+                    transactionArrayList.add(dateContainer);
+                    if (count == task.getResult().size()){
+                        callback.run();
+                    }
+                }
+            }
+        });
+    }
+}

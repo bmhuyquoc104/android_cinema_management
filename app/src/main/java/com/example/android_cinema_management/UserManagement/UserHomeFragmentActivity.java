@@ -144,10 +144,10 @@ public class UserHomeFragmentActivity extends Fragment {
         });
 
         //Listen to onClick of transaction button
-//        transaction.setOnClickListener(View -> {
-//            Intent intent = new Intent(getActivity(), TransactionActivity.class);
-//            startActivity(intent);
-//        });
+        transaction.setOnClickListener(View -> {
+            Intent intent = new Intent(getActivity(), TransactionActivity.class);
+            startActivity(intent);
+        });
 
         //Function log out
         logOut.setOnClickListener(new View.OnClickListener() {

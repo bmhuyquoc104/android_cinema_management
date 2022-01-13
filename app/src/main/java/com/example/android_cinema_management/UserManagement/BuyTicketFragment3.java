@@ -66,7 +66,9 @@ public class BuyTicketFragment3 extends Fragment {
     int SEAT_IS_RESERVED = 3;
 
     // Declare the string
+    String seatId = "";
     String seatChosen = "";
+
 
     public BuyTicketFragment3() {
         // Required empty public constructor
@@ -108,6 +110,8 @@ public class BuyTicketFragment3 extends Fragment {
 
         next3.setEnabled(false);
         next3.setOnClickListener(View -> {
+            seatChosen = seatId.substring(0,seatId.length()-1);
+            System.out.println(seatChosen);
             Bundle bundle2 = new Bundle();
             bundle2.putString("seat", seatChosen);
             bundle2.putString("ticket", ticketChosen);
@@ -262,8 +266,8 @@ public class BuyTicketFragment3 extends Fragment {
     @SuppressLint("ResourceAsColor")
     private void chooseSeat (TextView view){
         if ((int) view.getTag() == SEAT_IS_AVAILABLE) {
-            if (seatChosen.contains(view.getId() + ",")) {
-                seatChosen = seatChosen.replace(+view.getId() + ",", "");
+            if (seatId.contains(view.getId() + ",")) {
+                seatId = seatId.replace(+view.getId() + ",", "");
                 view.setBackgroundResource(R.drawable.seat_available);
                 view.setTextColor(Color.WHITE);
                 // Announce the user the seat is unselected
@@ -278,10 +282,10 @@ public class BuyTicketFragment3 extends Fragment {
                 }
 
             } else {
-                seatChosen = seatChosen + view.getId() + ",";
+                seatId = seatId + view.getId() + ",";
                 view.setBackgroundResource(R.drawable.seat_selecting2);
                 view.setTextColor(Color.rgb(222,22,25));
-                System.out.println("huy ne" + seatChosen);
+                System.out.println("huy ne" + seatId);
                 // Announce the user the seat is selecting
                 Toast.makeText(getContext(), "Seat " + view.getId() + " is Selecting", Toast.LENGTH_SHORT).show();
                 chooseSeat = true;

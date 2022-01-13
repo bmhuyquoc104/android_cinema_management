@@ -149,5 +149,6 @@
     <string name="ticketQuantity">Please Enter Ticket Quantity</string>
     <string name="comboQuantity">Please Enter Combo Quantity</string>
     <string name="oldUser">Have An Account?Sign In Here!</string>
+    <string name="seeMore">See More Detail</string>
 
 </resources>

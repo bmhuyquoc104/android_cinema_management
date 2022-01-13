@@ -198,8 +198,6 @@
                 android:layout_height="56dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:stateListAnimator="@android:animator/fade_out"
                 android:text="@string/newUser"
                 android:textColor="@color/sign_in_link_color"
