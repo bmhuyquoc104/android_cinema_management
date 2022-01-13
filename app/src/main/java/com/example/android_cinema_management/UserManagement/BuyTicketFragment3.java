@@ -16,43 +16,21 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
-import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.ArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuyTicketFragment3 extends Fragment {
 
-    //Declare EditText textInputLayout
-    EditText seat, point, screen;
-    TextInputLayout paymentMethod;
-
-    //Declare paymentMethod array option
-    ArrayList<String> paymentMehtodhArray  = new ArrayList<>();
-
     //Declare button
     Button next3;
-    //Declare boolean
-    boolean choosePaymentMethod = false;
 
-    //Declare String
-    String paymentMethodChosen;
-
-    ArrayAdapter<String> paymentMethodAdapterItem;
-
-    AutoCompleteTextView paymentMethodAutoCompleteTextView;
     //Declare textview
     TextView available,unAvailable,selecting,reserved;
 
@@ -101,14 +79,7 @@ public class BuyTicketFragment3 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_buy_ticket_by_movie3, container, false);
-
         //Binding xml value
-        seat = view.findViewById(R.id.buy_ticket_seat_et);
-        point = view.findViewById(R.id.buy_ticket_point_et);
-        screen = view.findViewById(R.id.buy_ticket_screen_et);
-        next3 = view.findViewById(R.id.buy_by_movie3_next_bt);
-
-        Bundle bundle = this.getArguments();
         available = view.findViewById(R.id.buy_ticket_available_tv);
         unAvailable = view.findViewById(R.id.buy_ticket_unavailable_tv);
         selecting = view.findViewById(R.id.buy_ticket_selecting_tv);
@@ -123,43 +94,6 @@ public class BuyTicketFragment3 extends Fragment {
         String movie = bundle.getString("movie");
         String cinema = bundle.getString("cinema");
         String date = bundle.getString("date");
-        String time = bundle.getString("time");
-        String ticket = bundle.getString("ticket");
-        String quantity = bundle.getString("quantity");
-        String price = bundle.getString("price");
-        String combo = bundle.getString("combo");
-        System.out.println("TICKETTTTTT " + ticket);
-        System.out.println("QUANTITYYYYYY " + quantity);
-        System.out.println("COMBOOOOOOOO " + combo);
-
-
-
-        //Initialize value for paymentMethod array
-        paymentMehtodhArray.add("Visa");
-        paymentMehtodhArray.add("MasterCard");
-        paymentMehtodhArray.add("Debit");
-        paymentMehtodhArray.add("American Express");
-        paymentMehtodhArray.add("Zalo Pay");
-        paymentMehtodhArray.add("MoMo");
-
-        //Binding xml and set enable drop down
-        paymentMethod = view.findViewById(R.id.buy_by_movie_payment_method_layout);
-        //Initially disable the combo text layout
-        paymentMethodAdapterItem = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, paymentMehtodhArray);
-        paymentMethodAutoCompleteTextView = view.findViewById(R.id.buy_by_movie_payment_method_auto_complete_text);
-        paymentMethodAutoCompleteTextView.setAdapter(paymentMethodAdapterItem);
-        paymentMethodAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
-                paymentMethodChosen = parent.getItemAtPosition(i).toString();
-                choosePaymentMethod = true;
-                if (choosePaymentMethod){
-                    next3.setEnabled(true);
-                }else {
-                    next3.setEnabled(false);
-                }
-            }
-        });
         String screen = bundle.getString("screen");
         String time = bundle.getString("time");
         String ticketChosen = bundle.getString("ticket");
@@ -167,31 +101,31 @@ public class BuyTicketFragment3 extends Fragment {
         String totalPrice = bundle.getString("price");
         String comboChosen = bundle.getString("combo");
         String comboTotalQuantity = bundle.getString("comboQuantity");
+
+
+
         // Function to change fragment and send data to next step in buying ticket
 
         next3.setEnabled(false);
         next3.setOnClickListener(View -> {
-            String inputSeat = seat.getText().toString();
-            String inputScreen = screen.getText().toString();
-            String inputPoint = screen.getText().toString();
             Bundle bundle2 = new Bundle();
-            bundle2.putString("movie",movie);
+            bundle2.putString("seat", seatChosen);
+            bundle2.putString("ticket", ticketChosen);
+            bundle2.putString("ticketQuantity", ticketTotalQuantity);
+            bundle2.putString("price", totalPrice);
+            bundle2.putString("combo", comboChosen);
+            bundle2.putString("comboQuantity", comboTotalQuantity);
+            bundle2.putString("movie", movie);
             bundle2.putString("cinema", cinema);
             bundle2.putString("date", date);
+            bundle2.putString("screen", screen);
             bundle2.putString("time", time);
-            bundle2.putString("ticket", ticket);
-            bundle2.putString("quantity", quantity);
-            bundle2.putString("price", price);
-            bundle2.putString("combo", combo);
-            bundle2.putString("seat", inputSeat);
-            bundle2.putString("screen", inputScreen);
-            bundle2.putString("point", inputPoint);
             BuyTicketFragment4 fragment4 = new BuyTicketFragment4();
             fragment4.setArguments(bundle2);
             FragmentManager fm = getParentFragmentManager();
             FragmentTransaction transaction =
                     fm.beginTransaction();
-            transaction.replace(R.id.buy_ticket_frame_layout, fragment4).addToBackStack("fragment3").commit();
+            transaction.replace(R.id.buy_ticket_frame_layout, fragment4).addToBackStack("fragment4").commit();
 
         });
 
@@ -323,8 +257,8 @@ public class BuyTicketFragment3 extends Fragment {
     }
 
     /*
-    *Function to check the seat that the user chose is whether available,unavailable or reserved
-    * */
+     *Function to check the seat that the user chose is whether available,unavailable or reserved
+     * */
     @SuppressLint("ResourceAsColor")
     private void chooseSeat (TextView view){
         if ((int) view.getTag() == SEAT_IS_AVAILABLE) {

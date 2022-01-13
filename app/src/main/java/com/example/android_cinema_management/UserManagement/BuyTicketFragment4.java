@@ -120,14 +120,17 @@ public class BuyTicketFragment4 extends Fragment {
         String movie = bundle.getString("movie");
         String cinema = bundle.getString("cinema");
         String date = bundle.getString("date");
-        String time = bundle.getString("time");
-        String ticket = bundle.getString("ticket");
-        String quantity = bundle.getString("quantity");
-        String combo = bundle.getString("combo");
-        String seat = bundle.getString("seat");
         String screen = bundle.getString("screen");
-        String point = bundle.getString("point");
+        String time = bundle.getString("time");
+        String ticketChosen = bundle.getString("ticket");
+        String ticketTotalQuantity = bundle.getString("ticketQuantity");
+        String totalPrice = bundle.getString("price");
+        String comboChosen = bundle.getString("combo");
+        String comboTotalQuantity = bundle.getString("comboQuantity");
+        String seatChosen = bundle.getString("seat");
         String transactionId = UUID.randomUUID().toString();
+        String point = "20";
+
 
         DocumentReference documentReference = db.collection("Users").document(mUser.getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -144,18 +147,21 @@ public class BuyTicketFragment4 extends Fragment {
             }
         });
 
-        purchaseBtn.setOnClickListener(View -> {
+        purchase.setOnClickListener(View -> {
             Map<String, Object> transactionMap = new HashMap<>();
             transactionMap.put("transactionId", transactionId);
             transactionMap.put("movie", movie);
             transactionMap.put("cinema", cinema);
             transactionMap.put("date", date);
             transactionMap.put("time", time);
-            transactionMap.put("ticket", ticket);
-            transactionMap.put("quantity", quantity);
-            transactionMap.put("combo", combo);
-            transactionMap.put("seat", seat);
             transactionMap.put("screen", screen);
+            transactionMap.put("ticketType", ticketChosen);
+            transactionMap.put("ticketQuantity", ticketTotalQuantity);
+            transactionMap.put("comboType", comboChosen);
+            transactionMap.put("comboQuantity", comboTotalQuantity);
+            transactionMap.put("price", totalPrice);
+            transactionMap.put("seat", seatChosen);
+            transactionMap.put("paymentMethod", paymentChosen);
             transactionMap.put("point", point);
 
             //Get current user login
