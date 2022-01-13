@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary3"
-    android:clickable="true"
-    android:focusable="true"
+    android:paddingBottom="30dp"
+    android:layout_marginBottom="30dp"
     tools:context=".AccountManagement.SignUpFragment">
 
 

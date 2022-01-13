@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setTheme(R.style.Theme_Android_cinema_management);
         setContentView(R.layout.activity_main);
         //Binding with XML values
 //        layout = findViewById(R.id.ma_tab_layout);
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         chosenFragment = new CinemaFragment();
                         break;
                     case (R.id.menu_search) :
-                        chosenFragment = new SearchMovieAndCinema();
+                        chosenFragment = new SearchMovieFragment();
                         break;
                     case (R.id.menu_discount):
                         chosenFragment = new DiscountAndTicket();

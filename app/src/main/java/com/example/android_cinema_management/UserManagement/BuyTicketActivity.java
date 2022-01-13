@@ -29,4 +29,10 @@ public class BuyTicketActivity extends AppCompatActivity {
             finish();
         });
     }
+
+    //Not allow user to use the back button on phone
+    @Override
+    public void onBackPressed(){
+
+    };
 }

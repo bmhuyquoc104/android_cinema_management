@@ -48,8 +48,8 @@
 
     <FrameLayout
         android:id="@+id/signUp_frameLayout"
-        android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_width="409dp"
+        android:layout_height="380dp"
         android:layout_marginTop="164dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -57,5 +57,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/sign_up_textView"
+        android:layout_width="272dp"
+        android:layout_height="56dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:stateListAnimator="@android:animator/fade_out"
+        android:text="@string/oldUser"
+        android:textColor="@color/sign_in_link_color"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.955"
+        tools:ignore="UsingOnClickInXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

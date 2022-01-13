@@ -1,4 +1,4 @@
-package com.example.android_cinema_management.SearchItemManagement;
+package com.example.android_cinema_management;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -48,7 +48,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class SearchFilterMovieFragment2 extends Fragment {
+public class SearchMovieFragment extends Fragment {
     //Declare editText, button,textview
     EditText searchMovie;
     Button movieFilter;
@@ -71,7 +71,7 @@ public class SearchFilterMovieFragment2 extends Fragment {
     //Declare adapter
     private MoviesAdapter movieAdapter;
 
-    public SearchFilterMovieFragment2() {
+    public SearchMovieFragment() {
         // Required empty public constructor
     }
 

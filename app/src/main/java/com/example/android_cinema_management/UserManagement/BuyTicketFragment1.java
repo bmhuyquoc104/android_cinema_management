@@ -14,9 +14,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.HomeManagement.HomeFragment1;
+import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -34,9 +36,10 @@ public class BuyTicketFragment1 extends Fragment {
     ArrayList<String> dummyTimeDataArray = new ArrayList<>();
     ArrayList<String> dateArray = new ArrayList<>();
 
-    //Declare button
+    //Declare button and textview
     Button next;
-
+    TextView screen;
+    int screenId = 0;
     //Declare boolean to check if the dropdown box is pressed
     boolean chooseMovie = false;
     boolean chooseCinema = false;
@@ -61,6 +64,7 @@ public class BuyTicketFragment1 extends Fragment {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,6 +76,7 @@ public class BuyTicketFragment1 extends Fragment {
 
         //Binding xml value
         next = view.findViewById(R.id.buy_by_movie_next_bt);
+        screen = view.findViewById(R.id.buy_ticket_screen_tv);
         //Disable the button
         next.setEnabled(false);
         //Binding xml value and set the dropdown for movie
@@ -83,6 +88,9 @@ public class BuyTicketFragment1 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 movieChosen = parent.getItemAtPosition(position).toString();
+                // Set screen base on the movie chosen
+                screenId = position + 1;
+
                 chooseMovie = true;
                 // movie layout is  chosen
                 if (chooseMovie){
@@ -97,6 +105,7 @@ public class BuyTicketFragment1 extends Fragment {
 
 
 
+
         //Binding xml value and set the dropdown for cinema
         cinema = view.findViewById(R.id.buy_by_movie_cinema_text_layout);
         //Initially Disable the cinema text layout
@@ -108,6 +117,7 @@ public class BuyTicketFragment1 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cinemaChosen = parent.getItemAtPosition(position).toString();
+                screen.setText("Screen: "+screenId);
                 chooseCinema = true;
                 // cinema layout is  chosen
                 if (chooseCinema){
@@ -137,6 +147,23 @@ public class BuyTicketFragment1 extends Fragment {
             dateArray.add(nextDatesInFormat);
         }
 
+        // Get the current time to compare later
+        Date currentTime = Calendar.getInstance().getTime();
+        Date currentDate = Calendar.getInstance().getTime();
+        // Set the format of time
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("kk:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df3 = new SimpleDateFormat("yyyy-MM-dd");
+        String currentTimeFormat = df2.format(currentTime);
+        String currentDateFormat = df3.format(currentTime);
+        // Add dummy data to time array
+        dummyTimeDataArray.add("08:00");
+        dummyTimeDataArray.add("10:35");
+        dummyTimeDataArray.add("12:20");
+        dummyTimeDataArray.add("15:35");
+        dummyTimeDataArray.add("17:50");
+        dummyTimeDataArray.add("20:50");
+        dummyTimeDataArray.add("23:00");
+
         //Binding xml value and set the dropdown for date
         date = view.findViewById(R.id.buy_by_movie_date_text_layout);
         //Initially disable the date text layout
@@ -148,6 +175,27 @@ public class BuyTicketFragment1 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 dateChosen = parent.getItemAtPosition(position).toString();
+                // spilt to get the second part which is the date to compare which current date
+                String [] spiltDate = dateChosen.split(",");
+                String dateCompare = spiltDate[1];
+                timeArray.clear();
+                // If the date come after
+                if (dateCompare.compareTo(currentDateFormat) > 0){
+                    for (int i = 0; i < dummyTimeDataArray.size(); i++) {
+                        // Get all value from dummy array
+                            timeArray.add(dummyTimeDataArray.get(i));
+                        }
+                }
+                // If the date come before
+                else{
+                    for (int i = 0; i < dummyTimeDataArray.size(); i++) {
+                        // Check if the time is valid (come before)
+                        if (dummyTimeDataArray.get(i).compareTo(currentTimeFormat) >= 0) {
+                            // add valid time to the time array
+                            timeArray.add(dummyTimeDataArray.get(i));
+                        }
+                    }
+                }
                 chooseDate = true;
                 // date layout is  chosen
                 if (chooseDate){
@@ -160,27 +208,8 @@ public class BuyTicketFragment1 extends Fragment {
             }
         });
 
-        // Get the current time to compare later
-        Date currentTime = Calendar.getInstance().getTime();
-        // Set the format of time
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("kk:mm");
-        String currentTimeFormat = df2.format(currentTime);
-        // Add dummy data to time array
-        dummyTimeDataArray.add("08:00");
-        dummyTimeDataArray.add("10:30");
-        dummyTimeDataArray.add("13:10");
-        dummyTimeDataArray.add("15:30");
-        dummyTimeDataArray.add("17:50");
-        dummyTimeDataArray.add("20:50");
-        dummyTimeDataArray.add("23:00");
 
-        // Check if the time is still reasonable for user to choose ( if time go after the current time -> keep)
-        for (int i = 0; i < dummyTimeDataArray.size(); i++) {
-            if (dummyTimeDataArray.get(i).compareTo(currentTimeFormat) >= 0) {
-                // add valid time to the time array
-                timeArray.add(dummyTimeDataArray.get(i));
-            }
-        }
+
         //Binding xml value and set the dropdown for time
         time = view.findViewById(R.id.buy_by_movie_time_text_layout);
         //Initially disable the time text layout
@@ -211,6 +240,7 @@ public class BuyTicketFragment1 extends Fragment {
                 bundle.putString("cinema", cinemaChosen);
                 bundle.putString("date", dateChosen);
                 bundle.putString("time", timeChosen);
+                bundle.putString("screen", screen.getText().toString());
                 BuyTicketFragment2 fragment2 = new BuyTicketFragment2();
                 fragment2.setArguments(bundle);
                 FragmentManager fm = getParentFragmentManager();
