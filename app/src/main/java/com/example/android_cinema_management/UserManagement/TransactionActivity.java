@@ -6,17 +6,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.TransactionAdapter;
 import com.example.android_cinema_management.Model.Transaction;
 import com.example.android_cinema_management.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -31,6 +36,7 @@ public class TransactionActivity extends AppCompatActivity {
     private TransactionAdapter transactionAdapter;
     //Declare Movie list
     public static ArrayList<Transaction> transactionArrayList;
+    //Declare bottom sheet dialog
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -82,4 +88,5 @@ public class TransactionActivity extends AppCompatActivity {
             }
         });
     }
+
 }

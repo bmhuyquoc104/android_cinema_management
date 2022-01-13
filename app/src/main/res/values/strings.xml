@@ -150,5 +150,9 @@
     <string name="comboQuantity">Please Enter Combo Quantity</string>
     <string name="oldUser">Have An Account?Sign In Here!</string>
     <string name="seeMore">See More Detail</string>
+    <string name="ticketType">Ticket Type</string>
+    <string name="payment">Payment</string>
+    <string name="ticketPart">Ticket Detail</string>
+    <string name="userPart">User Detail</string>
 
 </resources>
