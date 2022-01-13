@@ -16,6 +16,7 @@
         android:layout_marginEnd="15dp"
         android:gravity="center_vertical"
         android:textColorHint="@color/colorPrimary4"
+        app:boxStrokeColor="@color/colorPrimary"
         app:boxStrokeErrorColor="@color/colorPrimary"
         app:endIconTint="@color/colorPrimary2"
         app:hintTextColor="@color/colorPrimary2"

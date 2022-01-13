@@ -40,8 +40,8 @@ public class UserHomeFragment extends Fragment {
     //Declare logout
     Button logOut,buyTicket;
     // Declare string email
-    String name;
-
+    public static String accountType;
+    public static String gender;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -98,8 +98,11 @@ public class UserHomeFragment extends Fragment {
 //                        System.out.println("fullNameeeeeeeeeeeeeeeeeee: " + name);
                         db.collection("Users").document(mUser.getUid()).update("status", "active");
                         SpannableString str2 = new SpannableString(docSnap.getString("fullName"));
+                        gender = docSnap.getString("gender");
                         str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
                         builder.append(str2);
+                        accountType = docSnap.getString("role");
+                        type.setText("Account type: " + accountType);
                         welcome.setText( builder, Button.BufferType.SPANNABLE);
                     }
                 }
