@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.MyViewHolder> {
@@ -34,6 +35,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     FirebaseUser mUser = mAuth.getCurrentUser();
     //Initialize ArrayList
     private ArrayList<Transaction> transactionArrayList;
+    //Declare vietnamese currency format
+    DecimalFormat formatter = new DecimalFormat("###,###,###");
+
 
     public TransactionAdapter(Context context, ArrayList<Transaction> transactionArrayList) {
         this.context = context;
@@ -54,13 +58,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        String priceFormat = formatter.format(Double.parseDouble(transactionArrayList.get(position).getPrice()));
         holder.screen.setText(transactionArrayList.get(position).getScreen());
         holder.movie.setText("Movie: " + transactionArrayList.get(position).getMovie());
         holder.date.setText("Date: " + transactionArrayList.get(position).getDate());
         holder.time.setText("Time: " + transactionArrayList.get(position).getTime());
         holder.seat.setText("Seat: " + transactionArrayList.get(position).getSeat());
-        holder.price.setText(transactionArrayList.get(position).getPrice());
+        holder.price.setText("Total Price: "  + priceFormat + " VNĐ");
         holder.seeMore.setOnClickListener(view ->{
             View viewDialog = LayoutInflater.from(context).inflate(R.layout.transaction_bottom_sheet,null);
             // Create bottom sheet dialog with layout and theme

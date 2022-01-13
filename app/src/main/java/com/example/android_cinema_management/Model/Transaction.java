@@ -162,24 +162,5 @@ public class Transaction {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "transactionId='" + transactionId + '\'' +
-                ", movie='" + movie + '\'' +
-                ", cinema='" + cinema + '\'' +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
-                ", screen='" + screen + '\'' +
-                ", ticketType='" + ticketType + '\'' +
-                ", ticketQuantity='" + ticketQuantity + '\'' +
-                ", comboType='" + comboType + '\'' +
-                ", comboQuantity='" + comboQuantity + '\'' +
-                ", price='" + price + '\'' +
-                ", seat='" + seat + '\'' +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                ", point='" + point + '\'' +
-                ", user=" + user +
-                '}';
-    }
+
 }

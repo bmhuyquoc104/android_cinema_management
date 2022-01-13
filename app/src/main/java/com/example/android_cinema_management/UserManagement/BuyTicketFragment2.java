@@ -62,7 +62,7 @@ public class BuyTicketFragment2 extends Fragment {
     String[] spiltDate;
     String dateOfWeek;
     String time;
-
+    Double finalPrice;
     public BuyTicketFragment2() {
         // Required empty public constructor
     }
@@ -123,7 +123,7 @@ public class BuyTicketFragment2 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ticketChosen = parent.getItemAtPosition(position).toString();
-                Double finalPrice = calculatePrice(ticketQuantity.getText().toString(), ticketChosen) +
+                finalPrice = calculatePrice(ticketQuantity.getText().toString(), ticketChosen) +
                         calculateComboPrice(comboQuantity.getText().toString(), comboChosen);
                 String priceFormat = formatter.format(finalPrice);
                 price.setText("Total Price: " + priceFormat + " VNĐ");
@@ -155,7 +155,7 @@ public class BuyTicketFragment2 extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Double finalPrice = calculatePrice(ticketQuantity.getText().toString(), ticketChosen) +
+                finalPrice = calculatePrice(ticketQuantity.getText().toString(), ticketChosen) +
                         calculateComboPrice(comboQuantity.getText().toString(), comboChosen);
                 String priceFormat = formatter.format(finalPrice);
                 price.setText("Total Price: " + priceFormat + " VNĐ");
@@ -186,7 +186,7 @@ public class BuyTicketFragment2 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 comboChosen = parent.getItemAtPosition(position).toString();
-                Double finalPrice = calculatePrice(ticketQuantity.getText().toString(), ticketChosen) + calculateComboPrice(comboQuantity.getText().toString(), comboChosen);
+                finalPrice = calculatePrice(ticketQuantity.getText().toString(), ticketChosen) + calculateComboPrice(comboQuantity.getText().toString(), comboChosen);
                 String priceFormat = formatter.format(finalPrice);
                 price.setText("Total Price: " + priceFormat + " VNĐ");
 
@@ -202,7 +202,7 @@ public class BuyTicketFragment2 extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Double finalPrice = calculatePrice(ticketQuantity.getText().toString(), ticketChosen) + calculateComboPrice(comboQuantity.getText().toString(), comboChosen);
+                finalPrice = calculatePrice(ticketQuantity.getText().toString(), ticketChosen) + calculateComboPrice(comboQuantity.getText().toString(), comboChosen);
                 String priceFormat = formatter.format(finalPrice);
                 price.setText("Total Price: " + priceFormat + " VNĐ");
 
@@ -217,13 +217,12 @@ public class BuyTicketFragment2 extends Fragment {
 
         // Function to change fragment and send data to next step in buying ticket
         next2.setOnClickListener(View -> {
-            String totalPrice = price.getText().toString();
             String ticketTotalQuantity = ticketQuantity.getText().toString();
             String comboTotalQuantity = comboQuantity.getText().toString();
             Bundle bundle2 = new Bundle();
             bundle2.putString("ticket", ticketChosen);
             bundle2.putString("ticketQuantity", ticketTotalQuantity);
-            bundle2.putString("price", totalPrice);
+            bundle2.putString("price", Double.toString(finalPrice));
             bundle2.putString("combo", comboChosen);
             bundle2.putString("comboQuantity", comboTotalQuantity);
             bundle2.putString("movie", movie);

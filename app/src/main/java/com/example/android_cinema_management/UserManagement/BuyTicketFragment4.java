@@ -129,9 +129,10 @@ public class BuyTicketFragment4 extends Fragment {
         String comboTotalQuantity = bundle.getString("comboQuantity");
         String seatChosen = bundle.getString("seat");
         String transactionId = UUID.randomUUID().toString();
-        String point = "20";
 
 
+        int pointInInteger = calculatePointByPrice(totalPrice);
+        String point = Integer.toString(pointInInteger);
         DocumentReference documentReference = db.collection("Users").document(mUser.getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -195,4 +196,19 @@ public class BuyTicketFragment4 extends Fragment {
         });
         return view;
     }
+
+    private int calculatePointByPrice(String price){
+        int point = 0;
+        double priceToGetPoint = 100000;
+        if(priceToGetPoint > Double.parseDouble(price)){
+            point = 0;
+        }
+        else {
+            while (priceToGetPoint < Double.parseDouble(price)) {
+                point += 10;
+                priceToGetPoint += 100000;
+            }
+        }
+        return  point;
+    };
 }
