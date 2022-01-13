@@ -54,7 +54,6 @@ public class TransactionActivity extends AppCompatActivity {
         close.setOnClickListener(view->{
             finish();
         });
-        Toast.makeText(this, "TAO NEEEEEEEEEEEEEE", Toast.LENGTH_SHORT).show();
         transactionArrayList = new ArrayList<>();
         //Call function getTransaction
         getTransaction(db, transactionArrayList, () -> {
