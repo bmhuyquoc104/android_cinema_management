@@ -65,6 +65,7 @@ public class TransactionActivity extends AppCompatActivity {
             UserHomeFragment.accountType = checkAccountType(totalSavingPoints);
             System.out.println(UserHomeFragment.accountType);
             db.collection("Users").document(mUser.getUid()).update("role", UserHomeFragment.accountType);
+            db.collection("Users").document(mUser.getUid()).update("point", Double.toString(totalSavingPoints));
             recyclerView = findViewById(R.id.list_transaction_recycler_view);
             recyclerView.setHasFixedSize(true);
             transactionAdapter = new TransactionAdapter(this, transactionArrayList);

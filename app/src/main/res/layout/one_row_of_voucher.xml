@@ -88,7 +88,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="22dp"
-                android:paddingStart="25dp"
+                android:paddingStart="24dp"
                 android:paddingEnd="25dp"
                 android:text="@string/textview"
                 android:textColor="@color/colorPrimary4"

@@ -27,7 +27,7 @@ public class VoucherDatabase {
                             );
                             // add each instance to the list
                             voucherList.add(voucher);
-                            System.out.println("huy ne" + voucherList);
+
                         }
                         // After getting the data successfully, run the run back
                         callback.run();
