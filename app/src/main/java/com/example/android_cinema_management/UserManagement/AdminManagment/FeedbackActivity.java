@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.android_cinema_management.Adapter.FeedbackAdapter;
+import com.example.android_cinema_management.Adapter.FeedbackAdminAdapter;
 import com.example.android_cinema_management.Model.Feedback;
 import com.example.android_cinema_management.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,14 +24,11 @@ public class FeedbackActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     //Declare adapter
-    private FeedbackAdapter feedbackAdapter;
+    private FeedbackAdminAdapter feedbackAdminAdapter;
     //Declare Movie list
     public static ArrayList<Feedback> feedbackArrayList;
 
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseUser user = firebaseAuth.getCurrentUser();
-    String userId = user.getUid();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +40,13 @@ public class FeedbackActivity extends AppCompatActivity {
             System.out.println("FEEDBACK LIST: " + feedbackArrayList);
 
             // Set fixed size for recycler view
-            recyclerView = findViewById(R.id.user_list_reviews_recycler_view);
+            recyclerView = findViewById(R.id.admin_list_feedback_admin_recycler_view);
             recyclerView.setHasFixedSize(true);
-            feedbackAdapter = new FeedbackAdapter(this, feedbackArrayList);
+            feedbackAdminAdapter = new FeedbackAdminAdapter(this, feedbackArrayList);
             layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
             // Specify an adapter
-            recyclerView.setAdapter(feedbackAdapter);
+            recyclerView.setAdapter(feedbackAdminAdapter);
         });
     }
 

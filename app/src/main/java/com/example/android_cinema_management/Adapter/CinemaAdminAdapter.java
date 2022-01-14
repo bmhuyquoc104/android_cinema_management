@@ -78,7 +78,7 @@ public class CinemaAdminAdapter extends RecyclerView.Adapter<CinemaAdminAdapter.
                     Cinema cinema = cinemaArrayList.get(getAbsoluteAdapterPosition());
                     Intent intent = new Intent(context, Update_and_DeleteCinema.class);
                     intent.putExtra("cinema", cinema);
-                    context.startActivities(new Intent[]{intent});
+                    context.startActivity(intent);
                 }
             });
         }
