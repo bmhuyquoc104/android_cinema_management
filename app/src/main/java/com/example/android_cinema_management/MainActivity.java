@@ -13,9 +13,18 @@ import android.widget.Button;
 
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
-import com.example.android_cinema_management.UserManagement.UserHomeFragment;
+import com.example.android_cinema_management.UserManagement.UserHomeFragmentActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     //Declare tablayout, adapter and viewpager2
@@ -29,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Declare bottom navigation
     BottomNavigationView bottomNavigation;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseUser mUser = mAuth.getCurrentUser();
+    Fragment chosenFragment = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.ma_container,chosenFragment).commit();
                 return true;
             }
+
+            callback.run();
         });
     }
 

@@ -49,4 +49,8 @@ public class CinemaDatabase {
                     }
                 });
     }
+
+    public static void updateCinema(FirebaseFirestore db, Runnable callback){
+
+    }
 }
