@@ -66,6 +66,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
 
 
         holder.exchange.setOnClickListener(View ->{
+            // Get the points from the database
             DocumentReference docRef = db.collection("Users").document(userId);
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @SuppressLint("SetTextI18n")
@@ -77,13 +78,14 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
                             totalPoints= docSnap.getString("point");
                             //Function to only disable and enable the button by the total points
                             assert totalPoints != null;
+                            // Check if the user still have enough point to make an exchange
                             if(Integer.parseInt(totalPoints) >= Integer.parseInt(voucherList.get(position).getPointRequire())){
                                 int remainPoints = Integer.parseInt(totalPoints) - Integer.parseInt(voucherList.get(position).getPointRequire());
                                 totalPoints = Integer.toString(remainPoints);
+                                // Update the text view total points in voucher activity in real time
                                 VoucherActivity.updateTotalPoints(VoucherActivity.point,totalPoints);
                                 VoucherActivity.currentPoint = totalPoints;
-                                System.out.println(VoucherActivity.currentPoint);
-                                System.out.println("TotalPoints: "+ remainPoints);
+                                // Update the new point to database
                                 db.collection("Users").document(mUser.getUid()).update("point", totalPoints);
                                 Toast.makeText(context,"You have successfully get this voucher!. Your remain points are: " +totalPoints,Toast.LENGTH_SHORT).show();
 
@@ -91,7 +93,6 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
                             else{
                                 Toast.makeText(context,"You don't have enough points to exchange this voucher!",Toast.LENGTH_SHORT).show();
                             }
-
 
                         }
                     }
