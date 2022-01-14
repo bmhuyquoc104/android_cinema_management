@@ -247,9 +247,6 @@ public class Accounts extends Fragment {
                 break;
         }
 
-//        Set spanned text on textview
-
-
         ImageButton close = dialog.findViewById(R.id.policy_close_button);
         /*
          * Function to dismiss the dialog
