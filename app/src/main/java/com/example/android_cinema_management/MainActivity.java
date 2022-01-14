@@ -13,18 +13,12 @@ import android.widget.Button;
 
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
-import com.example.android_cinema_management.UserManagement.UserHomeFragmentActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.android_cinema_management.UserManagement.UserHomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     //Declare tablayout, adapter and viewpager2
@@ -67,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.menu_account:
                         if(!isLogin){
-                        chosenFragment = new Accounts();
+                            chosenFragment = new Accounts();
                         }
                         else{
                             chosenFragment = new UserHomeFragment();
@@ -87,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.ma_container,chosenFragment).commit();
                 return true;
             }
-
-            callback.run();
         });
     }
 

@@ -1,18 +1,18 @@
 package com.example.android_cinema_management.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android_cinema_management.CinemaManagement.Update_and_DeleteCinema;
 import com.example.android_cinema_management.Model.Cinema;
-import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.R;
 import com.squareup.picasso.Picasso;
 
@@ -53,7 +53,7 @@ public class CinemaAdminAdapter extends RecyclerView.Adapter<CinemaAdminAdapter.
         return cinemaArrayList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView cinemaImage;
         TextView cinemaName, cinemaLocationName,cinemaAddress,cinemaContact,cinemaCity;
         public MyViewHolder(@NonNull View itemView) {
@@ -64,6 +64,16 @@ public class CinemaAdminAdapter extends RecyclerView.Adapter<CinemaAdminAdapter.
             cinemaAddress = itemView.findViewById(R.id.cinemaAddress);
             cinemaContact = itemView.findViewById(R.id.cinemaPhoneContact);
             cinemaCity = itemView.findViewById(R.id.cinemaCity);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Cinema cinema = cinemaArrayList.get(getAbsoluteAdapterPosition());
+                    Intent intent = new Intent(context, Update_and_DeleteCinema.class);
+                    intent.putExtra("cinema", cinema);
+                    context.startActivities(new Intent[]{intent});
+                }
+            });
         }
     }
 }

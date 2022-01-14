@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminManagment.CinemaActivity;
 
 
 public class AdminActivity extends AppCompatActivity {
@@ -64,6 +65,11 @@ public class AdminActivity extends AppCompatActivity {
 
         // Set text for textView
         welcome.setText( builder, Button.BufferType.SPANNABLE);
+
+        cinema.setOnClickListener(view -> {
+            Intent intent1 = new Intent(this, CinemaActivity.class);
+            startActivity(intent1);
+        });
         /*
         *Function to close activity
         * */

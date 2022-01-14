@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,24 +30,18 @@ public class AddCinemaFragment extends Fragment {
     EditText cinemaName, cinemaAddress, contactNumber, locationName, latitude, longitude, review, rate, imageURL;
     Button addCinemaBtn;
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
-    FirebaseFirestore db;
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    String userId,userName;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     //Declare text input layout
     TextInputLayout city;
 
     //Declare movie array options
     ArrayList<String> cityArray = new ArrayList<>();
 
-    String[] cities = {"Ha Noi", "Sai Gon", "Da Lat", "Can Tho",
-            "Vung Tau", "Da Nang"};
     String cityChosen;
     //Declare array adapter
-    ArrayAdapter<String> adapterItems;
+    ArrayAdapter<String> cityAdapterItems;
     // Declare auto complete text view
-    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteTextView cityAutoCompleteTextView;
     public AddCinemaFragment() {
         // Required empty public constructor
     }
@@ -71,11 +63,18 @@ public class AddCinemaFragment extends Fragment {
         imageURL = view.findViewById(R.id.admin_add_cinema_image_sent_et);
 
         addCinemaBtn = view.findViewById(R.id.admin_add_cinema_add_bt);
+        cityArray = new ArrayList<>();
+        cityArray.add("Ha Noi");
+        cityArray.add("Sai Gon");
+        cityArray.add("Da Lat");
+        cityArray.add("Can Tho");
+        cityArray.add("Vung Tau");
+        cityArray.add("Da Nang");
 
-        adapterItems = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, cities);
-        autoCompleteTextView = view.findViewById(R.id.user_add_review_movie_auto_complete_text);
-        autoCompleteTextView.setAdapter(adapterItems);
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        cityAdapterItems = new ArrayAdapter<String>(getContext(), R.layout.gender_selector_list, cityArray);
+        cityAutoCompleteTextView = view.findViewById(R.id.admin_add_cinema_city_auto_complete_text);
+        cityAutoCompleteTextView.setAdapter(cityAdapterItems);
+        cityAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cityChosen = parent.getItemAtPosition(position).toString();
@@ -83,25 +82,27 @@ public class AddCinemaFragment extends Fragment {
         });
 
         addCinemaBtn.setOnClickListener(View -> {
-            String id = UUID.randomUUID().toString();
+            String cinemaId = UUID.randomUUID().toString();
             Map<String, Object> cinemaMap = new HashMap<>();
-            cinemaMap.put("id", id);
-            cinemaMap.put("name", cinemaName);
-            cinemaMap.put("address", cinemaAddress);
-            cinemaMap.put("contactNumber", contactNumber);
-            cinemaMap.put("locationName", locationName);
-            cinemaMap.put("latitude", latitude);
-            cinemaMap.put("longitude", longitude);
-            cinemaMap.put("city", city);
-            cinemaMap.put("review", review);
-            cinemaMap.put("rate", rate);
-            cinemaMap.put("imageURL", imageURL);
+            cinemaMap.put("id", cinemaId);
+            cinemaMap.put("name", cinemaName.getText().toString());
+            cinemaMap.put("address", cinemaAddress.getText().toString());
+            cinemaMap.put("contactNumber", contactNumber.getText().toString());
+            cinemaMap.put("locationName", locationName.getText().toString());
+            cinemaMap.put("latitude", latitude.getText().toString());
+            cinemaMap.put("longitude", longitude.getText().toString());
+            cinemaMap.put("city", cityChosen);
+            cinemaMap.put("review", review.getText().toString());
+            cinemaMap.put("rate", rate.getText().toString());
+            cinemaMap.put("imageURL", imageURL.getText().toString());
 
-            DocumentReference docRef = db.collection("Cinema").document(id);
-            docRef.set(cinemaMap).addOnCompleteListener(task -> {
-               if (task.isSuccessful()){
-                   Toast.makeText(getActivity(), "Cinema successfully addedd", Toast.LENGTH_SHORT).show();
-               }
+            //Saving reviewMap into Firestore in reviews collection
+            DocumentReference documentReferenceForCinema = db.collection("Cinema")
+                    .document(cinemaId);
+            documentReferenceForCinema.set(cinemaMap).addOnCompleteListener(taskInner -> {
+                if (taskInner.isSuccessful()) {
+                    Toast.makeText(getContext(), "CINEMA ADDED!", Toast.LENGTH_SHORT).show();
+                }
             });
         });
 

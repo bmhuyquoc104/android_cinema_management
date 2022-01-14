@@ -48,10 +48,10 @@ public class ListOfCinemaFragment extends Fragment {
         cinemaArrayList = new ArrayList<>();
         //call function get reviews data
         getCinemas(db, cinemaArrayList, () -> {
-            System.out.println("REVIEWS LIST: " + cinemaArrayList);
+            System.out.println("CINEMA LIST: " + cinemaArrayList);
 
             // Set fixed size for recycler view
-            recyclerView = view.findViewById(R.id.user_list_reviews_recycler_view);
+            recyclerView = view.findViewById(R.id.admin_list_cinema_recycler_view);
             recyclerView.setHasFixedSize(true);
             cinemaAdminAdapter = new CinemaAdminAdapter(getActivity(), cinemaArrayList);
             layoutManager = new LinearLayoutManager(getActivity());
@@ -71,8 +71,23 @@ public class ListOfCinemaFragment extends Fragment {
                 int count = 0;
                 for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
                     count++;
-                    Cinema dataContainer = doc.toObject(Cinema.class);
-                    cinemaArrayList.add(dataContainer);
+                    Cinema cinema = new Cinema(
+                            doc.getString("name"),
+                            doc.getString("address"),
+                            // Parse the database type string to double
+                            Double.parseDouble(Objects.requireNonNull(doc.getString("latitude"))),
+                            // Parse the database type string to double
+                            Double.parseDouble(Objects.requireNonNull(doc.getString("longitude"))),
+                            // Parse the database type string to double
+                            Double.parseDouble(Objects.requireNonNull(doc.getString("rate"))),
+                            doc.getString("contactNumber"),
+                            doc.getString("imageURL"),
+                            doc.getString("locationName"),
+                            doc.getString("id"),
+                            // Parse the database type string to int
+                            Integer.parseInt(Objects.requireNonNull(doc.getString("review"))),
+                            doc.getString("city"));
+                    cinemaArrayList.add(cinema);
                     if (count == Objects.requireNonNull(task.getResult()).size()) {
                         callback.run();
                     }
