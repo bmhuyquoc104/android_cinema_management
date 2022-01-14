@@ -81,8 +81,11 @@ public class AddCinemaFragment extends Fragment {
             }
         });
 
+        //Listen to oClick addCinemaBtn button
         addCinemaBtn.setOnClickListener(View -> {
+            //Create cinemaId using UUID
             String cinemaId = UUID.randomUUID().toString();
+            //saving all field's content into cinemaMap
             Map<String, Object> cinemaMap = new HashMap<>();
             cinemaMap.put("id", cinemaId);
             cinemaMap.put("name", cinemaName.getText().toString());
@@ -96,7 +99,7 @@ public class AddCinemaFragment extends Fragment {
             cinemaMap.put("rate", rate.getText().toString());
             cinemaMap.put("imageURL", imageURL.getText().toString());
 
-            //Saving reviewMap into Firestore in reviews collection
+            //Saving cinemaMap into Firestore in reviews collection
             DocumentReference documentReferenceForCinema = db.collection("Cinema")
                     .document(cinemaId);
             documentReferenceForCinema.set(cinemaMap).addOnCompleteListener(taskInner -> {

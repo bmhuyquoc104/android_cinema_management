@@ -47,9 +47,10 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_and_delete_cinema);
-
+        //get content cinema's intent
         cinema = (Cinema) getIntent().getSerializableExtra("cinema");
 
+        //Binding EditText and Button to file xml activity_update_and_delete_cinema
         cinemaName = findViewById(R.id.admin_add_cinema_name_et);
         cinemaAddress = findViewById(R.id.admin_add_cinema_address_sent_et);
         contactNumber = findViewById(R.id.admin_add_cinema_contactNumber_sent_et);
@@ -60,10 +61,10 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
         review = findViewById(R.id.admin_add_cinema_review_sent_et);
         rate = findViewById(R.id.admin_add_cinema_rate_sent_et);
         imageURL = findViewById(R.id.admin_add_cinema_image_sent_et);
-
         updateCinemaBtn = findViewById(R.id.admin_update_cinema_update_bt);
         deleteCinemaBtn = findViewById(R.id.admin_delete_cinema_delete_bt);
 
+        //Initialize cityArray and add content into cityArray
         cityArray = new ArrayList<>();
         cityArray.add("Ha Noi");
         cityArray.add("Sai Gon");
@@ -72,6 +73,7 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
         cityArray.add("Vung Tau");
         cityArray.add("Da Nang");
 
+        //Setup and binding AdapterItems and AutoCompleteTextView
         cityAdapterItems = new ArrayAdapter<String>(this, R.layout.gender_selector_list, cityArray);
         cityAutoCompleteTextView = findViewById(R.id.admin_add_cinema_city_auto_complete_text);
         cityAutoCompleteTextView.setAdapter(cityAdapterItems);
@@ -82,6 +84,7 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
             }
         });
 
+        //Set content for each field accordingly
         cinemaName.setText(cinema.getName());
         cinemaAddress.setText(cinema.getAddress());
         contactNumber.setText(cinema.getContactNumber());
@@ -93,7 +96,9 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
         rate.setText(String.valueOf(cinema.getRate()));
         imageURL.setText(cinema.getImageUrl());
 
+        //Listen to updateCinemaBtn onClick
         updateCinemaBtn.setOnClickListener(view -> {
+            //put all field content into cinemaMap
             Map<String, Object> cinemaMap = new HashMap<>();
             cinemaMap.put("id", cinema.getCinemaId());
             cinemaMap.put("name", cinemaName.getText().toString());
@@ -107,6 +112,7 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
             cinemaMap.put("rate", rate.getText().toString());
             cinemaMap.put("imageURL", imageURL.getText().toString());
 
+            //updating new cinema detial into collection Cinema with according to CinemaId document
             DocumentReference documentReferenceForCinema = db.collection("Cinema")
                     .document(cinema.getCinemaId());
             documentReferenceForCinema.set(cinemaMap).addOnCompleteListener(taskInner -> {
@@ -116,6 +122,7 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
             });
         });
 
+        //Listen to deleteCinemaBtn button onClick
         deleteCinemaBtn.setOnClickListener(view -> {
             db.collection("Cinema").document(cinema.getCinemaId())
                     .delete()

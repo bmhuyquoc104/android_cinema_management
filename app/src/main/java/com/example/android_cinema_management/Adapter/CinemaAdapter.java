@@ -28,7 +28,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
     // Initialize context
     private Context context;
 
-
+    //Create constructor for CinemaAdapter
     public CinemaAdapter(Context context,ArrayList<Cinema> cinemaList){
         this.context = context;
         this.cinemaList = cinemaList;

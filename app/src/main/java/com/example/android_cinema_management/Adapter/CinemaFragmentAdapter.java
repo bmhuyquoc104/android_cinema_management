@@ -25,6 +25,7 @@ public class CinemaFragmentAdapter extends FragmentStateAdapter {
         super(fragmentManager, lifecycle);
     }
 
+    //Set up fragment replace when click
     @NonNull
     @Override
     public Fragment createFragment(int position) {

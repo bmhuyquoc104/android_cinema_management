@@ -26,20 +26,25 @@ public class CinemaAdminAdapter extends RecyclerView.Adapter<CinemaAdminAdapter.
     //Initialize ArrayList for review
     private ArrayList<Cinema> cinemaArrayList;
 
+    //Create Constructor for CinemaAdminAdapter
     public CinemaAdminAdapter(Context context, ArrayList<Cinema> cinemaArrayList) {
         this.context = context;
         this.cinemaArrayList = cinemaArrayList;
     }
 
+    //Create onCreateViewHolder class
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //Binding all content from MyViewHolder into one_row_of_cinema_admin
         View view = LayoutInflater.from(context).inflate(R.layout.one_row_of_cinema_admin,parent,false);
         return new CinemaAdminAdapter.MyViewHolder(view);
     }
 
+    //Binding to xml file one_row_cinema_admin
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        //Set holder to display each field
         holder.cinemaAddress.setText(cinemaArrayList.get(position).getAddress());
         holder.cinemaName.setText(cinemaArrayList.get(position).getName());
         holder.cinemaLocationName.setText(cinemaArrayList.get(position).getLocationName());
@@ -48,11 +53,13 @@ public class CinemaAdminAdapter extends RecyclerView.Adapter<CinemaAdminAdapter.
         Picasso.get().load(cinemaArrayList.get(position).getImageUrl()).into(holder.cinemaImage);
     }
 
+    //Get all document from collection cinema from Firestore
     @Override
     public int getItemCount() {
         return cinemaArrayList.size();
     }
 
+    //Set up ViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView cinemaImage;
         TextView cinemaName, cinemaLocationName,cinemaAddress,cinemaContact,cinemaCity;
