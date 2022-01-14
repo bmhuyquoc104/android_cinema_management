@@ -172,6 +172,8 @@
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_sign_up2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/one_row_of_cinema_admin.xml" value="0.30833333333333335" />
+        <entry key="app/src/main/res/layout/one_row_of_feedback.xml" value="0.25253292806484295" />
+        <entry key="app/src/main/res/layout/one_row_of_feedback_admin.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/one_row_of_movies.xml" value="0.3940972222222222" />
         <entry key="app/src/main/res/layout/open_filter_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/open_user_profile_edit_dialog.xml" value="0.31197916666666664" />
