@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.example.android_cinema_management.Adapter.MoviesAdapter;
 import com.example.android_cinema_management.Adapter.VoucherAdapter;
@@ -20,7 +21,8 @@ import java.util.ArrayList;
 public class VoucherActivity extends AppCompatActivity {
     //Declare voucher list
     ArrayList<Voucher> voucherList;
-
+    //Declare imageView
+    ImageView close;
     //Declare recyclerview
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -39,7 +41,7 @@ public class VoucherActivity extends AppCompatActivity {
         //Binding XML values
         recyclerView = findViewById(R.id.voucher_recycler_view);
         recyclerView.setHasFixedSize(true);
-
+        close = findViewById(R.id.voucher_close_iv);
         //Instantiate array list
         voucherList = new ArrayList<>();
         // Instantiate adapter
@@ -52,6 +54,10 @@ public class VoucherActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(gridLayoutManager);
             // Set adapter for recycler view
             recyclerView.setAdapter(voucherAdapter);
+        });
+
+        close.setOnClickListener(view->{
+            finish();
         });
 
     }
