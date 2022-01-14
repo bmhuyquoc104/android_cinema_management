@@ -17,13 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_cinema_management.CinemaManagement.CinemaLocation;
 import com.example.android_cinema_management.Model.Cinema;
-import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,7 +28,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
     // Initialize context
     private Context context;
 
-
+    //Create constructor for CinemaAdapter
     public CinemaAdapter(Context context,ArrayList<Cinema> cinemaList){
         this.context = context;
         this.cinemaList = cinemaList;
@@ -102,6 +96,4 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.MyViewHold
             cinemaCity = itemView.findViewById(R.id.cinemaCity);
         }
     }
-
-
 }

@@ -22,6 +22,9 @@ import com.example.android_cinema_management.Adapter.LogInAdapter;
 import com.example.android_cinema_management.MovieManagement.MovieInfoTabLayout;
 import com.example.android_cinema_management.R;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class Accounts extends Fragment {

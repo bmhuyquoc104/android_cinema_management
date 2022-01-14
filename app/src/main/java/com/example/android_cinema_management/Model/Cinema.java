@@ -2,9 +2,10 @@ package com.example.android_cinema_management.Model;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cinema {
+public class Cinema implements Serializable {
 
     private String name;
     private String address;
