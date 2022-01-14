@@ -57,7 +57,7 @@
                     android:layout_marginTop="148dp"
                     android:background="@drawable/round_image"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_baseline_savings_24"
+                    android:src="@drawable/ic_baseline_card_giftcard_24"
                     android:tint="@color/colorPrimary2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.858"
@@ -118,7 +118,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/round_image"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_baseline_card_giftcard_24"
+                    android:src="@drawable/ic_baseline_fastfood_40"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.857"
                     app:layout_constraintStart_toStartOf="parent"
@@ -158,10 +158,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/user_home_saving"
+                    android:text="@string/user_home_voucher"
                     android:textColor="@color/colorPrimary4"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.834"
+                    app:layout_constraintHorizontal_bias="0.852"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_home_points_iv" />
 
@@ -170,10 +170,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/user_home_voucher"
+                    android:text="@string/combo"
                     android:textColor="@color/colorPrimary4"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.846"
+                    app:layout_constraintHorizontal_bias="0.835"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_home_gift_iv" />
 

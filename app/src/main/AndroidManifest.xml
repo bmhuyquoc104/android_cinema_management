@@ -41,6 +41,9 @@
             android:name=".UserManagement.AdminManagment.DiscountActivity"
             android:exported="false" />
         <activity
+            android:name=".NewsDetails"
+            android:exported="false" />
+        <activity
             android:name=".ReadFeedback"
             android:exported="false" />
         <activity

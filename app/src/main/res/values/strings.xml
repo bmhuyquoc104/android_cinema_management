@@ -99,7 +99,7 @@
     <string name="user_home_point">Current Point</string>
     <string name="user_home_profile">Profile</string>
     <string name="user_home_history_transaction">Transactions</string>
-    <string name="user_home_voucher">Combo</string>
+    <string name="user_home_voucher">Voucher</string>
     <string name="user_home_review">Review</string>
     <string name="user_home_feedback">Feedback</string>
     <string name="user_home_saving">Points</string>
