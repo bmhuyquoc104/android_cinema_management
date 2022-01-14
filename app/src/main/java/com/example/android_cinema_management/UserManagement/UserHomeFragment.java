@@ -34,7 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserHomeFragment extends Fragment {
     //Declare imageview
-    ImageView profile, avatar, combo, transaction, feedback, review, points;
+    ImageView profile, avatar, combo, transaction, feedback, review, points, notification;
     //Declare textview
     TextView welcome, type;
     //Declare logout
@@ -69,6 +69,7 @@ public class UserHomeFragment extends Fragment {
         welcome = view.findViewById(R.id.user_home_name);
         type = view.findViewById(R.id.user_home_account_type);
         buyTicket = view.findViewById(R.id.user_home_buy_ticket_bt);
+        notification = view.findViewById(R.id.user_home_notification);
         // Receive the bundle from other fragments
         Bundle bundle = this.getArguments();
         System.out.println(bundle);
@@ -189,6 +190,11 @@ public class UserHomeFragment extends Fragment {
             catch (ActivityNotFoundException e){
                 Toast.makeText(getContext(),"Oops!! Something wrong, Please try again!" ,Toast.LENGTH_LONG).show();
             }
+        });
+
+        notification.setOnClickListener(View -> {
+            Intent intent = new Intent(getContext(), UserNotification.class);
+            startActivity(intent);
         });
         return view;
     }

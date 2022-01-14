@@ -2,12 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary3"
-    tools:context=".UserManagement.AddReviewFragment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
+    android:layout_height="match_parent"
+    tools:context=".UserManagement.AdminManagment.ReplyFeedbackActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,8 +29,8 @@
                 android:layout_height="match_parent">
 
 
-                <EditText
-                    android:id="@+id/admin_add_cinema_name_et"
+                <TextView
+                    android:id="@+id/admin_reply_feedback_fullName_tv"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
@@ -46,7 +43,7 @@
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:hint="Cinema Name"
+                    android:text="Full Name"
                     android:textColor="@color/colorPrimary4"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -56,21 +53,21 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
 
-                <EditText
-                    android:id="@+id/admin_add_cinema_address_sent_et"
+                <TextView
+                    android:id="@+id/admin_reply_feedback_date_sent_tv"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="104dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_drive_eta_24"
+                    android:drawableStart="@drawable/ic_baseline_calendar_month_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:hint="Cinema Address"
+                    android:text="Date"
                     android:textColor="@color/colorPrimary4"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -79,21 +76,21 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
-                <EditText
-                    android:id="@+id/admin_add_cinema_contactNumber_sent_et"
+                <TextView
+                    android:id="@+id/admin_reply_feedback_time_sent_tv"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="188dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_phone_forwarded_24"
+                    android:drawableStart="@drawable/ic_baseline_access_time_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:hint="Contact Number"
+                    android:text="Time"
                     android:textColor="@color/colorPrimary4"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -102,21 +99,45 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
-                <EditText
-                    android:id="@+id/admin_add_cinema_location_name_tv"
+                <TextView
+                    android:id="@+id/admin_reply_feedback_topic_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="276dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_topic_24"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@color/colorPrimary4"
+                    android:gravity="start|center_vertical"
+                    android:hint="Topic"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary4"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                <TextView
+                    android:id="@+id/admin_reply_feedback_feedbackContent_tv"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="360dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_location_on_24"
+                    android:drawableStart="@drawable/ic_baseline_feedback_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:hint="Location Name"
+                    android:hint="Feedback Content"
                     android:textColorHint="@color/colorPrimary4"
                     android:textColor="@color/colorPrimary4"
                     android:textSize="16sp"
@@ -126,64 +147,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/admin_add_cinema_city_text_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="272dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:textColorHint="@color/colorPrimary4"
-                    android:textSize="16sp"
-                    app:boxStrokeColor="@color/colorPrimary3"
-                    app:boxStrokeErrorColor="@color/colorPrimary3"
-                    app:endIconTint="@color/colorPrimary2"
-                    app:hintTextColor="@color/colorPrimary2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:startIconTint="@color/colorPrimary2">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/admin_add_cinema_city_auto_complete_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/round_login_page"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:drawableStart="@drawable/ic_baseline_location_city_24"
-                        android:drawablePadding="15dp"
-                        android:drawableTint="@color/colorPrimary4"
-                        android:ems="10"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="City"
-                        android:textColor="@color/colorPrimary4"
-                        android:textColorHint="@color/colorPrimary5"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/frag2SignUp_dateOfBirth"
-                        tools:ignore="UnusedAttribute" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <EditText
-                    android:id="@+id/admin_add_cinema_latitude_sent_et"
+                <TextView
+                    android:id="@+id/admin_reply_feedback_email_sent_tv"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="448dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_add_location_24"
+                    android:drawableStart="@drawable/ic_baseline_email_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
                     android:gravity="start|center_vertical"
-                    android:hint="Latitude"
+                    android:hint="Email"
                     android:isScrollContainer="true"
                     android:keepScreenOn="true"
                     android:lineSpacingExtra="8sp"
@@ -205,44 +182,11 @@
 
 
                 <EditText
-                    android:id="@+id/admin_add_cinema_longitude_sent_et"
+                    android:id="@+id/admin_reply_feedback_reply_content_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="556dp"
-                    android:layout_marginEnd="15dp"
-                    android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_add_location_24"
-                    android:drawablePadding="15dp"
-                    android:drawableTint="@color/colorPrimary4"
-                    android:fadeScrollbars="true"
-                    android:gravity="start|center_vertical"
-                    android:hint="Longitude"
-                    android:isScrollContainer="true"
-                    android:keepScreenOn="true"
-                    android:lineSpacingExtra="8sp"
-                    android:nestedScrollingEnabled="true"
-                    android:overScrollMode="ifContentScrolls"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="vertical"
-                    android:textColor="@color/colorPrimary4"
-                    android:textColorHint="@color/colorPrimary4"
-                    android:textSize="16sp"
-                    android:verticalScrollbarPosition="right"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
-
-                <EditText
-                    android:id="@+id/admin_add_cinema_review_sent_et"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="672dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
                     android:drawableStart="@drawable/ic_baseline_rate_review_24"
@@ -250,75 +194,7 @@
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
                     android:gravity="start|center_vertical"
-                    android:hint="Review"
-                    android:isScrollContainer="true"
-                    android:keepScreenOn="true"
-                    android:lineSpacingExtra="8sp"
-                    android:nestedScrollingEnabled="true"
-                    android:overScrollMode="ifContentScrolls"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="vertical"
-                    android:textColor="@color/colorPrimary4"
-                    android:textColorHint="@color/colorPrimary4"
-                    android:textSize="16sp"
-                    android:verticalScrollbarPosition="right"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
-
-
-                <EditText
-                    android:id="@+id/admin_add_cinema_rate_sent_et"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="784dp"
-                    android:layout_marginEnd="15dp"
-                    android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_star_rate_24"
-                    android:drawablePadding="15dp"
-                    android:drawableTint="@color/colorPrimary4"
-                    android:fadeScrollbars="true"
-                    android:gravity="start|center_vertical"
-                    android:hint="Rate"
-                    android:isScrollContainer="true"
-                    android:keepScreenOn="true"
-                    android:lineSpacingExtra="8sp"
-                    android:nestedScrollingEnabled="true"
-                    android:overScrollMode="ifContentScrolls"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="vertical"
-                    android:textColor="@color/colorPrimary4"
-                    android:textColorHint="@color/colorPrimary4"
-                    android:textSize="16sp"
-                    android:verticalScrollbarPosition="right"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
-
-
-                <EditText
-                    android:id="@+id/admin_add_cinema_image_sent_et"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="900dp"
-                    android:layout_marginEnd="15dp"
-                    android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_image_24"
-                    android:drawablePadding="15dp"
-                    android:drawableTint="@color/colorPrimary4"
-                    android:fadeScrollbars="true"
-                    android:gravity="start|center_vertical"
-                    android:hint="Image URL"
+                    android:hint="Reply Feedback content"
                     android:isScrollContainer="true"
                     android:keepScreenOn="true"
                     android:lineSpacingExtra="8sp"
@@ -339,15 +215,15 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <Button
-                    android:id="@+id/admin_add_cinema_add_bt"
+                    android:id="@+id/admin_reply_feedback_reply_bt"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="1000dp"
+                    android:layout_marginTop="650dp"
                     android:layout_marginRight="15dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:letterSpacing="0.21"
-                    android:text="@string/add"
+                    android:text="Reply"
                     android:textColor="@color/colorPrimary5"
                     android:textSize="18sp"
                     app:cornerRadius="40dp"
@@ -366,5 +242,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>

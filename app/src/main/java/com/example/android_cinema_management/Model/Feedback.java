@@ -1,8 +1,9 @@
 package com.example.android_cinema_management.Model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Feedback {
+public class Feedback implements Serializable {
 
     private String id;
     private String topic;
