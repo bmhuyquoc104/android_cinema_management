@@ -51,20 +51,10 @@ import java.util.Locale;
 public class SearchMovieFragment extends Fragment {
     //Declare editText, button,textview
     EditText searchMovie;
-    Button movieFilter;
     TextView movieResult;
     //Declare list for search filter and original list
     ArrayList<Movie> searchList, streamingMovieList,upcomingMovieList,movieList;
-    ImageView close;
-    //Declare auto complete text view
-    AutoCompleteTextView country;
-    AutoCompleteTextView category;
-    AutoCompleteTextView rate;
-    AutoCompleteTextView month;
-    //Declare string range array, int last, and string comparison for filter value in the string
-    String[] rateRange;
-    double rateLast;
-    String rateComparison;
+
     //Declare recyclerview
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;

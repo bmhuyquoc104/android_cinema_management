@@ -142,7 +142,8 @@ public class SignUpFragment3 extends Fragment {
         String address = bundle.getString("address");
         String gender = bundle.getString("gender");
         String status = "inactive";
-        String role = "regular";
+        String role = "Uni-Bronze";
+        String totalPoint = "0";
         String id = UUID.randomUUID().toString();
         System.out.println("fullName: " +fullName + "email: "+email + "password: "+password + confirmPassword + dateOfBirth + phone+address+gender);
 
@@ -189,6 +190,7 @@ public class SignUpFragment3 extends Fragment {
                     user.put("status", status);
                     user.put("role", role);
                     user.put("Id", id);
+                    user.put("point", totalPoint);
                     //storing all user's information into collection Users onto one particular user
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

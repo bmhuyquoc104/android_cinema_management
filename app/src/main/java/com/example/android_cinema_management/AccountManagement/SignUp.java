@@ -2,8 +2,10 @@ package com.example.android_cinema_management.AccountManagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -20,7 +22,6 @@ public class SignUp extends AppCompatActivity {
     //Declare textview ,button ,and imageView
     TextView title;
     ImageView close;
-    Button nextPage;
     // Declare viewpager 2 and adapter
     @SuppressLint("ResourceType")
     // Declare view layout and textview array
@@ -61,6 +62,9 @@ public class SignUp extends AppCompatActivity {
         close.setOnClickListener(view -> {
             finish();
         });
+
+
+
         // Set animation when sliding fragments
 //        viewpager2.setPageTransformer(new DepthPageTransformer());
 //        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

@@ -154,5 +154,7 @@
     <string name="payment">Payment</string>
     <string name="ticketPart">Ticket Detail</string>
     <string name="userPart">User Detail</string>
+    <string name="voucher">Voucher Exchange</string>
+    <string name="exchange">Exchange</string>
 
 </resources>

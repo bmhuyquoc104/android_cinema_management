@@ -15,11 +15,11 @@ public class User {
     private String phone;
     private String role;
     private String id;
-
+    private String totalPoint;
     public User() {
     }
 
-    public User(String email, String fullName, String password, String gender, String dateOfBirth, String address, String status, String phone, String role, String id) {
+    public User(String email, String fullName, String password, String gender, String dateOfBirth, String address, String status, String phone, String role, String id,String totalPoint) {
         this.email = email;
         this.fullName = fullName;
         this.password = password;
@@ -30,6 +30,7 @@ public class User {
         this.phone = phone;
         this.role = role;
         this.id = id;
+        this.totalPoint = totalPoint;
     }
 
     //Create only 1 admin for the app
@@ -44,7 +45,7 @@ public class User {
         String role = "admin";
         String phone = "0848731007";
         String status = "inactive";
-        return new User(email, name, password, gender, dateOfBirth,address,status,phone,role,id);
+        return new User(email, name, password, gender, dateOfBirth,address,status,phone,role,id,"0");
     }
 
 
@@ -128,7 +129,14 @@ public class User {
         this.id = id;
     }
 
-    @NonNull
+    public String getTotalPoint() {
+        return totalPoint;
+    }
+
+    public void setTotalPoint(String totalPoint) {
+        this.totalPoint = totalPoint;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -142,6 +150,7 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", role='" + role + '\'' +
                 ", id='" + id + '\'' +
+                ", totalPoint='" + totalPoint + '\'' +
                 '}';
     }
 }

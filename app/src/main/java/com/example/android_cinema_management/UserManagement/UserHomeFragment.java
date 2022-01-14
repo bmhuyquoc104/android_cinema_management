@@ -42,6 +42,7 @@ public class UserHomeFragment extends Fragment {
     // Declare string email
     public static String accountType;
     public static String gender;
+    public static String totalPoint;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -99,6 +100,8 @@ public class UserHomeFragment extends Fragment {
                         db.collection("Users").document(mUser.getUid()).update("status", "active");
                         SpannableString str2 = new SpannableString(docSnap.getString("fullName"));
                         gender = docSnap.getString("gender");
+                        totalPoint = docSnap.getString("point");
+                        System.out.println(totalPoint);
                         str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
                         builder.append(str2);
                         accountType = docSnap.getString("role");
@@ -166,6 +169,14 @@ public class UserHomeFragment extends Fragment {
         });
 
         /*
+        *Function to switch to voucher home page
+        * */
+        points.setOnClickListener(View ->{
+            Intent intent = new Intent(getContext(),VoucherActivity.class);
+            startActivity(intent);
+        });
+
+        /*
         *Function to add buy ticket
         * */
         buyTicket.setOnClickListener(View ->{
@@ -181,4 +192,6 @@ public class UserHomeFragment extends Fragment {
         });
         return view;
     }
+
+
 }

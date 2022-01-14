@@ -171,6 +171,8 @@ public class UserProfile extends AppCompatActivity {
             userInformation.put("Id", UUID.randomUUID().toString());
             userInformation.put("gender", UserHomeFragment.gender);
             userInformation.put("role", UserHomeFragment.accountType);
+            System.out.println(UserHomeFragment.totalPoint);
+            userInformation.put("point", UserHomeFragment.totalPoint);
             userInformation.put("status", "active");
             //put userInformation into firebaseFireStore
             db.collection("Users").document(userId)
