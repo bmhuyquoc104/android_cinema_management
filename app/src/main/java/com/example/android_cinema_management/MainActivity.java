@@ -16,9 +16,6 @@ import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.UserManagement.UserHomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     //Declare tablayout, adapter and viewpager2
@@ -32,11 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Declare bottom navigation
     BottomNavigationView bottomNavigation;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseAuth.AuthStateListener mAuthListener;
-    FirebaseUser mUser = mAuth.getCurrentUser();
-    Fragment chosenFragment = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.menu_account:
                         if(!isLogin){
-                            chosenFragment = new Accounts();
+                        chosenFragment = new Accounts();
                         }
                         else{
                             chosenFragment = new UserHomeFragment();
