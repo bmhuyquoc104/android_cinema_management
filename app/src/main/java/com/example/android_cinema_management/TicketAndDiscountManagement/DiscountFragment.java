@@ -1,9 +1,11 @@
 package com.example.android_cinema_management.TicketAndDiscountManagement;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.HandlerThread;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.CinemaAdapter;
 import com.example.android_cinema_management.Adapter.DiscountAdapter;
+import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.Model.Discount;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentChange;
@@ -39,6 +43,8 @@ public class DiscountFragment extends Fragment {
     private AutoCompleteTextView monthACT;
     private ArrayList<Discount> discountArrayList;
     FirebaseFirestore db;
+    String month;
+    HandlerThread ht = new HandlerThread("MyHandlerThread");
 
     public DiscountFragment() {
         // Required empty public constructor
@@ -77,12 +83,28 @@ public class DiscountFragment extends Fragment {
 
 //        Insert month data and set on click
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        String monthChosen;
         ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(getContext(), R.layout.month_list, months);
         monthACT.setAdapter(monthAdapter);
         monthACT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), (String)parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                month = parent.getItemAtPosition(position).toString();
+
+                // Initialize new array list to store result after filtering
+                ArrayList<Discount> filterByMonthList = new ArrayList<>();
+
+                // Function filter by month
+                filterByMonth(filterByMonthList, discountArrayList, month);
+
+                // Instantiate adapter
+                discountAdapter = new DiscountAdapter(getContext(), filterByMonthList);
+
+                // Set layout for recycler view
+                Discount.setLayoutManager(gridLayoutManager);
+
+                // Set adapter for recycler view
+                Discount.setAdapter(discountAdapter);
             }
         });
 
@@ -108,6 +130,14 @@ public class DiscountFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    public void filterByMonth(ArrayList<Discount> filterDiscountList, ArrayList<Discount> discountList, String inputMonth) {
+        for (Discount discount : discountList) {
+            if (discount.getMonth() != null && discount.getMonth().equals(inputMonth)) {
+                filterDiscountList.add(discount);
+            }
+        }
     }
 
     //    Clear the data on destroy
