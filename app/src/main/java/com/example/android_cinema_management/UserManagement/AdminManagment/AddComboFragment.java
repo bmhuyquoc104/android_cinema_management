@@ -21,7 +21,7 @@ import java.util.UUID;
 
 public class AddComboFragment extends Fragment {
 
-    EditText comboName, description, availableDate, expireDate, imageURL;
+    EditText comboName, description, price, imageURL;
     Button addButton;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -37,8 +37,7 @@ public class AddComboFragment extends Fragment {
 
         comboName = view.findViewById(R.id.admin_new_combo_name_et);
         description = view.findViewById(R.id.admin_new_combo_description_sent_et);
-        availableDate = view.findViewById(R.id.admin_new_combo_available_date_sent_et);
-        expireDate = view.findViewById(R.id.admin_new_combo_expire_date_sent_et);
+        price = view.findViewById(R.id.admin_new_combo_price_sent_et);
         imageURL = view.findViewById(R.id.admin_new_combo_image_sent_et);
         addButton = view.findViewById(R.id.admin_new_combo_add_bt);
 
@@ -48,8 +47,7 @@ public class AddComboFragment extends Fragment {
             comboMap.put("comboId", comboId);
             comboMap.put("comboName", comboName.getText().toString());
             comboMap.put("description", description.getText().toString());
-            comboMap.put("availableDate", availableDate.getText().toString());
-            comboMap.put("expireDate", expireDate.getText().toString());
+            comboMap.put("price", price.getText().toString());
             comboMap.put("imageURL", imageURL.getText().toString());
 
             DocumentReference documentReferenceForCombo = db.collection("combo")

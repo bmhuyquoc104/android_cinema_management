@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/comboAvailableDate"
+                android:id="@+id/comboPrice"
                 android:layout_width="233dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -40,20 +40,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/comboName" />
 
-            <TextView
-                android:id="@+id/comboExpireDate"
-                android:layout_width="233dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"
-                android:text="@string/textview"
-                android:textColor="@color/colorPrimary4"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.898"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/comboAvailableDate" />
 
             <TextView
                 android:id="@+id/comboDescription"
@@ -68,7 +54,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.898"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/comboExpireDate" />
+                app:layout_constraintTop_toBottomOf="@+id/comboPrice" />
 
             <TextView
                 android:id="@+id/comboName"

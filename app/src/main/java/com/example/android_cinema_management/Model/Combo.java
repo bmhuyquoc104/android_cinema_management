@@ -7,19 +7,17 @@ public class Combo implements Serializable {
     private String comboId;
     private String comboName;
     private String description;
-    private String availableDate;
-    private String expireDate;
+    private String price;
     private String imageURL;
 
     public Combo() {
     }
 
-    public Combo(String comboId, String comboName, String description, String availableDate, String expireDate, String imageURL) {
+    public Combo(String comboId, String comboName, String description, String price, String imageURL) {
         this.comboId = comboId;
         this.comboName = comboName;
         this.description = description;
-        this.availableDate = availableDate;
-        this.expireDate = expireDate;
+        this.price = price;
         this.imageURL = imageURL;
     }
 
@@ -47,20 +45,12 @@ public class Combo implements Serializable {
         this.description = description;
     }
 
-    public String getAvailableDate() {
-        return availableDate;
+    public String getPrice() {
+        return price;
     }
 
-    public void setAvailableDate(String availableDate) {
-        this.availableDate = availableDate;
-    }
-
-    public String getExpireDate() {
-        return expireDate;
-    }
-
-    public void setExpireDate(String expireDate) {
-        this.expireDate = expireDate;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getImageURL() {
@@ -77,8 +67,7 @@ public class Combo implements Serializable {
                 "comboId='" + comboId + '\'' +
                 ", comboName='" + comboName + '\'' +
                 ", description='" + description + '\'' +
-                ", availableDate='" + availableDate + '\'' +
-                ", expireDate='" + expireDate + '\'' +
+                ", price='" + price + '\'' +
                 ", imageURL='" + imageURL + '\'' +
                 '}';
     }

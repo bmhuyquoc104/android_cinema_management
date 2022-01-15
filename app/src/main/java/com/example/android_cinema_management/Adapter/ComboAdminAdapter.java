@@ -40,8 +40,7 @@ public class ComboAdminAdapter extends RecyclerView.Adapter<ComboAdminAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHold holder, int position) {
         holder.comboName.setText(comboArrayList.get(position).getComboName());
-        holder.comboAvailableDate.setText(comboArrayList.get(position).getAvailableDate());
-        holder.comboExpireDate.setText(comboArrayList.get(position).getExpireDate());
+        holder.comboPrice.setText(comboArrayList.get(position).getPrice());
         holder.comboDescription.setText(comboArrayList.get(position).getDescription());
         Picasso.get().load(comboArrayList.get(position).getImageURL()).into(holder.comboImage);
     }
@@ -54,13 +53,12 @@ public class ComboAdminAdapter extends RecyclerView.Adapter<ComboAdminAdapter.My
 
     class MyViewHold extends RecyclerView.ViewHolder{
         ImageView comboImage;
-        TextView comboName, comboAvailableDate, comboExpireDate, comboDescription;
+        TextView comboName, comboPrice, comboDescription;
         public MyViewHold(@NonNull View itemView) {
             super(itemView);
 
             comboName = itemView.findViewById(R.id.comboName);
-            comboAvailableDate = itemView.findViewById(R.id.comboAvailableDate);
-            comboExpireDate = itemView.findViewById(R.id.comboExpireDate);
+            comboPrice = itemView.findViewById(R.id.comboPrice);
             comboDescription = itemView.findViewById(R.id.comboDescription);
             comboImage = itemView.findViewById(R.id.comboImage);
 

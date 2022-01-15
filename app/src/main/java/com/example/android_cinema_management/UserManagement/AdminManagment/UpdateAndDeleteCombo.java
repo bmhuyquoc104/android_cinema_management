@@ -21,7 +21,7 @@ import java.util.UUID;
 
 public class UpdateAndDeleteCombo extends AppCompatActivity {
 
-    EditText comboName, comboDescription, availbaleDate, expireDate, imageURL;
+    EditText comboName, comboDescription, price, imageURL;
     Button updateBtn, deleteBtn;
 
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
@@ -37,16 +37,14 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
 
         comboName = findViewById(R.id.admin_add_combo_name_et);
         comboDescription = findViewById(R.id.admin_add_combo_description_sent_et);
-        availbaleDate = findViewById(R.id.admin_add_combo_available_date_sent_et);
-        expireDate = findViewById(R.id.admin_add_combo_expire_date_sent_et);
+        price = findViewById(R.id.admin_new_combo_price_sent_et);
         imageURL = findViewById(R.id.admin_add_combo_image_sent_et);
         updateBtn = findViewById(R.id.admin_update_combo_update_bt);
         deleteBtn = findViewById(R.id.admin_delete_combo_delete_bt);
 
         comboName.setText(combo.getComboName());
         comboDescription.setText(combo.getDescription());
-        availbaleDate.setText(combo.getAvailableDate());
-        expireDate.setText(combo.getExpireDate());
+        price.setText(combo.getPrice());
         imageURL.setText(combo.getImageURL());
 
         updateBtn.setOnClickListener(view -> {
@@ -54,8 +52,7 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
             comboMap.put("comboId", combo.getComboId());
             comboMap.put("comboName", comboName);
             comboMap.put("description", comboDescription);
-            comboMap.put("availableDate", availbaleDate);
-            comboMap.put("expireDate", expireDate);
+            comboMap.put("price", price);
             comboMap.put("imageURL", imageURL);
 
             DocumentReference documentReference = db.collection("combo").document(combo.getComboId());
