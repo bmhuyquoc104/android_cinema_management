@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
         <activity
+            android:name=".UserManagement.AdminManagment.UpdateAndDeleteCombo"
             android:name=".UserManagement.ComboActivity"
             android:exported="false" />
         <activity
