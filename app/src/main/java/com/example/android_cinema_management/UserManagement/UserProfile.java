@@ -383,5 +383,7 @@ public class UserProfile extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+    }
 }

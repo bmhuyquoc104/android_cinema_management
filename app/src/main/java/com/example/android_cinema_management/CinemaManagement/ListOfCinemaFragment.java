@@ -30,7 +30,7 @@ public class ListOfCinemaFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     //Declare adapter
     private CinemaAdminAdapter cinemaAdminAdapter;
-    //Declare Movie list
+    //Declare Cinema list
     public static ArrayList<Cinema> cinemaArrayList;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

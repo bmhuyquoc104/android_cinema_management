@@ -7,7 +7,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.example.android_cinema_management.Adapter.CinemaFragmentAdapter;
 import com.example.android_cinema_management.Adapter.ComboAdminFragmentAdapter;
 import com.example.android_cinema_management.R;
 import com.google.android.material.tabs.TabLayout;
@@ -23,7 +22,7 @@ public class ComboActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_combo);
+        setContentView(R.layout.admin_activity_combo);
 
         //Binding with XML values
         layout = findViewById(R.id.admin_combo_tabLayout);

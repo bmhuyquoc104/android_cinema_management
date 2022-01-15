@@ -189,6 +189,14 @@ public class UserHomeFragment extends Fragment {
         });
 
         /*
+         *Function to switch to combo home page
+         * */
+        combo.setOnClickListener(View->{
+            Intent intent = new Intent(getContext(),ComboActivity.class);
+            startActivity(intent);
+        });
+
+        /*
         *Function to switch to voucher home page
         * */
         points.setOnClickListener(View ->{

@@ -15,8 +15,8 @@
         android:theme="@style/SplashScreenTheme">
         <activity
             android:name=".UserManagement.AdminManagment.UpdateAndDeleteCombo"
-            android:name=".UserManagement.ComboActivity"
             android:exported="false" />
+
         <activity
             android:name=".UserManagement.UserNotification"
             android:exported="false" />
@@ -67,6 +67,9 @@
             android:exported="false" />
         <activity
             android:name=".UserManagement.UserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.ComboActivity"
             android:exported="false" />
         <activity
             android:name=".TicketAndDiscountManagement.DiscountDetails"

@@ -98,4 +98,7 @@ public class VoucherActivity extends AppCompatActivity {
     public static void updateTotalPoints(TextView textView, String point){
         textView.setText("Total Points: " + point);
     }
+    @Override
+    public void onBackPressed() {
+    }
 }

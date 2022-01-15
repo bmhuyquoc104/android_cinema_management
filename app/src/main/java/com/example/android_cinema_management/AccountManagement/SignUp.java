@@ -38,7 +38,7 @@ public class SignUp extends AppCompatActivity {
         // Add first fragment to activity
         FragmentManager fm = getSupportFragmentManager();
         SignUpFragment fragment = new SignUpFragment();
-        fm.beginTransaction().add(R.id.signUp_frameLayout,fragment).commit();
+        fm.beginTransaction().add(R.id.signUp_frameLayout, fragment).commit();
 //        adapter = new RegisterAdapter(fm,getLifecycle());
 //        viewpager2.setAdapter(adapter);
         // Instantiate textview array
@@ -64,90 +64,5 @@ public class SignUp extends AppCompatActivity {
         });
 
 
-
-        // Set animation when sliding fragments
-//        viewpager2.setPageTransformer(new DepthPageTransformer());
-//        viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                chosenIndicator(position);
-//                super.onPageSelected(position);
-//            }
-//        });
     }
-//    @Override
-//        public void onBackPressed() {
-//            if (viewpager2.getCurrentItem() == 0) {
-//                // If the user is currently looking at the first step, allow the system to handle the
-//                // Back button. This calls finish() on this activity and pops the back stack.
-//                super.onBackPressed();
-//            } else {
-//                // Otherwise, select the previous step.
-//                viewpager2.setCurrentItem(viewpager2.getCurrentItem() - 1);
-//            }
-//        }
-
-     // Function to apply animation for viewpager2
-//    private static class DepthPageTransformer implements ViewPager2.PageTransformer {
-//        private static final float MIN_SCALE = 0.75f;
-//
-//        public void transformPage(View view, float position) {
-//            int pageWidth = view.getWidth();
-//
-//            if (position < -1) { // [-Infinity,-1)
-//                // This page is way off-screen to the left.
-//                view.setAlpha(0f);
-//
-//            } else if (position <= 0) { // [-1,0]
-//                // Use the default slide transition when moving to the left page
-//                view.setAlpha(1f);
-//                view.setTranslationX(0f);
-//                view.setTranslationZ(0f);
-//                view.setScaleX(1f);
-//                view.setScaleY(1f);
-//
-//            } else if (position <= 1) { // (0,1]
-//                // Fade the page out.
-//                view.setAlpha(1 - position);
-//
-//                // Counteract the default slide transition
-//                view.setTranslationX(pageWidth * -position);
-//                // Move it behind the left page
-//                view.setTranslationZ(-1f);
-//
-//                // Scale the page down (between MIN_SCALE and 1)
-//                float scaleFactor = MIN_SCALE
-//                        + (1 - MIN_SCALE) * (1 - Math.abs(position));
-//                view.setScaleX(scaleFactor);
-//                view.setScaleY(scaleFactor);
-//
-//            } else { // (1,+Infinity]
-//                // This page is way off-screen to the right.
-//                view.setAlpha(0f);
-//            }
-//        }
-//    }
-
-    // Render indicator in the UI
-//    private void dotsIndicator (){
-//        for (int i = 0; i < dots.length ; i++){
-//            dots[i] = new TextView(this);
-//            dots[i].setText(Html.fromHtml("&#9679"));
-//            dots[i].setTextSize(25);
-//            dots[i].setPadding(60,20,20,20);
-//            dotLayout.addView(dots[i]);
-//        }
-//    }
-
-    // Check current position and change the color of indicator
-//    private void chosenIndicator(int position) {
-//        for (int i =0; i < dots.length; i++){
-//            if ( i == position){
-//                dots[i].setTextColor(Color.rgb(222, 22, 25));
-//            }
-//            else{
-//                dots[i].setTextColor(Color.rgb(161, 161, 161));
-//            }
-//        }
-//    }
 }

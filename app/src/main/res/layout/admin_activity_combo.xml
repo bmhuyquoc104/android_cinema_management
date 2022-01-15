@@ -4,21 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background = "@color/colorPrimary3"
-    tools:context=".UserManagement.UserReview">
+    tools:context=".UserManagement.AdminManagment.ComboActivity">
 
     <ImageView
-        android:id="@+id/user_combo_logo_iv"
-        android:layout_width="243dp"
-        android:layout_height="246dp"
+        android:id="@+id/imageView"
+        android:layout_width="197dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo_final_icon2"
+        android:src="@drawable/cinema_app_logo2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/user_review_tabLayout"
+        android:id="@+id/admin_combo_tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
@@ -37,33 +36,31 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sendReview"
+            android:text="Add Combo"
             />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/previousReview" />
+            android:text="All Combo" />
     </com.google.android.material.tabs.TabLayout>
 
     <ImageView
-        android:id="@+id/user_review_close_iv"
+        android:id="@+id/admin_combo_close_iv"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/todo"
-        android:tint="@color/colorPrimary2"
         android:src="@drawable/ic_baseline_close_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UseAppTint" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/user_review_viewpager2"
+        android:id="@+id/admin_combo_viewpager2"
         android:layout_width="413dp"
         android:layout_height="504dp"
         android:layout_marginTop="30dp"
@@ -71,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_review_tabLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/admin_combo_tabLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

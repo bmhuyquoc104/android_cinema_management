@@ -117,4 +117,7 @@ public class TransactionActivity extends AppCompatActivity {
         }
         return accountType;
     }
+    @Override
+    public void onBackPressed() {
+    }
 }
