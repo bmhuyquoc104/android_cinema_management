@@ -118,7 +118,7 @@
     <string name="type">2D</string>
     <string name="admin_home">ADMIN MANAGEMENT</string>
     <string name="combo">Combo</string>
-    <string name="feedback">feedback</string>
+    <string name="feedback">Feedback</string>
     <string name="ac_privacy_policy">Privacy Policy</string>
     <string name="send">SEND</string>
     <string name="date">Date</string>
@@ -167,5 +167,6 @@
     <string name="searchMovie">Find your movie here!</string>
     <string name="user_home_combo">Combos</string>
     <string name="signIn">Sign In</string>
+    <string name="voucherTitle">Voucher</string>
 
 </resources>
