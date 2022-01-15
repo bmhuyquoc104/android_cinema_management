@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -25,6 +27,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -118,6 +123,12 @@ public class SendingFeedBackFragment extends Fragment {
         date.setText("Date: " +currentDate);
         time.setText("Time: "+currentTime);
 
+        //Declare message
+        Spanned successMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h3> Your Feedback Have Successfully Been Sent. </p>" +
+                                "<p>We will get in touch with you as soon as possible.</p>" +
+                                "<h3> Thank you for using our service! </h3>"));
 
         //Listen to postFeedback button event
         postFeedback.setOnClickListener(View -> {
@@ -153,7 +164,7 @@ public class SendingFeedBackFragment extends Fragment {
                             .document(id);
                     documentReferenceForFeedback.set(feedbackMap).addOnCompleteListener(taskInner -> {
                         if (taskInner.isSuccessful()) {
-                            Toast.makeText(getContext(), "FEEDBACK ADDED!", Toast.LENGTH_SHORT).show();
+                            VoucherAdapter.openSuccessfulDialog(R.raw.feedback_success,successMessage,getContext());
                         }
                     });
                 }

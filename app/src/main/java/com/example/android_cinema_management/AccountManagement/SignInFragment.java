@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Spanned;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Accounts;
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
@@ -38,6 +40,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.util.Objects;
 
@@ -87,6 +92,16 @@ public class SignInFragment extends Fragment {
         // Initialize admin
         admin = User.createAdmin();
 
+
+        Spanned successMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h3> You Have Successfully Logged In. </p>" +
+                                "<p>Please enjoy your journey with us </p>" +
+                                "<h3> Thank you for using our service! </h3>"));
+
+
+
+
         //Initialize firebase authentication
         //Function to log into the account
         logIn.setOnClickListener(view ->{
@@ -127,6 +142,7 @@ public class SignInFragment extends Fragment {
                                     //if the email and password is correct
                                     UserHomeFragment fragment = new UserHomeFragment();
                                     fragment.setArguments(bundle);
+                                    VoucherAdapter.openSuccessfulDialog(R.raw.login_success,successMessage,getContext());
                                     FragmentTransaction transaction =
                                             fm.beginTransaction();
                                     transaction.replace(R.id.ma_container, fragment).commit();

@@ -1,20 +1,31 @@
 package com.example.android_cinema_management.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.Spanned;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.android_cinema_management.Model.Voucher;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.UserManagement.VoucherActivity;
+import com.example.android_cinema_management.database.VoucherDatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +34,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -41,6 +55,8 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
     String userId = mUser.getUid();
     //Declare string
     String totalPoints = "";
+    //Declare progress dialog
+    ProgressDialog pd;
     public VoucherAdapter(ArrayList<Voucher> voucherList, Context context) {
         this.voucherList = voucherList;
         this.context = context;
@@ -57,13 +73,27 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull VoucherAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
+        Spanned successMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h3> You have successfully exchange this voucher. </p>" +
+                                "<p>Please come to the nearest branch with your <strong > UniCard and ID </strong> to receive " +
+                                "the voucher.</p>" +
+                                "<h3> Thank you for using our service! </h3>"));
+
+        Spanned errorMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h3> You don't have enough points to exchange this voucher. </p>" +
+                                "<p>Please try another voucher or come back later.</p>" +
+                                "<h3> Thank you for using our service! </h3>"));
+
+
+
+        pd = new ProgressDialog(context);
         String priceFormat = formatter.format(Double.parseDouble(voucherList.get(position).getVoucherPrice()));
 
         holder.price.setText("Price: "+ priceFormat + " VNĐ");
         holder.pointRequire.setText("Point required: " +voucherList.get(position).getPointRequire());
         holder.name.setText("Name: " +voucherList.get(position).getVoucherName());
-//        holder.exchange.setEnabled(false);
-
 
         holder.exchange.setOnClickListener(View ->{
             // Get the points from the database
@@ -87,11 +117,14 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
                                 VoucherActivity.currentPoint = totalPoints;
                                 // Update the new point to database
                                 db.collection("Users").document(mUser.getUid()).update("point", totalPoints);
-                                Toast.makeText(context,"You have successfully get this voucher!. Your remain points are: " +totalPoints,Toast.LENGTH_SHORT).show();
+                                VoucherDatabase.postUserVoucher(pd,db,context,firebaseAuth,mUser,
+                                        voucherList.get(position).getVoucherPrice(),voucherList.get(position).getVoucherName(),
+                                        voucherList.get(position).getPointRequire());
+                                openSuccessfulDialog(R.raw.exchange_success,successMessage,context);
 
                             }
                             else{
-                                Toast.makeText(context,"You don't have enough points to exchange this voucher!",Toast.LENGTH_SHORT).show();
+                                openSuccessfulDialog(R.raw.warning,errorMessage,context);
                             }
 
                         }
@@ -124,5 +157,41 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
             voucherImage = itemView.findViewById(R.id.voucher_image);
             exchange = itemView.findViewById(R.id.voucher_exchange_bt);
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    public static void openSuccessfulDialog(int raw, Spanned dialogMessage, Context context) {
+        // Initialize new dialog
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //Set content for dialog
+        dialog.setContentView(R.layout.successful_dialog);
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        // set the dialog to top
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+        // Disable cancel by clicking randomly on the screen
+        dialog.setCancelable(false);
+
+        dialog.show();
+
+        TextView message = dialog.findViewById(R.id.successfullyMessage);
+        LottieAnimationView view = dialog.findViewById(R.id.animationView);
+        view.setAnimation(raw);
+        message.setText(dialogMessage);
+        ImageView close = dialog.findViewById(R.id.successful_dialog_close);
+        /*
+         * Function to dismiss the dialog
+         * */
+        close.setOnClickListener(View -> {
+            dialog.dismiss();
+        });
+
     }
 }
