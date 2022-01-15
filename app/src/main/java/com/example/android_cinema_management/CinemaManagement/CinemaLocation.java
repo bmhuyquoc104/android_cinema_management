@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.databinding.ActivityCinemaLocationBinding;
@@ -31,6 +32,8 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
     private Cinema currentCinema;
     private GoogleMap mMap;
     private ActivityCinemaLocationBinding binding;
+    //Declare lotte view
+    LottieAnimationView lotteView;
     /// Declare string
     String currentId, currentName, currentAddress, currentLat, currentLng, currentNumber,
             currentImage, currentLocationName, currentRate, currentReview,currentCity;
@@ -104,6 +107,11 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
         // Add a marker in cinema and animate the camera
         LatLng cinema = new LatLng(currentCinema.getLatitude(), currentCinema.getLongitude());
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        lotteView = findViewById(R.id.animationView);
+        //Close this activity
+        lotteView.setOnClickListener(View ->{
+            finish();
+        });
         @SuppressLint("UseCompatLoadingForDrawables")
         //Customize the pixel of the marker image import to drawable
         BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.cinema_location_icon);
@@ -164,4 +172,9 @@ public class CinemaLocation extends FragmentActivity implements OnMapReadyCallba
            cinemaBottomSheetDialog.dismiss();
         });
     }
+    //Not allow user to use the back button on phone
+    @Override
+    public void onBackPressed(){
+
+    };
 }
