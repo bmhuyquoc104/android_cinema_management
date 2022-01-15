@@ -7,15 +7,17 @@ public class ReplyFeedback {
     private String replyId;
     private String date;
     private String time;
+    private String admin;
     private HashMap<String, String> feedback;
 
     public ReplyFeedback() {
     }
 
-    public ReplyFeedback(String replyId, String date, String time, HashMap<String, String> feedback) {
+    public ReplyFeedback(String replyId, String date, String time, String admin, HashMap<String, String> feedback) {
         this.replyId = replyId;
         this.date = date;
         this.time = time;
+        this.admin = admin;
         this.feedback = feedback;
     }
 
@@ -43,6 +45,14 @@ public class ReplyFeedback {
         this.time = time;
     }
 
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
+
     public HashMap<String, String> getFeedback() {
         return feedback;
     }
@@ -57,6 +67,7 @@ public class ReplyFeedback {
                 "replyId='" + replyId + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
+                ", admin='" + admin + '\'' +
                 ", feedback=" + feedback +
                 '}';
     }
