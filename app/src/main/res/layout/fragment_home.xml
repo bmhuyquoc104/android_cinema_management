@@ -10,7 +10,7 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="414dp"
+        android:layout_width="0dp"
         android:layout_height="108dp"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,21 +31,25 @@
 
 
     <Button
-        android:id="@+id/loginAndRegister"
+        android:id="@+id/home_search_bt"
         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/button"
+        android:layout_width="412dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/colorPrimary3"
+        android:paddingStart="80dp"
+        android:paddingEnd="0dp"
+        android:text="@string/searchMovie"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary2"
-        app:icon="@drawable/ic_baseline_newspaper_24"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_search_24"
         app:iconGravity="start"
         app:iconPadding="10dp"
         app:iconTint="@color/colorPrimary4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,8 +57,7 @@
         android:id="@+id/mh_tab_layout"
         android:layout_width="414dp"
         android:layout_height="54dp"
-        android:layout_marginTop="108dp"
-
+        android:layout_marginTop="160dp"
         android:background="@color/colorPrimary3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

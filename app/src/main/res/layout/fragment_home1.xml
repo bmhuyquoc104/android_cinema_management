@@ -23,49 +23,7 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <TextView
-            android:id="@+id/contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="450dp"
-            android:text="Contact"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/job"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="10dp"
-            android:text="Job"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/contact"/>
-
-        <TextView
-            android:id="@+id/copyRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="10dp"
-            android:text="Copy Right"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/job"/>
-
-        <TextView
-            android:id="@+id/aboutUs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="10dp"
-            android:text="About Us"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/copyRight"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

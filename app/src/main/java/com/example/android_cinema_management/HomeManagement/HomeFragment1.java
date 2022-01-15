@@ -41,7 +41,6 @@ public class HomeFragment1 extends Fragment {
     HandlerThread ht = new HandlerThread("MyHandlerThread");
 
 
-    private TextView contact, job, copyRight, aboutUs;
 
     public HomeFragment1() {
         // Required empty public constructor
@@ -61,43 +60,7 @@ public class HomeFragment1 extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
-        //Footer
-        contact = view.findViewById(R.id.contact);
-        job = view.findViewById(R.id.job);
-        copyRight = view.findViewById(R.id.copyRight);
-        aboutUs = view.findViewById(R.id.aboutUs);
 
-        contact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Contact.class);
-                startActivity(intent);
-            }
-        });
-
-        job.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Job.class);
-                startActivity(intent);
-            }
-        });
-
-        copyRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CopyRight.class);
-                startActivity(intent);
-            }
-        });
-
-        aboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AboutUs.class);
-                startActivity(intent);
-            }
-        });
 
         fetchAndRenderMovie();
         return view;

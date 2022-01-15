@@ -91,7 +91,7 @@
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_voucher.xml" value="0.2" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/cinema_description_bottom_sheet.xml" value="0.2" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/cinema_item.xml" value="0.15789473684210525" />
-        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/fragment_accounts.xml" value="0.4" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/fragment_accounts.xml" value="0.37593984962406013" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/fragment_buy_by_movie.xml" value="0.1" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/fragment_buy_ticket4.xml" value="0.16" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/fragment_buy_ticket_by_movie3.xml" value="0.1" />
@@ -129,6 +129,7 @@
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/open_cinema_filter_dialog.xml" value="0.1875" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/open_filter_dialog.xml" value="0.264" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/open_movie_dialog_filter.xml" value="0.264" />
+        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/open_policy_dialog.xml" value="0.17578125" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/open_user_profile_edit_dialog.xml" value="0.2" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/round_image.xml" value="0.1875" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/round_image_admin.xml" value="0.1875" />

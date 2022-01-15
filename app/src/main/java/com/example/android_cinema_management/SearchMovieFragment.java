@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,7 +56,8 @@ public class SearchMovieFragment extends Fragment {
     TextView movieResult;
     //Declare list for search filter and original list
     ArrayList<Movie> searchList, streamingMovieList,upcomingMovieList,movieList;
-
+    //Declare imageview
+    ImageView close;
     //Declare recyclerview
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -74,6 +77,7 @@ public class SearchMovieFragment extends Fragment {
         //Binding to xml value
         searchMovie = view.findViewById(R.id.search_movie_edittext);
         movieResult = view.findViewById(R.id.search_by_movie_result);
+        close = view.findViewById(R.id.search_movie_close_iv);
         recyclerView = view.findViewById(R.id.search_by_movie_recyclerview);
         recyclerView.setHasFixedSize(true);
         //Instantiate array list
@@ -81,6 +85,8 @@ public class SearchMovieFragment extends Fragment {
         streamingMovieList = HomeFragment1.movieList;
         upcomingMovieList = HomeFragment2.upcomingMovieList;
         movieList = new ArrayList<>();
+
+        FragmentManager fm = getParentFragmentManager();
 
         // If upcoming movie list not equal to null -> add upcoming movie list to movie list
         if ( upcomingMovieList != null) {
@@ -166,6 +172,12 @@ public class SearchMovieFragment extends Fragment {
         // Set text for editext
         movieResult.setText( builder, Button.BufferType.SPANNABLE);
 
+        //Function to close this fragment
+        close.setOnClickListener(View->{
+            FragmentTransaction transaction =
+                    fm.beginTransaction();
+            transaction.replace(R.id.ma_container, new HomeFragment()).commit();
+        });
 
         return view;
     }

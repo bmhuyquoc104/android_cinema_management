@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.GravityInt;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -35,6 +36,10 @@ import com.example.android_cinema_management.AccountManagement.SignInFragment;
 import com.example.android_cinema_management.AccountManagement.SignUp;
 import com.example.android_cinema_management.Adapter.HomeAdapter;
 import com.example.android_cinema_management.Adapter.LogInAdapter;
+import com.example.android_cinema_management.Footer.AboutUs;
+import com.example.android_cinema_management.Footer.Contact;
+import com.example.android_cinema_management.Footer.CopyRight;
+import com.example.android_cinema_management.Footer.Job;
 import com.example.android_cinema_management.MovieManagement.MovieInfoTabLayout;
 import com.example.android_cinema_management.R;
 import com.google.android.material.tabs.TabLayout;
@@ -56,11 +61,12 @@ public class Accounts extends Fragment {
     //    Declare Textviews
     TextView paymentPolicy, securityPolicy, privacyPolicy, termsAndConditions;
     TextView email, phone, address;
+    TextView contact, job, copyRight, aboutUs;
 
 //    Initialize spanned
 //    For policies
     Spanned payment = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
-            .setHtml("<h1>Payment Policy</h1>" +
+            .setHtml(
                     "<h3>1. Payment Regulation</h3>" +
                     "<p>Customers can choose the following payment methods for the " +
                     "online booking transaction on the Universal website:</p>" +
@@ -76,14 +82,14 @@ public class Accounts extends Fragment {
                     "<h3>3. Accepted cards for online payment</h3>" +
                     "<p>- Visa- MasterCard- JCB- American Express- Union Pay</p>"));
     Spanned security = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
-            .setHtml("<h1>Security Policy</h1>" +
+            .setHtml(
                     "<h3>1. Guideline for adjusting information</h3>" +
                     "<p>In order to adjust personal information, customers may log-in and adjust information by themselves, except for Full name, Gender, Birthday and ID Number.</p>" +
                     "<h3>2. Universal commits:</h3>" +
                     "<p>All personal information of client collected from the website www.cgv.vn shall be stored carefully; only the client may log-in its account by account’s name and password.</p>" +
                     "<p>In cases where the information server is being attacked by the hackers, resulting the loss of client’s personal information and adversely affecting the client, Universal will immediately inform the client and submit the case to the appropriate authority for investigation.</p>"));
     Spanned privacy = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
-            .setHtml("<h1>Privacy Policy</h1>" +
+            .setHtml(
                     "<h3>1. The purpose and scope of collecting information</h3>" +
                     "<p>To avoid any doubt, during payment process on application, Universal only stores the information of the purchase order that has been paid by customer, bank account information shall not be stored</p>" +
                     "<h3>2. The scope of using information<h3>" +
@@ -102,16 +108,16 @@ public class Accounts extends Fragment {
 
 //    For contact
     Spanned emailSpanned = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
-            .setHtml("<h1>Email</h1>" +
+            .setHtml(
                     "<p>universal.cine@gmail.com.vn</p>"));
     Spanned phoneSpanned = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
-            .setHtml("<h1>Phone</h1>" +
+            .setHtml(
                     "<p>Hotline: 1900 6017</p>" +
                     "<p>Media Sale: +84-28-3636 57 57</p>" +
                     "<p>PR Department:+84-28-3636-5757</p>" +
                     "<p>Marketing Department:+84-28-3636 57 57</p>"));
     Spanned addressSpanned = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
-            .setHtml("<h1>Address</h1>" +
+            .setHtml(
                     "<p>Floor 2, Rivera Park Saigon - No. 7/28 Thanh Thai street, Ward 14, District 10, HCMC.</p>"));
     public Accounts() {
         // Required empty public constructor
@@ -134,6 +140,7 @@ public class Accounts extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accounts, container, false);
         register = view.findViewById(R.id.ac_register);
+
         signIn = view.findViewById(R.id.ac_signIn);
         // Initialize fragment manager
         FragmentManager fm = getParentFragmentManager();
@@ -160,47 +167,87 @@ public class Accounts extends Fragment {
             transaction.replace(R.id.ma_container, new SignInFragment()).commit();
         });
 
+
 //        Declare the policies
         paymentPolicy = view.findViewById(R.id.ac_payment_policy);
         paymentPolicy.setOnClickListener(View -> {
-            openPolicyDialog(paymentPolicy.getText().toString());
+            openPolicyDialog(paymentPolicy.getText().toString(),Gravity.TOP);
         });
 
         securityPolicy = view.findViewById(R.id.ac_security_policy);
         securityPolicy.setOnClickListener(View -> {
-            openPolicyDialog(securityPolicy.getText().toString());
+            openPolicyDialog(securityPolicy.getText().toString(),Gravity.TOP);
         });
 
         privacyPolicy = view.findViewById(R.id.ac_privacy_policy);
         privacyPolicy.setOnClickListener(View -> {
-            openPolicyDialog(privacyPolicy.getText().toString());
+            openPolicyDialog(privacyPolicy.getText().toString(),Gravity.TOP);
         });
 
         termsAndConditions = view.findViewById(R.id.ac_terms_and_conditions);
         termsAndConditions.setOnClickListener(View -> {
-            openPolicyDialog(termsAndConditions.getText().toString());
+            openPolicyDialog(termsAndConditions.getText().toString(),Gravity.TOP);
         });
 
 //        Company's info
         email = view.findViewById(R.id.ac_email);
         email.setOnClickListener(View -> {
-            openPolicyDialog(email.getText().toString());
+            openPolicyDialog(email.getText().toString(),Gravity.CENTER);
         });
 
         phone = view.findViewById(R.id.ac_phone);
         phone.setOnClickListener(View -> {
-            openPolicyDialog(phone.getText().toString());
+            openPolicyDialog(phone.getText().toString(),Gravity.CENTER);
         });
 
         address = view.findViewById(R.id.ac_address);
         address.setOnClickListener(View -> {
-            openPolicyDialog(address.getText().toString());
+            openPolicyDialog(address.getText().toString(),Gravity.CENTER);
+        });
+
+
+        //Footer
+        contact = view.findViewById(R.id.contact);
+        job = view.findViewById(R.id.job);
+        copyRight = view.findViewById(R.id.copyRight);
+        aboutUs = view.findViewById(R.id.aboutUs);
+
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Contact.class);
+                startActivity(intent);
+            }
+        });
+
+        job.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Job.class);
+                startActivity(intent);
+            }
+        });
+
+        copyRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CopyRight.class);
+                startActivity(intent);
+            }
+        });
+
+        aboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AboutUs.class);
+                startActivity(intent);
+            }
         });
 
         return view;
     }
 
-    private void openPolicyDialog(String policy) {
+    private void openPolicyDialog(String policy, int gravity) {
         // Initialize new dialog
         Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -214,7 +261,7 @@ public class Accounts extends Fragment {
                 WindowManager.LayoutParams.WRAP_CONTENT);
         WindowManager.LayoutParams windowAttributes = window.getAttributes();
         // set the dialog to top
-        windowAttributes.gravity = Gravity.TOP;
+        windowAttributes.gravity = gravity;
         window.setAttributes(windowAttributes);
         // Disable cancel by clicking randomly on the screen
         dialog.setCancelable(false);
