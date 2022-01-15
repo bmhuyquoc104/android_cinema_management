@@ -1,5 +1,6 @@
 package com.example.android_cinema_management.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,13 +36,14 @@ public class ListOfFeedbackReplyAdapter extends RecyclerView.Adapter<ListOfFeedb
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.date.setText("Date: " + replyFeedbackArrayList.get(position).toString());
-        holder.time.setText("time: " + replyFeedbackArrayList.get(position).toString());
-        holder.topic.setText(replyFeedbackArrayList.get(position).toString());
-        holder.feedbackContent.setText(replyFeedbackArrayList.get(position).toString());
-        holder.replyContent.setText(replyFeedbackArrayList.get(position).toString());
+        holder.date.setText("Date: " + replyFeedbackArrayList.get(position).getDate());
+        holder.time.setText("time: " + replyFeedbackArrayList.get(position).getTime());
+        holder.topic.setText(replyFeedbackArrayList.get(position).getTopic());
+        holder.feedbackContent.setText(replyFeedbackArrayList.get(position).getFeedbackContent());
+        holder.replyContent.setText(replyFeedbackArrayList.get(position).getReplyFeedbackContent());
     }
 
     @Override
@@ -55,9 +57,9 @@ public class ListOfFeedbackReplyAdapter extends RecyclerView.Adapter<ListOfFeedb
             super(itemView);
             date = itemView.findViewById(R.id.list_of_feedback_reply_date_tv);
             time = itemView.findViewById(R.id.list_of_feedback_reply_time_tv);
-            feedbackContent = itemView.findViewById(R.id.list_of_feedback_message_tv);
+            feedbackContent = itemView.findViewById(R.id.list_of_feedback_reply_from_user_message_tv);
             topic = itemView.findViewById(R.id.list_of_feedback_topic_tv);
-            replyContent = itemView.findViewById(R.id.list_of_feedback_reply_tv);
+            replyContent = itemView.findViewById(R.id.list_of_feedback_reply_from_admin_message_tv);
         }
     }
 }

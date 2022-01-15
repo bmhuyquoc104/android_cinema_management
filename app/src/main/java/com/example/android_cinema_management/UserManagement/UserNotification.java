@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import com.example.android_cinema_management.Adapter.ListOfFeedbackReplyAdapter;
 import com.example.android_cinema_management.Adapter.ReviewAdapter;
+import com.example.android_cinema_management.Model.Combo;
 import com.example.android_cinema_management.Model.ReplyFeedback;
 import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.Model.User;
@@ -46,47 +48,52 @@ public class UserNotification extends AppCompatActivity {
 
         replyFeedbackArrayList = new ArrayList<>();
 
-        getReplyFeedback(db, replyFeedbackArrayList);
+        getReplyFeedback(db, replyFeedbackArrayList,()->{
+            System.out.println("REPLY FEEDBACK LIST: " + replyFeedbackArrayList);
+            recyclerView = findViewById(R.id.user_list_read_feedback_recycler_view);
+            recyclerView.setHasFixedSize(true);
+            listOfFeedbackReplyAdapter = new ListOfFeedbackReplyAdapter(UserNotification.this, replyFeedbackArrayList);
+            layoutManager = new LinearLayoutManager(UserNotification.this);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(listOfFeedbackReplyAdapter);
+        },user);
 
-        System.out.println("REPLY FEEDBACK LIST: " + replyFeedbackArrayList);
-        recyclerView = findViewById(R.id.user_list_read_feedback_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        listOfFeedbackReplyAdapter = new ListOfFeedbackReplyAdapter(UserNotification.this, replyFeedbackArrayList);
-        layoutManager = new LinearLayoutManager(UserNotification.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(listOfFeedbackReplyAdapter);
+
 
 
 
         //
     }
 
-    private void getReplyFeedback(FirebaseFirestore db, ArrayList<ReplyFeedback> replyFeedbackArrayList){
-        replyFeedbackArrayList.clear();
-        DocumentReference docRef = db.collection("Users").document(user.getUid());
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()){
-                DocumentSnapshot docSnap = task.getResult();
-                if (docSnap != null){
-                    fullName = docSnap.getString("fullName");
-                    System.out.println("FullNameeeeeee " + fullName);
-                    DocumentReference documentReference = db.collection("replyToFeedback").document(docSnap.getString("fullName"));
-                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()){
-                                int count = 0;
-                                DocumentSnapshot documentSnapshot = task.getResult();
-                                while (documentSnapshot.exists()){
-                                    count++;
-                                    ReplyFeedback dataContainer = documentSnapshot.toObject(ReplyFeedback.class);
-                                    replyFeedbackArrayList.add(dataContainer);
-                                }
-                            }
+    private void getReplyFeedback(FirebaseFirestore db, ArrayList<ReplyFeedback> replyFeedbackArrayList, Runnable callback, FirebaseUser thisUser) {
+        String email = thisUser.getEmail();
+        db.collection("replyToFeedback").whereEqualTo("userEmail",email).get()
+                .addOnCompleteListener(task -> {
+                    // Check if task is successfully or not
+                    if (task.isSuccessful()) {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
+                            // Create an instance and load data to voucher
+                            ReplyFeedback replyFeedback = new ReplyFeedback(
+                                    snapshot.getString("replyFeedbackId"),
+                                    snapshot.getString("date"),
+                                    snapshot.getString("time"),
+                                    snapshot.getString("adminEmail"),
+                                    snapshot.getString("feedbackContent"),
+                                    snapshot.getString("replyFeedbackContent"),
+                                    snapshot.getString("userName"),
+                                    snapshot.getString("topic"),
+                                    snapshot.getString("userEmail")
+
+                                    // Parse the database type string to int
+                            );
+                            // add each instance to the list
+                            replyFeedbackArrayList.add(replyFeedback);
+                            System.out.println("huy ne" + replyFeedbackArrayList);
+
                         }
-                    });
-                }
-            }
-        });
+                        // After getting the data successfully, run the run back
+                        callback.run();
+                    }
+                });
     }
 }

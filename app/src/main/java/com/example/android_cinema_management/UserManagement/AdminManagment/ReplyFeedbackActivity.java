@@ -57,14 +57,14 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
             String replyFeedbackId = UUID.randomUUID().toString();
             Map<String, Object> replyFeedbackMap = new HashMap<>();
             replyFeedbackMap.put("replyFeedbackId",replyFeedbackId);
-            replyFeedbackMap.put("fullName", fullName.getText().toString());
-            replyFeedbackMap.put("email", email.getText().toString());
+            replyFeedbackMap.put("userName", fullName.getText().toString());
+            replyFeedbackMap.put("userEmail", email.getText().toString());
             replyFeedbackMap.put("date", date.getText().toString());
             replyFeedbackMap.put("time", time.getText().toString());
             replyFeedbackMap.put("topic", topic.getText().toString());
             replyFeedbackMap.put("feedbackContent", feedbackContent.getText().toString());
             replyFeedbackMap.put("replyFeedbackContent", replyContent.getText().toString());
-            replyFeedbackMap.put("admin", "universalCustomerService@gmail.com");
+            replyFeedbackMap.put("adminEmail", "universalCustomerService@gmail.com");
 
             DocumentReference docRef = db.collection("replyToFeedback").document(replyFeedbackId);
             docRef.set(replyFeedbackMap).addOnCompleteListener(task -> {

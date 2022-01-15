@@ -7,18 +7,27 @@ public class ReplyFeedback {
     private String replyId;
     private String date;
     private String time;
-    private String admin;
-    private HashMap<String, String> feedback;
+    private String adminEmail;
+    private String feedbackContent;
+    private String replyFeedbackContent;
+    private String userName;
+    private String topic;
+    private String userEmail;
+
 
     public ReplyFeedback() {
     }
 
-    public ReplyFeedback(String replyId, String date, String time, String admin, HashMap<String, String> feedback) {
+    public ReplyFeedback(String replyId, String date, String time, String adminEmail, String feedbackContent, String replyFeedbackContent, String userName, String topic, String userEmail) {
         this.replyId = replyId;
         this.date = date;
         this.time = time;
-        this.admin = admin;
-        this.feedback = feedback;
+        this.adminEmail = adminEmail;
+        this.feedbackContent = feedbackContent;
+        this.replyFeedbackContent = replyFeedbackContent;
+        this.userName = userName;
+        this.topic = topic;
+        this.userEmail = userEmail;
     }
 
     public String getReplyId() {
@@ -45,20 +54,52 @@ public class ReplyFeedback {
         this.time = time;
     }
 
-    public String getAdmin() {
-        return admin;
+    public String getAdminEmail() {
+        return adminEmail;
     }
 
-    public void setAdmin(String admin) {
-        this.admin = admin;
+    public void setAdminEmail(String adminEmail) {
+        this.adminEmail = adminEmail;
     }
 
-    public HashMap<String, String> getFeedback() {
-        return feedback;
+    public String getFeedbackContent() {
+        return feedbackContent;
     }
 
-    public void setFeedback(HashMap<String, String> feedback) {
-        this.feedback = feedback;
+    public void setFeedbackContent(String feedbackContent) {
+        this.feedbackContent = feedbackContent;
+    }
+
+    public String getReplyFeedbackContent() {
+        return replyFeedbackContent;
+    }
+
+    public void setReplyFeedbackContent(String replyFeedbackContent) {
+        this.replyFeedbackContent = replyFeedbackContent;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     @Override
@@ -67,8 +108,12 @@ public class ReplyFeedback {
                 "replyId='" + replyId + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
-                ", admin='" + admin + '\'' +
-                ", feedback=" + feedback +
+                ", adminEmail='" + adminEmail + '\'' +
+                ", feedbackContent='" + feedbackContent + '\'' +
+                ", replyFeedbackContent='" + replyFeedbackContent + '\'' +
+                ", userName='" + userName + '\'' +
+                ", topic='" + topic + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 '}';
     }
 }
