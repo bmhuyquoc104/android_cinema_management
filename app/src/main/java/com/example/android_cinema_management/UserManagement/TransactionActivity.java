@@ -31,7 +31,7 @@ public class TransactionActivity extends AppCompatActivity {
     //Declare Movie list
     public static ArrayList<Transaction> transactionArrayList;
     //Declare double totalSavingPoints
-    double totalSavingPoints;
+    int totalSavingPoints;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -58,14 +58,14 @@ public class TransactionActivity extends AppCompatActivity {
 
             // Calculate total saving points
             for (Transaction transaction:transactionArrayList){
-                totalSavingPoints += Double.parseDouble(transaction.getPoint());
+                totalSavingPoints += Integer.parseInt(transaction.getPoint());
                 System.out.println("huy ne" + totalSavingPoints);
             }
 
             UserHomeFragment.accountType = checkAccountType(totalSavingPoints);
             System.out.println(UserHomeFragment.accountType);
             db.collection("Users").document(mUser.getUid()).update("role", UserHomeFragment.accountType);
-            db.collection("Users").document(mUser.getUid()).update("point", Double.toString(totalSavingPoints));
+            db.collection("Users").document(mUser.getUid()).update("point", Integer.toString(totalSavingPoints));
             recyclerView = findViewById(R.id.list_transaction_recycler_view);
             recyclerView.setHasFixedSize(true);
             transactionAdapter = new TransactionAdapter(this, transactionArrayList);
@@ -98,7 +98,7 @@ public class TransactionActivity extends AppCompatActivity {
     /*
     *Function to update the account type base on all savingPoints
     * */
-    public String checkAccountType (Double savingPoints){
+    public String checkAccountType (int savingPoints){
         String accountType = "";
         if(savingPoints > 0 && savingPoints < 100){
             accountType = "Uni-Silver";

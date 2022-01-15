@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +27,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -148,7 +153,20 @@ public class BuyTicketFragment4 extends Fragment {
             }
         });
 
+        /*
+        Function to put all input value from user to database
+        **/
         purchase.setOnClickListener(View -> {
+
+            Spanned successMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                    .setHtml(
+                            "<h3> You Purchase Have Successfully Confirmed. </p>" +
+                                    "<p>Please come to the chosen cinema with your <strong > UniCard and ID </strong> to make an payment and receive " +
+                                    "the ticket.</p>" +
+                                    "<h3> Thank you for using our service! </h3>"));
+
+
+
             Map<String, Object> transactionMap = new HashMap<>();
             transactionMap.put("transactionId", transactionId);
             transactionMap.put("movie", movie);
@@ -185,7 +203,7 @@ public class BuyTicketFragment4 extends Fragment {
                                 .document(transactionId);
                         documentReferenceForReview.set(transactionMap).addOnCompleteListener(taskInner -> {
                             if (taskInner.isSuccessful()) {
-                                Toast.makeText(getContext(), "TRANSACTION ADDED!", Toast.LENGTH_SHORT).show();
+                                VoucherAdapter.openSuccessfulDialog(R.raw.book_success,successMessage,getContext());
                             }
                         });
                     }

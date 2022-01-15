@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -21,6 +23,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -165,7 +170,6 @@ public class SignUpFragment3 extends Fragment {
                         @Override
                         //if verification email successfully send to user's email
                         public void onSuccess(Void unused) {
-                            Toast.makeText(getActivity(), "Verification email has been sent", Toast.LENGTH_SHORT).show();
                         }
                         //if verification email fail to send to user's email
                     }).addOnFailureListener(new OnFailureListener() {
@@ -191,12 +195,22 @@ public class SignUpFragment3 extends Fragment {
                     user.put("role", role);
                     user.put("Id", id);
                     user.put("point", totalPoint);
+
+                    //Declare log out message
+                    Spanned registeredMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                            .setHtml(
+                                    "<h3> You Have Successfully Registered. </p>" +
+                                            "<p>Please checking your registered email and activate" +
+                                            " the <strong>Verification email</strong> to start your journey with us </p>" +
+                                            "<h3> Thank you for using our service! </h3>"));
+
+
                     //storing all user's information into collection Users onto one particular user
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         //if task successful
                         public void onSuccess(Void unused) {
-                            Toast.makeText(getActivity(),"onSuccess: Successfully register user ", Toast.LENGTH_SHORT).show();
+                            VoucherAdapter.openSuccessfulDialog(R.raw.review_success,registeredMessage,getContext());
                         }
                     });
                     //if task is fail

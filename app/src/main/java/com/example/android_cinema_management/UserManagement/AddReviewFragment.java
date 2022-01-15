@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.HomeManagement.HomeFragment1;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
@@ -28,6 +30,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,6 +97,14 @@ public class AddReviewFragment extends Fragment {
         //Get current user Id
 //        userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 //        userName = Objects.requireNonNull(mAuth.getCurrentUser()).getDisplayName();
+
+        //Declare success message
+        Spanned successMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h3> You Purchase Have Successfully Confirmed. </p>" +
+                                "<p>Please come to the chosen cinema with your <strong > UniCard and ID </strong> to make an payment and receive " +
+                                "the ticket.</p>" +
+                                "<h3> Thank you for using our service! </h3>"));
 
         DocumentReference docRef = db.collection("Users").document(mUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -175,7 +188,7 @@ public class AddReviewFragment extends Fragment {
                             .document(randomId);
                     documentReferenceForReview.set(reviewMap).addOnCompleteListener(taskInner -> {
                         if (taskInner.isSuccessful()) {
-                            Toast.makeText(getContext(), "REVIEWED ADDED!", Toast.LENGTH_SHORT).show();
+                            VoucherAdapter.openSuccessfulDialog(R.raw.review_success,successMessage,getContext());
                         }
                     });
                 }

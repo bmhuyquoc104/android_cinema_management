@@ -67,7 +67,6 @@ public class AddTransactionFragment extends Fragment {
         time = view.findViewById(R.id.user_add_transaction_time_sent_tv);
         transactionType = view.findViewById(R.id.user_add_transaction_ticket_type_sent_et);
 
-        Toast.makeText(getActivity(), "TAO DAYYYYYYYYYYYYYYYY", Toast.LENGTH_SHORT).show();
         //Get current user Id
         DocumentReference docRef = db.collection("Users").document(mUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

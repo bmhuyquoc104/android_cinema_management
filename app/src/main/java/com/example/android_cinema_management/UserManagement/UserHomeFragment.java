@@ -9,9 +9,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Accounts;
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +34,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 
 public class UserHomeFragment extends Fragment {
@@ -162,10 +169,22 @@ public class UserHomeFragment extends Fragment {
             public void onClick(View view) {
                 db.collection("Users").document(userId)
                         .update("status","inactive");
+                //Declare log out message
+                Spanned logoutMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                        .setHtml(
+                                "<h3> You Have Successfully Logged Out. </p>" +
+                                        "<p>It's our pleasure to serve you. Have a nice day! </p>" +
+                                        "<h3> Thank you for using our service! </h3>"));
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
+                Accounts fragment = new Accounts();
+
+                VoucherAdapter.openSuccessfulDialog(R.raw.bye_success,logoutMessage,getContext());
+                FragmentTransaction transaction =
+                        fm.beginTransaction();
+                transaction.replace(R.id.ma_container, fragment).commit();
+                // Display dialog
                 MainActivity.isLogin = false;
+
             }
         });
 
