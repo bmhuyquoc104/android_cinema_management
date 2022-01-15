@@ -8,18 +8,36 @@
     android:background="@color/colorPrimary3"
     tools:context=".AccountManagement.SignInFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="155dp"
-        android:layout_height="208dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/cinema_app_logo2"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="236dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/signIn"
+        android:textAllCaps="true"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary4"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="221dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="55dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_final_icon2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:tint="@color/colorPrimary2"
         android:id="@+id/signInClose"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -29,7 +47,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseAppTint" />
 
 
 
@@ -154,28 +173,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            <ImageView-->
-<!--                android:id="@+id/imageView2"-->
-<!--                android:layout_width="56dp"-->
-<!--                android:layout_height="55dp"-->
-<!--                android:layout_marginTop="344dp"-->
-<!--                android:src="@drawable/facebook"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.336"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-
-            <!--            <ImageView-->
-<!--                android:id="@+id/imageView4"-->
-<!--                android:layout_width="56dp"-->
-<!--                android:layout_height="55dp"-->
-<!--                android:layout_marginTop="344dp"-->
-<!--                android:src="@drawable/google"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.613"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
 
             <TextView
