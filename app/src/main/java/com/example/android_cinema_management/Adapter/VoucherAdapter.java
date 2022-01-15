@@ -118,8 +118,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
                                 // Update the new point to database
                                 db.collection("Users").document(mUser.getUid()).update("point", totalPoints);
                                 VoucherDatabase.postUserVoucher(pd,db,context,firebaseAuth,mUser,
-                                        voucherList.get(position).getVoucherPrice(),voucherList.get(position).getVoucherName(),
-                                        voucherList.get(position).getPointRequire());
+                                        voucherList.get(position).getVoucherPrice());
                                 openSuccessfulDialog(R.raw.exchange_success,successMessage,context);
 
                             }

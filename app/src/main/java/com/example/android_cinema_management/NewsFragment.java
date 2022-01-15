@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 public class NewsFragment extends Fragment {
     //Declare imageview
-    ImageView Back;
+
 
     private RecyclerView News;
     private ArrayList<News> newsArrayList;
@@ -62,10 +62,7 @@ public class NewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
 //        Back button
-        Back = view.findViewById(R.id.back);
-        Back.setOnClickListener(View ->{
-            startActivity(new Intent(getContext(), MainActivity.class));
-        });
+
 
         News = view.findViewById(R.id.newsItems);
         News.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
                     case (R.id.menu_cinema):
                         chosenFragment = new CinemaFragment();
                         break;
-                    case (R.id.menu_search) :
-                        chosenFragment = new SearchMovieFragment();
+                    case (R.id.menu_news) :
+                        chosenFragment = new NewsFragment();
                         break;
                     case (R.id.menu_discount):
                         chosenFragment = new DiscountAndTicket();

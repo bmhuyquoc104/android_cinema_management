@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background = "@color/colorPrimary3"
+    android:background="@color/colorPrimary3"
     tools:context=".Accounts">
 
 
@@ -12,16 +12,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="414dp"
+            android:layout_height="108dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="221dp"
+            android:layout_height="230dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_final_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="184dp"
+            android:layout_marginTop="108dp"
+            android:background="@color/colorPrimary3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.cardview.widget.CardView
             style="@style/CardView.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="360dp"
+            android:layout_marginBottom="60dp"
             app:cardBackgroundColor="@color/colorPrimary3"
             app:cardCornerRadius="8dp"
             app:cardElevation="10dp"
             app:contentPadding="10dp"
-            android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -33,15 +65,16 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:id="@+id/ac_email"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingEnd="30dp"
                     android:text="@string/ac_email"
                     android:textColor="@color/colorPrimary4"
+                    app:drawableEndCompat="@drawable/ic_baseline_emoji_objects_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -49,15 +82,16 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:id="@+id/ac_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
+                    android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingEnd="30dp"
                     android:text="@string/ac_phone"
                     android:textColor="@color/colorPrimary4"
+                    app:drawableEndCompat="@drawable/ic_baseline_emoji_objects_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.286"
                     app:layout_constraintStart_toStartOf="parent"
@@ -65,13 +99,13 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:id="@+id/ac_payment_policy"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="112dp"
+                    android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingEnd="30dp"
                     android:text="@string/ac_policy"
                     android:textColor="@color/colorPrimary4"
                     app:drawableEndCompat="@drawable/ic_baseline_emoji_objects_24"
@@ -89,7 +123,7 @@
                     android:drawablePadding="20dp"
                     android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingEnd="30dp"
                     android:text="@string/ac_security_policy"
                     android:textColor="@color/colorPrimary4"
                     app:drawableEndCompat="@drawable/ic_baseline_emoji_objects_24"
@@ -102,13 +136,14 @@
 
                 <TextView
                     android:id="@+id/ac_privacy_policy"
+
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="192dp"
                     android:drawablePadding="20dp"
                     android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingEnd="30dp"
                     android:text="@string/ac_privacy_policy"
                     android:textColor="@color/colorPrimary4"
                     app:drawableEndCompat="@drawable/ic_baseline_emoji_objects_24"
@@ -120,14 +155,14 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:id="@+id/ac_terms_and_conditions"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="232dp"
                     android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingEnd="30dp"
                     android:text="@string/termAndConditions"
                     android:textColor="@color/colorPrimary4"
                     app:drawableEndCompat="@drawable/ic_baseline_emoji_objects_24"
@@ -139,15 +174,16 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:id="@+id/ac_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="76dp"
+                    android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingEnd="30dp"
                     android:text="@string/ac_address"
                     android:textColor="@color/colorPrimary4"
+                    app:drawableEndCompat="@drawable/ic_baseline_emoji_objects_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -157,24 +193,15 @@
 
         </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="259dp"
-            android:layout_height="164dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cinema_app_logo2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="153dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="112dp"
+            android:layout_width="253dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="116dp"
             android:text="@string/invite"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary4"
+            android:textColor="@color/colorPrimary2"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -187,7 +214,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/ic_baseline_diamond_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -207,7 +234,7 @@
             android:id="@+id/ac_freeAirTicket"
             android:layout_width="42dp"
             android:layout_height="43dp"
-            android:layout_marginTop="188dp"
+            android:layout_marginTop="184dp"
             android:contentDescription="TODO"
             android:src="@drawable/ic_baseline_airplane_ticket_24"
             app:layout_constraintEnd_toEndOf="parent"
@@ -218,12 +245,12 @@
         <Button
             android:id="@+id/ac_register"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginTop="292dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimary4"
             android:text="@string/ac_signIn"
             android:textColor="@color/colorPrimary2"
-            app:cornerRadius="10dp"
+            app:cornerRadius="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.304"
             app:layout_constraintStart_toStartOf="parent"
@@ -232,13 +259,13 @@
         <Button
             android:id="@+id/ac_signIn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginTop="292dp"
             android:backgroundTint="@color/colorPrimary2"
             android:text="@string/ac_sign_in"
             android:textColor="@color/colorPrimary4"
             android:textColorHint="@color/colorPrimary4"
-            app:cornerRadius="10dp"
+            app:cornerRadius="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.725"
             app:layout_constraintStart_toStartOf="parent"
@@ -248,13 +275,13 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="52dp"
             android:text="@string/ac_giftcard"
             android:textColor="@color/colorPrimary4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.275"
+            app:layout_constraintHorizontal_bias="0.277"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintTop_toTopOf="@+id/ac_giftcard" />
 
         <TextView
             android:id="@+id/textView4"
@@ -264,7 +291,6 @@
             android:text="@string/Point"
             android:textColor="@color/colorPrimary4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

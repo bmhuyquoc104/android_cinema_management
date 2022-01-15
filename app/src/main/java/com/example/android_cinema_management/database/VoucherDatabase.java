@@ -52,7 +52,7 @@ public class VoucherDatabase {
     }
 
     public static void postUserVoucher ( ProgressDialog pd,FirebaseFirestore db, Context context,
-                                        FirebaseAuth firebaseAuth,FirebaseUser mUser,String price,String name, String pointRequired){
+                                        FirebaseAuth firebaseAuth,FirebaseUser mUser,String name){
 
         pd.setTitle("Getting Voucher!");
         pd.show();
@@ -69,8 +69,6 @@ public class VoucherDatabase {
         Map<String, Object> voucherMap = new HashMap<>();
         voucherMap.put("id", Id);
         voucherMap.put("name", name);
-        voucherMap.put("price", price);
-        voucherMap.put("pointRequired", pointRequired);
         voucherMap.put("time", currentTimeFormat);
         voucherMap.put("date", currentDateFormat);
 
@@ -97,7 +95,6 @@ public class VoucherDatabase {
                 documentReferenceForReview.set(voucherMap).addOnCompleteListener(taskInner -> {
                     if (taskInner.isSuccessful()) {
                         pd.dismiss();
-                        Toast.makeText(context, "Voucher ADDED!", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

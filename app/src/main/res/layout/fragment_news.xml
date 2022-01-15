@@ -8,37 +8,41 @@
     android:layout_height="match_parent"
     tools:context=".NewsFragment">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="62dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_baseline_keyboard_return_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo"/>
-
-    <TextView
-        android:id="@+id/news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+    <View
+        android:id="@+id/view"
+        android:layout_width="414dp"
+        android:layout_height="108dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:text="News"
-        android:textSize="30sp"
-        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="221dp"
+        android:layout_height="230dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_final_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/news">
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ScrollView
+        android:layout_width="410dp"
+        android:layout_height="418dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.0">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/newsItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="120dp"/>
+            android:paddingBottom="120dp" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
