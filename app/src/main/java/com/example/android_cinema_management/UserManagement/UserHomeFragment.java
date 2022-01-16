@@ -199,8 +199,18 @@ public class UserHomeFragment extends Fragment {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.collection("Users").document(userId)
-                        .update("status","inactive");
+                DocumentReference docRef = db.collection("Users").document(userId);
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot docSnap = task.getResult();
+                            if (docSnap != null){
+                                db.collection("Users").document(mUser.getUid()).update("status", "inactive");
+                            }
+                        }
+                    }
+                });
                 //Declare log out message
                 Spanned logoutMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
                         .setHtml(

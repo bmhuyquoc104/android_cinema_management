@@ -9,15 +9,26 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.android_cinema_management.Adapter.MovieFragmentAdapter;
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
+import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.Model.Movie;
+import com.example.android_cinema_management.Model.Transaction;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.BuyTicketActivity;
+import com.example.android_cinema_management.UserManagement.TransactionActivity;
+import com.example.android_cinema_management.UserManagement.UserReview;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.util.ArrayList;
 
@@ -26,6 +37,7 @@ public class MovieInfoTabLayout extends AppCompatActivity {
     TabLayout layout;
     ViewPager2 viewpager2;
     MovieFragmentAdapter adapter;
+    LottieAnimationView buyNow;
     // Declare String
     String vnTitle, enTitle,imageUrl,movieDetailUrl;
     //Declare imageview
@@ -40,6 +52,7 @@ public class MovieInfoTabLayout extends AppCompatActivity {
         layout = findViewById(R.id.mitl_tab_layout);
         viewpager2 = findViewById(R.id.mitl_viewpager2);
         close = findViewById(R.id.movie_info_close_iv);
+        buyNow = findViewById(R.id.buy_now_animation_view);
         // Initialize fragment manager
         FragmentManager fm = getSupportFragmentManager();
         // Initialize adapter
@@ -100,9 +113,32 @@ public class MovieInfoTabLayout extends AppCompatActivity {
             finish();
         });
 
+
+        Spanned message = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h3> You are currently not logged in. </p>" +
+                                "<p>Please register an account and login to  <strong>PURCHASE </strong> a movie ticket " +
+                                "<h3> Thank you for using our service! </h3>"));
+
+
+        buyNow.setOnClickListener(View ->{
+            if (!MainActivity.isLogin) {
+                VoucherAdapter.openSuccessfulDialog(R.raw.required_login, message, this);
+            }
+            else{
+                Intent intentTransaction = new Intent(this, BuyTicketActivity.class);
+                startActivity(intentTransaction);
+            }
+        });
+
         //Disable swiping
         viewpager2.setUserInputEnabled(false);
         // Get currentMovie
         currentMovie = new Movie(vnTitle,enTitle,imageUrl,movieDetailUrl);
     }
+
+    @Override
+    public void onBackPressed(){
+
+    };
 }

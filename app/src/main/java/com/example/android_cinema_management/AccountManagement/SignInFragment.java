@@ -173,7 +173,7 @@ public class SignInFragment extends Fragment {
                     WindowManager.LayoutParams.WRAP_CONTENT);
             WindowManager.LayoutParams windowAttributes = window.getAttributes();
             // set the dialog to top
-            windowAttributes.gravity = Gravity.TOP;
+            windowAttributes.gravity = Gravity.CENTER;
             window.setAttributes(windowAttributes);
             // Disable cancel by clicking randomly on the screen
             forgotPasswordDialog.setCancelable(false);

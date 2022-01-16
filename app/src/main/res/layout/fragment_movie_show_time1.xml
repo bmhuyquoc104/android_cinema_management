@@ -114,7 +114,7 @@
 
 
                 <Button
-                    android:id="@+id/cinema_showMap"
+                    android:id="@+id/movie_review"
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="171dp"
                     android:layout_height="51dp"
