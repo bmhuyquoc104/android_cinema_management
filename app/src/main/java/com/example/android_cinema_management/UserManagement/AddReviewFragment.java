@@ -20,8 +20,10 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.HomeManagement.HomeFragment1;
+import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.ReviewDatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -57,10 +59,12 @@ public class AddReviewFragment extends Fragment {
 
     //Declare text input layout
     TextInputLayout movie;
-
+    //Declare review list
+    ArrayList<Review> reviewArrayList = new ArrayList<>();
     //Declare movie array options
     ArrayList<String> moviesArray = new ArrayList<>();
-
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
     String movieChosen;
     //Declare array adapter
@@ -189,6 +193,7 @@ public class AddReviewFragment extends Fragment {
                     documentReferenceForReview.set(reviewMap).addOnCompleteListener(taskInner -> {
                         if (taskInner.isSuccessful()) {
                             VoucherAdapter.openSuccessfulDialog(R.raw.review_success,successMessage,getContext());
+                            ReviewDatabase.getReviewsByCurrentUser(db,reviewArrayList,()->{},currentUser);
                         }
                     });
                 }

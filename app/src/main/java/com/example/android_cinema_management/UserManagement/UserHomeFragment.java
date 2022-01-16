@@ -366,7 +366,7 @@ public class UserHomeFragment extends Fragment {
         window.setBackgroundDrawableResource(R.color.colorPrimary3);
         WindowManager.LayoutParams windowAttributes = window.getAttributes();
         // set the dialog to top
-        windowAttributes.y = 160;
+        windowAttributes.y = 180;
         window.setGravity(Gravity.TOP);
         window.setAttributes(windowAttributes);
         dialog.setCanceledOnTouchOutside(true);

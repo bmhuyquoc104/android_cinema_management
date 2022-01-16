@@ -18,6 +18,7 @@ import com.example.android_cinema_management.Adapter.ReviewAdapter;
 import com.example.android_cinema_management.Model.Feedback;
 import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.ReviewDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -53,8 +54,7 @@ public class ListOfReviewFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_list_of_review, container, false);
         reviewArrayList = new ArrayList<>();
         //call function get reviews data
-        getReviews(db, reviewArrayList, () -> {
-            System.out.println("REVIEWS LIST: " + reviewArrayList);
+        ReviewDatabase.getReviewsByCurrentUser(db, reviewArrayList, () -> {
 
             // Set fixed size for recycler view
             recyclerView = view.findViewById(R.id.user_list_reviews_recycler_view);
@@ -64,26 +64,8 @@ public class ListOfReviewFragment extends Fragment {
             recyclerView.setLayoutManager(layoutManager);
             // Specify an adapter
             recyclerView.setAdapter(reviewAdapter);
-        });
+        },user);
 
         return view;
-    }
-
-    //Function get reviews data
-    private void getReviews(FirebaseFirestore db, ArrayList<Review> reviewArrayList, Runnable callback) {
-        reviewArrayList.clear();
-        db.collection("reviews").get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                int count = 0;
-                for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
-                    count++;
-                    Review dataContainer = doc.toObject(Review.class);
-                    reviewArrayList.add(dataContainer);
-                    if (count == Objects.requireNonNull(task.getResult()).size()) {
-                        callback.run();
-                    }
-                }
-            }
-        });
     }
 }
