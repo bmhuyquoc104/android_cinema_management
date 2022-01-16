@@ -76,7 +76,7 @@
                 tools:ignore="UseAppTint" />
 
             <ImageView
-                android:id="@+id/admin_home_combo_iv2"
+                android:id="@+id/admin_home_voucher_iv"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginTop="20dp"
@@ -134,9 +134,9 @@
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary5"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/admin_home_combo_iv2"
-                app:layout_constraintStart_toStartOf="@+id/admin_home_combo_iv2"
-                app:layout_constraintTop_toTopOf="@+id/admin_home_combo_iv2" />
+                app:layout_constraintEnd_toEndOf="@+id/admin_home_voucher_iv"
+                app:layout_constraintStart_toStartOf="@+id/admin_home_voucher_iv"
+                app:layout_constraintTop_toTopOf="@+id/admin_home_voucher_iv" />
 
             <TextView
                 android:id="@+id/textView14"

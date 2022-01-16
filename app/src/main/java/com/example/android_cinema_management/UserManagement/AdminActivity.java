@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminManagment.AddVoucherActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.CinemaActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.ComboActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.FeedbackActivity;
@@ -22,7 +23,7 @@ import com.example.android_cinema_management.UserManagement.AdminManagment.Feedb
 
 public class AdminActivity extends AppCompatActivity {
     // Declare imageview,string and textview
-    ImageView logout, discount, combo, cinema,feedback;
+    ImageView logout, discount, combo, cinema,feedback,voucher;
     TextView welcome;
     String fullName;
     @SuppressLint("SetTextI18n")
@@ -37,6 +38,7 @@ public class AdminActivity extends AppCompatActivity {
         cinema = findViewById(R.id.admin_home_cinema_iv);
         feedback = findViewById(R.id.admin_home_feedback_iv);
         welcome = findViewById(R.id.admin_home_name);
+        voucher = findViewById(R.id.admin_home_voucher_iv);
 
         //Receive intents from previous activity
         Intent intent = getIntent();
@@ -83,6 +85,11 @@ public class AdminActivity extends AppCompatActivity {
         combo.setOnClickListener(view -> {
             Intent intentCombo = new Intent(this, ComboActivity.class);
             startActivity(intentCombo);
+        });
+
+        voucher.setOnClickListener(view ->{
+            Intent intentVoucher = new Intent(this, AddVoucherActivity.class);
+            startActivity(intentVoucher);
         });
 
         /*

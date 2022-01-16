@@ -10,15 +10,15 @@ public class Review {
     private String reviewContent;
     private String date;
     private String time;
-    private int like;
-    private int dislike;
+    private String like;
+    private String dislike;
     private HashMap<String, Object> user;
 
 
     public Review() {
     }
 
-    public Review(String reviewId, String movieName, String rateMovie, String reviewContent, String date, String time, int like, int dislike, HashMap<String, Object> user) {
+    public Review(String reviewId, String movieName, String rateMovie, String reviewContent, String date, String time, String like, String dislike, HashMap<String, Object> user) {
         this.reviewId = reviewId;
         this.movieName = movieName;
         this.rateMovie = rateMovie;
@@ -78,19 +78,19 @@ public class Review {
         this.time = time;
     }
 
-    public int getLike() {
+    public String getLike() {
         return like;
     }
 
-    public void setLike(int like) {
+    public void setLike(String like) {
         this.like = like;
     }
 
-    public int getDislike() {
+    public String getDislike() {
         return dislike;
     }
 
-    public void setDislike(int dislike) {
+    public void setDislike(String dislike) {
         this.dislike = dislike;
     }
 
@@ -111,8 +111,8 @@ public class Review {
                 ", reviewContent='" + reviewContent + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
-                ", like=" + like +
-                ", dislike=" + dislike +
+                ", like='" + like + '\'' +
+                ", dislike='" + dislike + '\'' +
                 ", user=" + user +
                 '}';
     }

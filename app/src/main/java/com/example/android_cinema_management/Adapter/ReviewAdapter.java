@@ -2,6 +2,7 @@ package com.example.android_cinema_management.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.VoucherActivity;
+import com.example.android_cinema_management.database.VoucherDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
 
@@ -24,10 +35,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     //Initialize ArrayList for review
     private ArrayList<Review> reviewArrayList;
-
+    private boolean isPressed = false;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    int countLike, countDislike;
-
+    String currentDislike,currentLike;
     public ReviewAdapter(Context context, ArrayList<Review> reviewArrayList) {
         this.context = context;
         this.reviewArrayList = reviewArrayList;
@@ -41,16 +51,94 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         return new MyViewHolder(view);
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.movieName.setText("Movie: " + reviewArrayList.get(position).getMovieName());
         holder.movieRating.setText("Rate: "+reviewArrayList.get(position).getRateMovie());
         holder.reviewContent.setText("Review Content: " + reviewArrayList.get(position).getReviewContent());
         holder.reviewDate.setText("Date: "+reviewArrayList.get(position).getDate());
         holder.reviewTime.setText("Time: "+reviewArrayList.get(position).getTime());
-        holder.likeBtn.setText(Integer.toString(reviewArrayList.get(position).getLike()));
-        holder.dislikeBtn.setText(Integer.toString(reviewArrayList.get(position).getDislike()));
+        holder.likeBtn.setText(reviewArrayList.get(position).getLike());
+        holder.dislikeBtn.setText(reviewArrayList.get(position).getDislike());
+
+
+        holder.likeBtn.setOnClickListener(View ->{
+            CollectionReference reviewRef = db.collection("reviews");
+            reviewRef.whereEqualTo("reviewId",reviewArrayList.get(position).getReviewId())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()){
+                                for (QueryDocumentSnapshot snapShot: task.getResult()) {
+                                    currentLike = snapShot.getString("like");
+                                    assert currentLike != null;
+                                    if (!isPressed) {
+                                        holder.likeBtn.setText(Integer.toString(Integer.parseInt(currentLike) + 1));
+                                        db.collection("reviews").document(reviewArrayList.get(position).getReviewId())
+                                                .update("like", Integer.toString(Integer.parseInt(currentLike) + 1));
+                                        holder.likeBtn.getCompoundDrawables()[0].setTint(Color.RED);
+                                        isPressed = true;
+                                    }
+                                    else{
+                                        holder.likeBtn.setText(Integer.toString(Integer.parseInt(currentLike) - 1));
+                                        db.collection("reviews").document(reviewArrayList.get(position).getReviewId())
+                                                .update("like", Integer.toString(Integer.parseInt(currentLike) - 1));
+                                        holder.likeBtn.getCompoundDrawables()[0].setTint(Color.WHITE);
+                                        isPressed = false;
+                                    }
+                                }
+
+                            }else{
+                                System.out.println("Error getting documents: " + task.getException());
+                            }
+                        }
+                    });
+
+        });
+
+
+        /*
+        * Function to update dislike value to the firebase every time the user press the textview
+        * */
+        holder.dislikeBtn.setOnClickListener(View ->{
+            CollectionReference reviewRef = db.collection("reviews");
+            reviewRef.whereEqualTo("reviewId",reviewArrayList.get(position).getReviewId())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()){
+                                for (QueryDocumentSnapshot snapShot: task.getResult()){
+                                    currentDislike = snapShot.getString("dislike");
+                                    assert currentDislike != null;
+
+                                    if (!isPressed) {
+                                        holder.likeBtn.setText(Integer.toString(Integer.parseInt(currentDislike) + 1));
+                                        db.collection("reviews").document(reviewArrayList.get(position).getReviewId())
+                                                .update("dislike", Integer.toString(Integer.parseInt(currentDislike) + 1));
+                                        holder.dislikeBtn.getCompoundDrawables()[0].setTint(Color.RED);
+                                        isPressed = true;
+                                    }
+                                    else{
+                                        holder.dislikeBtn.setText(Integer.toString(Integer.parseInt(currentDislike)-1));
+                                        db.collection("reviews").document(reviewArrayList.get(position).getReviewId())
+                                                .update("dislike", Integer.toString(Integer.parseInt(currentDislike)-1));
+                                        holder.dislikeBtn.getCompoundDrawables()[0].setTint(Color.RED);
+                                        isPressed = false;
+                                    }
+
+                                }
+
+                            }else{
+                                System.out.println("Error getting documents: " + task.getException());
+                            }
+                        }
+                    });
+
+        });
+
     }
 
     @Override
@@ -73,18 +161,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             reviewTime = itemView.findViewById(R.id.list_of_review_time_tv);
 
             likeBtn.setOnClickListener(view -> {
-                countLike++;
-                Review review = reviewArrayList.get(getAbsoluteAdapterPosition());
-                db.collection("review").document(review.getReviewId())
-                        .update("like", countLike);
+
             });
 
-            dislikeBtn.setOnClickListener(view -> {
-                countDislike++;
-                Review review = reviewArrayList.get(getAbsoluteAdapterPosition());
-                db.collection("review").document(review.getReviewId())
-                        .update("dislike", countDislike);
-            });
+//            dislikeBtn.setOnClickListener(view -> {
+//                countDislike++;
+//                Review review = reviewArrayList.get(getAbsoluteAdapterPosition());
+//                db.collection("reviews").document(review.getReviewId())
+//                        .update("dislike", countDislike);
+//            });
         }
     }
 }
