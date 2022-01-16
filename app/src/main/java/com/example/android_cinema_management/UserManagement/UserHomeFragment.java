@@ -285,6 +285,16 @@ public class UserHomeFragment extends Fragment {
             listOfFeedbackReplyAdapter = new ListOfFeedbackReplyAdapter(getContext(), replyFeedbackArrayList);
             layoutManager = new LinearLayoutManager(getContext());
             recyclerView.setLayoutManager(layoutManager);
+            Spanned errorMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                    .setHtml(
+                            "<h3> You don't have any notifications. </p>" +
+                                    "<p>Please try later.</p>" +
+                                    "<h3> Thank you for using our service! </h3>"));
+
+            if (replyFeedbackArrayList.isEmpty()){
+                VoucherAdapter.openSuccessfulDialog(R.raw.no_notification,errorMessage,getContext());
+                dialog.dismiss();
+            }
             recyclerView.setAdapter(listOfFeedbackReplyAdapter);
 
             // Function that allow the user to choose delete option when swipe the item
