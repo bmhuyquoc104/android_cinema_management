@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminManagment.AddDiscount;
 import com.example.android_cinema_management.UserManagement.AdminManagment.CinemaActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.ComboActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.FeedbackActivity;
@@ -83,6 +84,11 @@ public class AdminActivity extends AppCompatActivity {
         combo.setOnClickListener(view -> {
             Intent intentCombo = new Intent(this, ComboActivity.class);
             startActivity(intentCombo);
+        });
+
+        discount.setOnClickListener(view -> {
+            Intent intentDiscount = new Intent(this, AddDiscount.class);
+            startActivity(intentDiscount);
         });
 
         /*
