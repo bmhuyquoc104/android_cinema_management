@@ -5,7 +5,7 @@
     android:background="@color/colorPrimary3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserManagement.UpdateAndDeleteVoucher">
+    tools:context=".UserManagement.AdminManagment.UpdateAndDeleteVoucher">
 
 
     <androidx.cardview.widget.CardView

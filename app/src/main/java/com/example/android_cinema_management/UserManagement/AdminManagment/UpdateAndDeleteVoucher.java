@@ -1,4 +1,4 @@
-package com.example.android_cinema_management.UserManagement;
+package com.example.android_cinema_management.UserManagement.AdminManagment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.Voucher;
 import com.example.android_cinema_management.R;
-import com.example.android_cinema_management.UserManagement.AdminManagment.UpdateAndDeleteCombo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;

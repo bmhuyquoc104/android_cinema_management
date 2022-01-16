@@ -17,7 +17,7 @@
             android:name=".UserManagement.AdminManagment.AddVoucherActivity"
             android:exported="false" />
         <activity
-            android:name=".UserManagement.UpdateAndDeleteVoucher"
+            android:name=".UserManagement.AdminManagment.UpdateAndDeleteVoucher"
             android:exported="false" />
         <activity
             android:name=".UserManagement.AdminManagment.UpdateAndDeleteCombo"
