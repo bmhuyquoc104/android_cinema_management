@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,9 @@ public class Accounts extends Fragment {
     TextView paymentPolicy, securityPolicy, privacyPolicy, termsAndConditions;
     TextView email, phone, address;
     TextView contact, job, copyRight, aboutUs;
+
+//    Gifts, Points and Flights
+    ImageView gift, point, flight;
 
 //    Initialize spanned
 //    For policies
@@ -119,6 +123,22 @@ public class Accounts extends Fragment {
     Spanned addressSpanned = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
             .setHtml(
                     "<p>Floor 2, Rivera Park Saigon - No. 7/28 Thanh Thai street, Ward 14, District 10, HCMC.</p>"));
+
+//    For image content
+    Spanned giftSpanned = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+            .setHtml("<h1>Exchange Gifts</h1>" +
+                    "<p>There are a variety of gifts for you to get when doing business at our establishments. Gifts" +
+                    "range from simple plush toys to high-end electronics.</p>"));
+
+    Spanned pointSpanned = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+            .setHtml("<h1>Get Points</h1>" +
+                    "<p>Every time you do business with us, you will get points corresponding with the amount of money paid." +
+                    "These points can be used to exchange for gifts.</p>"));
+
+    Spanned flightSpanned = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+            .setHtml("<h1>Free Flight</h1>" +
+                    "<p>Upgrade your membership to Uni-Diamond and get 1 free flight each year. The free ticket max price" +
+                    "is $400.</p>"));
     public Accounts() {
         // Required empty public constructor
     }
@@ -203,6 +223,22 @@ public class Accounts extends Fragment {
         address = view.findViewById(R.id.ac_address);
         address.setOnClickListener(View -> {
             openPolicyDialog(address.getText().toString(),Gravity.CENTER);
+        });
+
+//        For Image dialogs
+        gift = view.findViewById(R.id.ac_giftcard);
+        gift.setOnClickListener(View -> {
+            openImageDialog("Gift",Gravity.CENTER);
+        });
+
+        point = view.findViewById(R.id.ac_diamond);
+        point.setOnClickListener(View -> {
+            openImageDialog("Point",Gravity.CENTER);
+        });
+
+        flight = view.findViewById(R.id.ac_freeAirTicket);
+        flight.setOnClickListener(View -> {
+            openImageDialog("Flight",Gravity.CENTER);
         });
 
 
@@ -293,6 +329,56 @@ public class Accounts extends Fragment {
                 break;
             case "Address":
                 policyContent.setText(addressSpanned);
+                break;
+        }
+
+        ImageButton close = dialog.findViewById(R.id.policy_close_button);
+        /*
+         * Function to dismiss the dialog
+         * */
+        close.setOnClickListener(View -> {
+            dialog.dismiss();
+        });
+    }
+
+    private void openImageDialog(String content, int gravity) {
+        // Initialize new dialog
+        Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //Set content for dialog
+        dialog.setContentView(R.layout.open_image_dialog);
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        // set the dialog to top
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+        // Disable cancel by clicking randomly on the screen
+        dialog.setCancelable(false);
+
+        dialog.show();
+//        Initialize TextViews
+        TextView contentHeader = dialog.findViewById(R.id.content_header);
+        HtmlTextView Content = dialog.findViewById(R.id.content);
+        ImageView imageView = dialog.findViewById(R.id.content_image);
+
+        contentHeader.setText(content);
+        switch (content) {
+            case "Gift":
+                Content.setText(giftSpanned);
+                imageView.setImageResource(R.drawable.ic_baseline_card_giftcard_24);
+                break;
+            case "Point":
+                Content.setText(pointSpanned);
+                imageView.setImageResource(R.drawable.ic_baseline_diamond_24);
+                break;
+            case "Flight":
+                Content.setText(flightSpanned);
+                imageView.setImageResource(R.drawable.ic_baseline_airplane_ticket_24);
                 break;
         }
 
