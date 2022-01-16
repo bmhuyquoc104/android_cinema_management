@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.android_cinema_management.UserManagement.AddReviewFragment;
+import com.example.android_cinema_management.UserManagement.CurrentUserReviewFragment;
 import com.example.android_cinema_management.UserManagement.ListOfReviewFragment;
 
 public class ReviewFragmentAdapter extends FragmentStateAdapter {
@@ -19,6 +20,8 @@ public class ReviewFragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
+                return new CurrentUserReviewFragment();
+            case 2:
                 return new ListOfReviewFragment();
         }
         return new AddReviewFragment();
@@ -26,6 +29,6 @@ public class ReviewFragmentAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }
