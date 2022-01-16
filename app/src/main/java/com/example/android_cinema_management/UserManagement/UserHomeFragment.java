@@ -362,10 +362,14 @@ public class UserHomeFragment extends Fragment {
         }
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
+
+        window.setBackgroundDrawableResource(R.color.colorPrimary3);
         WindowManager.LayoutParams windowAttributes = window.getAttributes();
         // set the dialog to top
-        windowAttributes.gravity = Gravity.CENTER;
+        windowAttributes.y = 160;
+        window.setGravity(Gravity.TOP);
         window.setAttributes(windowAttributes);
+        dialog.setCanceledOnTouchOutside(true);
         // enable cancel by clicking randomly on the screen
         dialog.setCancelable(true);
         // Show the dialog
