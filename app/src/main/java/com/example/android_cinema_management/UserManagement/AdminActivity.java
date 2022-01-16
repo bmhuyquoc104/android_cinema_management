@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminManagment.AddDiscount;
 import com.example.android_cinema_management.UserManagement.AdminManagment.AddVoucherActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.CinemaActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.ComboActivity;
@@ -90,6 +91,11 @@ public class AdminActivity extends AppCompatActivity {
         voucher.setOnClickListener(view ->{
             Intent intentVoucher = new Intent(this, AddVoucherActivity.class);
             startActivity(intentVoucher);
+        });
+
+        discount.setOnClickListener(view ->{
+            Intent intentDiscount = new Intent(this, AddDiscount.class);
+            startActivity(intentDiscount);
         });
 
         /*
