@@ -113,7 +113,7 @@
 
             <TextView
                 android:id="@+id/list_of_review_content_tv"
-
+                android:layout_marginBottom="10dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -123,6 +123,7 @@
                 android:text="@string/textview"
                 android:textColor="@color/colorPrimary4"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.898"
                 app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +133,7 @@
                 android:id="@+id/list_of_review_movie_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="10dp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
                 android:text="@string/textview"

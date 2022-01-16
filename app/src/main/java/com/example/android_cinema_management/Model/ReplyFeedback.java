@@ -13,12 +13,13 @@ public class ReplyFeedback {
     private String userName;
     private String topic;
     private String userEmail;
+    private String adminImage;
 
 
     public ReplyFeedback() {
     }
 
-    public ReplyFeedback(String replyId, String date, String time, String adminEmail, String feedbackContent, String replyFeedbackContent, String userName, String topic, String userEmail) {
+    public ReplyFeedback(String replyId, String date, String time, String adminEmail, String feedbackContent, String replyFeedbackContent, String userName, String topic, String userEmail, String adminImage) {
         this.replyId = replyId;
         this.date = date;
         this.time = time;
@@ -28,6 +29,7 @@ public class ReplyFeedback {
         this.userName = userName;
         this.topic = topic;
         this.userEmail = userEmail;
+        this.adminImage = adminImage;
     }
 
     public String getReplyId() {
@@ -102,6 +104,14 @@ public class ReplyFeedback {
         this.userEmail = userEmail;
     }
 
+    public String getAdminImage() {
+        return adminImage;
+    }
+
+    public void setAdminImage(String adminImage) {
+        this.adminImage = adminImage;
+    }
+
     @Override
     public String toString() {
         return "ReplyFeedback{" +
@@ -114,6 +124,7 @@ public class ReplyFeedback {
                 ", userName='" + userName + '\'' +
                 ", topic='" + topic + '\'' +
                 ", userEmail='" + userEmail + '\'' +
+                ", adminImage='" + adminImage + '\'' +
                 '}';
     }
 }

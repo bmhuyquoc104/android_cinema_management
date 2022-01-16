@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary3">
+
+    <ImageView
+        android:id="@+id/feedback_reply_close_bt"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_baseline_close_24"
+        android:tint="@color/colorPrimary2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseAppTint" />
 
     <androidx.cardview.widget.CardView
         style="@style/CardView.Light"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
         app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="7dp"
         app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginBottom="30dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +47,24 @@
                 android:id="@+id/list_of_feedback_reply_date_tv"
                 android:layout_width="195dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="14dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_reply_feedback_topic_tv" />
+
+            <TextView
+                android:id="@+id/list_of_feedback_reply_admin_email_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="8sp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
                 android:text="@string/textview"
@@ -37,29 +73,65 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/list_of_feedback_topic_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/list_of_feedback_reply_id_tv" />
 
             <TextView
-                android:id="@+id/list_of_feedback_reply_time_tv"
-
-                android:layout_width="195dp"
+                android:id="@+id/list_of_feedback_reply_message_from_user_tv"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="8sp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_feedback_reply_user_email_tv" />
+
+
+            <TextView
+                android:id="@+id/list_of_feedback_reply_message_from_admin_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="30dp"
+                android:lineSpacingExtra="8sp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:text="@string/textview"
+                android:textColor="@color/colorPrimary4"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_feedback_reply_message_from_user_tv" />
+
+
+            <TextView
+                android:id="@+id/list_of_feedback_reply_user_email_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="8sp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
                 android:text="@string/textview"
                 android:textColor="@color/colorPrimary4"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/list_of_feedback_topic_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/list_of_feedback_reply_admin_email_tv" />
 
             <TextView
-                android:id="@+id/list_of_feedback_reply_from_user_message_tv"
+                android:id="@+id/list_of_feedback_reply_id_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="14dp"
                 android:lineSpacingExtra="8sp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
@@ -72,33 +144,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/list_of_feedback_reply_date_tv" />
 
             <TextView
-                android:id="@+id/list_of_feedback_reply_from_admin_message_tv"
+                android:id="@+id/list_of_reply_feedback_topic_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:lineSpacingExtra="8sp"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"
-                android:text="@string/textview"
-                android:textColor="@color/colorPrimary4"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.898"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/list_of_feedback_reply_from_user_message_tv" />
-
-
-            <TextView
-                android:id="@+id/list_of_feedback_topic_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="30dp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
                 android:text="@string/textview"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary2"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.101"
                 app:layout_constraintStart_toStartOf="parent"

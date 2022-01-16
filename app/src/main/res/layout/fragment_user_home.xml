@@ -299,12 +299,12 @@
             android:id="@+id/user_home_avatar_iv"
             android:layout_width="140dp"
             android:layout_height="143dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="48dp"
             android:src="@drawable/sample_user_avatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/user_home_buy_ticket_bt"

@@ -1,7 +1,9 @@
 package com.example.android_cinema_management.UserManagement;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,22 +12,30 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.android_cinema_management.Accounts;
+import com.example.android_cinema_management.Adapter.ListOfFeedbackReplyAdapter;
 import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.MainActivity;
+import com.example.android_cinema_management.Model.ReplyFeedback;
 import com.example.android_cinema_management.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,8 +48,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.sufficientlysecure.htmltextview.HtmlFormatter;
 import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
+import java.util.ArrayList;
+
 
 public class UserHomeFragment extends Fragment {
+    private RecyclerView.LayoutManager layoutManager;
+    //Declare adapter
+    private ListOfFeedbackReplyAdapter listOfFeedbackReplyAdapter;
+    //Declare Movie list
+    private ArrayList<ReplyFeedback> replyFeedbackArrayList = new ArrayList<>();
     //Declare imageview
     ImageView profile, avatar, combo, transaction, feedback, review, points, notification;
     //Declare textview
@@ -220,11 +237,48 @@ public class UserHomeFragment extends Fragment {
         });
 
         notification.setOnClickListener(View -> {
-            Intent intent = new Intent(getContext(), UserNotification.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getContext(), UserNotification.class);
+//            startActivity(intent);
+            openNotificationDialog(R.layout.activity_user_notification,db,replyFeedbackArrayList,mUser);
         });
         return view;
     }
 
+    @SuppressLint("SetTextI18n")
+    private void openNotificationDialog(int id, FirebaseFirestore db, ArrayList<ReplyFeedback>replyFeedbackArrayList,FirebaseUser user) {
+        // Initialize new dialog
+        Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //Set content for dialog
+        dialog.setContentView(id);
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        // set the dialog to top
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+        // Disable cancel by clicking randomly on the screen
+//        dialog.setCancelable(false);
 
+        dialog.show();
+        RecyclerView recyclerView = dialog.findViewById(R.id.user_list_read_feedback_recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+
+
+        UserNotification.getReplyFeedback(db, replyFeedbackArrayList,()->{
+            System.out.println("REPLY FEEDBACK LIST: " + replyFeedbackArrayList);
+            listOfFeedbackReplyAdapter = new ListOfFeedbackReplyAdapter(getContext(), replyFeedbackArrayList);
+            layoutManager = new LinearLayoutManager(getContext());
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(listOfFeedbackReplyAdapter);
+        },user);
+
+
+
+    }
 }

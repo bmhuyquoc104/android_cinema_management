@@ -65,7 +65,8 @@ public class UserNotification extends AppCompatActivity {
         //
     }
 
-    private void getReplyFeedback(FirebaseFirestore db, ArrayList<ReplyFeedback> replyFeedbackArrayList, Runnable callback, FirebaseUser thisUser) {
+    public static void getReplyFeedback(FirebaseFirestore db, ArrayList<ReplyFeedback> replyFeedbackArrayList, Runnable callback, FirebaseUser thisUser) {
+        replyFeedbackArrayList.clear();
         String email = thisUser.getEmail();
         db.collection("replyToFeedback").whereEqualTo("userEmail",email).get()
                 .addOnCompleteListener(task -> {
@@ -82,8 +83,8 @@ public class UserNotification extends AppCompatActivity {
                                     snapshot.getString("replyFeedbackContent"),
                                     snapshot.getString("userName"),
                                     snapshot.getString("topic"),
-                                    snapshot.getString("userEmail")
-
+                                    snapshot.getString("userEmail"),
+                                    snapshot.getString("image")
                                     // Parse the database type string to int
                             );
                             // add each instance to the list

@@ -65,6 +65,7 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
             replyFeedbackMap.put("feedbackContent", feedbackContent.getText().toString());
             replyFeedbackMap.put("replyFeedbackContent", replyContent.getText().toString());
             replyFeedbackMap.put("adminEmail", "universalCustomerService@gmail.com");
+            replyFeedbackMap.put("image", "https://i.imgur.com/UE0nhcd.png");
 
             DocumentReference docRef = db.collection("replyToFeedback").document(replyFeedbackId);
             docRef.set(replyFeedbackMap).addOnCompleteListener(task -> {

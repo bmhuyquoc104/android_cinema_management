@@ -168,5 +168,6 @@
     <string name="user_home_combo">Combos</string>
     <string name="signIn">Sign In</string>
     <string name="voucherTitle">Voucher</string>
+    <string name="notification">Notification</string>
 
 </resources>
