@@ -19,8 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:startIconTint="@color/colorPrimary4"
         app:endIconTint="@color/colorPrimary4"
-        android:theme="@style/TextInputLayoutStyle"
-        android:background="@drawable/round_login_page">
+        android:theme="@style/TextInputLayoutStyle">
         <AutoCompleteTextView
             android:id="@+id/monthItems"
             android:layout_width="170dp"
