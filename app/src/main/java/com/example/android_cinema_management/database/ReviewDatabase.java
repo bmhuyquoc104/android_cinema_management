@@ -28,7 +28,23 @@ public class ReviewDatabase {
                         reviewArrayList.add(review);
                     }
                 }
-                System.out.println(reviewArrayList);
+                if (count == Objects.requireNonNull(task.getResult()).size()) {
+                    callback.run();
+                }
+            }
+        });
+    }
+
+    public static void getAllReviews(FirebaseFirestore db, ArrayList<Review> reviewArrayList, Runnable callback) {
+        reviewArrayList.clear();
+        db.collection("reviews").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                int count = 0;
+                for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
+                    count++;
+                    Review dataContainer = doc.toObject(Review.class);
+                    reviewArrayList.add(dataContainer);
+                }
                 if (count == Objects.requireNonNull(task.getResult()).size()) {
                     callback.run();
                 }

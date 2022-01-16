@@ -3,6 +3,7 @@ package com.example.android_cinema_management.UserManagement;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,17 +55,18 @@ public class ListOfReviewFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_list_of_review, container, false);
         reviewArrayList = new ArrayList<>();
         //call function get reviews data
-        ReviewDatabase.getReviewsByCurrentUser(db, reviewArrayList, () -> {
+        ReviewDatabase.getAllReviews(db, reviewArrayList, () -> {
 
             // Set fixed size for recycler view
             recyclerView = view.findViewById(R.id.user_list_reviews_recycler_view);
             recyclerView.setHasFixedSize(true);
             reviewAdapter = new ReviewAdapter(getActivity(), reviewArrayList);
             layoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(layoutManager);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false);
+            recyclerView.setLayoutManager(gridLayoutManager);
             // Specify an adapter
             recyclerView.setAdapter(reviewAdapter);
-        },user);
+        });
 
         return view;
     }

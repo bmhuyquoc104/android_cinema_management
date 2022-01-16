@@ -3,6 +3,7 @@ package com.example.android_cinema_management.UserManagement;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android_cinema_management.Adapter.ReviewAdapter;
+import com.example.android_cinema_management.Adapter.ReviewCurrentUserAdapter;
 import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.ReviewDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -26,7 +29,7 @@ public class CurrentUserReviewFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     //Declare adapter
-    private ReviewAdapter reviewAdapter;
+    private ReviewCurrentUserAdapter reviewAdapter;
     //Declare Movie list
     public static ArrayList<Review> reviewArrayList;
 
@@ -46,24 +49,22 @@ public class CurrentUserReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_current_user_review, container, false);
+        View view = inflater.inflate(R.layout.fragment_current_user_review, container, false);
+
+        reviewArrayList = new ArrayList<>();
+        ReviewDatabase.getReviewsByCurrentUser(db, reviewArrayList, () -> {
+
+            // Set fixed size for recycler view
+            recyclerView = view.findViewById(R.id.user_current_user_review_recycler_view);
+            recyclerView.setHasFixedSize(true);
+            reviewAdapter = new ReviewCurrentUserAdapter(getActivity(), reviewArrayList);
+            layoutManager = new LinearLayoutManager(getActivity());
+            recyclerView.setLayoutManager(layoutManager);
+            // Specify an adapter
+            recyclerView.setAdapter(reviewAdapter);
+        },user);
+        return view;
     }
 
-//    //Function get reviews data
-//    private void getReviews(FirebaseFirestore db, ArrayList<Review> reviewArrayList, Runnable callback) {
-//        reviewArrayList.clear();
-//        db.collection("reviews").whereEqualTo("").get().addOnCompleteListener(task -> {
-//            if (task.isSuccessful()) {
-//                int count = 0;
-//                for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
-//                    count++;
-//                    Review dataContainer = doc.toObject(Review.class);
-//                    reviewArrayList.add(dataContainer);
-//                    if (count == Objects.requireNonNull(task.getResult()).size()) {
-//                        callback.run();
-//                    }
-//                }
-//            }
-//        });
-//    }
+
 }

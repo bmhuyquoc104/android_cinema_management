@@ -56,7 +56,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/list_of_current_user_review_date_tv" />
 
             <TextView
-                android:id="@+id/list_of_current_user_dislike_tv"
+                android:id="@+id/list_of_current_user_like_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -106,7 +106,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/list_of_current_user_dislike_tv"
+                app:layout_constraintTop_toBottomOf="@+id/list_of_current_user_like_tv"
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
