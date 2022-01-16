@@ -169,5 +169,7 @@
     <string name="signIn">Sign In</string>
     <string name="voucherTitle">Voucher</string>
     <string name="notification">Notification</string>
+    <string name="guide">UNIVERSAL USER GUIDE</string>
+    <string name="hello">Hello Huy</string>
 
 </resources>

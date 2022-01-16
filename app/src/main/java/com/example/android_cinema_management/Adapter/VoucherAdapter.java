@@ -82,7 +82,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
 
         Spanned errorMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
                 .setHtml(
-                        "<h3> You don't have enough points to exchange this voucher. </p>" +
+                        "<h1> You don't have enough points to exchange this voucher. </p>" +
                                 "<p>Please try another voucher or come back later.</p>" +
                                 "<h3> Thank you for using our service! </h3>"));
 
