@@ -149,6 +149,7 @@ public class SignUpFragment3 extends Fragment {
         String status = "inactive";
         String role = "Uni-Bronze";
         String totalPoint = "0";
+        String avatar = "https://i.imgur.com/lVAmUBL.png";
         String id = UUID.randomUUID().toString();
         System.out.println("fullName: " +fullName + "email: "+email + "password: "+password + confirmPassword + dateOfBirth + phone+address+gender);
 
@@ -195,6 +196,7 @@ public class SignUpFragment3 extends Fragment {
                     user.put("role", role);
                     user.put("Id", id);
                     user.put("point", totalPoint);
+                    user.put("avatar", avatar);
 
                     //Declare log out message
                     Spanned registeredMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()

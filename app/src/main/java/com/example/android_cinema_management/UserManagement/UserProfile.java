@@ -8,12 +8,16 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 
 import android.view.View;
@@ -28,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,6 +51,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.type.TimeOfDayOrBuilder;
 import com.squareup.picasso.Picasso;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -67,7 +75,7 @@ public class UserProfile extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     String userId;
-
+    String userPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +97,20 @@ public class UserProfile extends AppCompatActivity {
         saveChanges = findViewById(R.id.user_profile_save_button);
         reset = findViewById(R.id.user_profile_reset_button);
         avatar = findViewById(R.id.user_profile_avatar_iv);
+        Picasso.get().load(UserHomeFragment.imageAvatar).into(avatar);
+
+        Spanned successMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h3> You have successfully update your profile. </p>" +
+                                "<p>Please double check your <strong > new information </strong>  " +
+                                "<h3> Thank you for using our service! </h3>"));
+
+        Spanned errorMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h1> Oops! Something wrong. </p>" +
+                                "<p>Please try again later.</p>" +
+                                "<h3> Thank you for using our service! </h3>"));
+
         /*
          * Function to open edit dialog
          * */
@@ -179,12 +201,24 @@ public class UserProfile extends AppCompatActivity {
                     .set(userInformation)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(UserProfile.this, "Successfully update user's information", Toast.LENGTH_SHORT).show();
+                            VoucherAdapter.openSuccessfulDialog(R.raw.successfully,successMessage,this);
                         }
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(UserProfile.this, "Fail to update user's information", Toast.LENGTH_SHORT).show();
+                        VoucherAdapter.openSuccessfulDialog(R.raw.warning,errorMessage,this);
                     });
+         db.collection("Users").document(userId).
+                 get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()){
+                        DocumentSnapshot docSnap = task.getResult();
+                        if (docSnap != null){
+                            userPassword = docSnap.getString("password");
+                        }
+                    }
+                }
+            });
         });
 
         //get user's information and put into textEdits
@@ -216,7 +250,7 @@ public class UserProfile extends AppCompatActivity {
                     address.setText(value.getString("address"));
                 }
             });
-            Picasso.get().load("https://images.pexels.com/photos/1200450/pexels-photo-1200450.jpeg?cs=srgb&dl=pexels-louis-1200450.jpg&fm=jpg").into(avatar);
+            Picasso.get().load(UserHomeFragment.imageAvatar).into(avatar);
         });
 
     }
@@ -259,6 +293,7 @@ public class UserProfile extends AppCompatActivity {
 
             }
 
+
             // Detect the user input on text changed
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -268,8 +303,27 @@ public class UserProfile extends AppCompatActivity {
                 System.out.println(currentUserPassword + "test1");
                 System.out.println(inputConfirmPassword + "test2");
                 // Check if user input confirmPassword match their account's password
+                DocumentReference docRef = db.collection("Users").document(userId);
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot docSnap = task.getResult();
+                            if (docSnap != null){
+                                  userPassword = docSnap.getString("password");
+                                if(userPassword.equals(inputConfirmPassword)){
+                                    System.out.println("dung roi" + userPassword);
+                                    change.setEnabled(true);
+                                }
+                                else{
+                                    change.setEnabled(false);
+                                }
+                            }
+                        }
+                    }
+                });
                 //Enable the editttext
-                change.setEnabled(true);
+
 
             }
 

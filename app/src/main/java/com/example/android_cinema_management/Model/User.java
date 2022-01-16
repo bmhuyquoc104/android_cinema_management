@@ -16,10 +16,11 @@ public class User {
     private String role;
     private String id;
     private String totalPoint;
+    private String avatar;
     public User() {
     }
 
-    public User(String email, String fullName, String password, String gender, String dateOfBirth, String address, String status, String phone, String role, String id,String totalPoint) {
+    public User(String email, String fullName, String password, String gender, String dateOfBirth, String address, String status, String phone, String role, String id, String totalPoint, String avatar) {
         this.email = email;
         this.fullName = fullName;
         this.password = password;
@@ -31,6 +32,7 @@ public class User {
         this.role = role;
         this.id = id;
         this.totalPoint = totalPoint;
+        this.avatar = avatar;
     }
 
     //Create only 1 admin for the app
@@ -45,7 +47,8 @@ public class User {
         String role = "admin";
         String phone = "0848731007";
         String status = "inactive";
-        return new User(email, name, password, gender, dateOfBirth,address,status,phone,role,id,"0");
+        String avatar = "https://i.imgur.com/lVAmUBL.png";
+        return new User(email, name, password, gender, dateOfBirth,address,status,phone,role,id,"0",avatar);
     }
 
 
@@ -137,6 +140,14 @@ public class User {
         this.totalPoint = totalPoint;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -151,6 +162,7 @@ public class User {
                 ", role='" + role + '\'' +
                 ", id='" + id + '\'' +
                 ", totalPoint='" + totalPoint + '\'' +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }
