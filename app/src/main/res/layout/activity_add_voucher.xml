@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary3"
-    tools:context=".UserManagement.AdminManagment.UpdateAndDeleteCombo"
+    tools:context=".UserManagement.AdminManagment.AddVoucherActivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -33,7 +33,7 @@
 
 
                 <EditText
-                    android:id="@+id/admin_add_combo_name_et"
+                    android:id="@+id/admin_new_voucher_name_et"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
@@ -46,7 +46,7 @@
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:hint="Combo Name"
+                    android:hint="Voucher Name"
                     android:textColor="@color/colorPrimary4"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
 
 
                 <EditText
-                    android:id="@+id/admin_add_combo_description_sent_et"
+                    android:id="@+id/admin_new_voucher_point_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
@@ -70,7 +70,7 @@
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:hint="Combo Description"
+                    android:hint="Required Point"
                     android:textColor="@color/colorPrimary4"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -80,20 +80,20 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <EditText
-                    android:id="@+id/admin_add_combo_price_sent_et"
+                    android:id="@+id/admin_new_voucher_price_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="104dp"
+                    android:layout_marginTop="188dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_attach_money_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:hint="Price"
+                    android:hint="Voucher Price"
                     android:textColor="@color/colorPrimary4"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -102,13 +102,12 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
-
                 <EditText
-                    android:id="@+id/admin_add_combo_image_sent_et"
+                    android:id="@+id/admin_new_voucher_image_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="350dp"
+                    android:layout_marginTop="280dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
                     android:drawableStart="@drawable/ic_baseline_rate_review_24"
@@ -136,37 +135,50 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
-                <Button
-                    android:id="@+id/admin_update_combo_update_bt"
+                <EditText
+                    android:id="@+id/admin_new_voucher_userName_sent_et"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="452dp"
-                    android:layout_marginRight="15dp"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:letterSpacing="0.21"
-                    android:text="Update"
-                    android:textColor="@color/colorPrimary5"
-                    android:textSize="18sp"
-                    app:cornerRadius="40dp"
-                    app:iconGravity="start"
-                    app:iconPadding="4dp"
-                    app:iconTint="@color/colorPrimary4"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="380dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/round_login_page"
+                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@color/colorPrimary4"
+                    android:fadeScrollbars="true"
+                    android:gravity="start|center_vertical"
+                    android:hint="Client Name"
+                    android:isScrollContainer="true"
+                    android:keepScreenOn="true"
+                    android:lineSpacingExtra="8sp"
+                    android:nestedScrollingEnabled="true"
+                    android:overScrollMode="ifContentScrolls"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary4"
+                    android:textSize="16sp"
+                    android:verticalScrollbarPosition="right"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.551"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
+
 
                 <Button
-                    android:id="@+id/admin_delete_combo_delete_bt"
+                    android:id="@+id/admin_new_voucher_add_bt"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="532dp"
+                    android:layout_marginTop="480dp"
                     android:layout_marginRight="15dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:letterSpacing="0.21"
-                    android:text="Delete"
+                    android:text="Add"
                     android:textColor="@color/colorPrimary5"
                     android:textSize="18sp"
                     app:cornerRadius="40dp"
