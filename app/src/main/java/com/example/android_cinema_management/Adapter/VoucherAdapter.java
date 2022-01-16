@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.text.Spanned;
 import android.view.Gravity;
@@ -24,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.android_cinema_management.Model.Voucher;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.UpdateAndDeleteVoucher;
 import com.example.android_cinema_management.UserManagement.VoucherActivity;
 import com.example.android_cinema_management.database.VoucherDatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -143,8 +145,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
     public int getItemCount() {
         return  voucherList.size();
     }
-
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         TextView price,pointRequire,name;
         ImageView voucherImage;
         Button exchange;
@@ -155,6 +156,13 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
             name = itemView.findViewById(R.id.voucher_name);
             voucherImage = itemView.findViewById(R.id.voucher_image);
             exchange = itemView.findViewById(R.id.voucher_exchange_bt);
+
+            itemView.setOnClickListener(view -> {
+                Voucher voucher = voucherList.get(getAbsoluteAdapterPosition());
+                Intent intent = new Intent(context, UpdateAndDeleteVoucher.class);
+                intent.putExtra("voucher",voucher);
+                context.startActivity(intent);
+            });
         }
     }
 

@@ -1,8 +1,9 @@
 package com.example.android_cinema_management.Model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Voucher {
+public class Voucher implements Serializable {
     private String voucherImage;
     private String voucherName;
     private String voucherPrice;

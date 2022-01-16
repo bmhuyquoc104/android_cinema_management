@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     //Initialize ArrayList for review
     private ArrayList<Review> reviewArrayList;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    int countLike, countDislike;
 
     public ReviewAdapter(Context context, ArrayList<Review> reviewArrayList) {
         this.context = context;
@@ -54,7 +58,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         return reviewArrayList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         TextView likeBtn, dislikeBtn;
         TextView movieName, movieRating, reviewContent, reviewDate, reviewTime;
         public MyViewHolder(@NonNull View itemView) {
@@ -67,6 +71,20 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             reviewContent = itemView.findViewById(R.id.list_of_review_content_tv);
             reviewDate = itemView.findViewById(R.id.list_of_review_date_tv);
             reviewTime = itemView.findViewById(R.id.list_of_review_time_tv);
+
+            likeBtn.setOnClickListener(view -> {
+                countLike++;
+                Review review = reviewArrayList.get(getAbsoluteAdapterPosition());
+                db.collection("review").document(review.getReviewId())
+                        .update("like", countLike);
+            });
+
+            dislikeBtn.setOnClickListener(view -> {
+                countDislike++;
+                Review review = reviewArrayList.get(getAbsoluteAdapterPosition());
+                db.collection("review").document(review.getReviewId())
+                        .update("dislike", countDislike);
+            });
         }
     }
 }
