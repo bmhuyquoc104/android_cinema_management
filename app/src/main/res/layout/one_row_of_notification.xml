@@ -8,6 +8,7 @@
 
     <androidx.cardview.widget.CardView
         style="@style/CardView.Light"
+        android:id="@+id/user_home_notification_cv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"

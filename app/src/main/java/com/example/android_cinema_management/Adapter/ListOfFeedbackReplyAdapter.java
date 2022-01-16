@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_cinema_management.Model.ReplyFeedback;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminManagment.UpdateAndDeleteCombo;
 import com.example.android_cinema_management.UserManagement.UserNotification;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -58,6 +62,7 @@ public class ListOfFeedbackReplyAdapter extends RecyclerView.Adapter<ListOfFeedb
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        // Set the notification string
         SpannableStringBuilder builder = new SpannableStringBuilder();
         Spanned message = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
                 .setHtml(
@@ -75,6 +80,7 @@ public class ListOfFeedbackReplyAdapter extends RecyclerView.Adapter<ListOfFeedb
 
         holder.reply.setText(builder, Button.BufferType.SPANNABLE);
         Picasso.get().load(replyFeedbackArrayList.get(position).getAdminImage()).into(holder.image);
+        // Show detail when click item
         holder.itemView.setOnClickListener(View ->{
             String dateTime =   replyFeedbackArrayList.get(position).getDate() + " " +
                     replyFeedbackArrayList.get(position).getTime();
@@ -105,6 +111,49 @@ public class ListOfFeedbackReplyAdapter extends RecyclerView.Adapter<ListOfFeedb
         }
     }
 
+    public ArrayList<ReplyFeedback> getReplyFeedbackArrayList() {
+        return replyFeedbackArrayList;
+    }
+
+    /*
+    * Function to remove feedback object from array list
+    * */
+    public void removeItem(int position) {
+        replyFeedbackArrayList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    /*
+     * Function to restore feedback object from array list
+     * */
+    public void restoreItem(ReplyFeedback item, int position) {
+        System.out.println(item);
+        replyFeedbackArrayList.add(position, item);
+        System.out.println(replyFeedbackArrayList);
+        notifyItemInserted(position);
+    }
+
+    /*
+     * Function to remove feedback object from database
+     * */
+    public void removeFromFireStore (FirebaseFirestore db,String id){
+        System.out.println("positionId" + id);
+        db.collection("replyToFeedback").document(id)
+                .delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                        }else {
+                        }
+                    }
+                });
+    }
+
+
+    /*
+     * Function to open detail feedback dialog
+     * */
     @SuppressLint("SetTextI18n")
     private void openDetailFeedback(int layout, String topic,String date,String id,
                                     String adminEmail,String userEmail,String userContent,
@@ -151,8 +200,5 @@ public class ListOfFeedbackReplyAdapter extends RecyclerView.Adapter<ListOfFeedb
         });
 
         dialog.show();
-
-
-
     }
 }

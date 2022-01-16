@@ -9,9 +9,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,8 +40,11 @@ import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.MainActivity;
 import com.example.android_cinema_management.Model.ReplyFeedback;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.SwipeToDeleteCallBack;
+import com.example.android_cinema_management.UserManagement.AdminManagment.UpdateAndDeleteCombo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -52,10 +58,11 @@ import java.util.ArrayList;
 
 
 public class UserHomeFragment extends Fragment {
+    //Declare recycler view
     private RecyclerView.LayoutManager layoutManager;
     //Declare adapter
     private ListOfFeedbackReplyAdapter listOfFeedbackReplyAdapter;
-    //Declare Movie list
+    //Declare reply feedback list
     private ArrayList<ReplyFeedback> replyFeedbackArrayList = new ArrayList<>();
     //Declare imageview
     ImageView profile, avatar, combo, transaction, feedback, review, points, notification;
@@ -68,10 +75,14 @@ public class UserHomeFragment extends Fragment {
     public static String gender;
     public static String totalPoint;
 
+    // Declare and initialize firebase services
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser mUser = firebaseAuth.getCurrentUser();
     String userId = mUser.getUid();
+
+    // Initialize the layout
+    ConstraintLayout constraintLayout;
     public UserHomeFragment() {
         // Required empty public constructor
     }
@@ -94,6 +105,7 @@ public class UserHomeFragment extends Fragment {
         type = view.findViewById(R.id.user_home_account_type);
         buyTicket = view.findViewById(R.id.user_home_buy_ticket_bt);
         notification = view.findViewById(R.id.user_home_notification);
+        constraintLayout = view.findViewById(R.id.one_row_of_notification_clo);
         // Receive the bundle from other fragments
         Bundle bundle = this.getArguments();
         System.out.println(bundle);
@@ -137,17 +149,8 @@ public class UserHomeFragment extends Fragment {
             }
         });
 
-        // Text and color for string 2
-//        SpannableString str2= new SpannableString(name);
-//        str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
-//        builder.append(str2);
 
-
-
-        // Set text for textView
-
-
-        /**
+        /*
          * Function to switch to profile page
          *
          * */
@@ -236,14 +239,17 @@ public class UserHomeFragment extends Fragment {
             }
         });
 
+        // Show drop down notification dialog
         notification.setOnClickListener(View -> {
-//            Intent intent = new Intent(getContext(), UserNotification.class);
-//            startActivity(intent);
             openNotificationDialog(R.layout.activity_user_notification,db,replyFeedbackArrayList,mUser);
         });
         return view;
     }
 
+
+    /*
+    * Function to open notification dialog
+    * */
     @SuppressLint("SetTextI18n")
     private void openNotificationDialog(int id, FirebaseFirestore db, ArrayList<ReplyFeedback>replyFeedbackArrayList,FirebaseUser user) {
         // Initialize new dialog
@@ -261,24 +267,76 @@ public class UserHomeFragment extends Fragment {
         // set the dialog to top
         windowAttributes.gravity = Gravity.CENTER;
         window.setAttributes(windowAttributes);
-        // Disable cancel by clicking randomly on the screen
-//        dialog.setCancelable(false);
-
+        // enable cancel by clicking randomly on the screen
+        dialog.setCancelable(true);
+        // Show the dialog
         dialog.show();
+
+        //Binding the value to dialog layout
         RecyclerView recyclerView = dialog.findViewById(R.id.user_list_read_feedback_recycler_view);
+        ConstraintLayout constraintLayout = dialog.findViewById(R.id.one_row_of_notification_clo);
         recyclerView.setHasFixedSize(true);
 
 
-
+        /*
+        * Function to get all reply feedback from the database and display on the recycler view
+        * */
         UserNotification.getReplyFeedback(db, replyFeedbackArrayList,()->{
-            System.out.println("REPLY FEEDBACK LIST: " + replyFeedbackArrayList);
             listOfFeedbackReplyAdapter = new ListOfFeedbackReplyAdapter(getContext(), replyFeedbackArrayList);
             layoutManager = new LinearLayoutManager(getContext());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(listOfFeedbackReplyAdapter);
+
+            // Function that allow the user to choose delete option when swipe the item
+            SwipeToDeleteCallBack swipeToDeleteCallback = new SwipeToDeleteCallBack(getContext()) {
+                @Override
+                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                    // Binding the position to adapter
+                     int position = viewHolder.getBindingAdapterPosition();
+                    System.out.println(position);
+                    String positionId = listOfFeedbackReplyAdapter.getReplyFeedbackArrayList().get(position).getReplyId();
+                     // Initialize the object for replyFeedback
+                     ReplyFeedback item = listOfFeedbackReplyAdapter.getReplyFeedbackArrayList().get(position);
+                     /*
+                     * Function to remove the item from the recycler view
+                     * */
+                    listOfFeedbackReplyAdapter.removeItem(position);
+                    // Initialize snack bar to show undo message
+                    Snackbar snackbar = Snackbar
+                            .make(constraintLayout, "This notification was deleted.", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("UNDO", new View.OnClickListener() {
+                        // Restore the delete item if the user accidently delete the wrong one
+                        @Override
+                        public void onClick(View view) {
+                            listOfFeedbackReplyAdapter.restoreItem(item, position);
+                            recyclerView.scrollToPosition(position);
+                        }
+                    });
+                    // Customize the snackbar
+                    snackbar.setDuration(1000);
+                    snackbar.setTextColor(getResources().getColor(R.color.colorPrimary4));
+                    snackbar.setBackgroundTint(getResources().getColor(R.color.colorPrimary3));
+                    snackbar.setActionTextColor(getResources().getColor(R.color.colorPrimary2));
+                    snackbar.show();
+                    /*
+                    * Function to completely delete the notification from the database after the user not choosing the undo option
+                    * */
+                    snackbar.addCallback(new Snackbar.Callback(){
+
+                        @Override
+                        public void onDismissed(Snackbar snackbar, int event) {
+                            if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
+                                listOfFeedbackReplyAdapter.removeFromFireStore(db,positionId);
+                            }
+                        }
+                    });
+                }
+            };
+
+            // Initialize itemTouchHelper
+            ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
+            itemTouchhelper.attachToRecyclerView(recyclerView);
+
         },user);
-
-
-
     }
 }

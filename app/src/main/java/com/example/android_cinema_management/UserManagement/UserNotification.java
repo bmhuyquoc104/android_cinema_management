@@ -89,7 +89,8 @@ public class UserNotification extends AppCompatActivity {
                             );
                             // add each instance to the list
                             replyFeedbackArrayList.add(replyFeedback);
-                            System.out.println("huy ne" + replyFeedbackArrayList);
+                            System.out.println("huy ne haha" + replyFeedbackArrayList);
+                            System.out.println("size ne" + replyFeedbackArrayList.size());
 
                         }
                         // After getting the data successfully, run the run back
