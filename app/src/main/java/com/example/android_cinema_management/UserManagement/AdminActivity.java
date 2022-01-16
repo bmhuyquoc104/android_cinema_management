@@ -19,6 +19,7 @@ import com.example.android_cinema_management.UserManagement.AdminManagment.AddDi
 import com.example.android_cinema_management.UserManagement.AdminManagment.AddVoucherActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.CinemaActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.ComboActivity;
+import com.example.android_cinema_management.UserManagement.AdminManagment.DiscountActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.FeedbackActivity;
 
 
@@ -94,7 +95,7 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         discount.setOnClickListener(view ->{
-            Intent intentDiscount = new Intent(this, AddDiscount.class);
+            Intent intentDiscount = new Intent(this, DiscountActivity.class);
             startActivity(intentDiscount);
         });
 
