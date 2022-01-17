@@ -34,6 +34,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class AddDiscount extends AppCompatActivity {
+
+    //Declare TextInputEditText TextInputLayout AutoCompleteTextView Button String and FirebaseFirestore
     private TextInputEditText name, content, image;
     private TextInputLayout monthMenu;
     private AutoCompleteTextView monthACT;
@@ -47,6 +49,7 @@ public class AddDiscount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_discount);
 
+        //Binding variable with entity from xml file
         name = findViewById(R.id.ed_name);
         content = findViewById(R.id.ed_content);
         image = findViewById(R.id.ed_image);
@@ -55,15 +58,16 @@ public class AddDiscount extends AppCompatActivity {
         post = findViewById(R.id.bt_post);
         back = findViewById(R.id.bt_back);
 
+        //Initailize db of FirebaseFirestore
         db = FirebaseFirestore.getInstance();
 
-        //        Get the extra information to display
+        //Get the extra information to display
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
             return;
         }
 
-        //        Assign the extra info
+        //Assign the extra info
         Discount discount = (Discount) bundle.get("object_discount");
         String id = (String) bundle.get("id_discount");
 
@@ -91,6 +95,7 @@ public class AddDiscount extends AppCompatActivity {
             }
         });
 
+        //Listen to post onClick event
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +112,7 @@ public class AddDiscount extends AppCompatActivity {
             }
         });
 
+        //Listen to back onClick event
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,6 +140,7 @@ public class AddDiscount extends AppCompatActivity {
 //        });
 //    }
 
+    //Function saving data to Firestore
     private void saveToFireStore(String id, String n, String m, String c, String i) {
         if (!n.isEmpty() && !m.isEmpty() && !c.isEmpty() && !i.isEmpty()) {
             HashMap<String, Object> map = new HashMap<>();

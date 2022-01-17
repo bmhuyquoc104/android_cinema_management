@@ -21,7 +21,7 @@ import java.util.UUID;
 
 public class AddVoucherFragment extends Fragment {
 
-
+    // Initialize EditText and Button
     EditText voucherName, point, price, imageURL;
     Button addButton;
 
@@ -36,12 +36,14 @@ public class AddVoucherFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_voucher, container, false);
 
+        //Binding variable with entity from xml file
         voucherName = view.findViewById(R.id.admin_new_voucher_name_et);
         point = view.findViewById(R.id.admin_new_voucher_point_sent_et);
         price = view.findViewById(R.id.admin_new_voucher_price_sent_et);
         imageURL = view.findViewById(R.id.admin_new_voucher_image_sent_et);
         addButton = view.findViewById(R.id.admin_new_voucher_add_bt);
 
+        //Listen to onClick addButton
         addButton.setOnClickListener(view1 -> {
             String voucherId = UUID.randomUUID().toString();
             Map<String, Object> voucherMap = new HashMap<>();
@@ -51,6 +53,7 @@ public class AddVoucherFragment extends Fragment {
             voucherMap.put("pointRequired", point.getText().toString());
             voucherMap.put("image", imageURL.getText().toString());
 
+            //saving discountMap into collection name Discount
             DocumentReference documentReferenceForVoucher = db.collection("Voucher")
                     .document(voucherId);
             documentReferenceForVoucher.set(voucherMap).addOnCompleteListener(task -> {

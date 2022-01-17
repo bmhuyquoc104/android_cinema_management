@@ -54,6 +54,7 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
 
         });
 
+        //setText corresponding with EditText variable that has been binding
         fullName.setText(feedback.getUser().get("fullName").toString());
         email.setText(feedback.getUser().get("email").toString());
         date.setText(feedback.getDate());
@@ -61,6 +62,7 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
         topic.setText(feedback.getTopic());
         feedbackContent.setText(feedback.getFeedbackContent());
 
+        //Listen to replyBtn onCLick event
         replyBtn.setOnClickListener(view -> {
             String replyFeedbackId = UUID.randomUUID().toString();
             Map<String, Object> replyFeedbackMap = new HashMap<>();
@@ -75,6 +77,7 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
             replyFeedbackMap.put("adminEmail", "universalCustomerService@gmail.com");
             replyFeedbackMap.put("image", "https://i.imgur.com/UE0nhcd.png");
 
+            //saving replyFeedbackMap
             DocumentReference docRef = db.collection("replyToFeedback").document(replyFeedbackId);
             docRef.set(replyFeedbackMap).addOnCompleteListener(task -> {
                if (task.isSuccessful()){
