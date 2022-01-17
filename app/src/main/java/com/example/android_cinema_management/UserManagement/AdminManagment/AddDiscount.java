@@ -117,7 +117,7 @@ public class AddDiscount extends AppCompatActivity {
     }
 
     private void updateToFireStore(String id, String n, String m, String c, String i) {
-        db.collection("Discounts").document(id).update("Name", n, "Month", m, "Content", c, "Image", i)
+        db.collection("Discounts").document(id).update("name", n, "Month", m, "Content", c, "Image", i)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -138,10 +138,10 @@ public class AddDiscount extends AppCompatActivity {
     private void saveToFireStore(String id, String n, String m, String c, String i) {
         if (!n.isEmpty() && !m.isEmpty() && !c.isEmpty() && !i.isEmpty()) {
             HashMap<String, Object> map = new HashMap<>();
-            map.put("Name", n);
-            map.put("Month", m);
-            map.put("Content", c);
-            map.put("Image", i);
+            map.put("name", n);
+            map.put("month", m);
+            map.put("content", c);
+            map.put("image", i);
 
             db.collection("Discounts").document(id).set(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

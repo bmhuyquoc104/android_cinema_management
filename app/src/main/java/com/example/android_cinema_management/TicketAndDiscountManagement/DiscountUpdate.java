@@ -60,7 +60,7 @@ public class DiscountUpdate extends AppCompatActivity {
         Discount discount = (Discount) bundle.get("object_discount");
         String id = (String) bundle.get("id_discount");
 
-        if (bundle != null) {
+        if (discount != null) {
             post.setText("Update");
             name.setText(discount.getName());
             content.setText(discount.getContent());
@@ -93,7 +93,8 @@ public class DiscountUpdate extends AppCompatActivity {
 
 
                 Bundle bundle1 = getIntent().getExtras();
-                if (bundle1 != null) {
+                Discount discount1 = (Discount) bundle1.get("object_discount");
+                if (discount1 != null) {
                     String id = (String) bundle.get("id_discount");
                     updateToFireStore(id, nameInput, monthChosen, contentInput, imageInput);
                 } else {
@@ -113,7 +114,7 @@ public class DiscountUpdate extends AppCompatActivity {
     }
 
     private void updateToFireStore(String id, String n, String m, String c, String i) {
-        db.collection("Discounts").document(id).update("Name", n, "Month", m, "Content", c, "Image", i)
+        db.collection("discounts").document(id).update("name", n, "month", m, "content", c, "image", i)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -134,10 +135,11 @@ public class DiscountUpdate extends AppCompatActivity {
     private void saveToFireStore(String id, String n, String m, String c, String i) {
         if (!n.isEmpty() && !m.isEmpty() && !c.isEmpty() && !i.isEmpty()) {
             HashMap<String, Object> map = new HashMap<>();
-            map.put("Name", n);
-            map.put("Month", m);
-            map.put("Content", c);
-            map.put("Image", i);
+            map.put("name", n);
+            map.put("month", m);
+            map.put("content", c);
+            map.put("discountID", id);
+            map.put("image", i);
 
             db.collection("Discounts").document(id).set(map)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

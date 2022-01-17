@@ -1,5 +1,7 @@
 package com.example.android_cinema_management.Adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,7 +62,7 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
 //    Go to the detail of a discount
     private void onClickGoToDetail(Discount discount) {
         Intent intent = new Intent(mContext, DiscountDetails.class);
-        Bundle bundle = new Bundle();
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext).toBundle();
         bundle.putSerializable("object_discount", discount);
         intent.putExtras(bundle);
         mContext.startActivity(intent);
