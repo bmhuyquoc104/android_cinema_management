@@ -142,6 +142,6 @@ Hung self-evaluate contribution     100%        90%         80%
 
 Khang self-evaluate contribution    100%        70%         70%
 
-Huy self-evaluation contribution    100%        75%         50%
+Huy self-evaluation contribution    100%        75%         60%
 (Leader)
 
