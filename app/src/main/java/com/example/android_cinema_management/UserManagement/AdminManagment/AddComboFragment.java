@@ -44,11 +44,11 @@ public class AddComboFragment extends Fragment {
         addButton.setOnClickListener(View -> {
             String comboId = UUID.randomUUID().toString();
             Map<String, Object> comboMap = new HashMap<>();
-            comboMap.put("comboId", comboId);
-            comboMap.put("comboName", comboName.getText().toString());
+            comboMap.put("id", comboId);
+            comboMap.put("name", comboName.getText().toString());
             comboMap.put("description", description.getText().toString());
             comboMap.put("price", price.getText().toString());
-            comboMap.put("imageURL", imageURL.getText().toString());
+            comboMap.put("image", imageURL.getText().toString());
 
             DocumentReference documentReferenceForCombo = db.collection("combo")
                     .document(comboId);

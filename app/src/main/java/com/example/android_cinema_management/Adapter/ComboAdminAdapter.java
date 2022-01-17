@@ -1,5 +1,6 @@
 package com.example.android_cinema_management.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -37,12 +38,13 @@ public class ComboAdminAdapter extends RecyclerView.Adapter<ComboAdminAdapter.My
         return new MyViewHold(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHold holder, int position) {
-        holder.comboName.setText(comboArrayList.get(position).getComboName());
-        holder.comboPrice.setText(comboArrayList.get(position).getPrice());
+        holder.comboName.setText("Combo name: " + comboArrayList.get(position).getName());
+        holder.comboPrice.setText("Price: " + comboArrayList.get(position).getPrice());
         holder.comboDescription.setText(comboArrayList.get(position).getDescription());
-        Picasso.get().load(comboArrayList.get(position).getImageURL()).into(holder.comboImage);
+        Picasso.get().load(comboArrayList.get(position).getImage()).into(holder.comboImage);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class ComboAdminAdapter extends RecyclerView.Adapter<ComboAdminAdapter.My
             comboName = itemView.findViewById(R.id.comboName);
             comboPrice = itemView.findViewById(R.id.comboPrice);
             comboDescription = itemView.findViewById(R.id.comboDescription);
-            comboImage = itemView.findViewById(R.id.comboImage);
+            comboImage = itemView.findViewById(R.id.admin_combo_iv);
 
             itemView.setOnClickListener(view -> {
                 Combo combo = comboArrayList.get(getAbsoluteAdapterPosition());

@@ -15,6 +15,7 @@ import com.example.android_cinema_management.Adapter.ReviewAdapter;
 import com.example.android_cinema_management.Model.Combo;
 import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.ComboDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,7 +46,7 @@ public class ListOfComboAdminFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_list_of_combo_admin, container, false);
         comboArrayList = new ArrayList<>();
         //call function get reviews data
-        getCombos(db, comboArrayList, () -> {
+        ComboDatabase.getCombos(db, comboArrayList, () -> {
             System.out.println("COMBO LIST: " + comboArrayList);
 
             // Set fixed size for recycler view
@@ -71,6 +72,7 @@ public class ListOfComboAdminFragment extends Fragment {
                     count++;
                     Combo dataContainer = doc.toObject(Combo.class);
                     comboArrayList.add(dataContainer);
+                    System.out.println(comboArrayList);
                     if (count == Objects.requireNonNull(task.getResult()).size()) {
                         callback.run();
                     }

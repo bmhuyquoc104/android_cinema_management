@@ -50,10 +50,10 @@ public class UserComboAdapter extends RecyclerView.Adapter<UserComboAdapter.MyVi
     public void onBindViewHolder(@NonNull UserComboAdapter.MyViewHolder holder, int position) {
         String priceFormat = formatter.format(Double.parseDouble(comboArrayList.get(position).getPrice()));
         holder.price.setText(priceFormat + " VNĐ");
-        holder.name.setText(comboArrayList.get(position).getComboName());
+        holder.name.setText(comboArrayList.get(position).getName());
         holder.description.setText(comboArrayList.get(position).getDescription());
         // Load image to the holder using Picasso library
-        Picasso.get().load(comboArrayList.get(position).getImageURL()).into(holder.comboImage);
+        Picasso.get().load(comboArrayList.get(position).getImage()).into(holder.comboImage);
     }
 
     @Override

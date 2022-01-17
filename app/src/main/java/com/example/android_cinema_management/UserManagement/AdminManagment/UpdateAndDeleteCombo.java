@@ -21,7 +21,7 @@ import java.util.UUID;
 
 public class UpdateAndDeleteCombo extends AppCompatActivity {
 
-    EditText comboName, comboDescription, price, imageURL;
+    EditText comboName, comboDescription, comboPrice, imageURL;
     Button updateBtn, deleteBtn;
 
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
@@ -35,27 +35,28 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
 
         combo = (Combo) getIntent().getSerializableExtra("combo");
 
-        comboName = findViewById(R.id.admin_add_combo_name_et);
-        comboDescription = findViewById(R.id.admin_add_combo_description_sent_et);
-        price = findViewById(R.id.admin_new_combo_price_sent_et);
-        imageURL = findViewById(R.id.admin_add_combo_image_sent_et);
+
+        comboName = findViewById(R.id.admin_update_combo_name_et);
+        comboDescription = findViewById(R.id.admin_update_combo_description_sent_et);
+        comboPrice = findViewById(R.id.admin_combo_price_et);
+        imageURL = findViewById(R.id.admin_update_combo_image_sent_et);
         updateBtn = findViewById(R.id.admin_update_combo_update_bt);
         deleteBtn = findViewById(R.id.admin_delete_combo_delete_bt);
-
-        comboName.setText(combo.getComboName());
+        System.out.println(combo.getPrice());
+        comboName.setText(combo.getName());
         comboDescription.setText(combo.getDescription());
-        price.setText(combo.getPrice());
-        imageURL.setText(combo.getImageURL());
-
+//        price.setText(combo.getPrice());
+        imageURL.setText(combo.getImage());
+        comboPrice.setText(combo.getPrice());
         updateBtn.setOnClickListener(view -> {
             Map<String, Object> comboMap = new HashMap<>();
-            comboMap.put("comboId", combo.getComboId());
-            comboMap.put("comboName", comboName);
-            comboMap.put("description", comboDescription);
-            comboMap.put("price", price);
-            comboMap.put("imageURL", imageURL);
+            comboMap.put("id", combo.getId());
+            comboMap.put("name", comboName.getText().toString());
+            comboMap.put("description", comboDescription.getText().toString());
+            comboMap.put("price", comboPrice.getText().toString());
+            comboMap.put("image", imageURL.getText().toString());
 
-            DocumentReference documentReference = db.collection("combo").document(combo.getComboId());
+            DocumentReference documentReference = db.collection("combo").document(combo.getId());
             documentReference.set(comboMap).addOnCompleteListener(task -> {
                if (task.isSuccessful()){
                    Toast.makeText(this, "COMBO UPDATED", Toast.LENGTH_SHORT).show();
@@ -64,7 +65,7 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
         });
 
         deleteBtn.setOnClickListener(view -> {
-            db.collection("combo").document(combo.getComboId())
+            db.collection("combo").document(combo.getId())
                     .delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

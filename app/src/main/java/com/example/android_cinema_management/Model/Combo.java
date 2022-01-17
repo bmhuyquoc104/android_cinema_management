@@ -4,37 +4,37 @@ import java.io.Serializable;
 
 public class Combo implements Serializable {
 
-    private String comboId;
-    private String comboName;
+    private String id;
+    private String name;
     private String description;
     private String price;
-    private String imageURL;
+    private String image;
 
     public Combo() {
     }
 
-    public Combo(String comboId, String comboName, String description, String price, String imageURL) {
-        this.comboId = comboId;
-        this.comboName = comboName;
+    public Combo(String id, String name, String description, String price, String image) {
+        this.id = id;
+        this.name = name;
         this.description = description;
         this.price = price;
-        this.imageURL = imageURL;
+        this.image = image;
     }
 
-    public String getComboId() {
-        return comboId;
+    public String getId() {
+        return id;
     }
 
-    public void setComboId(String comboId) {
-        this.comboId = comboId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getComboName() {
-        return comboName;
+    public String getName() {
+        return name;
     }
 
-    public void setComboName(String comboName) {
-        this.comboName = comboName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -53,22 +53,22 @@ public class Combo implements Serializable {
         this.price = price;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
     public String toString() {
         return "Combo{" +
-                "comboId='" + comboId + '\'' +
-                ", comboName='" + comboName + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price='" + price + '\'' +
-                ", imageURL='" + imageURL + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
