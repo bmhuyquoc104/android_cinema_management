@@ -9,13 +9,14 @@
 
     <ImageView
         android:id="@+id/back"
-        android:layout_width="62dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/discount"
@@ -25,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:text="@string/discountDetail"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textColor ="@color/colorPrimary2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +34,7 @@
         android:id="@+id/discountImg"
         android:layout_width="150dp"
         android:layout_height="200dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="@string/movieImage"
         android:cropToPadding="true"
         android:scaleType="centerCrop"
@@ -48,15 +49,15 @@
         android:id="@+id/discountDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:paddingStart="40dp"
         android:paddingTop="20dp"
         android:paddingEnd="20dp"
         android:paddingBottom="20dp"
         android:text="Discount detail"
         android:textColor="@color/colorPrimary4"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/discountImg" />
 

@@ -39,7 +39,7 @@ public class NewsDetails extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                finish();
             }
         });
 
@@ -55,4 +55,9 @@ public class NewsDetails extends AppCompatActivity {
 
         Picasso.get().load(news.getImage()).into(NewsImage);
     }
+
+    @Override
+    public void onBackPressed(){
+
+    };
 }

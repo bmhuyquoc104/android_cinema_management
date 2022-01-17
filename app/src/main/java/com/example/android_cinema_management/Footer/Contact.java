@@ -50,8 +50,12 @@ public class Contact extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                finish();
             }
         });
     }
+    @Override
+    public void onBackPressed(){
+
+    };
 }

@@ -9,13 +9,14 @@
 
     <ImageView
         android:id="@+id/back"
-        android:layout_width="62dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_baseline_keyboard_return_24"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/copyRight"
@@ -32,39 +33,45 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="262dp"
+        android:layout_height="268dp"
+        android:layout_marginTop="28dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
         android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_final_icon2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/copyRight"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/app_logo_2"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toBottomOf="@id/copyRight" />
 
     <TextView
         android:id="@+id/company"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="180dp"
         android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:text="Company Universal Vietnam"
+        android:textColor="@color/colorPrimary4"
         android:textSize="20sp"
-        android:textColor ="@color/colorPrimary4"
-        app:layout_constraintTop_toBottomOf="@id/logo" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/copyRight" />
 
     <TextView
         android:id="@+id/companyContent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
         android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:text="Company Content"
+        android:textColor="@color/colorPrimary4"
         android:textSize="15sp"
-        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/company" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

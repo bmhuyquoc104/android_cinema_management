@@ -9,24 +9,26 @@
 
     <ImageView
         android:id="@+id/back"
-        android:layout_width="62dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_baseline_keyboard_return_24"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/job"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Job Application"
+        android:textColor="@color/colorPrimary4"
         android:textSize="30sp"
-        android:textColor ="@color/colorPrimary4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -46,13 +48,14 @@
         android:id="@+id/jobContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/jobPic"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="32dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="Job Content"
+        android:textColor="@color/colorPrimary4"
         android:textSize="15sp"
-        android:textColor ="@color/colorPrimary4"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/jobPic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

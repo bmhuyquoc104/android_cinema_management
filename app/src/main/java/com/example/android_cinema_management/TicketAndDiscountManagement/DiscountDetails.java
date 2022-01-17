@@ -40,7 +40,7 @@ public class DiscountDetails extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                finish();
             }
         });
 
@@ -54,4 +54,8 @@ public class DiscountDetails extends AppCompatActivity {
 
         Picasso.get().load(discount.getImage()).into(DiscountImage);
     }
+    @Override
+    public void onBackPressed(){
+
+    };
 }
