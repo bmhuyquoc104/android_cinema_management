@@ -26,7 +26,8 @@
         android:layout_marginTop="16dp"
         android:text="Copy Right"
         android:textSize="30sp"
-        android:textColor ="@color/colorPrimary4"
+        android:textStyle="bold"
+        android:textColor ="@color/colorPrimary2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
