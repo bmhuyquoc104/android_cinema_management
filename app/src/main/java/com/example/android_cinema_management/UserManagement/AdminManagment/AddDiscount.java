@@ -96,7 +96,8 @@ public class AddDiscount extends AppCompatActivity {
 
 
                 Bundle bundle1 = getIntent().getExtras();
-                if (bundle1 != null) {
+                Discount discount1 = (Discount) bundle1.get("object_discount");
+                if (discount1 != null) {
                     String id = (String) bundle.get("id_discount");
                     updateToFireStore(id, nameInput, monthChosen, contentInput, imageInput);
                 } else {
