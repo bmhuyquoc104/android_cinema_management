@@ -112,7 +112,7 @@ public class DiscountFragment extends Fragment {
 
     //    Get the data from Firestore
     private void EventChangeListener() {
-        db.collection("Discounts").orderBy("Name", Query.Direction.ASCENDING)
+        db.collection("Discounts").orderBy("name", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

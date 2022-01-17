@@ -3,16 +3,22 @@ package com.example.android_cinema_management.Model;
 import java.io.Serializable;
 
 public class Discount implements Serializable {
-    private String Name, Month, Content, Image;
+    private String Name;
+    private String Month;
+    private String Content;
+    private String Image;
+
+    private String Id;
 
     public Discount(){}
 
 
 
-    public Discount(String name, String month, String image, String content) {
+    public Discount(String name, String month, String image, String id, String content) {
         this.Name = name;
         this.Month = month;
         this.Content = content;
+        this.Id = id;
         this.Image = image;
     }
 
@@ -43,5 +49,9 @@ public class Discount implements Serializable {
 
     public String getImage() {
         return Image;
+    }
+
+    public String getId() {
+        return Id;
     }
 }
