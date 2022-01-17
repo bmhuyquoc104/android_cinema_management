@@ -19,10 +19,11 @@ public class DiscountDatabase {
                         // Create an instance and load data to cinema
                         Discount discount = new Discount(
                                 snapshot.getString("discountId"),
-                                snapshot.getString("Name"),
-                                snapshot.getString("Month"),
-                                snapshot.getString("Image"),
-                                snapshot.getString("Content"));
+                                snapshot.getString("name"),
+                                snapshot.getString("month"),
+                                snapshot.getString("content"),
+                                snapshot.getString("image")
+                               );
                         // add each instance to the list
                         discountList.add(discount);
                     }

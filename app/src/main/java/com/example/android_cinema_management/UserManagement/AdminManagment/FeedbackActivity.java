@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.example.android_cinema_management.Adapter.FeedbackAdapter;
 import com.example.android_cinema_management.Adapter.FeedbackAdminAdapter;
 import com.example.android_cinema_management.Model.Feedback;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,13 +30,13 @@ public class FeedbackActivity extends AppCompatActivity {
     private FeedbackAdminAdapter feedbackAdminAdapter;
     //Declare Movie list
     public static ArrayList<Feedback> feedbackArrayList;
-
+    ImageView close;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
-
+        close = findViewById(R.id.admin_feedback_close_iv);
         feedbackArrayList = new ArrayList<>();
         //call function get reviews data
         getFeedbacks(db, feedbackArrayList, () -> {
@@ -41,12 +44,17 @@ public class FeedbackActivity extends AppCompatActivity {
 
             // Set fixed size for recycler view
             recyclerView = findViewById(R.id.admin_list_feedback_admin_recycler_view);
+
             recyclerView.setHasFixedSize(true);
             feedbackAdminAdapter = new FeedbackAdminAdapter(this, feedbackArrayList);
             layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
             // Specify an adapter
             recyclerView.setAdapter(feedbackAdminAdapter);
+        });
+        close.setOnClickListener(View ->{
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -67,4 +75,9 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed(){
+
+    };
 }

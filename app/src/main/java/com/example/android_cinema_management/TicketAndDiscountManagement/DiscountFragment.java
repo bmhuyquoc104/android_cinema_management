@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -22,8 +23,10 @@ import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.CinemaAdapter;
 import com.example.android_cinema_management.Adapter.DiscountAdapter;
+import com.example.android_cinema_management.Adapter.DiscountAdminAdapter;
 import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.Model.Discount;
+import com.example.android_cinema_management.database.DiscountDatabase;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -66,15 +69,25 @@ public class DiscountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_discount, container, false);
         Discount = view.findViewById(R.id.discount);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
-        Discount.setLayoutManager(gridLayoutManager);
+//        Discount.setLayoutManager(gridLayoutManager);
 
         //        Discount database
         db = FirebaseFirestore.getInstance();
         discountArrayList = new ArrayList<Discount>();
+        discountAdapter = new DiscountAdapter(getActivity(), discountArrayList);
 
-        discountAdapter = new DiscountAdapter(getContext(), discountArrayList);
-        EventChangeListener();
-        Discount.setAdapter(discountAdapter);
+        DiscountDatabase.showData(db,discountArrayList,()->{
+            System.out.println(discountArrayList);
+            Discount = view.findViewById(R.id.discount);
+            Discount.setHasFixedSize(true);
+            discountAdapter = new DiscountAdapter(getActivity(), discountArrayList);
+            // use grid layout manager to display 2 items in one row
+            Discount.setLayoutManager(gridLayoutManager);
+            // Specify an adapter
+            Discount.setAdapter(discountAdapter);
+        });
+
+
 
 //        Month drop-down menu
         monthMenu = view.findViewById(R.id.month);
@@ -139,12 +152,4 @@ public class DiscountFragment extends Fragment {
         }
     }
 
-    //    Clear the data on destroy
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (discountAdapter != null) {
-            discountAdapter.release();
-        }
-    }
 }

@@ -9,6 +9,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="990dp">
+        <ImageView
+            android:id="@+id/admin_reply_feedback_iv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/todo"
+            android:tint="@color/colorPrimary2"
+            android:src="@drawable/ic_baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseAppTint" />
 
 
         <androidx.cardview.widget.CardView
@@ -18,7 +31,10 @@
             app:cardBackgroundColor="@color/colorPrimary3"
             app:cardCornerRadius="8dp"
             app:cardElevation="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="30dp"
             app:contentPadding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,10 +52,10 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="15dp"
-                    android:drawableTint="@color/colorPrimary4"
                     android:background="@drawable/round_login_page"
                     android:drawableStart="@drawable/ic_baseline_person_24"
                     android:drawablePadding="15dp"
+                    android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
@@ -135,11 +151,11 @@
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
+                    android:hint="Feedback Content"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:hint="Feedback Content"
-                    android:textColorHint="@color/colorPrimary4"
                     android:textColor="@color/colorPrimary4"
+                    android:textColorHint="@color/colorPrimary4"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"

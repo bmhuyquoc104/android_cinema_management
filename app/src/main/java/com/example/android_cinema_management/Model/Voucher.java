@@ -44,7 +44,7 @@ public class Voucher implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
+  
     public String getPointRequired() {
         return pointRequired;
     }
@@ -52,7 +52,6 @@ public class Voucher implements Serializable {
     public void setPointRequired(String pointRequired) {
         this.pointRequired = pointRequired;
     }
-
     public String getPrice() {
         return price;
     }

@@ -45,7 +45,6 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
         voucherPoint.setText(voucher.getPointRequired());
         voucherPrice.setText(voucher.getPrice());
         imageURL.setText(voucher.getImage());
-
         updateBtn.setOnClickListener(view -> {
             Map<String, Object> voucherMap = new HashMap<>();
             voucherMap.put("id", voucher.getId());

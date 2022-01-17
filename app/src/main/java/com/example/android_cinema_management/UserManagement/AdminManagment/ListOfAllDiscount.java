@@ -3,6 +3,7 @@ package com.example.android_cinema_management.UserManagement.AdminManagment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,7 +53,9 @@ public class ListOfAllDiscount extends Fragment {
             recyclerView.setHasFixedSize(true);
             discountAdminAdapter = new DiscountAdminAdapter(getActivity(), discountArrayList);
             layoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(layoutManager);
+            // use grid layout manager to display 2 items in one row
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
+            recyclerView.setLayoutManager(gridLayoutManager);
             // Specify an adapter
             recyclerView.setAdapter(discountAdminAdapter);
         });

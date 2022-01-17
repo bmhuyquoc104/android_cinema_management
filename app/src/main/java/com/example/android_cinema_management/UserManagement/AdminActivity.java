@@ -27,7 +27,7 @@ public class AdminActivity extends AppCompatActivity {
     // Declare imageview,string and textview
     ImageView logout, discount, combo, cinema,feedback,voucher;
     TextView welcome;
-    String fullName;
+    public static String fullName;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
