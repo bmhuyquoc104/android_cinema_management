@@ -66,10 +66,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.movieRating.setText("Rate: "+reviewArrayList.get(position).getRateMovie());
         holder.reviewContent.setText("Review Content: " + reviewArrayList.get(position).getReviewContent());
         holder.reviewDate.setText("Date Posted: "+reviewArrayList.get(position).getDate()+ "  " + reviewArrayList.get(position).getTime());
-        holder.author.setText("Author: "+UserHomeFragment.userName);
+
+        holder.author.setText("Author: "+reviewArrayList.get(position).getUser().get("fullName").toString());
         holder.likeBtn.setText(reviewArrayList.get(position).getLike());
         holder.dislikeBtn.setText(reviewArrayList.get(position).getDislike());
-        Picasso.get().load(UserHomeFragment.imageAvatar).into(holder.avatar);
+        Picasso.get().load(reviewArrayList.get(position).getUser().get("avatar").toString()).into(holder.avatar);
         holder.likeBtn.setOnClickListener(View ->{
             CollectionReference reviewRef = db.collection("reviews");
             reviewRef.whereEqualTo("reviewId",reviewArrayList.get(position).getReviewId())

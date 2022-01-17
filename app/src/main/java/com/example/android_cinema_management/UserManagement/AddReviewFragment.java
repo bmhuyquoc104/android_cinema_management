@@ -66,6 +66,7 @@ public class AddReviewFragment extends Fragment {
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
+
     String movieChosen;
     //Declare array adapter
     ArrayAdapter<String> adapterItems;
@@ -182,6 +183,7 @@ public class AddReviewFragment extends Fragment {
                     Map<String, String> userMap = new HashMap<>();
                     userMap.put("fullName", Objects.requireNonNull(user).getFullName());
                     userMap.put("email", user.getEmail());
+                    userMap.put("avatar", user.getAvatar());
                     userMap.put("id", mUser.getUid());
 
                     //Then put userMap into reviewMap
@@ -194,6 +196,7 @@ public class AddReviewFragment extends Fragment {
                         if (taskInner.isSuccessful()) {
                             VoucherAdapter.openSuccessfulDialog(R.raw.review_success,successMessage,getContext());
                             ReviewDatabase.getReviewsByCurrentUser(db,reviewArrayList,()->{},currentUser);
+                            ReviewDatabase.getAllReviews(db,reviewArrayList,() ->{});
                         }
                     });
                 }
