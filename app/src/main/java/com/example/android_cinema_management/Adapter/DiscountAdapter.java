@@ -34,12 +34,14 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
     @NonNull
     @Override
     public DiscountViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//        Getting the layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_row_of_discount, parent, false);
         return new DiscountViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DiscountViewHolder holder, int position) {
+//        Get the discount object
         Discount discount = mListDiscount.get(position);
         if (discount == null) {
             return;
@@ -50,6 +52,7 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
         holder.tvDate.setText(discount.getMonth());
         Picasso.get().load(discount.getImage()).into(holder.ivDiscount);
 
+//        On click to go to the details page
         holder.DiscountLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +90,7 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.Discou
         private ConstraintLayout DiscountLayout;
 
         public DiscountViewHolder(@NonNull View itemView) {
+//            Declaring the views
             super(itemView);
             DiscountLayout = itemView.findViewById(R.id.discountLayout);
 

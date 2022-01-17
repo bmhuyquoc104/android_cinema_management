@@ -11,6 +11,7 @@ import com.example.android_cinema_management.R;
 
 public class Contact extends AppCompatActivity {
 
+//    Writing content as strings
     private String headOfficeContent = "Floor 2, Rivera Park Saigon - No. 7/28\n" +
             "Thanh Thai street, Ward 14, District 10, Ho Chi Minh City";
 
@@ -36,16 +37,19 @@ public class Contact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
+//        finding the views
         HeadOfficeContent = findViewById(R.id.headOfficeContent);
         CustomerServiceContent = findViewById(R.id.customerServiceContent);
         AdvertiseContent = findViewById(R.id.advertiseContent);
         PartnershipSponsorContent = findViewById(R.id.partnershipSponsorContent);
 
+//        setting the content
         HeadOfficeContent.setText(headOfficeContent);
         CustomerServiceContent.setText(customerServiceContent);
         AdvertiseContent.setText(advertisingContent);
         PartnershipSponsorContent.setText(partnershipSponsorContent);
 
+//        button to go back
         Back = findViewById(R.id.back);
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
