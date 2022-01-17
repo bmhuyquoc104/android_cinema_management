@@ -22,6 +22,7 @@ import java.util.List;
 
 public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.DiscountViewHolder>{
 
+    //Declare List<Discount> and Context
     private List<Discount> mListDiscount;
     private Context mContext;
 

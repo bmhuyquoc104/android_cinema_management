@@ -24,6 +24,7 @@ import java.util.UUID;
 
 public class UpdateAndDeleteCombo extends AppCompatActivity {
 
+    //Declare EditText and Button ImageView
     EditText comboName, comboDescription, comboPrice, imageURL;
     Button updateBtn, deleteBtn;
     ImageView close;
@@ -36,9 +37,10 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_and_delete_combo);
 
+        //get variable from itemOnClick from the adapter class
         combo = (Combo) getIntent().getSerializableExtra("combo");
 
-
+        //Binding variable with entity from xml file
         comboName = findViewById(R.id.admin_update_combo_name_et);
         comboDescription = findViewById(R.id.admin_update_combo_description_sent_et);
         comboPrice = findViewById(R.id.admin_combo_price_et);
@@ -47,6 +49,7 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
         deleteBtn = findViewById(R.id.admin_delete_combo_delete_bt);
         close = findViewById(R.id.admin_update_combo_close_iv);
 
+        //Listen to close onClick event
         close.setOnClickListener(View ->{
             Intent intent = new Intent(this, AdminActivity.class);
             startActivity(intent);
@@ -54,11 +57,14 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
 
 
         System.out.println(combo.getPrice());
+        //setText corresponding with EditText variable that has been binding
         comboName.setText(combo.getName());
         comboDescription.setText(combo.getDescription());
 //        price.setText(combo.getPrice());
         imageURL.setText(combo.getImage());
         comboPrice.setText(combo.getPrice());
+
+        //Listen to updateBtn onCLick event
         updateBtn.setOnClickListener(view -> {
             Map<String, Object> comboMap = new HashMap<>();
             comboMap.put("id", combo.getId());
@@ -67,6 +73,7 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
             comboMap.put("price", comboPrice.getText().toString());
             comboMap.put("image", imageURL.getText().toString());
 
+            //saving comboMap to update
             DocumentReference documentReference = db.collection("combo").document(combo.getId());
             documentReference.set(comboMap).addOnCompleteListener(task -> {
                if (task.isSuccessful()){
@@ -75,6 +82,7 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
             });
         });
 
+        //Listen to deleteBtn onCLick event
         deleteBtn.setOnClickListener(view -> {
             db.collection("combo").document(combo.getId())
                     .delete()

@@ -68,7 +68,6 @@ public class VoucherAdminAdapter extends RecyclerView.Adapter<VoucherAdminAdapte
                 Voucher voucher = voucherArrayList.get(getAbsoluteAdapterPosition());
                 Intent intent = new Intent(context, UpdateAndDeleteVoucher.class);
                 intent.putExtra("voucher",voucher);
-                System.out.println("voucherrrrrrrrrrrrrrr" + voucherArrayList);
                 context.startActivity(intent);
             });
         }
