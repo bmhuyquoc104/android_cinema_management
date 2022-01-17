@@ -11,6 +11,7 @@ import com.example.android_cinema_management.R;
 
 public class CopyRight extends AppCompatActivity {
 
+//    Writing the content as string
     private String companyContent = "Business registration certificate: 0303675393, registered" +
             " for the first time on 31/7/2008, registered for the fifth change on 14/10/2015, " +
             "issued by HCMC Department of Planning and Investment.\n" +
@@ -24,12 +25,15 @@ public class CopyRight extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        Getting the views
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_copy_right);
 
+//        Setting the content
         CompanyContent = findViewById(R.id.companyContent);
         CompanyContent.setText(companyContent);
 
+//        Button to go back
         Back = findViewById(R.id.back);
         Back.setOnClickListener(new View.OnClickListener() {
             @Override

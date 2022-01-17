@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.android_cinema_management.R;
 
 public class Job extends AppCompatActivity {
+//    Setting the content as String
     private String jobContent = "UNIVERSAL is a unit within Our Group, one of RMIT’s largest conglomerates," +
             " doing business in 1 country. UNIVERSAL is one of top 5 cinema system and film" +
             " distributor in RMIT, leading film distributor and cinema system in Vietnam.\n\n" +
@@ -27,12 +28,15 @@ public class Job extends AppCompatActivity {
     private ImageView Back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        Getting the views
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
 
+//        Setting the content
         JobContent = findViewById(R.id.jobContent);
         JobContent.setText(jobContent);
 
+//        Button to go back
         Back = findViewById(R.id.back);
         Back.setOnClickListener(new View.OnClickListener() {
             @Override

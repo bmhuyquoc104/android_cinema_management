@@ -40,6 +40,7 @@ public class DiscountUpdate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discount_update);
 
+//        Getting the views
         name = findViewById(R.id.ed_name);
         content = findViewById(R.id.ed_content);
         image = findViewById(R.id.ed_image);
@@ -113,6 +114,7 @@ public class DiscountUpdate extends AppCompatActivity {
         });
     }
 
+//    Update to firestore using the strings we get
     private void updateToFireStore(String id, String n, String m, String c, String i) {
         db.collection("Discounts").document(id).update("Name", n, "Month", m, "Content", c, "Image", i)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
