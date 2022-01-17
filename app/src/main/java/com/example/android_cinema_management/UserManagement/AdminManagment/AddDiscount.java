@@ -47,6 +47,7 @@ public class AddDiscount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_discount);
 
+//        Getting the views
         name = findViewById(R.id.ed_name);
         content = findViewById(R.id.ed_content);
         image = findViewById(R.id.ed_image);
@@ -81,6 +82,7 @@ public class AddDiscount extends AppCompatActivity {
                 id,
                 Toast.LENGTH_SHORT).show();
 
+//        For choosing the month
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(this, R.layout.month_list, months);
         monthACT.setAdapter(monthAdapter);
@@ -91,6 +93,7 @@ public class AddDiscount extends AppCompatActivity {
             }
         });
 
+//        Getting the strings and then save them
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,6 +137,7 @@ public class AddDiscount extends AppCompatActivity {
 //        });
 //    }
 
+//    Saving the content to the database
     private void saveToFireStore(String id, String n, String m, String c, String i) {
         if (!n.isEmpty() && !m.isEmpty() && !c.isEmpty() && !i.isEmpty()) {
             HashMap<String, Object> map = new HashMap<>();
