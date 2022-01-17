@@ -3,16 +3,16 @@ package com.example.android_cinema_management.Model;
 import java.io.Serializable;
 
 public class Discount implements Serializable {
-    private String discountId, Name, Month, Content, Image;
+    private String discountId, name, month, content, image;
 
     public Discount(){}
 
     public Discount(String discountId, String name, String month, String content, String image) {
         this.discountId = discountId;
-        Name = name;
-        Month = month;
-        Content = content;
-        Image = image;
+        this.name = name;
+        this.month = month;
+        this.content = content;
+        this.image = image;
     }
 
     public String getDiscountId() {
@@ -24,45 +24,45 @@ public class Discount implements Serializable {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getMonth() {
-        return Month;
+        return month;
     }
 
     public void setMonth(String month) {
-        Month = month;
+        this.month = month;
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        this.image = image;
     }
 
     @Override
     public String toString() {
         return "Discount{" +
                 "discountId='" + discountId + '\'' +
-                ", Name='" + Name + '\'' +
-                ", Month='" + Month + '\'' +
-                ", Content='" + Content + '\'' +
-                ", Image='" + Image + '\'' +
+                ", name='" + name + '\'' +
+                ", month='" + month + '\'' +
+                ", content='" + content + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

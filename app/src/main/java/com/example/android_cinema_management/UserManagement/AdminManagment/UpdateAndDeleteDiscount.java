@@ -49,9 +49,10 @@ public class UpdateAndDeleteDiscount extends AppCompatActivity {
         update.setOnClickListener(view -> {
             Map<String, Object> discountMap = new HashMap<>();
             discountMap.put("discountId", discount.getDiscountId());
-            discountMap.put("Name", name);
-            discountMap.put("Content", content);
-            discountMap.put("image", image);
+            discountMap.put("name", name.getText().toString());
+            discountMap.put("month", month.getText().toString());
+            discountMap.put("content", content.getText().toString());
+            discountMap.put("image", image.getText().toString());
 
             DocumentReference documentReference = db.collection("Discounts").document(discount.getDiscountId());
             documentReference.set(discountMap).addOnCompleteListener(task -> {
@@ -68,9 +69,9 @@ public class UpdateAndDeleteDiscount extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(UpdateAndDeleteDiscount.this, "COMBO DELETED", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UpdateAndDeleteDiscount.this, "DISCOUNT DELETED", Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(UpdateAndDeleteDiscount.this, "FAILED TO DELETE COMBO", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UpdateAndDeleteDiscount.this, "FAILED TO DELETE DISCOUNT", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
