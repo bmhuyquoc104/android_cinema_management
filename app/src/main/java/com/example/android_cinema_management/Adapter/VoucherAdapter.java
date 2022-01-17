@@ -88,11 +88,11 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
 
 
         pd = new ProgressDialog(context);
-        String priceFormat = formatter.format(Double.parseDouble(voucherList.get(position).getVoucherPrice()));
+        String priceFormat = formatter.format(Double.parseDouble(voucherList.get(position).getPrice()));
 
         holder.price.setText("Price: "+ priceFormat + " VNĐ");
-        holder.pointRequire.setText("Point required: " +voucherList.get(position).getPointRequire());
-        holder.name.setText("Name: " +voucherList.get(position).getVoucherName());
+        holder.pointRequire.setText("Point required: " +voucherList.get(position).getPointRequired());
+        holder.name.setText("Name: " +voucherList.get(position).getName());
 
         holder.exchange.setOnClickListener(View ->{
             // Get the points from the database
@@ -108,8 +108,8 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
                             //Function to only disable and enable the button by the total points
                             assert totalPoints != null;
                             // Check if the user still have enough point to make an exchange
-                            if(Integer.parseInt(totalPoints) >= Integer.parseInt(voucherList.get(position).getPointRequire())){
-                                int remainPoints = Integer.parseInt(totalPoints) - Integer.parseInt(voucherList.get(position).getPointRequire());
+                            if(Integer.parseInt(totalPoints) >= Integer.parseInt(voucherList.get(position).getPointRequired())){
+                                int remainPoints = Integer.parseInt(totalPoints) - Integer.parseInt(voucherList.get(position).getPointRequired());
                                 totalPoints = Integer.toString(remainPoints);
                                 // Update the text view total points in voucher activity in real time
                                 VoucherActivity.updateTotalPoints(VoucherActivity.point,totalPoints);
@@ -117,7 +117,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
                                 // Update the new point to database
                                 db.collection("Users").document(mUser.getUid()).update("point", totalPoints);
                                 VoucherDatabase.postUserVoucher(pd,db,context,firebaseAuth,mUser,
-                                        voucherList.get(position).getVoucherPrice());
+                                        voucherList.get(position).getPrice());
                                 openSuccessfulDialog(R.raw.exchange_success,successMessage,context);
 
                             }
@@ -135,7 +135,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.MyViewHo
 
 
         });
-        Picasso.get().load(voucherList.get(position).getVoucherImage()).into(holder.voucherImage);
+        Picasso.get().load(voucherList.get(position).getImage()).into(holder.voucherImage);
     }
 
     @Override

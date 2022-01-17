@@ -4,88 +4,71 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class Voucher implements Serializable {
-    private String voucherImage;
-    private String voucherName;
-    private String voucherPrice;
-    private String pointRequire;
-    private HashMap<String, Object> user;
-    private String voucherId;
+    private String Id;
+    private String image;
+    private String name;
+    private String pointRequired;
+    private String price;
 
-
-    public Voucher(String voucherImage, String voucherName, String voucherPrice, String pointRequire, HashMap<String, Object> user, String voucherId) {
-        this.voucherImage = voucherImage;
-        this.voucherName = voucherName;
-        this.voucherPrice = voucherPrice;
-        this.pointRequire = pointRequire;
-        this.user = user;
-        this.voucherId = voucherId;
+    public Voucher() {
     }
 
-    public Voucher(String voucherImage, String voucherName, String voucherPrice, String pointRequire, String voucherId) {
-        this.voucherImage = voucherImage;
-        this.voucherName = voucherName;
-        this.voucherPrice = voucherPrice;
-        this.pointRequire = pointRequire;
-        this.voucherId = voucherId;
+    public Voucher(String id, String image, String name, String pointRequired, String price) {
+        Id = id;
+        this.image = image;
+        this.name = name;
+        this.pointRequired = pointRequired;
+        this.price = price;
     }
 
-    public String getVoucherImage() {
-        return voucherImage;
+    public String getId() {
+        return Id;
     }
 
-    public void setVoucherImage(String voucherImage) {
-        this.voucherImage = voucherImage;
+    public void setId(String id) {
+        Id = id;
     }
 
-    public String getVoucherName() {
-        return voucherName;
+    public String getImage() {
+        return image;
     }
 
-    public void setVoucherName(String voucherName) {
-        this.voucherName = voucherName;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getVoucherPrice() {
-        return voucherPrice;
+    public String getName() {
+        return name;
     }
 
-    public void setVoucherPrice(String voucherPrice) {
-        this.voucherPrice = voucherPrice;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPointRequire() {
-        return pointRequire;
+    public String getPointRequired() {
+        return pointRequired;
     }
 
-    public void setPointRequire(String pointRequire) {
-        this.pointRequire = pointRequire;
+    public void setPointRequired(String pointRequired) {
+        this.pointRequired = pointRequired;
     }
 
-    public HashMap<String, Object> getUser() {
-        return user;
+    public String getPrice() {
+        return price;
     }
 
-    public void setUser(HashMap<String, Object> user) {
-        this.user = user;
-    }
-
-    public String getVoucherId() {
-        return voucherId;
-    }
-
-    public void setVoucherId(String voucherId) {
-        this.voucherId = voucherId;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
         return "Voucher{" +
-                "voucherImage='" + voucherImage + '\'' +
-                ", voucherName='" + voucherName + '\'' +
-                ", voucherPrice='" + voucherPrice + '\'' +
-                ", pointRequire='" + pointRequire + '\'' +
-                ", user=" + user +
-                ", voucherId='" + voucherId + '\'' +
+                "Id='" + Id + '\'' +
+                ", image='" + image + '\'' +
+                ", name='" + name + '\'' +
+                ", pointRequired='" + pointRequired + '\'' +
+                ", price='" + price + '\'' +
                 '}';
     }
 }
