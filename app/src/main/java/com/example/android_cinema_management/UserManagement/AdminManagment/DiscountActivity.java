@@ -51,7 +51,9 @@ public class DiscountActivity extends AppCompatActivity {
         Discount.setAdapter(discountAdapter);
 
         postDiscount.setOnClickListener(View -> {
+            Bundle bundle = new Bundle();
             Intent intent = new Intent(DiscountActivity.this, AddDiscount.class);
+            intent.putExtras(bundle);
             startActivity(intent);
         });
     }

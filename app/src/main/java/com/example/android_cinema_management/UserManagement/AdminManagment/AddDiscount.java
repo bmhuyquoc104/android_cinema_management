@@ -58,15 +58,12 @@ public class AddDiscount extends AppCompatActivity {
 
         //        Get the extra information to display
         Bundle bundle = getIntent().getExtras();
-        if (bundle == null) {
-            return;
-        }
 
         //        Assign the extra info
         Discount discount = (Discount) bundle.get("object_discount");
         String id = (String) bundle.get("id_discount");
 
-        if (bundle != null) {
+        if (discount != null) {
             post.setText("Update");
             name.setText(discount.getName());
             content.setText(discount.getContent());
