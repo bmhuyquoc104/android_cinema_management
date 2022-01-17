@@ -69,4 +69,9 @@ public class ComboActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed(){
+
+    };
 }

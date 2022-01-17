@@ -71,4 +71,9 @@ public class AdminDiscountActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed(){
+
+    };
 }

@@ -37,7 +37,7 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
         voucherName = findViewById(R.id.admin_add_voucher_name_et);
         voucherPoint = findViewById(R.id.admin_add_voucher_point_sent_et);
         voucherPrice = findViewById(R.id.admin_add_voucher_image_sent_et);
-        imageURL = findViewById(R.id.admin_add_voucher_image_sent_et);
+
         fullName = findViewById(R.id.admin_add_voucher_userFullName_sent_et);
         updateBtn = findViewById(R.id.admin_update_voucher_update_bt);
         deleteBtn = findViewById(R.id.admin_delete_voucher_delete_bt);
@@ -46,8 +46,6 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
         voucherPoint.setText(voucher.getPointRequire());
         voucherPrice.setText(voucher.getVoucherImage());
         imageURL.setText(voucher.getVoucherImage());
-        fullName.setText(voucher.getUser().get("fullName").toString());
-
         updateBtn.setOnClickListener(view -> {
             Map<String, Object> voucherMap = new HashMap<>();
             voucherMap.put("voucherId", voucher.getVoucherId());

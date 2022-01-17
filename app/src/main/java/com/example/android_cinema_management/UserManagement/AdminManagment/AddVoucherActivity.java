@@ -2,12 +2,15 @@ package com.example.android_cinema_management.UserManagement.AdminManagment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminActivity;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -19,7 +22,7 @@ public class AddVoucherActivity extends AppCompatActivity {
 
     EditText voucherName, point, price, imageURL, fullName;
     Button addButton;
-
+    ImageView close;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,13 @@ public class AddVoucherActivity extends AppCompatActivity {
         imageURL = findViewById(R.id.admin_new_combo_image_sent_et);
         fullName = findViewById(R.id.admin_new_voucher_userName_sent_et);
         addButton = findViewById(R.id.admin_new_voucher_add_bt);
+
+
+
+        close.setOnClickListener(View ->{
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+        });
 
         addButton.setOnClickListener(view -> {
             String voucherId = UUID.randomUUID().toString();
@@ -51,5 +61,12 @@ public class AddVoucherActivity extends AppCompatActivity {
                }
             });
         });
+
+
     }
+
+    @Override
+    public void onBackPressed(){
+
+    };
 }

@@ -70,4 +70,9 @@ public class CinemaActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed(){
+
+    };
 }

@@ -2,14 +2,17 @@ package com.example.android_cinema_management.UserManagement.AdminManagment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.Feedback;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminActivity;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -22,7 +25,7 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
     TextView fullName, date, time, topic, email, feedbackContent;
     EditText replyContent;
     Button replyBtn;
-
+    ImageView close;
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -44,7 +47,12 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
         email = findViewById(R.id.admin_reply_feedback_email_sent_tv);
         replyContent = findViewById(R.id.admin_reply_feedback_reply_content_sent_et);
         replyBtn = findViewById(R.id.admin_reply_feedback_reply_bt);
-
+        close = findViewById(R.id.admin_reply_feedback_iv);
+        close.setOnClickListener(View ->{
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+            
+        });
 
         fullName.setText(feedback.getUser().get("fullName").toString());
         email.setText(feedback.getUser().get("email").toString());
@@ -75,4 +83,9 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
             });
         });
     }
+
+    @Override
+    public void onBackPressed(){
+
+    };
 }

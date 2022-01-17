@@ -8,18 +8,9 @@ public class Voucher implements Serializable {
     private String voucherName;
     private String voucherPrice;
     private String pointRequire;
-    private HashMap<String, Object> user;
     private String voucherId;
 
 
-    public Voucher(String voucherImage, String voucherName, String voucherPrice, String pointRequire, HashMap<String, Object> user, String voucherId) {
-        this.voucherImage = voucherImage;
-        this.voucherName = voucherName;
-        this.voucherPrice = voucherPrice;
-        this.pointRequire = pointRequire;
-        this.user = user;
-        this.voucherId = voucherId;
-    }
 
     public Voucher(String voucherImage, String voucherName, String voucherPrice, String pointRequire, String voucherId) {
         this.voucherImage = voucherImage;
@@ -61,13 +52,6 @@ public class Voucher implements Serializable {
         this.pointRequire = pointRequire;
     }
 
-    public HashMap<String, Object> getUser() {
-        return user;
-    }
-
-    public void setUser(HashMap<String, Object> user) {
-        this.user = user;
-    }
 
     public String getVoucherId() {
         return voucherId;
@@ -84,7 +68,6 @@ public class Voucher implements Serializable {
                 ", voucherName='" + voucherName + '\'' +
                 ", voucherPrice='" + voucherPrice + '\'' +
                 ", pointRequire='" + pointRequire + '\'' +
-                ", user=" + user +
                 ", voucherId='" + voucherId + '\'' +
                 '}';
     }
