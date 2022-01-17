@@ -13,94 +13,65 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android_cinema_management.Model.Combo;
 import com.example.android_cinema_management.Model.Discount;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.UserManagement.AdminManagment.AddDiscount;
+import com.example.android_cinema_management.UserManagement.AdminManagment.UpdateAndDeleteCombo;
+import com.example.android_cinema_management.UserManagement.AdminManagment.UpdateAndDeleteDiscount;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class DiscountAdminAdapter extends RecyclerView.Adapter<DiscountAdminAdapter.DiscountViewHolder>{
+public class DiscountAdminAdapter extends RecyclerView.Adapter<DiscountAdminAdapter.MyViewHold>{
 
-    private List<Discount> mListDiscount ;
-    private List<String> mListID;
-    private Context mContext;
+    Context context;
 
-    public DiscountAdminAdapter(Context context, List<Discount> mListDiscount, List<String> mListID) {
-        this.mContext = context;
-        this.mListDiscount = mListDiscount;
-        this.mListID = mListID;
+    ArrayList<Discount> discountArrayList;
+
+    public DiscountAdminAdapter(Context context, ArrayList<Discount> discountArrayList) {
+        this.context = context;
+        this.discountArrayList = discountArrayList;
     }
 
     @NonNull
     @Override
-    public DiscountAdminAdapter.DiscountViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_discount, parent, false);
-        return new DiscountAdminAdapter.DiscountViewHolder(view);
+    public MyViewHold onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_discount,parent,false);
+        return new MyViewHold(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DiscountAdminAdapter.DiscountViewHolder holder, int position) {
-        Discount discount = mListDiscount.get(position);
-        String id = mListID.get(position);
-        if (discount == null) {
-            return;
-        }
-        if (id == null) {
-            id = "id is null";
-        }
-
-//        Set content for the discounts
-        holder.tvName.setText(discount.getName());
-        holder.tvDate.setText(discount.getMonth());
-        Picasso.get().load(discount.getImage()).into(holder.ivDiscount);
-
-        String finalId = id;
-        holder.DiscountLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickGoToUpdate(discount, finalId);
-            }
-        });
-    }
-
-    //    Go to the detail of a discount
-    private void onClickGoToUpdate(Discount discount, String id) {
-        Intent intent = new Intent(mContext, AddDiscount.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("object_discount", discount);
-        bundle.putString("id_discount", id);
-        intent.putExtras(bundle);
-        mContext.startActivity(intent);
+    public void onBindViewHolder(@NonNull MyViewHold holder, int position) {
+        holder.name.setText(discountArrayList.get(position).getName());
+        holder.month.setText(discountArrayList.get(position).getMonth());
+        holder.content.setText(discountArrayList.get(position).getContent());
+        Picasso.get().load(discountArrayList.get(position).getImage()).into(holder.discountImage);
     }
 
     @Override
     public int getItemCount() {
-        if (mListDiscount != null) {
-            return mListDiscount.size();
-        }
-        return 0;
+        return discountArrayList.size();
     }
 
-    //    Release the data after work is done
-    public void release() {
-        mContext = null;
-    }
-
-    public class DiscountViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvName, tvDate;
-        private ImageView ivDiscount;
-
-        private ConstraintLayout DiscountLayout;
-
-        public DiscountViewHolder(@NonNull View itemView) {
+    class MyViewHold extends RecyclerView.ViewHolder{
+        ImageView discountImage;
+        TextView name, month, content;
+        public MyViewHold(@NonNull View itemView) {
             super(itemView);
-            DiscountLayout = itemView.findViewById(R.id.discountLayout);
 
-            tvName = itemView.findViewById(R.id.name);
-            tvDate = itemView.findViewById(R.id.date);
+            discountImage = itemView.findViewById(R.id.discount);
+            name = itemView.findViewById(R.id.name);
+            month = itemView.findViewById(R.id.date);
+            content = itemView.findViewById(R.id.content);
 
-            ivDiscount = itemView.findViewById(R.id.discount);
+            itemView.setOnClickListener(view -> {
+                Discount discount = discountArrayList.get(getAbsoluteAdapterPosition());
+                Intent intent = new Intent(context, UpdateAndDeleteDiscount.class);
+                intent.putExtra("discount", discount);
+                context.startActivity(intent);
+            });
         }
     }
 }
