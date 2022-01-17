@@ -91,16 +91,17 @@ public class DiscountUpdate extends AppCompatActivity {
                 contentInput = content.getText().toString();
                 imageInput = image.getText().toString();
 
+                String id = (String) bundle.get("id_discount");
+                updateToFireStore(id, nameInput, monthChosen, contentInput, imageInput);
 
-                Bundle bundle1 = getIntent().getExtras();
-                if (bundle1 != null) {
-                    String id = (String) bundle.get("id_discount");
-                    updateToFireStore(id, nameInput, monthChosen, contentInput, imageInput);
-                } else {
-                    String id = UUID.randomUUID().toString();
-                    saveToFireStore(id, nameInput, monthChosen, contentInput, imageInput);
-                }
-
+//                Bundle bundle1 = getIntent().getExtras();
+//                if (bundle1 != null) {
+//
+//                } else {
+//                    String id = UUID.randomUUID().toString();
+//                    saveToFireStore(id, nameInput, monthChosen, contentInput, imageInput);
+//                }
+//
             }
         });
 
@@ -131,34 +132,34 @@ public class DiscountUpdate extends AppCompatActivity {
         });
     }
 
-    private void saveToFireStore(String id, String n, String m, String c, String i) {
-        if (!n.isEmpty() && !m.isEmpty() && !c.isEmpty() && !i.isEmpty()) {
-            HashMap<String, Object> map = new HashMap<>();
-            map.put("Name", n);
-            map.put("Month", m);
-            map.put("Content", c);
-            map.put("Image", i);
-
-            db.collection("Discounts").document(id).set(map)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(DiscountUpdate.this,
-                                    "Discount added.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(DiscountUpdate.this,
-                            "Failed to add discount.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            Toast.makeText(DiscountUpdate.this,
-                    "No empty field allowed.",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
+//    private void saveToFireStore(String id, String n, String m, String c, String i) {
+//        if (!n.isEmpty() && !m.isEmpty() && !c.isEmpty() && !i.isEmpty()) {
+//            HashMap<String, Object> map = new HashMap<>();
+//            map.put("Name", n);
+//            map.put("Month", m);
+//            map.put("Content", c);
+//            map.put("Image", i);
+//
+//            db.collection("Discounts").document(id).set(map)
+//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            Toast.makeText(DiscountUpdate.this,
+//                                    "Discount added.",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(DiscountUpdate.this,
+//                            "Failed to add discount.",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        } else {
+//            Toast.makeText(DiscountUpdate.this,
+//                    "No empty field allowed.",
+//                    Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }

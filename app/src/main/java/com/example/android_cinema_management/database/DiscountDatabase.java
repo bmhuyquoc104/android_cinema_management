@@ -18,6 +18,7 @@ public class DiscountDatabase {
                     for (DocumentSnapshot snapshot : task.getResult()) {
                         // Create an instance and load data to cinema
                         Discount discount = new Discount(
+                                snapshot.getString("discountId"),
                                 snapshot.getString("Name"),
                                 snapshot.getString("Month"),
                                 snapshot.getString("Image"),

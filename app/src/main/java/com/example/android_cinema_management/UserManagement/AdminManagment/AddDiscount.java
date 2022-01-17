@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class AddDiscount extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_discount_update);
+        setContentView(R.layout.activity_add_discount);
 
         name = findViewById(R.id.ed_name);
         content = findViewById(R.id.ed_content);
@@ -100,13 +101,9 @@ public class AddDiscount extends AppCompatActivity {
 
                 Bundle bundle1 = getIntent().getExtras();
                 if (bundle1 != null) {
-                    String id = (String) bundle.get("id_discount");
-                    updateToFireStore(id, nameInput, monthChosen, contentInput, imageInput);
-                } else {
                     String id = UUID.randomUUID().toString();
                     saveToFireStore(id, nameInput, monthChosen, contentInput, imageInput);
                 }
-
             }
         });
 
@@ -118,24 +115,24 @@ public class AddDiscount extends AppCompatActivity {
         });
     }
 
-    private void updateToFireStore(String id, String n, String m, String c, String i) {
-        db.collection("Discounts").document(id).update("Name", n, "Month", m, "Content", c, "Image", i)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(AddDiscount.this,
-                                "Discount updated.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddDiscount.this,
-                        "Failed to update discount.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void updateToFireStore(String id, String n, String m, String c, String i) {
+//        db.collection("Discounts").document(id).update("Name", n, "Month", m, "Content", c, "Image", i)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(AddDiscount.this,
+//                                "Discount updated.",
+//                                Toast.LENGTH_SHORT).show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(AddDiscount.this,
+//                        "Failed to update discount.",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     private void saveToFireStore(String id, String n, String m, String c, String i) {
         if (!n.isEmpty() && !m.isEmpty() && !c.isEmpty() && !i.isEmpty()) {
@@ -145,22 +142,39 @@ public class AddDiscount extends AppCompatActivity {
             map.put("Content", c);
             map.put("Image", i);
 
-            db.collection("Discounts").document(id).set(map)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(AddDiscount.this,
-                                    "Discount added.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddDiscount.this,
-                                    "Failed to add discount.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            System.out.println("DISCOUNT MAPPPPPPPPPPPP: " + map);
+
+            DocumentReference documentReferenceForDiscount = db.collection("Discounts").document(id);
+            documentReferenceForDiscount.set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(AddDiscount.this,
+                            "Discount added.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(AddDiscount.this,
+                            "Failed to add discount.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+//            db.collection("Discounts").document(id)(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            Toast.makeText(AddDiscount.this,
+//                                    "Discount added.",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(AddDiscount.this,
+//                                    "Failed to add discount.",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
         } else {
             Toast.makeText(AddDiscount.this,
                     "No empty field allowed.",

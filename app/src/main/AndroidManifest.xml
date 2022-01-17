@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
         <activity
+            android:name=".UserManagement.AdminManagment.UpdateAndDeleteDiscount"
+            android:exported="false" />
+        <activity
+            android:name=".UserManagement.AdminManagment.AdminDiscountActivity"
+            android:exported="false" />
+        <activity
             android:name=".TicketAndDiscountManagement.DiscountUpdate"
             android:exported="false" />
         <activity
