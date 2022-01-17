@@ -172,5 +172,6 @@
     <string name="guide">UNIVERSAL USER GUIDE</string>
     <string name="hello">Hello Huy</string>
     <string name="currentReview">User Reviews</string>
+    <string name="discountDetail">Discount Detail</string>
 
 </resources>

@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 
 public class DiscountDetails extends AppCompatActivity {
 
-    private TextView DiscountName, DiscountDate, DiscountDetail;
+    private TextView DiscountDetail;
     private ImageView DiscountImage;
     private ImageView Back;
 
@@ -31,8 +31,6 @@ public class DiscountDetails extends AppCompatActivity {
 
         Discount discount = (Discount) bundle.get("object_discount");
 
-        DiscountName = findViewById(R.id.discountName);
-        DiscountDate = findViewById(R.id.discountDate);
         DiscountDetail = findViewById(R.id.discountDetail);
 
         DiscountImage = findViewById(R.id.discountImg);
@@ -52,8 +50,6 @@ public class DiscountDetails extends AppCompatActivity {
         String date = discount.getMonth();
         String content = discount.getContent();
 
-        DiscountName.setText(getBaseContext().getString(R.string.discountName, name));
-        DiscountDate.setText(getBaseContext().getString(R.string.discountDate, date));
         DiscountDetail.setText(content);
 
         Picasso.get().load(discount.getImage()).into(DiscountImage);

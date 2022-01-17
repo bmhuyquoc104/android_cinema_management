@@ -51,7 +51,7 @@ public class ReplyFeedbackActivity extends AppCompatActivity {
         close.setOnClickListener(View ->{
             Intent intent = new Intent(this, AdminActivity.class);
             startActivity(intent);
-            
+
         });
 
         fullName.setText(feedback.getUser().get("fullName").toString());
