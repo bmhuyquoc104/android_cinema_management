@@ -50,8 +50,10 @@ public class DiscountDetails extends AppCompatActivity {
         String date = discount.getMonth();
         String content = discount.getContent();
 
+//        Set the content
         DiscountDetail.setText(content);
 
+//        Set the image
         Picasso.get().load(discount.getImage()).into(DiscountImage);
     }
     @Override

@@ -144,6 +144,7 @@ public class DiscountFragment extends Fragment {
                 });
     }
 
+//    Filter based on month
     public void filterByMonth(ArrayList<Discount> filterDiscountList, ArrayList<Discount> discountList, String inputMonth) {
         for (Discount discount : discountList) {
             if (discount.getMonth() != null && discount.getMonth().equals(inputMonth)) {
