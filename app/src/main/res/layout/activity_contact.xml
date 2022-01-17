@@ -19,10 +19,11 @@
 
     <TextView
         android:id="@+id/contact"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
         android:layout_marginTop="16dp"
         android:text="Contact Us"
         android:textSize="30sp"
@@ -31,7 +32,7 @@
 
     <TextView
         android:id="@+id/headOffice"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="20dp"
@@ -44,7 +45,7 @@
 
     <TextView
         android:id="@+id/headOfficeContent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
@@ -56,7 +57,7 @@
 
     <TextView
         android:id="@+id/customerService"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="30dp"
@@ -69,7 +70,7 @@
 
     <TextView
         android:id="@+id/customerServiceContent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
@@ -81,7 +82,7 @@
 
     <TextView
         android:id="@+id/advertise"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="30dp"
@@ -94,7 +95,7 @@
 
     <TextView
         android:id="@+id/advertiseContent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
@@ -106,7 +107,7 @@
 
     <TextView
         android:id="@+id/partnershipSponsor"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="30dp"
@@ -119,7 +120,7 @@
 
     <TextView
         android:id="@+id/partnershipSponsorContent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
