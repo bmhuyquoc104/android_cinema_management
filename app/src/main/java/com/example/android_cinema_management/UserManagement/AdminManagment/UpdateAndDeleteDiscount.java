@@ -24,36 +24,45 @@ import java.util.Map;
 
 public class UpdateAndDeleteDiscount extends AppCompatActivity {
 
+    //Declare EditText and Button ImageView
     EditText name, month, content, image;
     Button update, delete;
     ImageView close;
+    //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    //Declare String
     Discount discount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_and_delete_discount);
 
+        //get variable from itemOnClick from the adapter class
         discount = (Discount) getIntent().getSerializableExtra("discount");
 
+        //Binding variable with entity from xml file
         name = findViewById(R.id.admin_discount_name_et);
         month = findViewById(R.id.admin_discount_month_sent_et);
         content = findViewById(R.id.admin_discount_content_sent_et);
         image = findViewById(R.id.admin_discount_image_sent_et);
         update = findViewById(R.id.admin_update_discount_update_bt);
         delete = findViewById(R.id.admin_delete_discount_delete_bt);
-
         close = findViewById(R.id.admin_update_discount_close_iv);
 
+        //Listen to close onClick event
         close.setOnClickListener(View ->{
             Intent intent = new Intent(this, AdminActivity.class);
             startActivity(intent);
         });
+
+        //setText corresponding with EditText variable that has been binding
         name.setText(discount.getName());
         month.setText(discount.getMonth());
         content.setText(discount.getContent());
         image.setText(discount.getImage());
 
+        //Listen to updateBtn onCLick event
         update.setOnClickListener(view -> {
             Map<String, Object> discountMap = new HashMap<>();
             discountMap.put("discountId", discount.getDiscountId());
@@ -62,6 +71,7 @@ public class UpdateAndDeleteDiscount extends AppCompatActivity {
             discountMap.put("content", content.getText().toString());
             discountMap.put("image", image.getText().toString());
 
+            //saving discountMap to update
             DocumentReference documentReference = db.collection("Discounts").document(discount.getDiscountId());
             documentReference.set(discountMap).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
@@ -70,6 +80,7 @@ public class UpdateAndDeleteDiscount extends AppCompatActivity {
             });
         });
 
+        //Listen to delete Button onCLick event
         delete.setOnClickListener(view -> {
             db.collection("Discounts").document(discount.getDiscountId())
                     .delete()

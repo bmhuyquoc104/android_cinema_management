@@ -23,6 +23,7 @@ import java.util.Map;
 
 public class UpdateAndDeleteVoucher extends AppCompatActivity {
 
+    //Declare EditText and Button ImageView
     EditText voucherName, voucherPoint, voucherPrice, imageURL;
     Button updateBtn, deleteBtn;
     ImageView close;
@@ -35,8 +36,10 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_and_delete_voucher);
 
+        //get variable from itemOnClick from the adapter class
         voucher = (Voucher) getIntent().getSerializableExtra("voucher");
 
+        //Binding variable with entity from xml file
         voucherName = findViewById(R.id.admin_add_voucher_name_et);
         voucherPoint = findViewById(R.id.admin_add_voucher_point_sent_et);
         voucherPrice = findViewById(R.id.admin_add_voucher_price_sent_et);
@@ -45,18 +48,19 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
         deleteBtn = findViewById(R.id.admin_delete_voucher_delete_bt);
         close = findViewById(R.id.admin_update_voucher_close_iv);
 
+        //Listen to close onClick event
         close.setOnClickListener(View ->{
             Intent intent = new Intent(this, AdminActivity.class);
             startActivity(intent);
         });
 
-
-
-
+        //setText corresponding with EditText variable that has been binding
         voucherName.setText(voucher.getName());
         voucherPoint.setText(voucher.getPointRequired());
         voucherPrice.setText(voucher.getPrice());
         imageURL.setText(voucher.getImage());
+
+        //Listen to updateBtn onCLick event
         updateBtn.setOnClickListener(view -> {
             Map<String, Object> voucherMap = new HashMap<>();
             voucherMap.put("id", voucher.getId());
@@ -65,6 +69,7 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
             voucherMap.put("price", voucherPrice.getText().toString());
             voucherMap.put("image", imageURL.getText().toString());
 
+            //saving voucherMap to update
             DocumentReference documentReference = db.collection("Voucher").document(voucher.getId());
             documentReference.set(voucherMap).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
@@ -73,6 +78,7 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
             });
         });
 
+        //Listen to deleteBtn onCLick event
         deleteBtn.setOnClickListener(view -> {
             db.collection("Voucher").document(voucher.getId())
                     .delete()

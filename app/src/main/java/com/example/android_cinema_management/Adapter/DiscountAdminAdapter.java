@@ -26,6 +26,7 @@ import java.util.List;
 
 public class DiscountAdminAdapter extends RecyclerView.Adapter<DiscountAdminAdapter.MyViewHold>{
 
+    //Declare Context ArrayList<Discount>
     Context context;
 
     ArrayList<Discount> discountArrayList;
