@@ -72,4 +72,9 @@ public class VoucherAdmin extends AppCompatActivity {
         });
 
     }
+    //Not allow user to use the back button on phone
+    @Override
+    public void onBackPressed(){
+
+    };
 }

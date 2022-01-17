@@ -82,6 +82,7 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/admin_new_combo_price_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="60dp"

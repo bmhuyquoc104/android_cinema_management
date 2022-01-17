@@ -32,7 +32,7 @@ public class CinemaFragmentAdapter extends FragmentStateAdapter {
             case 1:
                 return new ListOfCinemaFragment();
         }
-        return new AddVoucherFragment();
+        return new AddCinemaFragment();
     }
 
     @Override

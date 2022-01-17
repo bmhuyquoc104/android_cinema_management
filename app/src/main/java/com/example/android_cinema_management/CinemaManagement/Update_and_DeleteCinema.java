@@ -3,6 +3,7 @@ package com.example.android_cinema_management.CinemaManagement;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,10 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -32,7 +35,7 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     //Declare text input layout
     TextInputLayout city;
-
+    ImageView close;
     Cinema cinema;
 
     //Declare movie array options
@@ -49,7 +52,6 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
         setContentView(R.layout.activity_update_and_delete_cinema);
         //get content cinema's intent
         cinema = (Cinema) getIntent().getSerializableExtra("cinema");
-
         //Binding EditText and Button to file xml activity_update_and_delete_cinema
         cinemaName = findViewById(R.id.admin_add_cinema_name_et);
         cinemaAddress = findViewById(R.id.admin_add_cinema_address_sent_et);
@@ -63,6 +65,11 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
         imageURL = findViewById(R.id.admin_add_cinema_image_sent_et);
         updateCinemaBtn = findViewById(R.id.admin_update_cinema_update_bt);
         deleteCinemaBtn = findViewById(R.id.admin_delete_cinema_delete_bt);
+        close = findViewById(R.id.admin_update_cinema_close_iv);
+        close.setOnClickListener(View ->{
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+        });
 
         //Initialize cityArray and add content into cityArray
         cityArray = new ArrayList<>();
@@ -138,4 +145,9 @@ public class Update_and_DeleteCinema extends AppCompatActivity {
                     });
         });
     }
+    //Not allow user to use the back button on phone
+    @Override
+    public void onBackPressed(){
+
+    };
 }

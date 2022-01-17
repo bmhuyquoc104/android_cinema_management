@@ -46,7 +46,6 @@ public class DiscountAdminAdapter extends RecyclerView.Adapter<DiscountAdminAdap
     public void onBindViewHolder(@NonNull MyViewHold holder, int position) {
         holder.name.setText(discountArrayList.get(position).getName());
         holder.month.setText(discountArrayList.get(position).getMonth());
-        holder.content.setText(discountArrayList.get(position).getContent());
         Picasso.get().load(discountArrayList.get(position).getImage()).into(holder.discountImage);
     }
 
@@ -57,14 +56,14 @@ public class DiscountAdminAdapter extends RecyclerView.Adapter<DiscountAdminAdap
 
     class MyViewHold extends RecyclerView.ViewHolder{
         ImageView discountImage;
-        TextView name, month, content;
+        TextView name, month;
         public MyViewHold(@NonNull View itemView) {
             super(itemView);
 
             discountImage = itemView.findViewById(R.id.discount);
             name = itemView.findViewById(R.id.name);
             month = itemView.findViewById(R.id.date);
-            content = itemView.findViewById(R.id.content);
+
 
             itemView.setOnClickListener(view -> {
                 Discount discount = discountArrayList.get(getAbsoluteAdapterPosition());

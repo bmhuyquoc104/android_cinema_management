@@ -34,12 +34,12 @@ public class VoucherDatabase {
                         for (DocumentSnapshot snapshot : task.getResult()) {
                             // Create an instance and load data to voucher
                             Voucher voucher = new Voucher(
+                                    snapshot.getString("id"),
                                     snapshot.getString("image"),
                                     snapshot.getString("name"),
-                                    snapshot.getString("price"),
                                     snapshot.getString("pointRequired"),
+                                    snapshot.getString("price")
                                     // Parse the database type string to int
-                                    snapshot.getString("id")
                             );
                             // add each instance to the list
                             voucherList.add(voucher);

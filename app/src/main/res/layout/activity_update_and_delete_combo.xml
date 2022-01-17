@@ -7,15 +7,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="181dp"
+            android:layout_height="238dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_final_icon2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/admin_update_combo_close_iv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:tint="@color/colorPrimary2"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseAppTint" />
         <androidx.cardview.widget.CardView
             style="@style/CardView.Light"
+            android:layout_marginTop="120dp"
             android:layout_width="412dp"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/colorPrimary3"
@@ -33,6 +56,7 @@
 
 
                 <EditText
+
                     android:id="@+id/admin_update_combo_name_et"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
@@ -41,7 +65,7 @@
                     android:layout_marginEnd="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawableStart="@drawable/ic_baseline_fastfood"
                     android:drawablePadding="15dp"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
@@ -81,6 +105,7 @@
 
 
                 <EditText
+
                     android:id="@+id/admin_combo_price_et"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
@@ -88,11 +113,12 @@
                     android:layout_marginTop="200dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_price_change_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
-                    android:hint="Combo Description"
+                    android:inputType="number"
+                    android:hint="Combo Price"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:textColor="@color/colorPrimary4"
@@ -108,15 +134,15 @@
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="324dp"
+                    android:layout_marginTop="304dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_image_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
                     android:gravity="start|center_vertical"
-                    android:hint="Image URL"
+                    android:hint="https://"
                     android:isScrollContainer="true"
                     android:keepScreenOn="true"
                     android:lineSpacingExtra="8sp"
@@ -131,7 +157,7 @@
                     android:textSize="16sp"
                     android:verticalScrollbarPosition="right"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
@@ -141,7 +167,7 @@
                     android:layout_width="0dp"
                     android:layout_height="70dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="452dp"
+                    android:layout_marginTop="424dp"
                     android:layout_marginRight="15dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:letterSpacing="0.21"
@@ -153,7 +179,7 @@
                     app:iconPadding="4dp"
                     app:iconTint="@color/colorPrimary4"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.551"
+                    app:layout_constraintHorizontal_bias="0.466"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,7 +188,7 @@
                     android:layout_width="0dp"
                     android:layout_height="70dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="532dp"
+                    android:layout_marginTop="516dp"
                     android:layout_marginRight="15dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:letterSpacing="0.21"
@@ -174,7 +200,7 @@
                     app:iconPadding="4dp"
                     app:iconTint="@color/colorPrimary4"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.551"
+                    app:layout_constraintHorizontal_bias="0.466"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

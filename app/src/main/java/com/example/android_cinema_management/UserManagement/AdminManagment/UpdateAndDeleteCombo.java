@@ -3,13 +3,16 @@ package com.example.android_cinema_management.UserManagement.AdminManagment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.Combo;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,7 +26,7 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
 
     EditText comboName, comboDescription, comboPrice, imageURL;
     Button updateBtn, deleteBtn;
-
+    ImageView close;
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -42,6 +45,14 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
         imageURL = findViewById(R.id.admin_update_combo_image_sent_et);
         updateBtn = findViewById(R.id.admin_update_combo_update_bt);
         deleteBtn = findViewById(R.id.admin_delete_combo_delete_bt);
+        close = findViewById(R.id.admin_update_combo_close_iv);
+
+        close.setOnClickListener(View ->{
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+        });
+
+
         System.out.println(combo.getPrice());
         comboName.setText(combo.getName());
         comboDescription.setText(combo.getDescription());
@@ -81,5 +92,9 @@ public class UpdateAndDeleteCombo extends AppCompatActivity {
 
     }
 
+    //Not allow user to use the back button on phone
+    @Override
+    public void onBackPressed(){
 
+    };
 }

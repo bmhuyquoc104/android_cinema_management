@@ -11,10 +11,35 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="990dp">
+        android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="181dp"
+            android:layout_height="238dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_final_icon2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/admin_update_cinema_close_iv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:tint="@color/colorPrimary2"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseAppTint" />
         <androidx.cardview.widget.CardView
+            android:layout_marginTop="120dp"
             style="@style/CardView.Light"
             android:layout_width="412dp"
             android:layout_height="wrap_content"
@@ -41,7 +66,7 @@
                     android:layout_marginEnd="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawableStart="@drawable/ic_baseline_movie_filter_24"
                     android:drawablePadding="15dp"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
@@ -103,6 +128,7 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <EditText
+
                     android:id="@+id/admin_add_cinema_location_name_tv"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
@@ -110,7 +136,7 @@
                     android:layout_marginTop="360dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_star_rate_24"
+                    android:drawableStart="@drawable/ic_baseline_location_on_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
@@ -153,7 +179,7 @@
                         android:background="@drawable/round_login_page"
                         android:clickable="false"
                         android:cursorVisible="false"
-                        android:drawableStart="@drawable/ic_baseline_movie_filter_24"
+                        android:drawableStart="@drawable/ic_baseline_location_city_24"
                         android:drawablePadding="15dp"
                         android:drawableTint="@color/colorPrimary4"
                         android:ems="10"
@@ -171,6 +197,8 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <EditText
+
+                    android:inputType="number"
                     android:id="@+id/admin_add_cinema_latitude_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
@@ -178,7 +206,7 @@
                     android:layout_marginTop="448dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_numbers_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
@@ -205,6 +233,7 @@
 
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/admin_add_cinema_longitude_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
@@ -212,7 +241,7 @@
                     android:layout_marginTop="556dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_numbers_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
@@ -238,6 +267,7 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/admin_add_cinema_review_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
@@ -279,12 +309,13 @@
                     android:layout_marginTop="784dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_star_rate_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
                     android:gravity="start|center_vertical"
                     android:hint="Rate"
+                    android:inputType="number"
                     android:isScrollContainer="true"
                     android:keepScreenOn="true"
                     android:lineSpacingExtra="8sp"
@@ -313,12 +344,12 @@
                     android:layout_marginTop="900dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_image_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
                     android:gravity="start|center_vertical"
-                    android:hint="Image URL"
+                    android:hint="https://"
                     android:isScrollContainer="true"
                     android:keepScreenOn="true"
                     android:lineSpacingExtra="8sp"

@@ -48,7 +48,7 @@ public class AddVoucherFragment extends Fragment {
             voucherMap.put("id", voucherId);
             voucherMap.put("name", voucherName.getText().toString());
             voucherMap.put("price", price.getText().toString());
-            voucherMap.put("pointRequire", point.getText().toString());
+            voucherMap.put("pointRequired", point.getText().toString());
             voucherMap.put("image", imageURL.getText().toString());
 
             DocumentReference documentReferenceForVoucher = db.collection("Voucher")

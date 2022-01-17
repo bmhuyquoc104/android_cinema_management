@@ -3,14 +3,17 @@ package com.example.android_cinema_management.UserManagement.AdminManagment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.Combo;
 import com.example.android_cinema_management.Model.Discount;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,7 +26,7 @@ public class UpdateAndDeleteDiscount extends AppCompatActivity {
 
     EditText name, month, content, image;
     Button update, delete;
-
+    ImageView close;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Discount discount;
     @Override
@@ -40,7 +43,12 @@ public class UpdateAndDeleteDiscount extends AppCompatActivity {
         update = findViewById(R.id.admin_update_discount_update_bt);
         delete = findViewById(R.id.admin_delete_discount_delete_bt);
 
+        close = findViewById(R.id.admin_update_discount_close_iv);
 
+        close.setOnClickListener(View ->{
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+        });
         name.setText(discount.getName());
         month.setText(discount.getMonth());
         content.setText(discount.getContent());
@@ -78,4 +86,10 @@ public class UpdateAndDeleteDiscount extends AppCompatActivity {
         });
 
     }
+
+    //Not allow user to use the back button on phone
+    @Override
+    public void onBackPressed(){
+
+    };
 }

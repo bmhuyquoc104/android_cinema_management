@@ -16,6 +16,7 @@ import com.example.android_cinema_management.Model.Combo;
 import com.example.android_cinema_management.Model.Voucher;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.database.ComboDatabase;
+import com.example.android_cinema_management.database.VoucherDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -44,7 +45,7 @@ public class ListOfVoucherFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_list_of_voucher, container, false);
         voucherArrayList = new ArrayList<>();
         //call function get reviews data
-        getVoucher(db, voucherArrayList, () -> {
+        VoucherDatabase.fetchVoucherDatabase(db, voucherArrayList, () -> {
             System.out.println("VOUCHER LIST: " + voucherArrayList);
 
             // Set fixed size for recycler view
@@ -60,22 +61,4 @@ public class ListOfVoucherFragment extends Fragment {
         return view;
     }
 
-    //Function get combos data
-    private void getVoucher(FirebaseFirestore db, ArrayList<Voucher> voucherArrayList, Runnable callback) {
-        voucherArrayList.clear();
-        db.collection("Voucher").get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                int count = 0;
-                for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
-                    count++;
-                    Voucher dataContainer = doc.toObject(Voucher.class);
-                    voucherArrayList.add(dataContainer);
-                    System.out.println(voucherArrayList);
-                    if (count == Objects.requireNonNull(task.getResult()).size()) {
-                        callback.run();
-                    }
-                }
-            }
-        });
-    }
 }

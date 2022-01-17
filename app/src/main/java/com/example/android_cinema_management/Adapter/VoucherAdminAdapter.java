@@ -1,5 +1,6 @@
 package com.example.android_cinema_management.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -37,11 +38,12 @@ public class VoucherAdminAdapter extends RecyclerView.Adapter<VoucherAdminAdapte
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.voucherName.setText(voucherArrayList.get(position).getName());
-        holder.pointRequired.setText(voucherArrayList.get(position).getPointRequired());
-        holder.voucherPrice.setText(voucherArrayList.get(position).getPrice());
+        holder.voucherName.setText("Voucher name: " + voucherArrayList.get(position).getName());
+        holder.pointRequired.setText("Point cost: " +voucherArrayList.get(position).getPointRequired());
+        holder.voucherPrice.setText("Actual Price: " + voucherArrayList.get(position).getPrice());
         Picasso.get().load(voucherArrayList.get(position).getImage()).into(holder.voucherImage);
     }
 

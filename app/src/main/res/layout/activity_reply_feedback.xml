@@ -8,7 +8,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="990dp">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="181dp"
+            android:layout_height="238dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_final_icon2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
         <ImageView
             android:id="@+id/admin_reply_feedback_iv"
             android:layout_width="35dp"
@@ -31,7 +46,7 @@
             app:cardBackgroundColor="@color/colorPrimary3"
             app:cardCornerRadius="8dp"
             app:cardElevation="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="120dp"
             android:layout_marginBottom="30dp"
             app:contentPadding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"

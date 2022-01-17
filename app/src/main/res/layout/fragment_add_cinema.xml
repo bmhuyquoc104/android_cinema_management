@@ -171,6 +171,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/admin_add_cinema_latitude_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
@@ -205,6 +206,7 @@
 
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/admin_add_cinema_longitude_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
@@ -238,6 +240,8 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <EditText
+                    android:inputType="number"
+
                     android:id="@+id/admin_add_cinema_review_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
@@ -272,6 +276,7 @@
 
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/admin_add_cinema_rate_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
@@ -318,7 +323,7 @@
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
                     android:gravity="start|center_vertical"
-                    android:hint="Image URL"
+                    android:hint="https://"
                     android:isScrollContainer="true"
                     android:keepScreenOn="true"
                     android:lineSpacingExtra="8sp"

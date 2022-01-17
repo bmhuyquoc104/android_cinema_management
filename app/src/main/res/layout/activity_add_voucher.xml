@@ -41,7 +41,7 @@
                     android:layout_marginEnd="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_person_24"
+                    android:drawableStart="@drawable/ic_baseline_loyalty_24"
                     android:drawablePadding="15dp"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
@@ -57,6 +57,7 @@
 
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/admin_new_voucher_point_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
@@ -64,7 +65,7 @@
                     android:layout_marginTop="104dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_numbers_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:gravity="start|center_vertical"
@@ -80,6 +81,7 @@
                     tools:ignore="UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/admin_new_voucher_price_sent_et"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
@@ -110,12 +112,12 @@
                     android:layout_marginTop="280dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/round_login_page"
-                    android:drawableStart="@drawable/ic_baseline_rate_review_24"
+                    android:drawableStart="@drawable/ic_baseline_image_24"
                     android:drawablePadding="15dp"
                     android:drawableTint="@color/colorPrimary4"
                     android:fadeScrollbars="true"
                     android:gravity="start|center_vertical"
-                    android:hint="Image URL"
+                    android:hint="https://"
                     android:isScrollContainer="true"
                     android:keepScreenOn="true"
                     android:lineSpacingExtra="8sp"

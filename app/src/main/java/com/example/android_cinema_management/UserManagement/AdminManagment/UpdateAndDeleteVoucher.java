@@ -3,13 +3,16 @@ package com.example.android_cinema_management.UserManagement.AdminManagment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Model.Voucher;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -22,7 +25,7 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
 
     EditText voucherName, voucherPoint, voucherPrice, imageURL;
     Button updateBtn, deleteBtn;
-
+    ImageView close;
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -40,8 +43,17 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
         imageURL = findViewById(R.id.admin_add_voucher_image_sent_et);
         updateBtn = findViewById(R.id.admin_update_voucher_update_bt);
         deleteBtn = findViewById(R.id.admin_delete_voucher_delete_bt);
+        close = findViewById(R.id.admin_update_voucher_close_iv);
 
-        voucherName.setText(voucher.getId());
+        close.setOnClickListener(View ->{
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
+        });
+
+
+
+
+        voucherName.setText(voucher.getName());
         voucherPoint.setText(voucher.getPointRequired());
         voucherPrice.setText(voucher.getPrice());
         imageURL.setText(voucher.getImage());
@@ -49,7 +61,7 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
             Map<String, Object> voucherMap = new HashMap<>();
             voucherMap.put("id", voucher.getId());
             voucherMap.put("name", voucherName.getText().toString());
-            voucherMap.put("pointRequire", voucherPoint.getText().toString());
+            voucherMap.put("pointRequired", voucherPoint.getText().toString());
             voucherMap.put("price", voucherPrice.getText().toString());
             voucherMap.put("image", imageURL.getText().toString());
 
@@ -77,4 +89,10 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
         });
 
     }
+
+    //Not allow user to use the back button on phone
+    @Override
+    public void onBackPressed(){
+
+    };
 }
