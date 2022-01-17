@@ -16,11 +16,10 @@ import com.example.android_cinema_management.CinemaManagement.AddCinemaFragment;
 import com.example.android_cinema_management.CinemaManagement.ListOfCinemaFragment;
 import com.example.android_cinema_management.R;
 import com.example.android_cinema_management.UserManagement.AddReviewFragment;
+import com.example.android_cinema_management.UserManagement.AdminManagment.AddVoucherFragment;
 import com.example.android_cinema_management.UserManagement.ListOfReviewFragment;
 
 public class CinemaFragmentAdapter extends FragmentStateAdapter {
-
-
     public CinemaFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
@@ -33,7 +32,7 @@ public class CinemaFragmentAdapter extends FragmentStateAdapter {
             case 1:
                 return new ListOfCinemaFragment();
         }
-        return new AddCinemaFragment();
+        return new AddVoucherFragment();
     }
 
     @Override

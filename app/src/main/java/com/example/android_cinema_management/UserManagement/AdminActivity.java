@@ -20,6 +20,7 @@ import com.example.android_cinema_management.UserManagement.AdminManagment.Admin
 import com.example.android_cinema_management.UserManagement.AdminManagment.CinemaActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.ComboActivity;
 import com.example.android_cinema_management.UserManagement.AdminManagment.FeedbackActivity;
+import com.example.android_cinema_management.UserManagement.AdminManagment.VoucherAdmin;
 
 
 public class AdminActivity extends AppCompatActivity {
@@ -89,7 +90,7 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         voucher.setOnClickListener(view ->{
-            Intent intentVoucher = new Intent(this, AddVoucherActivity.class);
+            Intent intentVoucher = new Intent(this, VoucherAdmin.class);
             startActivity(intentVoucher);
         });
 

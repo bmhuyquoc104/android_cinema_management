@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class UpdateAndDeleteVoucher extends AppCompatActivity {
 
-    EditText voucherName, voucherPoint, voucherPrice, imageURL, fullName;
+    EditText voucherName, voucherPoint, voucherPrice, imageURL;
     Button updateBtn, deleteBtn;
 
     //Declare FirebaseFirestore FirebaseAuth FirebaseUser String
@@ -36,25 +36,24 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
 
         voucherName = findViewById(R.id.admin_add_voucher_name_et);
         voucherPoint = findViewById(R.id.admin_add_voucher_point_sent_et);
-        voucherPrice = findViewById(R.id.admin_add_voucher_image_sent_et);
-
-        fullName = findViewById(R.id.admin_add_voucher_userFullName_sent_et);
+        voucherPrice = findViewById(R.id.admin_add_voucher_price_sent_et);
+        imageURL = findViewById(R.id.admin_add_voucher_image_sent_et);
         updateBtn = findViewById(R.id.admin_update_voucher_update_bt);
         deleteBtn = findViewById(R.id.admin_delete_voucher_delete_bt);
 
-        voucherName.setText(voucher.getVoucherName());
-        voucherPoint.setText(voucher.getPointRequire());
-        voucherPrice.setText(voucher.getVoucherImage());
-        imageURL.setText(voucher.getVoucherImage());
+        voucherName.setText(voucher.getId());
+        voucherPoint.setText(voucher.getPointRequired());
+        voucherPrice.setText(voucher.getPrice());
+        imageURL.setText(voucher.getImage());
         updateBtn.setOnClickListener(view -> {
             Map<String, Object> voucherMap = new HashMap<>();
-            voucherMap.put("voucherId", voucher.getVoucherId());
-            voucherMap.put("voucherName", voucherName);
-            voucherMap.put("pointRequire", voucherPoint);
-            voucherMap.put("voucherPrice", voucherPrice);
-            voucherMap.put("voucherImage", imageURL);
+            voucherMap.put("id", voucher.getId());
+            voucherMap.put("name", voucherName.getText().toString());
+            voucherMap.put("pointRequire", voucherPoint.getText().toString());
+            voucherMap.put("price", voucherPrice.getText().toString());
+            voucherMap.put("image", imageURL.getText().toString());
 
-            DocumentReference documentReference = db.collection("voucher").document(voucher.getVoucherId());
+            DocumentReference documentReference = db.collection("Voucher").document(voucher.getId());
             documentReference.set(voucherMap).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
                     Toast.makeText(this, "VOUCHER UPDATED", Toast.LENGTH_SHORT).show();
@@ -63,15 +62,15 @@ public class UpdateAndDeleteVoucher extends AppCompatActivity {
         });
 
         deleteBtn.setOnClickListener(view -> {
-            db.collection("voucher").document(voucher.getVoucherId())
+            db.collection("Voucher").document(voucher.getId())
                     .delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(UpdateAndDeleteVoucher.this, "COMBO DELETED", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UpdateAndDeleteVoucher.this, "VOUCHER DELETED", Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(UpdateAndDeleteVoucher.this, "FAILED TO DELETE COMBO", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UpdateAndDeleteVoucher.this, "FAILED TO DELETE VOUCHER", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

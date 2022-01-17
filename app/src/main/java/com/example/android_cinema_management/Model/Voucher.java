@@ -4,71 +4,70 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class Voucher implements Serializable {
-    private String voucherImage;
-    private String voucherName;
-    private String voucherPrice;
-    private String pointRequire;
-    private String voucherId;
+    private String Id;
+    private String image;
+    private String name;
+    private String pointRequired;
+    private String price;
 
-
-
-    public Voucher(String voucherImage, String voucherName, String voucherPrice, String pointRequire, String voucherId) {
-        this.voucherImage = voucherImage;
-        this.voucherName = voucherName;
-        this.voucherPrice = voucherPrice;
-        this.pointRequire = pointRequire;
-        this.voucherId = voucherId;
+    public Voucher() {
     }
 
-    public String getVoucherImage() {
-        return voucherImage;
+    public Voucher(String id, String image, String name, String pointRequired, String price) {
+        Id = id;
+        this.image = image;
+        this.name = name;
+        this.pointRequired = pointRequired;
+        this.price = price;
     }
 
-    public void setVoucherImage(String voucherImage) {
-        this.voucherImage = voucherImage;
+    public String getId() {
+        return Id;
     }
 
-    public String getVoucherName() {
-        return voucherName;
+    public void setId(String id) {
+        Id = id;
     }
 
-    public void setVoucherName(String voucherName) {
-        this.voucherName = voucherName;
+    public String getImage() {
+        return image;
     }
 
-    public String getVoucherPrice() {
-        return voucherPrice;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setVoucherPrice(String voucherPrice) {
-        this.voucherPrice = voucherPrice;
+    public String getName() {
+        return name;
     }
 
-    public String getPointRequire() {
-        return pointRequire;
+    public void setName(String name) {
+        this.name = name;
+    }
+  
+    public String getPointRequired() {
+        return pointRequired;
     }
 
-    public void setPointRequire(String pointRequire) {
-        this.pointRequire = pointRequire;
+    public void setPointRequired(String pointRequired) {
+        this.pointRequired = pointRequired;
+    }
+    public String getPrice() {
+        return price;
     }
 
-
-    public String getVoucherId() {
-        return voucherId;
-    }
-
-    public void setVoucherId(String voucherId) {
-        this.voucherId = voucherId;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
         return "Voucher{" +
-                "voucherImage='" + voucherImage + '\'' +
-                ", voucherName='" + voucherName + '\'' +
-                ", voucherPrice='" + voucherPrice + '\'' +
-                ", pointRequire='" + pointRequire + '\'' +
-                ", voucherId='" + voucherId + '\'' +
+                "Id='" + Id + '\'' +
+                ", image='" + image + '\'' +
+                ", name='" + name + '\'' +
+                ", pointRequired='" + pointRequired + '\'' +
+                ", price='" + price + '\'' +
                 '}';
     }
 }

@@ -93,7 +93,6 @@
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_reply_feedback.xml" value="0.17578125" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_transaction.xml" value="0.1" />
-        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_update_and_delete_combo.xml" value="0.264" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_user_feed_back.xml" value="0.12109375" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_user_home.xml" value="0.1875" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/activity_user_notification.xml" value="0.14765625" />
@@ -144,7 +143,6 @@
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/item_discount.xml" value="0.17374517374517376" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/one_row_of_cinema_showtime.xml" value="0.4" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/one_row_of_cinemas.xml" value="0.4" />
-        <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/one_row_of_combo_admin.xml" value="0.158984375" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/one_row_of_curernt_user_review.xml" value="0.14681440443213298" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/one_row_of_discount.xml" value="0.1515625" />
         <entry key="..\:/Users/bmhuyquoc104/GitHub/android_cinema_management/app/src/main/res/layout/one_row_of_movies.xml" value="0.4" />
@@ -181,11 +179,21 @@
         <entry key="app/src/main/res/layout/activity_user_feed_back.xml" value="0.31197916666666664" />
         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.4026268115942029" />
         <entry key="app/src/main/res/layout/activity_user_review.xml" value="0.5911458333333334" />
+        <entry key="app/src/main/res/layout/activity_voucher.xml" value="0.23052536231884058" />
+        <entry key="app/src/main/res/layout/activity_voucher_admin.xml" value="0.24569402228976697" />
         <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.38472222222222224" />
+        <entry key="app/src/main/res/layout/fragment_add_combo.xml" value="0.2907608695652174" />
+        <entry key="app/src/main/res/layout/fragment_add_discount.xml" value="0.2942708333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_voucher.xml" value="0.25253292806484295" />
         <entry key="app/src/main/res/layout/fragment_cinema.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5820512820512821" />
         <entry key="app/src/main/res/layout/fragment_home1.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_home2.xml" value="0.5192708333333333" />
+        <entry key="app/src/main/res/layout/fragment_list_of_all_discount.xml" value="0.2942708333333333" />
+        <entry key="app/src/main/res/layout/fragment_list_of_cinema.xml" value="0.2907608695652174" />
+        <entry key="app/src/main/res/layout/fragment_list_of_combo_admin.xml" value="0.2907608695652174" />
+        <entry key="app/src/main/res/layout/fragment_list_of_transaction.xml" value="0.14994934143870314" />
+        <entry key="app/src/main/res/layout/fragment_list_of_voucher.xml" value="0.25253292806484295" />
         <entry key="app/src/main/res/layout/fragment_movie_details2.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_movie_show_time1.xml" value="0.5820512820512821" />
         <entry key="app/src/main/res/layout/fragment_movies.xml" value="0.3940972222222222" />
@@ -194,6 +202,8 @@
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_sign_up2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/one_row_of_movies.xml" value="0.3940972222222222" />
+        <entry key="app/src/main/res/layout/one_row_of_voucher.xml" value="0.30833333333333335" />
+        <entry key="app/src/main/res/layout/one_row_of_voucher_admin.xml" value="0.25253292806484295" />
         <entry key="app/src/main/res/layout/open_filter_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/open_user_profile_edit_dialog.xml" value="0.31197916666666664" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.1" />
