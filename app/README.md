@@ -43,7 +43,6 @@
     + Receive reply feedback from admin through notification bell
     + Upgrade the account type to experience even more discount
     +Can use all functions from guest 
-    
 - Admin:
     + managing database for cinema(add, delete, update, read)
     + managing database for combo(add, delete, update, read)
@@ -101,7 +100,6 @@
         -Flawlessly Finished implementation for user guide page with lots of fragments, modals, adapters, functions and design (check the package in source code to see more details)
         -Flawlessly Finished implementation for user transaction page with lots of fragments, modals, adapters, functions and design (check the package in source code to see more details)
         -Flawlessly Finished the logic, design, connect to database, of buying ticket process (check the package in source code to see more details)
-          
         *Admin
         -Flawlessly Finished implementation for admin discount page with lots of fragments, modals, adapters, functions and design (check the package in source code to see more details)
         -Flawlessly Finished implementation for admin combo page with lots of fragments, modals, adapters, functions and design (check the package in source code to see more details)
@@ -121,7 +119,6 @@
         -Redesign the whole function if the logic is not corrected, or they do not understand how the app works, or the function is completely unfixed
         -Fix the UI, and redo the UI sometimes
         -Merge and resolve all conflicts in Github
-      
     + Hung:
         -Flawlessly Finished implementation for footer with 4 activities and well written out content (check the package in source code to see more details)
         -Flawlessly Finished implementation for discount viewing page with filter by month (check the package in source code to see more details)
@@ -139,4 +136,12 @@
     + Khang:
         - working mainly on CRUD database like cinema, voucher, users, combo, feedback, reply feedback (admin reply feedback from user), reviews, transaction.
         - users login, sign up, logout, forgot password, register. 
+                                    Huy         Khang       Hung
+
+Hung self-evaluate contribution     100%        90%         80%
+
+Khang self-evaluate contribution    100%        70%         70%
+
+Huy self-evaluation contribution    100%        75%         50%
+(Leader)
 
