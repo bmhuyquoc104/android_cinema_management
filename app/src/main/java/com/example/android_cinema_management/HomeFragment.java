@@ -25,21 +25,13 @@ public class HomeFragment extends Fragment {
     TabLayout layout;
     ViewPager2 viewpager2;
     HomeAdapter adapter;
-    //Declare login and register button
+    //Declare search button
     Button search;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -18,12 +18,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-    //Declare tablayout, adapter and viewpager2
-    TabLayout layout;
-    ViewPager2 viewpager2;
+
     HomeAdapter adapter;
-    //Declare login and register button
-    Button loginAndRegister;
+
     //Declare boolean
     public static boolean isLogin = false;
 
@@ -32,12 +29,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setTheme(R.style.Theme_Android_cinema_management);
+
         setContentView(R.layout.activity_main);
-        //Binding with XML values
-//        layout = findViewById(R.id.ma_tab_layout);
-//        viewpager2 = findViewById(R.id.ma_viewpager2);
-//        loginAndRegister = findViewById(R.id.loginAndRegister);
+
         bottomNavigation = findViewById(R.id.bottomNavigation);
         // Initialize fragment manager
         FragmentManager fm = getSupportFragmentManager();
@@ -81,42 +75,4 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
-//    private static class ZoomOutPageTransformer implements ViewPager2.PageTransformer {
-//        private static final float MIN_SCALE = 0.85f;
-//        private static final float MIN_ALPHA = 0.5f;
-//
-//        public void transformPage(View view, float position) {
-//            int pageWidth = view.getWidth();
-//            int pageHeight = view.getHeight();
-//
-//            if (position < -1) { // [-Infinity,-1)
-//                // This page is way off-screen to the left.
-//                view.setAlpha(0f);
-//
-//            } else if (position <= 1) { // [-1,1]
-//                // Modify the default slide transition to shrink the page as well
-//                float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
-//                float vertMargin = pageHeight * (1 - scaleFactor) / 2;
-//                float horzMargin = pageWidth * (1 - scaleFactor) / 2;
-//                if (position < 0) {
-//                    view.setTranslationX(horzMargin - vertMargin / 2);
-//                } else {
-//                    view.setTranslationX(-horzMargin + vertMargin / 2);
-//                }
-//
-//                // Scale the page down (between MIN_SCALE and 1)
-//                view.setScaleX(scaleFactor);
-//                view.setScaleY(scaleFactor);
-//
-//                // Fade the page relative to its size.
-//                view.setAlpha(MIN_ALPHA +
-//                        (scaleFactor - MIN_SCALE) /
-//                                (1 - MIN_SCALE) * (1 - MIN_ALPHA));
-//
-//            } else { // (1,+Infinity]
-//                // This page is way off-screen to the right.
-//                view.setAlpha(0f);
-//            }
-//        }
-//    }
 }
