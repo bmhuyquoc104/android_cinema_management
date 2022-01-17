@@ -16,11 +16,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.android_cinema_management.Adapter.CinemaAdapter;
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.HomeManagement.HomeFragment1;
+import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.CinemaDatabase;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +39,7 @@ public class BuyTicketFragment1 extends Fragment {
     ArrayList<String> timeArray = new ArrayList<>();
     ArrayList<String> dummyTimeDataArray = new ArrayList<>();
     ArrayList<String> dateArray = new ArrayList<>();
-
+    ArrayList<Cinema> cinemaArrayList = new ArrayList<>();
     //Declare button and textview
     Button next;
     TextView screen;
@@ -56,7 +60,7 @@ public class BuyTicketFragment1 extends Fragment {
     ArrayAdapter<String> cinemaAdapterItems;
     ArrayAdapter<String> dateAdapterItems;
     ArrayAdapter<String> timeAdapterItems;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     // Declare auto complete text view
     AutoCompleteTextView movieAutoCompleteTextView,cinemaAutoCompleteTextView,dateAutoCompleteTextView,timeAutoCompleteTextView;
     public BuyTicketFragment1() {
@@ -72,7 +76,14 @@ public class BuyTicketFragment1 extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_buy_by_movie, container, false);
         //Initialize value for movieArray,cinemaArray,dateArray,timeArray
         moviesArray = HomeFragment1.movieTitleList;
-        cinemaArray = CinemaFragment.cinemaNameList;
+        CinemaDatabase.showData(db, cinemaArrayList, () -> {
+            // Instantiate adapter
+
+            for (Cinema cinema:cinemaArrayList){
+                cinemaArray.add(cinema.getName());
+            }
+
+        });
 
         //Binding xml value
         next = view.findViewById(R.id.buy_by_movie_next_bt);

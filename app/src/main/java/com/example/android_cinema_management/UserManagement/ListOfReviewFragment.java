@@ -3,6 +3,7 @@ package com.example.android_cinema_management.UserManagement;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +19,7 @@ import com.example.android_cinema_management.Adapter.ReviewAdapter;
 import com.example.android_cinema_management.Model.Feedback;
 import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.ReviewDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -53,37 +55,19 @@ public class ListOfReviewFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_list_of_review, container, false);
         reviewArrayList = new ArrayList<>();
         //call function get reviews data
-        getReviews(db, reviewArrayList, () -> {
-            System.out.println("REVIEWS LIST: " + reviewArrayList);
+        ReviewDatabase.getAllReviews(db, reviewArrayList, () -> {
 
             // Set fixed size for recycler view
             recyclerView = view.findViewById(R.id.user_list_reviews_recycler_view);
             recyclerView.setHasFixedSize(true);
             reviewAdapter = new ReviewAdapter(getActivity(), reviewArrayList);
             layoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(layoutManager);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false);
+            recyclerView.setLayoutManager(gridLayoutManager);
             // Specify an adapter
             recyclerView.setAdapter(reviewAdapter);
         });
 
         return view;
-    }
-
-    //Function get reviews data
-    private void getReviews(FirebaseFirestore db, ArrayList<Review> reviewArrayList, Runnable callback) {
-        reviewArrayList.clear();
-        db.collection("reviews").get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                int count = 0;
-                for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
-                    count++;
-                    Review dataContainer = doc.toObject(Review.class);
-                    reviewArrayList.add(dataContainer);
-                    if (count == Objects.requireNonNull(task.getResult()).size()) {
-                        callback.run();
-                    }
-                }
-            }
-        });
     }
 }

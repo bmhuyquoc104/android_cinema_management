@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,16 +15,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_cinema_management.Model.Review;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.UserHomeFragment;
 import com.example.android_cinema_management.UserManagement.VoucherActivity;
 import com.example.android_cinema_management.database.VoucherDatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -32,11 +37,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     //Initialize context
     private Context context;
-
+    private String avatarURL;
     //Initialize ArrayList for review
     private ArrayList<Review> reviewArrayList;
     private boolean isPressed = false;
+    private boolean dislikeIsPressed = false;
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     String currentDislike,currentLike;
     public ReviewAdapter(Context context, ArrayList<Review> reviewArrayList) {
         this.context = context;
@@ -57,12 +65,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         holder.movieName.setText("Movie: " + reviewArrayList.get(position).getMovieName());
         holder.movieRating.setText("Rate: "+reviewArrayList.get(position).getRateMovie());
         holder.reviewContent.setText("Review Content: " + reviewArrayList.get(position).getReviewContent());
-        holder.reviewDate.setText("Date: "+reviewArrayList.get(position).getDate());
-        holder.reviewTime.setText("Time: "+reviewArrayList.get(position).getTime());
+        holder.reviewDate.setText("Date Posted: "+reviewArrayList.get(position).getDate()+ "  " + reviewArrayList.get(position).getTime());
+        holder.author.setText("Author: "+UserHomeFragment.userName);
         holder.likeBtn.setText(reviewArrayList.get(position).getLike());
         holder.dislikeBtn.setText(reviewArrayList.get(position).getDislike());
-
-
+        Picasso.get().load(UserHomeFragment.imageAvatar).into(holder.avatar);
         holder.likeBtn.setOnClickListener(View ->{
             CollectionReference reviewRef = db.collection("reviews");
             reviewRef.whereEqualTo("reviewId",reviewArrayList.get(position).getReviewId())
@@ -80,6 +87,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                                                 .update("like", Integer.toString(Integer.parseInt(currentLike) + 1));
                                         holder.likeBtn.getCompoundDrawables()[0].setTint(Color.RED);
                                         isPressed = true;
+
                                     }
                                     else{
                                         holder.likeBtn.setText(Integer.toString(Integer.parseInt(currentLike) - 1));
@@ -87,6 +95,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                                                 .update("like", Integer.toString(Integer.parseInt(currentLike) - 1));
                                         holder.likeBtn.getCompoundDrawables()[0].setTint(Color.WHITE);
                                         isPressed = false;
+
                                     }
                                 }
 
@@ -114,19 +123,19 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                                     currentDislike = snapShot.getString("dislike");
                                     assert currentDislike != null;
 
-                                    if (!isPressed) {
-                                        holder.likeBtn.setText(Integer.toString(Integer.parseInt(currentDislike) + 1));
+                                    if (!dislikeIsPressed) {
+                                        holder.dislikeBtn.setText(Integer.toString(Integer.parseInt(currentDislike) + 1));
                                         db.collection("reviews").document(reviewArrayList.get(position).getReviewId())
                                                 .update("dislike", Integer.toString(Integer.parseInt(currentDislike) + 1));
                                         holder.dislikeBtn.getCompoundDrawables()[0].setTint(Color.RED);
-                                        isPressed = true;
+                                        dislikeIsPressed = true;
                                     }
                                     else{
                                         holder.dislikeBtn.setText(Integer.toString(Integer.parseInt(currentDislike)-1));
                                         db.collection("reviews").document(reviewArrayList.get(position).getReviewId())
                                                 .update("dislike", Integer.toString(Integer.parseInt(currentDislike)-1));
-                                        holder.dislikeBtn.getCompoundDrawables()[0].setTint(Color.RED);
-                                        isPressed = false;
+                                        holder.dislikeBtn.getCompoundDrawables()[0].setTint(Color.WHITE);
+                                        dislikeIsPressed = false;
                                     }
 
                                 }
@@ -148,28 +157,18 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView likeBtn, dislikeBtn;
-        TextView movieName, movieRating, reviewContent, reviewDate, reviewTime;
+        ImageView avatar;
+        TextView movieName, movieRating, reviewContent, reviewDate, author;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             likeBtn = itemView.findViewById(R.id.list_of_review_like_tv3);
             dislikeBtn = itemView.findViewById(R.id.list_of_review_dislike_tv2);
-
+            avatar = itemView.findViewById(R.id.list_review_avatar_iv);
+            author = itemView.findViewById(R.id.list_of_review_author_tv);
             movieName = itemView.findViewById(R.id.list_of_review_movie_tv);
             movieRating = itemView.findViewById(R.id.list_of_review_rate_tv);
             reviewContent = itemView.findViewById(R.id.list_of_review_content_tv);
             reviewDate = itemView.findViewById(R.id.list_of_review_date_tv);
-            reviewTime = itemView.findViewById(R.id.list_of_review_time_tv);
-
-            likeBtn.setOnClickListener(view -> {
-
-            });
-
-//            dislikeBtn.setOnClickListener(view -> {
-//                countDislike++;
-//                Review review = reviewArrayList.get(getAbsoluteAdapterPosition());
-//                db.collection("reviews").document(review.getReviewId())
-//                        .update("dislike", countDislike);
-//            });
         }
     }
 }

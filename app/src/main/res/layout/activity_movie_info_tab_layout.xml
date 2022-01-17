@@ -7,6 +7,20 @@
     android:background = "@color/colorPrimary3"
     tools:context=".MovieManagement.MovieInfoTabLayout">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/buy_now_animation_view"
+        android:layout_width="234dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/buy_now" />
+
     <ImageView
         android:id="@+id/movie_info_close_iv"
         android:layout_width="35dp"
@@ -18,11 +32,12 @@
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/mitl_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="96dp"
         android:background="@color/colorPrimary3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

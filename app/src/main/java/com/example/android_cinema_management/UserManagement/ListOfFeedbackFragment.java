@@ -16,6 +16,7 @@ import com.example.android_cinema_management.Adapter.MoviesAdapter;
 import com.example.android_cinema_management.Model.Feedback;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.FeedbackDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -32,7 +33,7 @@ public class ListOfFeedbackFragment extends Fragment {
     //Declare adapter
     private FeedbackAdapter feedbackAdapter;
     //Declare Movie list
-    public static ArrayList<Feedback> globalFeedbackArrayList;
+    private ArrayList<Feedback> globalFeedbackArrayList;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -50,18 +51,18 @@ public class ListOfFeedbackFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_of_feedback, container, false);
 
         globalFeedbackArrayList = new ArrayList<>();
-        getFeedbacks(db, globalFeedbackArrayList, () -> {
+        FeedbackDatabase.getFeedbacksByEmail(db, globalFeedbackArrayList, () -> {
             System.out.println("Feedback ArrayList: " + globalFeedbackArrayList);
 
             // Set fixed size for recycler view
             recyclerView = view.findViewById(R.id.user_feedback_recyclerview);
             recyclerView.setHasFixedSize(true);
-            feedbackAdapter = new FeedbackAdapter(getContext(),globalFeedbackArrayList);
+            feedbackAdapter = new FeedbackAdapter(getContext(), globalFeedbackArrayList);
             layoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(layoutManager);
             // Specify an adapter
             recyclerView.setAdapter(feedbackAdapter);
-        });
+        },user);
 
         return view;
     }
@@ -69,7 +70,7 @@ public class ListOfFeedbackFragment extends Fragment {
 
     //Function get reviews data
     private void getFeedbacks(FirebaseFirestore db, ArrayList<Feedback> feedbackArrayList, Runnable callback) {
-        globalFeedbackArrayList.clear();
+        feedbackArrayList.clear();
         db.collection("feedback").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 int count = 0;

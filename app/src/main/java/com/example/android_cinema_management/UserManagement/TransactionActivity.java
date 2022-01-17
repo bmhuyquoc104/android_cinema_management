@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.example.android_cinema_management.Adapter.TransactionAdapter;
 import com.example.android_cinema_management.Model.Transaction;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.TransactionDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -53,11 +54,10 @@ public class TransactionActivity extends AppCompatActivity {
         });
         transactionArrayList = new ArrayList<>();
         //Call function getTransaction
-        getTransaction(db, transactionArrayList, () -> {
-            System.out.println("TRANSACTION LIST: " + transactionArrayList);
+        TransactionDatabase.getTransactionByEmail(db, transactionArrayList, () -> {
 
             // Calculate total saving points
-            for (Transaction transaction:transactionArrayList){
+            for (Transaction transaction : transactionArrayList) {
                 totalSavingPoints += Integer.parseInt(transaction.getPoint());
                 System.out.println("huy ne" + totalSavingPoints);
             }
@@ -74,7 +74,7 @@ public class TransactionActivity extends AppCompatActivity {
             // Specify an adapter
             recyclerView.setAdapter(transactionAdapter);
 
-        });
+        },user);
 
     }
     //Function get transaction data

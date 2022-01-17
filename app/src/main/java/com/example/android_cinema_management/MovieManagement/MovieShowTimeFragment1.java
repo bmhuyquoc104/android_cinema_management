@@ -17,14 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Accounts;
+import com.example.android_cinema_management.Adapter.VoucherAdapter;
 import com.example.android_cinema_management.CinemaManagement.CinemaFragment;
 import com.example.android_cinema_management.Handler.MovieHandler;
 import com.example.android_cinema_management.HomeFragment;
@@ -33,10 +36,14 @@ import com.example.android_cinema_management.Model.Cinema;
 import com.example.android_cinema_management.Model.Movie;
 import com.example.android_cinema_management.Model.MovieDetail;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.UserReview;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
+
+import org.sufficientlysecure.htmltextview.HtmlFormatter;
+import org.sufficientlysecure.htmltextview.HtmlFormatterBuilder;
 
 import java.util.ArrayList;
 
@@ -60,7 +67,8 @@ public class MovieShowTimeFragment1 extends Fragment {
     Movie movie;
     //Declare Movie list
     ArrayList<Cinema> showTimeCinemaList;
-
+    //Declare button
+    Button review;
     public MovieShowTimeFragment1() {
         // Required empty public constructor
     }
@@ -77,6 +85,7 @@ public class MovieShowTimeFragment1 extends Fragment {
         movieImage = view.findViewById(R.id.mi_movieImage);
         movieTrailer = view.findViewById(R.id.mi_movieTrailer);
         rate = view.findViewById(R.id.mi_rate);
+        review = view.findViewById(R.id.movie_review);
         showTimeCinemaList = CinemaFragment.cinemaArrayList;
         //Initialize movieURL
         movieDetailUrl = "";
@@ -95,6 +104,23 @@ public class MovieShowTimeFragment1 extends Fragment {
         // Function to go back to previous activity
 
         fetchMovieDetails();
+
+        Spanned message = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
+                .setHtml(
+                        "<h3> You are currently not logged in. </p>" +
+                                "<p>Please register an account and login to  leave a review for the movie " +
+                                "<h3> Thank you for using our service! </h3>"));
+
+
+            review.setOnClickListener(View -> {
+                if (!MainActivity.isLogin) {
+                    VoucherAdapter.openSuccessfulDialog(R.raw.required_login, message, getContext());
+                }
+                else{
+                    Intent intent = new Intent(getContext(), UserReview.class);
+                    startActivity(intent);
+                }
+            });
         return view;
     }
 

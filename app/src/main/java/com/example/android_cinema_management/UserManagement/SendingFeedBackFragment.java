@@ -19,8 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android_cinema_management.Adapter.VoucherAdapter;
+import com.example.android_cinema_management.Model.Feedback;
 import com.example.android_cinema_management.Model.User;
 import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.database.FeedbackDatabase;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,6 +61,10 @@ public class SendingFeedBackFragment extends Fragment {
     SimpleDateFormat dateFormat;
     String[] topicArray = {"Buying Ticket", "Transaction","Discount","Account","Others"};
 
+    private ArrayList<Feedback> globalFeedbackArrayList = new ArrayList<>();
+
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
     String topicChosen;
     //Declare array adapter
@@ -165,6 +171,7 @@ public class SendingFeedBackFragment extends Fragment {
                     documentReferenceForFeedback.set(feedbackMap).addOnCompleteListener(taskInner -> {
                         if (taskInner.isSuccessful()) {
                             VoucherAdapter.openSuccessfulDialog(R.raw.feedback_success,successMessage,getContext());
+                            FeedbackDatabase.getFeedbacksByEmail(db,globalFeedbackArrayList,()->{},currentUser);
                         }
                     });
                 }

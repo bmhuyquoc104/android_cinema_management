@@ -87,6 +87,7 @@ public class UserHomeFragment extends Fragment {
     FirebaseUser mUser = firebaseAuth.getCurrentUser();
     String userId = mUser.getUid();
 
+    public static String imageAvatar;
     // Initialize the layout
     ConstraintLayout constraintLayout;
     public UserHomeFragment() {
@@ -100,6 +101,7 @@ public class UserHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         //Binding to XML layout
         View view = inflater.inflate(R.layout.fragment_user_home, container, false);
+        avatar = view.findViewById(R.id.user_home_avatar_iv);
         profile = view.findViewById(R.id.user_home_profile_iv);
         combo = view.findViewById(R.id.user_home_gift_iv);
         transaction = view.findViewById(R.id.user_home_transaction_history_iv);
@@ -146,6 +148,8 @@ public class UserHomeFragment extends Fragment {
                         gender = docSnap.getString("gender");
                         totalPoint = docSnap.getString("point");
                         userName = docSnap.getString("fullName");
+                        imageAvatar = docSnap.getString("avatar");
+                        Picasso.get().load(imageAvatar).into(avatar);
                         System.out.println(totalPoint);
                         str2.setSpan(new ForegroundColorSpan(Color.rgb(222,22,25)), 0, str2.length(), 0);
                         builder.append(str2);
@@ -195,8 +199,18 @@ public class UserHomeFragment extends Fragment {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.collection("Users").document(userId)
-                        .update("status","inactive");
+                DocumentReference docRef = db.collection("Users").document(userId);
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot docSnap = task.getResult();
+                            if (docSnap != null){
+                                db.collection("Users").document(mUser.getUid()).update("status", "inactive");
+                            }
+                        }
+                    }
+                });
                 //Declare log out message
                 Spanned logoutMessage = HtmlFormatter.formatHtml(new HtmlFormatterBuilder()
                         .setHtml(
@@ -366,7 +380,7 @@ public class UserHomeFragment extends Fragment {
         window.setBackgroundDrawableResource(R.color.colorPrimary3);
         WindowManager.LayoutParams windowAttributes = window.getAttributes();
         // set the dialog to top
-        windowAttributes.y = 160;
+        windowAttributes.y = 180;
         window.setGravity(Gravity.TOP);
         window.setAttributes(windowAttributes);
         dialog.setCanceledOnTouchOutside(true);
