@@ -1,9 +1,17 @@
-package com.example.android_cinema_management.UserManagement.AdminManagment;
+package com.example.android_cinema_management.TicketAndDiscountManagement;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.android_cinema_management.Model.Discount;
+import com.example.android_cinema_management.R;
+import com.example.android_cinema_management.UserManagement.AdminManagment.AddDiscount;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,27 +20,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.android_cinema_management.Adapter.DiscountAdapter;
-import com.example.android_cinema_management.Adapter.ReviewFragmentAdapter;
-import com.example.android_cinema_management.Model.Discount;
-import com.example.android_cinema_management.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.UUID;
 
-public class AddDiscount extends AppCompatActivity {
+public class DiscountUpdate extends AppCompatActivity {
+
     private TextInputEditText name, content, image;
     private TextInputLayout monthMenu;
     private AutoCompleteTextView monthACT;
@@ -76,7 +70,7 @@ public class AddDiscount extends AppCompatActivity {
             post.setText("Post");
         }
 
-        Toast.makeText(AddDiscount.this,
+        Toast.makeText(DiscountUpdate.this,
                 id,
                 Toast.LENGTH_SHORT).show();
 
@@ -123,14 +117,14 @@ public class AddDiscount extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(AddDiscount.this,
+                        Toast.makeText(DiscountUpdate.this,
                                 "Discount updated.",
                                 Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddDiscount.this,
+                Toast.makeText(DiscountUpdate.this,
                         "Failed to update discount.",
                         Toast.LENGTH_SHORT).show();
             }
@@ -149,20 +143,20 @@ public class AddDiscount extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(AddDiscount.this,
+                            Toast.makeText(DiscountUpdate.this,
                                     "Discount added.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddDiscount.this,
-                                    "Failed to add discount.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(DiscountUpdate.this,
+                            "Failed to add discount.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
         } else {
-            Toast.makeText(AddDiscount.this,
+            Toast.makeText(DiscountUpdate.this,
                     "No empty field allowed.",
                     Toast.LENGTH_SHORT).show();
         }

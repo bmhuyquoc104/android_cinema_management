@@ -44,7 +44,6 @@ public class DiscountFragment extends Fragment {
     private ArrayList<Discount> discountArrayList;
     FirebaseFirestore db;
     String month;
-    HandlerThread ht = new HandlerThread("MyHandlerThread");
 
     public DiscountFragment() {
         // Required empty public constructor
