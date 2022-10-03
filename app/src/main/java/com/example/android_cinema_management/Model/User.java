@@ -39,11 +39,11 @@ public class User {
     public static User createAdmin(){
         String id = UUID.randomUUID().toString();
         String name = "Vo Quoc Huy";
-        String password = "admin104";
-        String email = "s3823236@admin.com";
+        String password = "admin123";
+        String email = "admin@gmail.com";
         String gender = "male";
         String dateOfBirth = "01-04-2000";
-        String address = "99 Nguyen Tuan Street, Ward 5, Go Vap District";
+        String address = "191 Nguyen Van Linh Street, District 7";
         String role = "admin";
         String phone = "0848731007";
         String status = "inactive";
