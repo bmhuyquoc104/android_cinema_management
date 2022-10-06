@@ -24,7 +24,9 @@ Universal is a gorgeous and expertly cinema management app that let the client b
 ### :camera: Screenshots
 
 - Movie List View
-  
+
+<img src = "https://i.imgur.com/bL14vJL.png =250x250" width="200" height="400"/>
+
 ![Upcoming Movie List View](https://i.imgur.com/bL14vJL.png =250x250)
 ![New Streaming Movie List View](https://i.imgur.com/Zwl2Z2G.png)
 
