@@ -30,18 +30,18 @@ Universal is a gorgeous and expertly cinema management app that let the client b
 
 - Movie detail view
   
-![Movie detail view](https://i.imgur.com/4Y9rwm7.png)
+![Movie detail view](https://i.imgur.com/035iOoA.png)
 
-- Movie map view
-! [Movie map view](https://i.imgur.com/WhEzFyr.png)
+- Cinema map view
+![Movie map view](https://i.imgur.com/WhEzFyr.png)
 
 - Cinema List View
   
-![Cinema List View](https://i.imgur.com/GIfsM8W.png)
+![Cinema List View](https://i.imgur.com/P9Vd5vV.png)
 
 - Cinema Detail View
   
-![Cinema detail View](https://i.imgur.com/GIfsM8W.png)
+![Cinema detail View](https://i.imgur.com/4Y9rwm7.png)
 
 - Ticket View
   
@@ -86,28 +86,28 @@ Universal is a gorgeous and expertly cinema management app that let the client b
 ![Rule View](https://i.imgur.com/kq7LEku.png)
 
 - Review View
-! [Review View](https://i.imgur.com/fdy9iEC.png)
+![Review View](https://i.imgur.com/fdy9iEC.png)
 
 - FeedBack View
-! [FeedBack View](https://i.imgur.com/be6QG36.png)
+![FeedBack View](https://i.imgur.com/be6QG36.png)
 
 - Admin View
-! [Admin View](https://i.imgur.com/xRFuxGH.png)
+![Admin View](https://i.imgur.com/xRFuxGH.png)
 
 - Add Cinema View
-! [Add Cinema View](https://i.imgur.com/lrVO65u.png)
+![Add Cinema View](https://i.imgur.com/lrVO65u.png)
 
 - Add Discount View
-! [Add Discount View](https://i.imgur.com/EyYu2zj.png)
+![Add Discount View](https://i.imgur.com/EyYu2zj.png)
 
 - Add Voucher View
-! [Add Voucher View](https://i.imgur.com/qOCvnby.png)
+![Add Voucher View](https://i.imgur.com/qOCvnby.png)
 
 - Add Combo View
-! [Add Combo View](https://i.imgur.com/P3hNPX7.png)
+![Add Combo View](https://i.imgur.com/P3hNPX7.png)
 
 - Reply Feed Back View
-! [Review View](https://i.imgur.com/pyYOu9X.png)
+![Review View](https://i.imgur.com/pyYOu9X.png)
 
 <!-- TechStack -->
 ### :space_invader: Tech Stack
@@ -162,4 +162,4 @@ Universal is a gorgeous and expertly cinema management app that let the client b
 
 Gmail: - bmhuyquoc104@gmail.com
 
-Project Link: [https://github.com/bmhuyquoc104/Daredevil-App](https://github.com/bmhuyquoc104/android_cinema_management)
+Project Link: [https://github.com/bmhuyquoc104/android_cinema_management](https://github.com/bmhuyquoc104/android_cinema_management)
