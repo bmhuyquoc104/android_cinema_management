@@ -25,7 +25,7 @@ Universal is a gorgeous and expertly cinema management app that let the client b
 
 - Movie List View
   
-![Upcoming Movie List View](https://i.imgur.com/bL14vJL.png)
+![Upcoming Movie List View](https://i.imgur.com/bL14vJL.png =250x250)
 ![New Streaming Movie List View](https://i.imgur.com/Zwl2Z2G.png)
 
 - Movie detail view
