@@ -23,93 +23,87 @@ Universal is a gorgeous and expertly cinema management app that let the client b
 <!-- Screenshots -->
 ### :camera: Screenshots
 
-- Movie List View
+- Upcoming Movie List View
 
-<img src = "https://i.imgur.com/bL14vJL.png =250x250" width="200" height="400"/>
+<img src = "https://i.imgur.com/bL14vJL.png" width="200" height="400"/>
 
-![Upcoming Movie List View](https://i.imgur.com/bL14vJL.png =250x250)
-![New Streaming Movie List View](https://i.imgur.com/Zwl2Z2G.png)
+- Streaming Movie List View
+<img src = "https://i.imgur.com/Zwl2Z2G.png" width="200" height="400"/>
 
 - Movie detail view
-  
-![Movie detail view](https://i.imgur.com/035iOoA.png)
+<img src = "https://i.imgur.com/035iOoA.png" width="200" height="400"/>  
 
 - Cinema map view
-![Movie map view](https://i.imgur.com/WhEzFyr.png)
+<img src = "https://i.imgur.com/WhEzFyr.png" width="200" height="400"/>  
 
 - Cinema List View
-  
-![Cinema List View](https://i.imgur.com/P9Vd5vV.png)
+<img src = "https://i.imgur.com/P9Vd5vV.png" width="200" height="400"/>  
 
 - Cinema Detail View
-  
-![Cinema detail View](https://i.imgur.com/4Y9rwm7.png)
+<img src = "https://i.imgur.com/4Y9rwm7.png" width="200" height="400"/>  
 
 - Ticket View
-  
-![Ticket List View](https://i.imgur.com/ChmR8qi.png)
+<img src = "https://i.imgur.com/ChmR8qi.png" width="200" height="400"/>  
 
 - Discount View
-  
-![Discount View](https://i.imgur.com/APIdYz0.png)
+<img src = "https://i.imgur.com/APIdYz0.png" width="200" height="400"/>  
 
 - Register View
-![Register View](https://i.imgur.com/ExKmjkI.png)
+<img src = "https://i.imgur.com/ExKmjkI.png" width="200" height="400"/>  
 
 - Login View
-![Login View](https://i.imgur.com/0xsYnNA.png)
+<img src = "https://i.imgur.com/0xsYnNA.png" width="200" height="400"/>  
 
 - User View
-  
-![User View](https://i.imgur.com/b82W2tP.png)
+<img src = "https://i.imgur.com/b82W2tP.png" width="200" height="400"/>  
 
 - Cinema View
-![Cinema View](https://i.imgur.com/P9Vd5vV.png)
+<img src = "https://i.imgur.com/P9Vd5vV.png" width="200" height="400"/>  
 
 - Profile View
-![Profile View](https://i.imgur.com/LI0B26c.png)
+<img src = "https://i.imgur.com/LI0B26c.png" width="200" height="400"/>  
 
 - Transaction View
-![Transaction View](https://i.imgur.com/ilNd8QQ.png)
+<img src = "https://i.imgur.com/ilNd8QQ.png" width="200" height="400"/>  
 
 - Voucher View
-![Voucher View](https://i.imgur.com/SIemUZ9.png)
+<img src = "https://i.imgur.com/SIemUZ9.png" width="200" height="400"/>  
 
 - Combo View
-![Combo View](https://i.imgur.com/he2xRu3.png)
+<img src = "https://i.imgur.com/he2xRu3.png" width="200" height="400"/>  
 
 - Book Ticket View
-![Book Ticket View](https://i.imgur.com/MB5y6mm.png)
+<img src = "https://i.imgur.com/MB5y6mm.png"  width="200" height="400"/>  
 
 - Notification View
-![Notification View](https://i.imgur.com/6zj8pas.png)
+<img src = "https://i.imgur.com/6zj8pas.png"  width="200" height="400"/>  
 
 - Rule View
-![Rule View](https://i.imgur.com/kq7LEku.png)
+<img src = "https://i.imgur.com/kq7LEku.png"  width="200" height="400"/>  
 
 - Review View
-![Review View](https://i.imgur.com/fdy9iEC.png)
+<img src = "https://i.imgur.com/fdy9iEC.png" width="200" height="400"/>  
 
 - FeedBack View
-![FeedBack View](https://i.imgur.com/be6QG36.png)
+<img src = "https://i.imgur.com/be6QG36.png" width="200" height="400"/>  
 
 - Admin View
-![Admin View](https://i.imgur.com/xRFuxGH.png)
+<img src = "https://i.imgur.com/xRFuxGH.png" width="200" height="400"/>  
 
 - Add Cinema View
-![Add Cinema View](https://i.imgur.com/lrVO65u.png)
+<img src = "https://i.imgur.com/lrVO65u.png" width="200" height="400"/>  
 
 - Add Discount View
-![Add Discount View](https://i.imgur.com/EyYu2zj.png)
+<img src = "https://i.imgur.com/EyYu2zj.png" width="200" height="400"/>  
 
 - Add Voucher View
-![Add Voucher View](https://i.imgur.com/qOCvnby.png)
+<img src = "https://i.imgur.com/qOCvnby.png" width="200" height="400"/>  
 
 - Add Combo View
-![Add Combo View](https://i.imgur.com/P3hNPX7.png)
+<img src = "https://i.imgur.com/P3hNPX7.png" width="200" height="400"/>  
 
 - Reply Feed Back View
-![Review View](https://i.imgur.com/pyYOu9X.png)
+<img src = "https://i.imgur.com/pyYOu9X.png" width="200" height="400"/>  
 
 <!-- TechStack -->
 ### :space_invader: Tech Stack
